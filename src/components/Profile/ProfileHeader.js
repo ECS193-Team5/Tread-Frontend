@@ -5,20 +5,70 @@ import "../../css/Shared/header.css";
 
 const ProfileHeader = () => {
 
-    function getDisplayName(){
-        // GET from db
-        return "Rebekah Grace";
-    }
+  function getDisplayName(){
+    // TODO get the display name from the db
+    // return ("Generic Display name");
+    var config = {
+      method : 'post',
+      url : backend_url + 'user/get_display_name',
+      headers: {
+        Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+    };
+    axios(config)
+    .then(function(response){
+      return response.data;
+    })
+    .catch(function(error){
+      console.log(error)
+    });
+  }
 
-    function getUsername(){
-        // Get from db
-        return "@BronzeTiger#4567";
-    }
+  function getUsername(){
+    // TODO get the display name from the db
+    // return ("Generic Display name");
+    var config = {
+      method : 'post',
+      url : backend_url + 'user/get_username',
+      headers: {
+        Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+    };
+    axios(config)
+    .then(function(response){
+      return response.data;
+    })
+    .catch(function(error){
+      console.log(error)
+    });
+  }
 
-    function getProfilePhoto(){
-        // get from db
-        return "https://i.imgur.com/2BMQKKi.png";
-    }
+  function getProfilePhoto(){
+    //TODO
+    var config  = {
+        method : 'post',
+        url: backend_url+'auth/get_profile_photo',
+        headers: {
+            Accept: 'application/json',
+          },
+        withCredentials: true,
+        credentials: 'include'
+    };
+    axios(config)
+    .then(function(response) {
+        console.log("response received")
+        console.log(response.data)
+        return response.data;
+    })
+    .catch(function(error){
+        console.log(error)
+        console.log("No response")
+    });
+  } 
 
 
     const [displayName] = useState(getDisplayName());

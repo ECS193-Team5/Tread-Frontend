@@ -7,10 +7,7 @@ import '../../css/Shared/button.css';
 import '../../css/Shared/form.css';
 import '../../css/Shared/header.css';
 
-// const backend_url = process.env.REACT_APP_PROD_BACKEND 
-const backend_url = process.env.REACT_APP_DEV_BACKEND 
-
-const token = window.sessionStorage.getItem("token")
+const backend_url = process.env.REACT_APP_BACKEND 
 
 const SignUpForm = () => {
     function getProfilePhoto(){
@@ -99,6 +96,7 @@ const SignUpForm = () => {
         window.location.href = "./currentChallengePage";
       })
       .catch(function(error){
+        setSubmitErrorResponse(error)
         console.log(error)
       });
       }

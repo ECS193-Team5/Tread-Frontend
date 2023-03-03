@@ -3,8 +3,7 @@ import axios from 'axios';
 import '../css/Login/login.css';
 import { useNavigate } from 'react-router-dom'
 
-// const backend_url = process.env.REACT_APP_PROD_BACKEND
-const backend_url = process.env.REACT_APP_DEV_BACKEND
+const backend_url = process.env.REACT_APP_BACKEND
 const env_client_id = process.env.REACT_APP_CLIENT_ID
 
 const Login = () => {
@@ -19,9 +18,9 @@ const Login = () => {
 
     console.log(token)
     console.log("Encoded JWT ID token: " + token.credential);
-    console.log("TEST MESSAGE");
-    console.log("backend_url: " + backend_url);
-    console.log("client id: " + env_client_id);
+    // console.log("TEST MESSAGE");
+    // console.log("backend_url: " + backend_url);
+    // console.log("client id: " + env_client_id);
 
     var config = {
       method: 'post',

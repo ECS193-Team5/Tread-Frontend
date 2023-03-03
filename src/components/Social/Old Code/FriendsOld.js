@@ -4,8 +4,8 @@ import AddFriend from "./AddFriends";
 import FriendBar from "./FriendBar";
 import FriendSection from '../FriendSection';
 import axios from 'axios';
-// const backend_url = process.env.REACT_APP_PROD_BACKEND 
-const backend_url = process.env.REACT_APP_DEV_BACKEND 
+
+const backend_url = process.env.REACT_APP_BACKEND 
 
 const Friends = () => {
 

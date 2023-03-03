@@ -4,6 +4,10 @@ import '../../css/Shared/form.css'
 import '../../css/Shared/button.css'
 import '../../css/Shared/errorBox.css'
 
+import axios from 'axios';
+const backend_url = process.env.REACT_APP_BACKEND
+
+
 const ChallengeForm = () =>{
 
     let sportList =  [
@@ -103,6 +107,17 @@ const ChallengeForm = () =>{
     let [specifyErrorResponse, setSpecifyErrorResponse] = useState("");
     let [submitErrorResponse, setSubmitErrorResponse] = useState("");
 
+    function validateSelfSpecify(event){
+      let selfSpecify = event.target.value;
+      if(selfSpecify.length === 0){
+        setSpecifyErrorResponse("Self specified challenges need to be atleast 1 character long")
+        return false;
+      }
+
+      setSpecifyErrorResponse("")
+      setSelfSpecify(selfSpecify)
+    }
+    
     function sportChange(event){
         setSelfSpecify((event.target.value === "Other (Specify Below)"));
     }
@@ -112,26 +127,113 @@ const ChallengeForm = () =>{
     }
 
     function getToday(){
-        return "2023-05-06";
+      let date_ob = new Date()
+      
+      let date = ("0" + date_ob.getDate()).slice(-2);
+      let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+      let year = date_ob.getFullYear();
+  
+      return (year + "-" + month + "-" + date);
     }
 
     function getTomorrow(){
-        return "2023-05-06";
+      var date_ob = new Date()
+      dateob.setDate(currentDate.getDate() + 1);
+
+      let date = ("0" + date_ob.getDate()).slice(-2);
+      let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+      let year = date_ob.getFullYear();
+  
+      return (year + "-" + month + "-" + date);
     }
 
     function getFriends(){
         // use SetInviteOptions to make it a list of friend names
-        setInviteOptions(["friend1", "friend2", "friend3"]);
+        var array_friends = []
+
+        var config ={
+            method: 'post',
+            url : backend_url+'friend_list/friend_list',
+            headers: {
+                Accept: 'application/json',
+              },
+            withCredentials: true,
+            credentials: 'include'
+        };
+        axios(config)
+        .then(function(response){
+            console.log("got the list");
+            console.log(response.data.friends);
+            setInviteOptions(response.data.friends);
+        })
+        .catch(function(error){
+            console.log(error);
+            console.log("No response")
+        });
+        // setInviteOptions(["friend1", "friend2", "friend3"]);
     }
 
     function getLeagues(){
         // use SetInviteOptions to make it a list of leagues that user is ADMIN or OWNER of
-        setInviteOptions(["league1", "leauge2", "league3"]);
+        var array_friends = []
+
+        var config ={
+            method: 'post',
+            url : backend_url+'league/get_admin_leagues',
+            headers: {
+                Accept: 'application/json',
+              },
+            withCredentials: true,
+            credentials: 'include'
+        };
+        axios(config)
+        .then(function(response){
+            console.log("got the list");
+            console.log(response.data);
+            setInviteOptions(response.data);
+        })
+        .catch(function(error){
+            console.log(error);
+            console.log("No response")
+        });
+        // setInviteOptions(["league1", "leauge2", "league3"]);
     }
 
 
     function submitChallenge(){
-        // Validate the input
+      if (specifyErrorResponse !== ""){
+        setSubmitErrorResponse("Correct the highlighted fields to proceed")
+        return false;
+      }
+      var url_challenge = ""
+      if(receiverGroup === "Self"){
+        url_challenge = backend_url+"/challenges/add_self_challenge"
+      }
+      else if(receiverGroup === "Friend"){
+        url_challenge = backend_url+"/challenges/add_friend_challenge"
+      }
+      else if(receiverGroup === "League"){
+        url_challenge = backend_url+"/challenges/add_league_challenge"
+      }
+
+      var config ={
+        method : 'post',
+        url : url_challenge,
+        headers: {
+          Accept: 'application/json',
+        },
+        withCredentials: true,
+        credentials: 'include'
+      };
+      axios(config)
+      .then(function(response){
+        window.location.href = "./currentChallengePage";
+      })
+      .catch(function(err){
+        setSubmitErrorResponse(err);
+        console.log(err)
+      })
+      // Validate the input
             // If the user selects "self specify", there needs to be a string > length 1 in the field
                 // -> if not, set the error response using setSpecifyErrorResponse();
             // All other fields should be locked by their own types and do not need to be validated
@@ -170,7 +272,7 @@ const ChallengeForm = () =>{
             {selfSpecify ?
                 <div className="formObj">
                     <p className = "formObjInner">Specify your own activity: </p>
-                    <input className = "formObjInner" type = "text"/>
+                    <input className = "formObjInner" type = "text" onChange={validateSelfSpecify}/>
                     <p className = "errorBox">{specifyErrorResponse}</p>
                 </div>
                 :

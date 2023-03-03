@@ -9,7 +9,25 @@ const UserSettingsButton = () => {
     const [decisionState, setDecisionState] = useState("");
 
     function logout(){
-        //TODO
+      var config  = {
+        method : 'post',
+        url: backend_url+'auth/logout',
+        headers: {
+            Accept: 'application/json',
+          },
+        withCredentials: true,
+        credentials: 'include'
+      };
+      axios(config)
+      .then(function(response) {
+          console.log("response received")
+          console.log(response.data)
+          return response.data;
+      })
+      .catch(function(error){
+          console.log(error)
+          console.log("No response")
+      });
     }
 
     function stopLogoutDisplay(){
@@ -24,13 +42,47 @@ const UserSettingsButton = () => {
     }
 
     function getDisplayName(){
-        return "Rebekah Grace";
+      // TODO get the display name from the db
+      // return ("Generic Display name");
+      var config = {
+        method : 'post',
+        url : backend_url + 'user/get_display_name',
+        headers: {
+          Accept: 'application/json',
+        },
+        withCredentials: true,
+        credentials: 'include',
+      };
+      axios(config)
+      .then(function(response){
+        return response.data;
+      })
+      .catch(function(error){
+        console.log(error)
+      });
     }
 
     function getUsername(){
-        return "BronzeTiger#4557";
+      // TODO get the display name from the db
+      // return ("Generic Display name");
+      var config = {
+        method : 'post',
+        url : backend_url + 'user/get_username',
+        headers: {
+          Accept: 'application/json',
+        },
+        withCredentials: true,
+        credentials: 'include',
+      };
+      axios(config)
+      .then(function(response){
+        return response.data;
+      })
+      .catch(function(error){
+        console.log(error)
+      });
     }
-
+  
     function movePage(event){
         setDecisionState(event.target.value);
     }
