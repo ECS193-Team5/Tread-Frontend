@@ -2,6 +2,9 @@ import Line from "../Shared/Line";
 import {useState, useEffect} from 'react';
 import '../../css/Shared/form.css'
 import '../../css/Shared/button.css'
+import axios from 'axios';
+const backend_url = process.env.REACT_APP_DEV_BACKEND
+const env_client_id = process.env.REACT_APP_CLIENT_ID
 
 let sportList =  [
     "Aikido",
@@ -150,19 +153,37 @@ const ChallengeForm = () =>{
     }
 
     function getToday(){
-        //TODO
-        return "2023-05-06";
+        let date = new Date().toISOString().split('T')[0];
+        return date;
     }
 
     function getTomorrow(){
-        // TODO
-        return "2023-05-06";
+        let a = new Date();
+        a.setDate(a.getDate()+1)
+        let tomorrow = a.toISOString().split('T')[0];
+        return tomorrow;
 
     }
 
     function getFriends(){
-        // use SetInviteOptions to make it a list of friend names
-        setInviteOptions(["friend1", "friend2", "friend3"]);
+        var config = {
+            method: 'post',
+            url: backend_url+'friend_list/friend_list',
+            withCredentials: true,
+            credentials: 'include',
+            headers: {
+              Accept: 'application/json',
+            },
+          };
+
+          axios(config)
+          .then(function (response) {
+            console.log(response.data);
+            //setInviteOptions(response.data);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
     }
 
     function getLeagues(){

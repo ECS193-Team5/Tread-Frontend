@@ -10,7 +10,6 @@ import '../../css/Shared/header.css';
 // const backend_url = process.env.REACT_APP_PROD_BACKEND
 const backend_url = process.env.REACT_APP_DEV_BACKEND
 
-const token = window.sessionStorage.getItem("token")
 
 const SignUpForm = () => {
     function getProfilePhoto(){
