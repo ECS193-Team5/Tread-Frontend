@@ -227,12 +227,10 @@ const LeagueObj = (props) => {
     }
     return(
         <div id = {"LeagueObj"+props.children._id} className = "displayObj">
-            <div className = "objSection">
-                <button className = "objButton" onClick = {moveLeaguePage}>
+            <div className = "objSection"  onClick = {moveLeaguePage}>
                 <img className = "objProfilePhoto" src = {createLeaguePictureURL(id)} alt = "league"/>
-                </button>
             </div>
-            <div className = "objSection objWritingSection">
+            <div className = "objSection objWritingSection objWritingLeagueSection"  onClick = {moveLeaguePage}>
                 <p className = "objDisplayName">{props.children.leagueName}</p>
                 <p className = "objUsername">{props.children.members.length} Members</p>
                 <p className = "objUsername">{props.children.activeChallenges} active challenges</p>

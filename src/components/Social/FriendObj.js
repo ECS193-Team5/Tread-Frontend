@@ -222,8 +222,8 @@ const FriendObj = (props) => {
     }
     return(
         <div id = {"FriendObj"+props.children.username} className = "displayObj">
-            <div className = "objSection">
-                <img className = "objProfilePhoto" src = {createProfilePictureURL(props.children.username)} alt = "profile"/>
+            <div className = "objSection objSectionLeague">
+                <img className = "objProfilePhoto objSectionLeague" src = {createProfilePictureURL(props.children.username)} alt = "profile"/>
             </div>
             <div className = "objSection objWritingSection">
                 <p className = "objDisplayName">{props.children.displayName}</p>
