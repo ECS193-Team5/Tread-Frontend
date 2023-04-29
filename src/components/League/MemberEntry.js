@@ -33,29 +33,29 @@ const MemberEntry = (props) => {
       dropdownOptions.push({ "name": "Block", "func": block });
     }
 
-    if (ifSelfAdmin && scrollType === "all" && otherUserType !== "owner") {
+    if (ifSelfAdmin && scrollType === "All" && otherUserType !== "owner") {
       dropdownOptions.push({ "name": "Kick Out", "func": kickOut });
       dropdownOptions.push({ "name": "Ban", "func": ban });
     }
 
-    if (ifSelfAdmin && otherUserType === "admin" && scrollType === "all") {
+    if (ifSelfAdmin && otherUserType === "admin" && scrollType === "All") {
       dropdownOptions.push({ "name": "Remove Admin", "func": removeAdmin });
     }
 
-    if (ifSelfAdmin && otherUserType === "participant" && scrollType === "all") {
+    if (ifSelfAdmin && otherUserType === "participant" && scrollType === "All") {
       dropdownOptions.push({ "name": "Add Admin", "func": addAdmin });
     }
 
-    if (scrollType === "requesting" && (ifSelfAdmin)) {
+    if (scrollType === "Pending" && (ifSelfAdmin)) {
       dropdownOptions.push({ "name": "Accept", "func": accept });
       dropdownOptions.push({ "name": "Decline", "func": decline });
     }
 
-    if (scrollType === "banned" && (ifSelfAdmin)) {
+    if (scrollType === "Banned" && (ifSelfAdmin)) {
       dropdownOptions.push({ "name": "Unban", "func": unban });
     }
 
-    if (scrollType === "invited" && (ifSelfAdmin)) {
+    if (scrollType === "Invited" && (ifSelfAdmin)) {
       dropdownOptions.push({ "name": "Revoke Invite", "func": revoke });
     }
     setMemberDropDownEntries(dropdownOptions);
@@ -390,8 +390,7 @@ const MemberEntry = (props) => {
 
     </div>
 
-    //<MemberSelect memberReact = {reactionFunction} scrollType = {props.scrollType} selfType = {props.selfType} userType = {props.children.role}></MemberSelect>
-  )
+    )
 }
 
 export default MemberEntry;
