@@ -32,7 +32,7 @@ const MemberAdd = (props) => {
           })
           .catch(function(error){
               console.log(error);
-              setUserText(error);
+              setUserText("Sorry, could not invite that user");
               if(error.response.status===401){
                 window.location.href = "/loginPage";
             }

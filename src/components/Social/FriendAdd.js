@@ -26,11 +26,10 @@ const FriendAdd = () => {
           };
           axios(config)
           .then(function(response) {
-              setUserResponse(response.data);
+              setUserResponse("Sent!");
           })
           .catch(function(error){
-              console.log(error)
-              console.log("No response")
+                setUserResponse("Sorry, could not send a friend request to that user");
               if(error.response.status===401){
                 window.location.href = "/loginPage";
             }
