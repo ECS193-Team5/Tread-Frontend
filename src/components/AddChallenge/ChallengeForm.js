@@ -71,7 +71,6 @@ const ChallengeForm = () =>{
     }
 
     const submitChallenge = () => {
-
         if (!checkValidInputs()){
           return false;
         }
@@ -81,7 +80,7 @@ const ChallengeForm = () =>{
           recipient = receiver.split('-')[1].trim();
         }
 
-        var config ={
+       var config ={
           method : 'post',
           url : backend_url+"challenges/add_"+receiverGroup+"_challenge",
           headers: {

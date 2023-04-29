@@ -14,6 +14,7 @@ import "../../css/Shared/button.css";
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const IssuedChallengeObj = (props) => {
+    console.log(props);
     let myProgressBaseUnits = props.children.progress.progress;
     let totalBaseUnits = props.children.progress.exercise.convertedAmount;
     let totalRealUnits = props.children.progress.exercise.amount;
