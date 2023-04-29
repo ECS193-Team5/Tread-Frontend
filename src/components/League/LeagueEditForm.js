@@ -6,7 +6,7 @@ import { createLeaguePictureURL } from "../../Helpers/CloudinaryURLHelpers";
 import LeagueNameForm from "../Shared/Form/LeagueNameForm";
 import LeagueDescriptionForm from "../Shared/Form/LeagueDescriptionForm";
 import LeagueTypeForm from "../Shared/Form/LeagueTypeForm";
-
+import Line from "../Shared/Line";
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 const LeagueEditForm = (props) => {
     console.log("League Edit Form props", props);
@@ -183,19 +183,23 @@ const LeagueEditForm = (props) => {
             </div>
             <button className="submitButton" onClick={submitUpdatedPhoto}><p className="submitButtonText">Submit</p></button>
             <p className = "greenBaseText">{photoUpdateResponse}</p>
+            <Line></Line>
 
             <LeagueNameForm updateLeagueName={setLeagueName} />
             <button className="submitButton" onClick={submitUpdatedName}><p className="submitButtonText">Submit</p></button>
             <p className = "greenBaseText">{nameUpdateResponse}</p>
+            <Line></Line>
 
             <LeagueDescriptionForm updateDescription={setLeagueDescription} />
             <button className="submitButton" onClick={submitUpdatedDescription}><p className="submitButtonText">Submit</p></button>
             <p className = "greenBaseText">{descriptionUpdateResponse}</p>
+            <Line></Line>
 
             <LeagueTypeForm defaultValue="" updateLeagueType={setLeagueType} />
             <button className="submitButton" onClick={submitUpdatedType}><p className="submitButtonText">Submit</p></button>
             <p className = "greenBaseText">{typeUpdateResponse}</p>
-            <p><br></br></p>
+            <Line></Line>
+
             <h2>Delete League</h2><p>
             <span className = "greenBaseText">This will </span>
             <span className = "redBaseText">permanently delete</span>
