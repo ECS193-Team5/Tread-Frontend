@@ -32,10 +32,10 @@ const ExerciseNameForm = (props) => {
     useEffect (
         () => {
             if(selfSpecify){
-                setDisplayProperty("AddChallengeSelfSpecifyExerciseName", "block");
+                setDisplayProperty("SpecifyElement", "block");
             }
             else{
-                setDisplayProperty("AddChallengeSelfSpecifyExerciseName", "none");
+                setDisplayProperty("SpecifyElement", "none");
             }
         }, [selfSpecify]
     );
@@ -60,6 +60,7 @@ const ExerciseNameForm = (props) => {
 
         return (newString1.toUpperCase() === newString2.toUpperCase());
     }
+
     function selfSpecifyChange(event){
         let selfEntry = event.target.value;
 
