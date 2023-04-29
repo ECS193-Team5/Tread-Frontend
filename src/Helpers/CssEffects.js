@@ -13,3 +13,25 @@ export const flipButton = (id, showState) => {
     }
     document.getElementById(id).style.transform = 'rotate(' + deg + 'deg)';
 }
+
+export const changeBarButton = (button, onButton) => {
+    let on = (button.name === onButton);
+    let classList = "BarButton";
+
+    if (on){
+        classList += " OnButton";
+    }
+    else{
+        classList += " OffButton";
+    }
+
+    if(button.create){
+        classList += "Create"
+    }
+    else{
+        classList += "NoCreate";
+    }
+
+    document.getElementById(button.name + "BarButton").className = classList;
+
+}

@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import LeagueBar from "./LeagueBar";
+import Bar from '../Shared/Bar';
 import LeagueScroll from "./LeagueScroll";
 
 import "../../css/Shared/section.css";
@@ -7,16 +7,17 @@ import "../../css/Shared/bar.css";
 import "../../css/Shared/button.css";
 
 const LeagueSection = () => {
-    const [leagueState, setLeagueState] = useState("league");
+    const [leagueState, setLeagueState] = useState("All");
+    let buttonList = [{"name": "All", "defaultOn":true, "create":false},
+    {"name": "Admin", "defaultOn":false, "create":false},
+    {"name": "Sent", "defaultOn":false, "create":false},
+    {"name": "Received", "defaultOn":false, "create":false},
+    {"name": "Create", "defaultOn":false, "create":true}];
 
-    function addLeague (){
-        window.location.href = "./addLeaguePage";
-    }
 
     useEffect (
         () => {
-            if(leagueState === "create"){
-                console.log( "Set league state to create");
+            if(leagueState === "Create"){
                 window.location.href = "./addLeaguePage";
             }
             else{
@@ -29,18 +30,16 @@ const LeagueSection = () => {
         <div id = "LeagueSection" className="section">
             <div className ="selectButtonHeader">
                 <h1>Leagues</h1>
-                <LeagueBar func = {setLeagueState}></LeagueBar>
+                <Bar>{{"buttonList":buttonList, "updateFunc":setLeagueState}}</Bar>
             </div>
 
         <div>
 
         </div>
-            { (leagueState === "league") ? <LeagueScroll type = "league"></LeagueScroll> : <></>}
-            { (leagueState === "owner") ? <LeagueScroll type = "owner"></LeagueScroll> : <></>}
-            { (leagueState === "admin") ? <LeagueScroll type = "admin"></LeagueScroll> : <></>}
-            { (leagueState === "sent") ? <LeagueScroll type = "sent"></LeagueScroll> : <></>}
-            { (leagueState === "invite") ? <LeagueScroll type = "invite"></LeagueScroll> : <></>}
-
+            { (leagueState === "All") ? <LeagueScroll type = "league"></LeagueScroll> : <></>}
+            { (leagueState === "Admin") ? <LeagueScroll type = "admin"></LeagueScroll> : <></>}
+            { (leagueState === "Sent") ? <LeagueScroll type = "sent"></LeagueScroll> : <></>}
+            { (leagueState === "Received") ? <LeagueScroll type = "invite"></LeagueScroll> : <></>}
         </div>
         )
 }

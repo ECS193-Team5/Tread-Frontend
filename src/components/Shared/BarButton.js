@@ -1,6 +1,10 @@
 import '../../css/Shared/button.css';
 
 const BarButton = (props) => {
-    return (<button id = {props.name} onClick = {props.function} className = "barButton">{props.name}</button>);
+    const buttonChange = () => {
+        props.func(props.name);
+    }
+
+    return (<button id = {props.name+"BarButton"} onClick = {buttonChange} className = {props.classes}>{props.name}</button>);
 }
 export default BarButton;

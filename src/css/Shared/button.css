@@ -140,8 +140,7 @@ button{
     height: 20px;
 }
 
-
-.barButton{
+.BarButton{
     width: 140px;
     height: 30px;
 
@@ -163,22 +162,22 @@ button{
     border-radius: 4px;
 }
 
-.barSelectedButton{
+.OnButtonCreate{
+    background-color: transparent !important;
+    color: #00853F !important;
+}
+
+.OnButtonNoCreate{
     background-color: #cdced1 !important;
 }
 
-.barUnselectedButton{
+.OffButtonNoCreate{
     background-color: transparent !important;
 }
 
-.barAddUnselectedButton{
+.OffButtonCreate{
     background-color: #00853F !important;
     color: white;
-}
-
-.barAddSelectedButton{
-    background-color: transparent !important;
-    color: #00853F !important;
 }
 
 .editButton{
