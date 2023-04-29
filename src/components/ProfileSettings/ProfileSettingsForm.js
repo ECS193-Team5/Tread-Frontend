@@ -15,24 +15,6 @@ const ProfileSettingsForm = (props) => {
     const [displayName, setDisplayName] = useState(props.children.displayName);
     const [displayErrorResponse, setDisplayErrorResponse] = useState("");
 
-    function validateDisplay(event){
-      event.preventDefault();
-        let displayNameInput = event.target.value;
-        if (displayNameInput.length === 0 || displayNameInput.length > 32){
-            setDisplayErrorResponse("Cannot sign up, display name between 1-32 characters");
-            return false;
-        }
-
-        if (!(/^[a-z0-9 ]+$/i.test(displayNameInput))) {
-            setDisplayErrorResponse("Display Name input must only have alphanumeric and spaces");
-            return false;
-        }
-
-        setDisplayErrorResponse("");
-        setDisplayName(displayNameInput);
-        return true;
-    }
-
     function submitPhoto(){
       var formData = new FormData();
       formData.append("picture", photo);

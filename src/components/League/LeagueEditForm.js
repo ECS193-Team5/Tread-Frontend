@@ -9,6 +9,7 @@ import LeagueTypeForm from "../Shared/Form/LeagueTypeForm";
 
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 const LeagueEditForm = (props) => {
+    console.log("League Edit Form props", props);
     const [name, setLeagueName] = useState("");
     const [description, setLeagueDescription] = useState("");
     const [photo, setPhoto] = useState("");
@@ -17,6 +18,7 @@ const LeagueEditForm = (props) => {
     const [photoUpdateResponse, setPhotoUpdateResponse] = useState("");
     const [typeUpdateResponse, setTypeUpdateResponse] = useState("");
     const [descriptionUpdateResponse, setDescriptionUpdateResponse] = useState("");
+    const [deleteError, setDeleteError] = useState("");
 
 
     const submitUpdatedPhoto = () => {
@@ -28,6 +30,7 @@ const LeagueEditForm = (props) => {
 
         var formData = new FormData();
         formData.append("leaguePicture", photo);
+        formData.append("leagueID", props.leagueID);
 
         var config = {
             method: 'post',
@@ -68,7 +71,8 @@ const LeagueEditForm = (props) => {
             withCredentials: true,
             credentials: 'include',
             data: {
-                leagueName: name
+                leagueName: name,
+                leagueID: props.leagueID
             }
         };
         axios(config)
@@ -99,7 +103,8 @@ const LeagueEditForm = (props) => {
             withCredentials: true,
             credentials: 'include',
             data: {
-                leagueDescription: description
+                leagueDescription: description,
+                leagueID:props.leagueID
             }
         };
         axios(config)
@@ -130,7 +135,8 @@ const LeagueEditForm = (props) => {
             withCredentials: true,
             credentials: 'include',
             data: {
-                leagueType: type
+                leagueType: type,
+                leagueID:props.leagueID
             }
         };
         axios(config)
@@ -144,7 +150,7 @@ const LeagueEditForm = (props) => {
                 console.log(error)
             });
     }
-/*
+
     function deleteLeague(){
         var config = {
             method : 'post',
@@ -155,20 +161,20 @@ const LeagueEditForm = (props) => {
             withCredentials: true,
             credentials: 'include',
             data:{
-                leagueID: id
+                leagueID: props.leagueID
             }
           };
           axios(config)
           .then(function(response) {
-              console.log(response.data)
+              window.location.href = "./SocialLeaguePage";
           })
           .catch(function(error){
-              console.log(error)
+              setDeleteError("Could not delete league.")
               if(error.response.status===401){
                 window.location.href = "/loginPage";
             }
           });
-    }*/
+    }
     return (
         <div>
             <div className="formObj">
@@ -189,8 +195,18 @@ const LeagueEditForm = (props) => {
             <LeagueTypeForm defaultValue="" updateLeagueType={setLeagueType} />
             <button className="submitButton" onClick={submitUpdatedType}><p className="submitButtonText">Submit</p></button>
             <p className = "greenBaseText">{typeUpdateResponse}</p>
-
-
+            <p><br></br></p>
+            <h2>Delete League</h2><p>
+            <span className = "greenBaseText">This will </span>
+            <span className = "redBaseText">permanently delete</span>
+            <span className = "greenBaseText"> your league. You will </span>
+            <span className = "redBaseText">lose</span>
+            <span className = "greenBaseText"> all the previous challenges, leaderboard, and history. There will be </span>
+            <span className = "redBaseText">no</span>
+            <span className = "greenBaseText"> recovery</span></p>
+            <button className = "deleteButton" onClick = {deleteLeague}><p className = "deleteButtonText">Delete</p></button>
+            <p className="errorBox">{deleteError}</p>
+            <p><br></br></p>
         </div>);
 }
 

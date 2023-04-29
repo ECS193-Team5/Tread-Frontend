@@ -152,7 +152,7 @@ const LeagueHeader = (props) => {
     }
 
     const moveEditPage = () => {
-        window.location.href = "./leagueEditPage?"+id;
+        window.location.href = "./leagueEditPage?="+id;
     }
 
     return(
