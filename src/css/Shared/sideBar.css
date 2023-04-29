@@ -9,6 +9,7 @@
     margin: 0;
     border: 0;
     border-radius: 0px 30px 30px 0px;
+    background: radial-gradient(100% 95% at 40% 40%, #014421 0%, #000000 100%);
 }
 
 .sideBarButtonClass{

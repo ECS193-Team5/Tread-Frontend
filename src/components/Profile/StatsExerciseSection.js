@@ -43,11 +43,32 @@ const StatsExerciseSection = () => {
               {
                 label: selectedExerciseName,
                 data: [],
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                backgroundColor: 'rgba(1, 68, 33, 0.5)',
               }
             ],
         }
     );
+
+    const options = {
+        plugins: {
+        },
+        responsive: true,
+        scales: {
+          x: {
+            title:{
+              display: true,
+              text: "Date"
+            }
+          },
+          y: {
+            title:{
+              display: true,
+              text: selectedExerciseUnit
+            }
+          },
+        },
+      };
+
 
     const [exerciseLog, setExerciseLog] = useState([]);
 
@@ -87,7 +108,7 @@ const StatsExerciseSection = () => {
                   {
                     label: selectedExerciseName,
                     data: data,
-                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    backgroundColor: 'rgba(1, 68, 33, 0.7)',
                   }
                 ],
             }
@@ -255,7 +276,7 @@ const StatsExerciseSection = () => {
 
             </select>
         </div>
-        <Bar data = {config}></Bar>
+        <Bar options = {options} data = {config}></Bar>
         </div>
         );
 }

@@ -9,7 +9,7 @@
     width: 320px;
     height: 73px;
 
-    background: #00853F;
+    background: #014421;
     border-radius: 20px;
 
     display: flex;
@@ -19,6 +19,7 @@
     border: 0px;
     display: flex;
     align-items: center;
+    background: radial-gradient(100% 95% at 40% 40%, #014421 0%, #000000 100%);
 }
 #userSettingNaming{
     display: flex;
