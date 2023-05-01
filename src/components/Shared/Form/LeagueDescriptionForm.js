@@ -9,7 +9,7 @@ const LeagueDescriptionForm = (props) => {
             return;
         }
 
-        if (event.target.value > 255){
+        if (event.target.value.length > 255){
             setDescriptionError("League description is too long. Please limit to 255 characters.")
             props.updateDescription("");
             return false;
