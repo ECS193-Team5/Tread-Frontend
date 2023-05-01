@@ -262,17 +262,18 @@ const StatsExerciseSection = () => {
                 {availableExercises.map((item) => {return <option value = {item}>{item}</option>})}
             </select>
             <select className = "formSelect exercisePicker" onChange = {changeUnit}>
-                <option value = "m">m</option>
-                <option value = "km">km</option>
-                <option value = "ft">ft</option>
-                <option value = "yd">yd</option>
-                <option value = "mi">mi</option>
+                <option value = "min">minute (min)</option>
+                <option value = "hr">hour (hr)</option>
 
-                <option value = "s">s</option>
-                <option value = "min">min</option>
-                <option value = "hr">hr</option>
+                <option value = "m">meter (m)</option>
+                <option value = "km">kilometer (km)</option>
+                <option value = "ft">feet (ft)</option>
+                <option value = "yd">yard (yd)</option>
+                <option value = "mi">mile (mi)</option>
 
-                <option value = "ct">ct</option>
+
+
+                <option value = "ct">count (ct)</option>
 
             </select>
         </div>
