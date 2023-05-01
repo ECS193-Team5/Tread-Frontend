@@ -4,7 +4,7 @@ import '../css/Login/login.css';
 import { getToken } from 'firebase/messaging';
 import { exportMessaging, requestPermission } from "../firebase";
 import { useState } from "react";
-
+import  hardCodedInfo  from "../Helpers/SharedHardCodeInfo.json";
 //const backend_url = process.env.REACT_APP_PROD_BACKEND
 const backend_url = process.env.REACT_APP_PROD_BACKEND
 const env_client_id = process.env.REACT_APP_CLIENT_ID
@@ -121,6 +121,7 @@ const Login = () => {
     });
 
   }
+  /*
   return (
 
     <div className="loginPage">
@@ -153,6 +154,20 @@ const Login = () => {
         </div>
       </div>
     </div>
-  );
+  );*/
+  return (
+  <div id = "loginPage">
+      <div id = "logoBox">
+        <div>
+          <img id="treadLogo" src="https://i.imgur.com/qajrJEV.png" alt="logo" />
+        </div>
+        <div className='titleBox'>
+            <p id = "frontPageTitle">Tread</p>
+            <p id = "frontPageSubtitle">Stay Fit with Friends</p>
+        </div>
+      </div>
+      <p className='frontPageDescriptionText'>{hardCodedInfo.frontPageDescription}</p>
+      <div id="buttonDiv"></div>
+  </div>)
 }
 export default Login;
