@@ -12,11 +12,11 @@ const CurrentChallenge = () => {
     let buttonList = [{"name": "Current", "defaultOn":true, "create":false},
       {"name": "Sent", "defaultOn":false, "create":false},
       {"name": "Received", "defaultOn":false, "create":false},
-      {"name": "Create", "defaultOn":false, "create":true}];
+      {"name": "Send Challenge", "defaultOn":false, "create":true}];
 
     useEffect(
       () => {
-        if (challengeState === "Create") {
+        if (challengeState === "Send Challenge") {
           window.location.href = "/addChallengePage";
         }
 

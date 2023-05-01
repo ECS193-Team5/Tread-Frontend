@@ -12,12 +12,12 @@ const LeagueSection = () => {
     {"name": "Admin", "defaultOn":false, "create":false},
     {"name": "Sent", "defaultOn":false, "create":false},
     {"name": "Received", "defaultOn":false, "create":false},
-    {"name": "Create", "defaultOn":false, "create":true}];
+    {"name": "Create League", "defaultOn":false, "create":true}];
 
 
     useEffect (
         () => {
-            if(leagueState === "Create"){
+            if(leagueState === "Create League"){
                 window.location.href = "./addLeaguePage";
             }
             else{
