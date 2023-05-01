@@ -232,7 +232,7 @@ const LeagueObj = (props) => {
             </div>
             <div className = "objSection objWritingSection objWritingLeagueSection"  onClick = {moveLeaguePage}>
                 <p className = "objDisplayName">{props.children.leagueName}</p>
-                <p className = "objUsername">{props.children.members.length} Members</p>
+                <p className = "objUsername">{props.children.members.length} Member(s)</p>
                 <p className = "objUsername">{props.children.activeChallenges} active challenges</p>
             </div>
             <div className = "objButtonSection objSection">
