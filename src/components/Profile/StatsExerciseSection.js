@@ -10,7 +10,9 @@ import {
   } from 'chart.js';
 import axios from 'axios';
 import "../../css/Profile/profile.css";
+import "../../css/Shared/button.css";
 import { Bar } from 'react-chartjs-2';
+import StatsDownloadSection from './StatsDownloadSection';
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -256,7 +258,10 @@ const StatsExerciseSection = () => {
 
 
     return (<div>
-        <h1>Exercise History</h1>
+        <div className = "downloadButtonHeader">
+        <h1 >Exercise History</h1>
+        <StatsDownloadSection type = "Exercise"/>
+        </div>
         <div >
             <select className = "formSelect exercisePicker" onChange = {changeExerciseName}>
                 {availableExercises.map((item) => {return <option value = {item}>{item}</option>})}
@@ -277,6 +282,7 @@ const StatsExerciseSection = () => {
 
             </select>
         </div>
+
         <Bar options = {options} data = {config}></Bar>
         </div>
         );
