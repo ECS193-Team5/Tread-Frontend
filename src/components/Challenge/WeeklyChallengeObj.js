@@ -14,6 +14,7 @@ const WeeklyChallengeObj = (props) => {
     let myProgressBaseUnits = props.children.progress;
     let totalBaseUnits = props.children.exercise.convertedAmount;
     let totalRealUnits = props.children.exercise.amount;
+    let dueDate = props.children.dueDate.split("T")[0];
     let percentageDone = myProgressBaseUnits/totalBaseUnits * 100;
     let title = props.children.exercise.exerciseName + " " + props.children.exercise.amount + " " + props.children.exercise.unit
     let challengeID = props.children.challengeID;
@@ -21,19 +22,7 @@ const WeeklyChallengeObj = (props) => {
     const [showState, setState] = useState(false);
     const [leaderboardInfo, setLeaderboardInfo] = useState([]);
     const [load, setLoad] = useState(false);
-    function max(a, b){
-        if (a>b){
-            return a;
-        }
-        return b;
-    }
 
-    function min(a, b){
-        if (a<b){
-            return a;
-        }
-        return b;
-    }
 
     function toggleState(){
         setState(!showState);
@@ -140,7 +129,7 @@ const WeeklyChallengeObj = (props) => {
         <div className = "challengeMiddle">
             <div className = "challengeInnerMiddle">
                 <p className="challengeText">{title}</p>
-
+                <p className="challengeText">{dueDate}</p>
             </div>
             <div className = "challengeInnerMiddle">
                 <ProgressBar>{{"completed":percentageDone}}</ProgressBar>
