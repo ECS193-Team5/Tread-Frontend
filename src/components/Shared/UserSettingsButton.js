@@ -133,10 +133,10 @@ const UserSettingsButton = () => {
         console.log("No response")
       });
   }
-  let dropdownFunctions = [{"name":"Logout", "func":logout},{"name":"Profile", "func":moveProfilePage}];
+  let dropdownFunctions = [{"name":"Logout", "func":logout}];
   return (
     <div id="UserSettingsButton" >
-      <button id="UserSettingsLeft" onClick={moveProfilePage}>
+      <div id="UserSettingsLeft">
         <div>
           <img id="UserSettingButtonProfileImage" src={profilePhoto} alt="Profile" />
         </div>
@@ -144,7 +144,7 @@ const UserSettingsButton = () => {
           <p id="userSettingDisplayName">{displayName}</p>
           <p id="userSettingUsername">{username}</p>
         </div>
-      </button>
+      </div>
       <div id="userSettingButtonSection">
         <button id = "buttonUserDropDown" className="dropDownButton" onClick={toggleLogoutDisplay}><img id="UserSettingsTriangle" src="https://i.imgur.com/msPQZqA.png" alt="Dropdown" /></button>
         {
