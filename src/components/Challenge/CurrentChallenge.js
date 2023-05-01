@@ -8,8 +8,8 @@ import "../../css/Shared/bar.css";
 import "../../css/Challenge/challengeObj.css";
 
 const CurrentChallenge = () => {
-    const [challengeState, setChallengeState] = useState("All");
-    let buttonList = [{"name": "All", "defaultOn":true, "create":false},
+    const [challengeState, setChallengeState] = useState("Current");
+    let buttonList = [{"name": "Current", "defaultOn":true, "create":false},
       {"name": "Sent", "defaultOn":false, "create":false},
       {"name": "Received", "defaultOn":false, "create":false},
       {"name": "Create", "defaultOn":false, "create":true}];
@@ -31,7 +31,7 @@ const CurrentChallenge = () => {
             <Bar>{{"buttonList":buttonList, "updateFunc":setChallengeState}}</Bar>
           </div>
           <div id = "BottomPart">
-          {(challengeState === "All") ? <ChallengeScroll type = "issued" ifLeague = {false} leagueID = {""}></ChallengeScroll> : <></>}
+          {(challengeState === "Current") ? <ChallengeScroll type = "issued" ifLeague = {false} leagueID = {""}></ChallengeScroll> : <></>}
           {(challengeState === "Sent") ? <ChallengeScroll type = "sent" ifLeague = {false} leagueID = {""}></ChallengeScroll> : <></>}
           {(challengeState === "Received") ? <ChallengeScroll type = "received" ifLeague = {false} leagueID = {""}></ChallengeScroll> : <></>}
           </div>

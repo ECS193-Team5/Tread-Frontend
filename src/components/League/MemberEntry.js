@@ -33,16 +33,16 @@ const MemberEntry = (props) => {
       dropdownOptions.push({ "name": "Block", "func": block });
     }
 
-    if (ifSelfAdmin && scrollType === "All" && otherUserType !== "owner") {
+    if (ifSelfAdmin && scrollType === "Members" && otherUserType !== "owner") {
       dropdownOptions.push({ "name": "Kick Out", "func": kickOut });
       dropdownOptions.push({ "name": "Ban", "func": ban });
     }
 
-    if (ifSelfAdmin && otherUserType === "admin" && scrollType === "All") {
+    if (ifSelfAdmin && otherUserType === "admin" && scrollType === "Members") {
       dropdownOptions.push({ "name": "Remove Admin", "func": removeAdmin });
     }
 
-    if (ifSelfAdmin && otherUserType === "participant" && scrollType === "All") {
+    if (ifSelfAdmin && otherUserType === "participant" && scrollType === "Members") {
       dropdownOptions.push({ "name": "Add Admin", "func": addAdmin });
     }
 
