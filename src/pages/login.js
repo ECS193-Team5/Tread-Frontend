@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import '../css/Login/login.css';
-import { getToken} from 'firebase/messaging';
-import {exportMessaging, requestPermission} from "../firebase";
-import {useState} from "react";
+import { getToken } from 'firebase/messaging';
+import { exportMessaging, requestPermission } from "../firebase";
+import { useState } from "react";
 
 //const backend_url = process.env.REACT_APP_PROD_BACKEND
 const backend_url = process.env.REACT_APP_PROD_BACKEND
@@ -29,33 +29,33 @@ const Login = () => {
     console.log("Sending device token" + deviceToken);
     var config = {
       method: 'post',
-      url: backend_url+'auth/login/google',
+      url: backend_url + 'auth/login/google',
       withCredentials: true,
       credentials: 'include',
       headers: {
         Authorization: `${token.credential}`,
         Accept: 'application/json',
       },
-      data :
+      data:
       {
         deviceToken: deviceToken
       }
     };
-    let hasUsername= false;
+    let hasUsername = false;
     axios(config)
-    .then(function (response) {
-      hasUsername = response.data.hasUsername;
-      console.log("Would have navigated away here");
-      if (!hasUsername){
-        window.location.href = "./signUpPage";
-      }
-      else{
-        window.location.href = "./currentChallengePage";
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .then(function (response) {
+        hasUsername = response.data.hasUsername;
+        console.log("Would have navigated away here");
+        if (!hasUsername) {
+          window.location.href = "./signUpPage";
+        }
+        else {
+          window.location.href = "./currentChallengePage";
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
   }
 
@@ -65,7 +65,7 @@ const Login = () => {
     document.body.appendChild(script);
 
     return new Promise((res, rej) => {
-      script.onload = function() {
+      script.onload = function () {
         res();
       }
       script.onerror = function () {
@@ -105,7 +105,7 @@ const Login = () => {
   // log out function to log the user out of google and set the profile array to null
 
   const setDeviceToken = () => {
-    getToken(exportMessaging, {vapidKey: "BDXZrQCKEnAfnJWh6oIbEYKTuogSmiNl4gKVIDNmOEabzRt2BpAVIV4Znb7OgKzWJAz9eLOKde6YhWLpAdw1EZ0"}).then((currentToken) => {
+    getToken(exportMessaging, { vapidKey: "BDXZrQCKEnAfnJWh6oIbEYKTuogSmiNl4gKVIDNmOEabzRt2BpAVIV4Znb7OgKzWJAz9eLOKde6YhWLpAdw1EZ0" }).then((currentToken) => {
       if (currentToken) {
         console.log("Setting token here", currentToken);
         setToken(currentToken);
@@ -123,27 +123,34 @@ const Login = () => {
   }
   return (
 
-    <div className = "loginPage">
-      <div className = "loginSide">
-        <div className = "loginBox">
-          <div className = "loginBoxItem"><img id = "treadLogo" src = "https://i.imgur.com/cHe0EGL.png" alt = "logo"/></div>
-          <div className = "loginBoxItem"><p  id = "loginText">Log in</p></div>
-          <div className = "loginBoxItem">
-
-          <div id="buttonDiv"></div>
-
-          </div>
-          <div className = "loginBoxItem">
-
+    <div className="loginPage">
+      <div className="loginSide">
+        <div className="loginBox">
+          <div className="loginTitle"><img id="treadLogo" src="https://i.imgur.com/cHe0EGL.png" alt="logo" /><p className="loginTitleText">Tread</p></div>
+          <p className="loginText">Log In Below</p>
+          <div>
+            <div id="buttonDiv"></div>
           </div>
         </div>
       </div>
-      <div className = "backgroundSide">
-        <div className = "titleBox">
-          <div id = "TreadTitleDiv"><img id = "TreadTitle" src = "https://i.imgur.com/U7OO0JG.png" alt = "Tread"/></div>
-          <div id = "TreadSubtitleDiv"><img id = "TreadSubtitle" src = "https://i.imgur.com/Mx4rK6l.png" alt = "Stay Fit with Friends"/></div>
+      <div className="backgroundSide">
+        <div>
+          <div className='titleBox'>
+            <p id = "frontPageTitle">Tread</p>
+            <p id = "frontPageSubtitle">Stay Fit with Friends</p>
+          </div>
+            <div className='frontPageDescription'><p className='frontPageDescriptionText'>
+            Welcome to Tread, the ultimate exercise challenge app! Tread is a dynamic platform that allows users to compete against their friends or within leagues to achieve their fitness goals. With Tread, you have full control over when and how you exercise, making it the perfect tool for anyone looking to stay motivated and push their limits. Challenge your friends to daily step competitions, distance runs, or other exercise challenges, and track your progress in real-time. Whether you're a fitness enthusiast or just looking to add a fun and competitive twist to your exercise routine, Tread is the app for you. Join the community of like-minded individuals, and let the friendly competition and encouragement from fellow Treaders drive you to new fitness heights!
+            </p></div>
         </div>
-        <div><img  id = "weightLiftPhoto" src= "https://i.imgur.com/ifnDau9.png" alt = "Weightlifting"/></div>
+        <div>
+          <div><img className = "exercisePhoto" id="weightLiftPhotoTopRow" src="https://i.imgur.com/ifnDau9.png" alt="Weightlifting" /></div>
+          <div><img className = "exercisePhoto"  id="weightLiftPhotoMiddleRow" src="https://i.imgur.com/ifnDau9.png" alt="Weightlifting" /></div>
+          <div>
+            <img className = "exercisePhoto"  id="weightLiftPhotoBottomRowLeft" src="https://i.imgur.com/ifnDau9.png" alt="Weightlifting" />
+            <img className = "exercisePhoto"  id="weightLiftPhotoBottomRowRight" src="https://i.imgur.com/ifnDau9.png" alt="Weightlifting" />
+          </div>
+        </div>
       </div>
     </div>
   );
