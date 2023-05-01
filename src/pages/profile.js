@@ -25,9 +25,6 @@ const Profile = (props) => {
                         <StatsExerciseSection/>
                         <Line></Line>
                         <StatsChallengeSection/>
-
-                        <Line></Line>
-                        <StatsDownloadSection/>
                         </div>
                         :
                         <MedalsSection/>

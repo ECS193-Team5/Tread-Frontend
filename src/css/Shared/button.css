@@ -141,7 +141,7 @@ button{
 }
 
 .BarButton{
-    width: 140px;
+    min-width: 140px;
     height: 30px;
 
     font-style: normal;
@@ -212,4 +212,35 @@ button{
 .submitCircleButtonIcon{
     width: 20px;
     height: 20px;
+}
+
+.downloadButtonDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.downloadButtonText{
+    color: #014421;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+.downloadButton{
+    height: 50px;
+    width: 50px;
+    border: none;
+    padding-left: 10px;
+}
+
+.downloadButtonImage{
+    height: 50px;
+    width: 50px;
+}
+
+.downloadButtonHeader{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
 }

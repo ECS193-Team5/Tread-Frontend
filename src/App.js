@@ -1,7 +1,6 @@
 import "./App.css";
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import Front from "./pages/front";
 import Login from "./pages/login";
 import SignUp from "./pages/signUp";
 import ProfileSettings from "./pages/profileSettings";
@@ -29,8 +28,7 @@ function App() {
     <div id = "page">
       <Router>
       <Routes>
-        <Route path = "/" element = {<Front/>}/>
-        <Route path = "/loginPage" element = {<Login/>}/>
+        <Route path = "/" element = {<Login/>}/>
         <Route path = "/signUpPage" element = {<SignUp/>} />
         <Route path = "/profileSettingsPage" element = {<ProfileSettings/>} />
         <Route path = "/addChallengePage" element = {<AddChallenge/>} />

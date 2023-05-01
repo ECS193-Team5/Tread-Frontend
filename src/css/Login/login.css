@@ -13,7 +13,7 @@ body{
 .loginPage {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: 100%;
     height: 100%;
     padding:0;
@@ -21,6 +21,7 @@ body{
 }
 
 .loginSide{
+    min-width: 300px;
     width: 20%;
     height: 100%;
     padding: 0;
@@ -43,16 +44,11 @@ body{
     background-color: transparent;
 }
 
-.loginBoxItem {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 .backgroundSide{
     background: radial-gradient(71.63% 88.13% at 21.02% 20.79%, #014421 0%, #000000 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    width: 80%;
+    width: 100%;
     height: 100%;
     padding: 0;
     margin: 0;
@@ -64,76 +60,134 @@ body{
     height: 207px;
 }
 
-#loginText{
-    width: 145px;
-    height: 40px;
+.loginTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.loginTitleText{
+    font-size: 60px;
+    color: #014421;
+    padding-left: 10px;
+    margin:0;
+}
+
+.loginText{
+    font-size: 32px;
+    color: #014421;
+    padding-left: 10px;
+    margin:0;
+}
+
+#frontPageTitle{
+    height: 120px;
+
+    font-family: '?????';
     font-style: normal;
     font-weight: 400;
-    font-size: 32px;
-    line-height: 38px;
-    text-align: center;
+    font-size: 96px;
 
-    color: #014421;
+    color: #F9A800;
+    margin: 5px;
+}
+
+#frontPageSubtitle{
+    height: 57px;
+
+    font-family: '?????';
+    font-style: normal;
+    font-size: 40px;
+
+    color: #FFFFFF;
+    margin: 5px;
+}
+
+.frontPageDescriptionText{
+    width: 610px;
+
+    font-family: '?????';
+    font-style: normal;
+    font-size: 20px;
+    line-height: 22px;
+    color: #FFFFFF;
+    margin: 5px;
+
+    text-align: justify;
+    padding-bottom: 20px;
+}
+
+
+
+.frontPageDescription{
+    position: relative;
+    top: 5%;
+    left: 5%;
+    z-index: 2;
+}
+
+.exercisePhoto{
+    height: 35vh;
+}
+
+#weightLiftPhotoTopRow{
+    position: absolute;
+    top: 0%;
+    left: 80%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#weightLiftPhotoMiddleRow{
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#weightLiftPhotoBottomRowLeft{
+    position: absolute;
+    left: 20%;
+    top: 60%;
+    z-index: 1;
+    overflow: hidden;
+}
+#weightLiftPhotoBottomRowRight{
+    position: absolute;
+    left: 80%;
+    top: 60%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#loginPage{
+    background: radial-gradient(71.63% 88.13% at 21.02% 20.79%, #014421 0%, #000000 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-size: cover;
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+#logoBox{
+    display: flex;
+    padding-top: 10vh;
+    padding-bottom: 2vh;
+}
+
+#informationSectionLoginPage{
+    display: flex;
+
 }
 
 .titleBox{
-    position:relative;
-    left: 10%;
-    top: 10%;
-    width: 100px;
-}
-
-
-#TreadSubtitle{
-    padding-top: 2%;
-}
-
-.SignInButton{
-    box-sizing: border-box;
-    width: 309px;
-    height: 56px;
-    margin:5px;
-    background:transparent;
-    border: 1px solid #F9A800;
-    border-radius: 15px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.SignInButtonInner{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.buttonNames{
-    width: 136px;
-    height: 30px;
-
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 29px;
-    text-align: left;
-
-    color: #000000;
-    padding-left: 5px;
-}
-
-
-.imgDiv{
-    width:45px;
-    height:45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#weightLiftPhoto{
-    position: relative;
-    left: 100px;
-    top: 150px;
+    padding-left: 10px;
 }

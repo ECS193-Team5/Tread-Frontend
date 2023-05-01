@@ -13,11 +13,11 @@ const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const LeagueMemberList = (props) => {
     const [id] = useState(props.children.id);
-    const [memberScroll, setMemberScroll] = useState("All");
+    const [memberScroll, setMemberScroll] = useState("Members");
     const [memberList, setMemberList] = useState([]);
     const [load, setLoad] = useState(false);
     const [selfType, setSelfType] = useState("");
-    let buttonList = [{"name": "All", "defaultOn":true, "create":false},
+    let buttonList = [{"name": "Members", "defaultOn":true, "create":false},
     {"name": "Pending", "defaultOn":false, "create":false},
     {"name": "Invited", "defaultOn":false, "create":false},
     {"name": "Banned", "defaultOn":false, "create":false},
@@ -39,7 +39,7 @@ const LeagueMemberList = (props) => {
         };
         axios(config)
         .then(function(response){
-            console.log("All", response.data);
+            console.log("Leagues", response.data);
             setMemberList(response.data);
         })
         .catch(function(error){
@@ -157,7 +157,7 @@ const LeagueMemberList = (props) => {
 
     useEffect (
         () => {
-            if(memberScroll === "All"){
+            if(memberScroll === "Members"){
                 getAll();
             }
             else if(memberScroll === "Pending" && (selfType === "admin" || selfType === "owner")){
@@ -190,7 +190,7 @@ const LeagueMemberList = (props) => {
             </div>
 
             {
-                (memberScroll === "All") ? <div id = "LeagueMemberList">{memberList.map(makeMemberEntryObj)}</div> : <></>
+                (memberScroll === "Members") ? <div id = "LeagueMemberList">{memberList.map(makeMemberEntryObj)}</div> : <></>
             }
             {
                 (memberScroll === "Pending" && (selfType === "admin" || selfType === "owner")) ? <div id = "LeagueMemberList">{memberList.map(makeMemberEntryObj)}</div> : <></>

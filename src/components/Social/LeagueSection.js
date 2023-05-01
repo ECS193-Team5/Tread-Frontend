@@ -7,17 +7,17 @@ import "../../css/Shared/bar.css";
 import "../../css/Shared/button.css";
 
 const LeagueSection = () => {
-    const [leagueState, setLeagueState] = useState("All");
-    let buttonList = [{"name": "All", "defaultOn":true, "create":false},
+    const [leagueState, setLeagueState] = useState("Leagues");
+    let buttonList = [{"name": "Leagues", "defaultOn":true, "create":false},
     {"name": "Admin", "defaultOn":false, "create":false},
     {"name": "Sent", "defaultOn":false, "create":false},
     {"name": "Received", "defaultOn":false, "create":false},
-    {"name": "Create", "defaultOn":false, "create":true}];
+    {"name": "Create League", "defaultOn":false, "create":true}];
 
 
     useEffect (
         () => {
-            if(leagueState === "Create"){
+            if(leagueState === "Create League"){
                 window.location.href = "./addLeaguePage";
             }
             else{
@@ -36,7 +36,7 @@ const LeagueSection = () => {
         <div>
 
         </div>
-            { (leagueState === "All") ? <LeagueScroll type = "league"></LeagueScroll> : <></>}
+            { (leagueState === "Leagues") ? <LeagueScroll type = "league"></LeagueScroll> : <></>}
             { (leagueState === "Admin") ? <LeagueScroll type = "admin"></LeagueScroll> : <></>}
             { (leagueState === "Sent") ? <LeagueScroll type = "sent"></LeagueScroll> : <></>}
             { (leagueState === "Received") ? <LeagueScroll type = "invite"></LeagueScroll> : <></>}

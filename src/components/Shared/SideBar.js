@@ -6,9 +6,11 @@ const SideBar = () => {
     let challengePages = ["/currentChallengePage",  "/weeklyChallengePage"];
     let socialPages = ["/socialFriendPage", "/socialLeaguePage"];
     let profileSettingsPages = ["/profileSettingsPage"];
+    let profilePages = ["/profileStatsPage", "/profileMedalPage"];
     const [challengeButton] = useState(challengePages.includes(window.location.pathname));
     const [socialButton] = useState(socialPages.includes(window.location.pathname));
     const [settingsButton] = useState(profileSettingsPages.includes(window.location.pathname));
+    const [profileButton] = useState(profilePages.includes(window.location.pathname));
     const [location, setLocation] = useState();
 
 
@@ -59,6 +61,16 @@ const SideBar = () => {
 
       useEffect(
         () => {
+          if (profileButton) {
+            setButtonOn("sideBarButtonSettings", "profileImage");
+          }else{
+            setButtonOff("sideBarButtonSettings", "profileImage");
+          }
+        }, [profileButton]
+      );
+
+      useEffect(
+        () => {
           if (location) {
             window.location.href = location;
           }
@@ -90,6 +102,13 @@ const SideBar = () => {
       setLocation("/profileSettingsPage");
     }
 
+    function clickProfileButton(){
+      if(profilePages.includes(window.location.pathname)){
+        return;
+      }
+      setLocation("/profileStatsPage");
+    }
+
     return (
         <div className = "sideBarClass">
             <button id = "sideBarTreadLogo" ><img id = "treadLogoSideBar" onClick={moveToFrontPage} src = "https://i.imgur.com/5SSwq0U.png" alt = "Tread logo"/></button>
@@ -107,11 +126,18 @@ const SideBar = () => {
                     <p className = "sideBarText">Social</p>
                 </div>
                 <div id = "sideBarSettings" className = "sideBarButtonSet">
+                    <button title = "Exercise History" className = "sideBarButtonClass" onClick = {clickProfileButton} id = "sideBarButtonSettings">
+                        <img className = "sideBarButtonClassInner" id = "profileImage" src = "https://i.imgur.com/iMx9Um9.png" alt = "Button for Settings"/>
+                    </button>
+                    <p className = "sideBarText">Exercise History</p>
+                </div>
+                <div id = "sideBarSettings" className = "sideBarButtonSet">
                     <button title = "Profile Settings" className = "sideBarButtonClass" onClick = {clickSettingsButton} id = "sideBarButtonSettings">
                         <img className = "sideBarButtonClassInner" id = "settingsImage" src = "https://i.imgur.com/4XiFFVT.png" alt = "Button for Settings"/>
                     </button>
                     <p className = "sideBarText">Profile Settings</p>
                 </div>
+
             </div>
         </div>
       );

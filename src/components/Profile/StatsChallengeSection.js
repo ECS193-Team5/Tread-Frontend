@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import { Bar } from 'react-chartjs-2';
+import "../../css/Shared/button.css";
+import StatsDownloadSection from "./StatsDownloadSection";
+
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 const StatsChallengeSection = () => {
   const [load, setLoad] = useState(false);
@@ -164,7 +167,10 @@ const StatsChallengeSection = () => {
 
   return (
     <div>
+      <div className="downloadButtonHeader">
       <h1>Challenge History</h1>
+      <StatsDownloadSection type = "Challenge"/>
+      </div>
       <Bar options = {options} data = {config}></Bar>
     </div>
   )
