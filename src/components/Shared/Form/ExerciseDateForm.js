@@ -83,16 +83,20 @@ const ExerciseDateForm = (props) => {
         return (year + "-" + month + "-" + date);
       }
 
+    function stopKey () {
+        return false;
+    }
+
     return (
         <div>
             <div className="formObj">
                 <p className="formObjInner">Issue Date</p>
-                <input id="issueDateInput" onKeyDown="return false" className="formDateInput" type="date" min={getToday()} onChange={issueDateChange}></input>
+                <input id="issueDateInput" onKeyDown={stopKey} className="formDateInput" type="date" min={getToday()} onChange={issueDateChange}></input>
             </div>
 
             <div className="formObj">
                 <p className="formObjInner">Due Date</p>
-                <input id="dueDateInput"  onKeyDown="return false" className="formDateInput" type="date" min={getTomorrow()} onChange={dueDateChange}></input>
+                <input id="dueDateInput"   onKeyDown={stopKey}  className="formDateInput" type="date" min={getTomorrow()} onChange={dueDateChange}></input>
                 <p className="errorBox">{dueDateError}</p>
             </div>
         </div>);
