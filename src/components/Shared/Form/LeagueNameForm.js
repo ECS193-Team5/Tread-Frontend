@@ -1,7 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const LeagueNameForm = (props) => {
     const [nameError, setNameError] = useState("");
+
+    useEffect (
+      () => {
+          if(props.defaultValue){
+              document.getElementById("leagueNameInput").value = props.defaultValue;
+              setNameError("");
+          }
+      }, [props.defaultValue]
+  );
+
     const updateLeagueName = (event) => {
         let leagueName = event.target.value;
         if (leagueName.length === 0 || leagueName.length > 32){
@@ -23,7 +33,7 @@ const LeagueNameForm = (props) => {
     return (
         <div className="formObj">
             <h2>League Name</h2>
-            <input className="formTextInput" type="text" onChange={updateLeagueName} />
+            <input id = "leagueNameInput" className="formTextInput" type="text" onChange={updateLeagueName} />
             <p className="errorBox">{nameError}</p>
         </div>
     );
