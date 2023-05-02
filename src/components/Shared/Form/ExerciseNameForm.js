@@ -65,7 +65,7 @@ const ExerciseNameForm = (props) => {
         let selfEntry = event.target.value;
 
         if (selfEntry.length === 0 || selfEntry.length > 32){
-            setSpecifyError("The sport object should be 1-32 characters");
+            setSpecifyError("The exercise name should be 1-32 characters");
             props.updateExerciseName("");
             return false;
         }
