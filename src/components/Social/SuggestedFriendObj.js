@@ -23,7 +23,7 @@ const SuggestedFriendObj = (props) => {
           };
           axios(config)
           .then(function(response) {
-            setDisplayProperty(props.children[0] + "SuggestionObj", "none");
+            props.updateObjList(props.children[0]);
           })
           .catch(function(error){
               console.log(error)

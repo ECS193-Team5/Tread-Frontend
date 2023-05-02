@@ -13,6 +13,7 @@ const RowBox = (props) => {
     const [load, setLoad] = useState(false);
     const [title, setTitle] = useState("");
     const [info, setInfo] = useState([]);
+
     const callFunc = {
         "friend": { "Suggest": {"get": getSuggestedFriends, "create": createSuggestFriendObj},
                     "Recent": {"get": getRecentFriends, "create": createRecentObj }
@@ -56,11 +57,35 @@ const RowBox = (props) => {
         }, [load]
     );
 
+    const updateObjList = (id) =>{
+        console.log("wall called on", id);
+        let deletedIndex = -1;
+        for(let i = 0; i< info.length; i++){
+            console.log(info[i][0])
+            console.log(props.children.socialType)
+            if(props.children.socialType === "friend" && info[i][0] === id){
+                deletedIndex = i;
+                break;
+            }
+            if(props.children.socialType === "league" && info[i]._id === id){
+                deletedIndex = i;
+                break;
+            }
+        }
+        console.log("index", deletedIndex, " was found");
+        let newInfo = info;
+        if (deletedIndex !== -1){
+            newInfo = info.splice(deletedIndex-1, 1);
+        }
+        console.log("new info was", newInfo);
+        setInfo(newInfo);
+    }
+
     function createSuggestFriendObj (input) {
-        return <SuggestedFriendObj>{input}</SuggestedFriendObj>
+        return <SuggestedFriendObj updateObjList = {updateObjList}>{input}</SuggestedFriendObj>
     }
     function createSuggestLeagueObj (input) {
-        return <SuggestedLeagueObj>{input}</SuggestedLeagueObj>
+        return <SuggestedLeagueObj  updateObjList = {updateObjList}>{input}</SuggestedLeagueObj>
     }
     function createRecentObj (input) {
         return <ActivityObj>{input}</ActivityObj>
