@@ -98,19 +98,20 @@ const StatsExerciseSection = () => {
 
     useEffect(() => {
         if(selectedExerciseUnit){
-            console.log("the exercise unit should change, to ", selectedExerciseUnit);
             setGraphChange(true);
         }
     },[selectedExerciseUnit]);
 
     useEffect(() => {
         if(availableUnits){
+            console.log("set graph change");
             setGraphChange(true);
         }
     },[availableUnits]);
 
     useEffect(() => {
         if(data){
+            console.log(data);
             recalculateConfig();
         }
     },[data]);
@@ -194,8 +195,8 @@ const StatsExerciseSection = () => {
         });
 
         exerciseLog.forEach((exercise) =>
-        {
 
+        {
             // Return early if the exercise does not match
             if (exercise.exercise.exerciseName !== selectedExerciseName ||
                 exercise.exercise.unitType !== selectedExerciseUnitType){
@@ -205,7 +206,7 @@ const StatsExerciseSection = () => {
             let convertedAmount = exercise.exercise.convertedAmount;
 
             let exerciseDate = Date.parse(exercise.loggedDate);
-            let index = (exerciseDate - firstDate)/(24*60*60*1000);
+            let index = Math.floor((exerciseDate - firstDate)/(24*60*60*1000));
 
             dataList[index] += conversion(convertedAmount, selectedExerciseUnit);
         });

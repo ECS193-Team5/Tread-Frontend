@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../../css/Shared/coloredText.css";
 import axios from 'axios';
 import PhotoUploadForm from "../Shared/Form/PhotoUploadForm";
@@ -9,22 +9,55 @@ import LeagueTypeForm from "../Shared/Form/LeagueTypeForm";
 import Line from "../Shared/Line";
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 const LeagueEditForm = (props) => {
-    console.log("League Edit Form props", props);
+    const [load, setLoad] = useState("");
+    const [defaultLeagueName, setDefaultLeagueName] = useState("");
+    const [defaultLeagueDescription, setDefaultLeagueDescription] = useState("");
+    const [defaultLeagueType, setDefaultLeagueType] = useState("");
     const [name, setLeagueName] = useState("");
     const [description, setLeagueDescription] = useState("");
     const [photo, setPhoto] = useState("");
     const [type, setLeagueType] = useState("");
-    const [nameUpdateResponse, setNameUpdateResponse] = useState("");
-    const [photoUpdateResponse, setPhotoUpdateResponse] = useState("");
-    const [typeUpdateResponse, setTypeUpdateResponse] = useState("");
-    const [descriptionUpdateResponse, setDescriptionUpdateResponse] = useState("");
+    const [submitError, setSubmitError] = useState("");
     const [deleteError, setDeleteError] = useState("");
 
+    useEffect (
+        () => {
+            if(!load){
+                getLeagueInfo();
+                setLoad(true);
+            }
+        }, [load]
+    );
+
+    function getLeagueInfo(){
+        var config  = {
+          method : 'post',
+          url: backend_url+'league/get_league_name_description_type',
+          headers: {
+              Accept: 'application/json',
+            },
+          withCredentials: true,
+          credentials: 'include',
+          data : {
+            leagueID: props.leagueID
+          }
+        };
+        axios(config)
+        .then(function(response) {
+            setDefaultLeagueName(response.data.leagueName);
+            setDefaultLeagueDescription(response.data.leagueDescription);
+            setDefaultLeagueType(response.data.leagueType);
+        })
+        .catch(function(error){
+            if(error.response.status===401){
+                window.location.href = "/loginPage";
+            }
+            console.log(error)
+        });
+    }
 
     const submitUpdatedPhoto = () => {
-        setPhotoUpdateResponse("");
         if (photo === "") {
-            setPhotoUpdateResponse("Could not update photo, it has not changed");
             return;
         }
 
@@ -44,7 +77,6 @@ const LeagueEditForm = (props) => {
         };
         axios(config)
             .then(function (response) {
-                setPhotoUpdateResponse("Successfully updated photo");
             })
             .catch(function (error) {
                 if (error.response.status === 401) {
@@ -56,9 +88,7 @@ const LeagueEditForm = (props) => {
     }
 
     const submitUpdatedName = () => {
-        setNameUpdateResponse("");
         if (name === "") {
-            setNameUpdateResponse("Could not update name");
             return;
         }
 
@@ -77,7 +107,6 @@ const LeagueEditForm = (props) => {
         };
         axios(config)
             .then(function (response) {
-                setNameUpdateResponse("Successfully updated league name");
             })
             .catch(function (error) {
                 if (error.response.status === 401) {
@@ -88,9 +117,7 @@ const LeagueEditForm = (props) => {
     }
 
     const submitUpdatedDescription = () => {
-        setDescriptionUpdateResponse("");
         if (description === "") {
-            setDescriptionUpdateResponse("Could not update description");
             return;
         }
 
@@ -109,7 +136,6 @@ const LeagueEditForm = (props) => {
         };
         axios(config)
             .then(function (response) {
-                setDescriptionUpdateResponse("Successfully updated league description");
             })
             .catch(function (error) {
                 if (error.response.status === 401) {
@@ -120,9 +146,7 @@ const LeagueEditForm = (props) => {
     }
 
     const submitUpdatedType = () => {
-        setTypeUpdateResponse("");
         if (type === "") {
-            setTypeUpdateResponse("Could not update type");
             return;
         }
 
@@ -141,7 +165,6 @@ const LeagueEditForm = (props) => {
         };
         axios(config)
             .then(function (response) {
-                setTypeUpdateResponse("Successfully updated league type");
             })
             .catch(function (error) {
                 if (error.response.status === 401) {
@@ -151,6 +174,14 @@ const LeagueEditForm = (props) => {
             });
     }
 
+    function submit(){
+        setSubmitError("");
+        submitUpdatedPhoto();
+        submitUpdatedDescription();
+        submitUpdatedName();
+        submitUpdatedType();
+        setSubmitError("Succesfully updated league information.")
+    }
     function deleteLeague(){
         var config = {
             method : 'post',
@@ -181,25 +212,14 @@ const LeagueEditForm = (props) => {
                 <h2>League Picture</h2>
                 <PhotoUploadForm>{{ "default": createLeaguePictureURL(props.leagueID), "func": setPhoto }}</PhotoUploadForm>
             </div>
-            <button className="submitButton" onClick={submitUpdatedPhoto}><p className="submitButtonText">Submit</p></button>
-            <p className = "greenBaseText">{photoUpdateResponse}</p>
-            <Line></Line>
 
-            <LeagueNameForm updateLeagueName={setLeagueName} />
-            <button className="submitButton" onClick={submitUpdatedName}><p className="submitButtonText">Submit</p></button>
-            <p className = "greenBaseText">{nameUpdateResponse}</p>
-            <Line></Line>
+            <LeagueNameForm defaultValue = {defaultLeagueName} updateLeagueName={setLeagueName} />
+            <LeagueDescriptionForm defaultValue = {defaultLeagueDescription} updateDescription={setLeagueDescription} />
+            <LeagueTypeForm defaultValue={defaultLeagueType} updateLeagueType={setLeagueType} />
+            <button className="submitButton" onClick={submit}><p className="submitButtonText">Submit</p></button>
+            <p className = "greenBaseText">{submitError}</p>
 
-            <LeagueDescriptionForm updateDescription={setLeagueDescription} />
-            <button className="submitButton" onClick={submitUpdatedDescription}><p className="submitButtonText">Submit</p></button>
-            <p className = "greenBaseText">{descriptionUpdateResponse}</p>
             <Line></Line>
-
-            <LeagueTypeForm defaultValue="" updateLeagueType={setLeagueType} />
-            <button className="submitButton" onClick={submitUpdatedType}><p className="submitButtonText">Submit</p></button>
-            <p className = "greenBaseText">{typeUpdateResponse}</p>
-            <Line></Line>
-
             <h2>Delete League</h2><p>
             <span className = "greenBaseText">This will </span>
             <span className = "redBaseText">permanently delete</span>

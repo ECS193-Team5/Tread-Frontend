@@ -1,6 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const LeagueDescriptionForm = (props) => {
     const [descriptionError, setDescriptionError] = useState("");
+
+    useEffect (
+        () => {
+            if(props.defaultValue){
+                document.getElementById("leagueDescriptionInput").value = props.defaultValue;
+                setDescriptionError("");
+            }
+        }, [props.defaultValue]
+    );
+
 
     const updateDescription = (event) => {
         if (event.target.value === "") {
@@ -22,7 +32,7 @@ const LeagueDescriptionForm = (props) => {
     return (
         <div className="formObj">
             <h2>League Description</h2>
-            <input className="formTextInput" onChange={updateDescription} type="text" />
+            <input id = "leagueDescriptionInput"  className="formTextInput" onChange={updateDescription} type="text" />
             <p className="errorBox">{descriptionError}</p>
         </div>
     );
