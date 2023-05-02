@@ -15,10 +15,13 @@ const ExerciseLoggedDateForm = (props) => {
         return (year + "-" + month + "-" + date);
     }
 
+    const stopKey = (e) =>{
+        e.preventDefault();
+    }
     return (
         <div>
             <p className="formObjInner">Date</p>
-            <input className="formDateInput" id="addExerciseDate" type="date" onChange={loggedDateChange} max = {getToday()}></input>
+            <input className="formDateInput" onKeyDown = {stopKey} id="addExerciseDate" type="date" onChange={loggedDateChange} max = {getToday()}></input>
         </div>
     )
 }
