@@ -108,7 +108,7 @@ const StatsDownloadSection = (props) => {
     return (
     <div className = "downloadButtonDiv">
         <p className = "downloadButtonText">Download {props.type} History</p>
-        <button className="downloadButton"><a href={ownBlob} download></a><img className = "downloadButtonImage" src = "https://i.imgur.com/jdDx2cV.png"></img></button>
+        <a href={ownBlob} download><img className = "downloadButtonImage" src = "https://i.imgur.com/jdDx2cV.png"></img></a>
     </div>)
 }
 
