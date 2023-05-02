@@ -62,9 +62,9 @@ const SideBar = () => {
       useEffect(
         () => {
           if (profileButton) {
-            setButtonOn("sideBarButtonSettings", "profileImage");
+            setButtonOn("sideBarButtonProfile", "profileImage");
           }else{
-            setButtonOff("sideBarButtonSettings", "profileImage");
+            setButtonOff("sideBarButtonProfile", "profileImage");
           }
         }, [profileButton]
       );
@@ -125,9 +125,9 @@ const SideBar = () => {
                     </button>
                     <p className = "sideBarText">Social</p>
                 </div>
-                <div id = "sideBarSettings" className = "sideBarButtonSet">
-                    <button title = "Exercise History" className = "sideBarButtonClass" onClick = {clickProfileButton} id = "sideBarButtonSettings">
-                        <img className = "sideBarButtonClassInner" id = "profileImage" src = "https://i.imgur.com/iMx9Um9.png" alt = "Button for Settings"/>
+                <div id = "sideBarProfile" className = "sideBarButtonSet">
+                    <button title = "Exercise History" className = "sideBarButtonClass" onClick = {clickProfileButton} id = "sideBarButtonProfile">
+                        <img className = "sideBarButtonClassInner" id = "profileImage" src = "https://i.imgur.com/iMx9Um9.png" alt = "Button for Profile"/>
                     </button>
                     <p className = "sideBarText">Exercise History</p>
                 </div>
