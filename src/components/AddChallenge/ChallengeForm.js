@@ -70,6 +70,14 @@ const ChallengeForm = () =>{
       return (errorMessage === "");
     }
 
+    const setError = () => {
+      setSubmitError("Error in issuing challenge");
+    }
+
+    const moveChallengePage = () => {
+      window.location.href = "./currentChallengePage";
+    }
+
     const submitChallenge = () => {
         if (!checkValidInputs()){
           return false;
@@ -92,14 +100,6 @@ const ChallengeForm = () =>{
         }
 
         addChallenge(inputData, moveChallengePage, setError);
-    }
-
-    const setError = () => {
-      setSubmitError("Error in issuing challenge");
-    }
-
-    const moveChallengePage = () => {
-      window.location.href = "./currentChallengePage";
     }
 
     return (
