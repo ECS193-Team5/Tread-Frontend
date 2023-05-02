@@ -206,10 +206,7 @@ const StatsExerciseSection = () => {
             let convertedAmount = exercise.exercise.convertedAmount;
 
             let exerciseDate = Date.parse(exercise.loggedDate);
-            console.log(exercise.loggedDate);
             let index = Math.floor((exerciseDate - firstDate)/(24*60*60*1000));
-
-            console.log(index);
 
             dataList[index] += conversion(convertedAmount, selectedExerciseUnit);
         });
