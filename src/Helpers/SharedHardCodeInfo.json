@@ -108,5 +108,18 @@
         "s": 60,
         "min": 1,
         "hr": 0.01666666666
-    }
+    },
+    "fullUnitName":{
+        "min":"minutes (min)",
+        "hr":"hour (hr)",
+        "m":"meter (m)",
+        "km":"kilometer (km)",
+        "ft":"feet (ft)",
+        "yd":"yard (yd)",
+        "mi":"mile (mi)",
+        "ct":"count (ct)"
+    },
+    "distanceUnits":["m", "km", "mi", "ft", "yd"],
+    "timeUnits":["min", "hr"],
+    "countUnits":["ct"]
 }
