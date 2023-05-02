@@ -21,7 +21,7 @@
 }
 
 #SideBarImage{
-    width: 350px;
     height: 350px;
-    padding: 30px;
+    margin: 30px;
+    overflow-y: hidden;
 }
