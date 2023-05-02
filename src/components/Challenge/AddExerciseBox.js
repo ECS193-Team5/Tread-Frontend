@@ -12,7 +12,7 @@ const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const AddExerciseBox = () => {
     const [exerciseName, setExerciseName] = useState("");
-    const [unit, setUnit] = useState("ct");
+    const [unit, setUnit] = useState("min");
     const [amount, setAmount] = useState(0);
     const [loggedDate, setLoggedDate] = useState("");
     const [submitError, setSubmitError] = useState("");

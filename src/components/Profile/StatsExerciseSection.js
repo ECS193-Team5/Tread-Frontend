@@ -13,6 +13,7 @@ import "../../css/Profile/profile.css";
 import "../../css/Shared/button.css";
 import { Bar } from 'react-chartjs-2';
 import StatsDownloadSection from './StatsDownloadSection';
+import hardCodedInfo from "../../Helpers/SharedHardCodeInfo.json";
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -140,19 +141,7 @@ const StatsExerciseSection = () => {
     },[graphChange]);
 
     const conversion = (amount, toUnit) => {
-        let conversionKey = {
-            "ct":1,
-            "m":1,
-            "km":(1/1000),
-            "ft": 3.28084,
-            "yd": 1.0936133333333,
-            "mi": 0.00062137121212119323429,
-            "s": 60,
-            "min": 1,
-            "hr": (1/60)
-        }
-
-        return amount * conversionKey[toUnit];
+        return amount * hardCodedInfo.conversionKey[toUnit];
     }
     const calculateData = () => {
         if (exerciseLog.length === 0){

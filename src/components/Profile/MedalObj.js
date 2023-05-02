@@ -1,21 +1,9 @@
 import "../../css/Profile/medalObj.css";
-
+import hardCodedInfo from "../../Helpers/SharedHardCodeInfo.json";
 let calculateProgress = (progress, goalUnit) => {
     // Turn the progress in base units to this unit
 
-    let conversionKey = {
-        "ct":1,
-        "m":1,
-        "km":(1/1000),
-        "ft": 3.28084,
-        "yd": 1.0936133333333,
-        "mi": 0.00062137121212119323429,
-        "s": 60,
-        "min": 1,
-        "hr": (1/60)
-    }
-
-    return progress*conversionKey[goalUnit];
+    return progress*hardCodedInfo.conversionKey[goalUnit];
 }
 
 const min = (a, b) => {
