@@ -91,13 +91,13 @@
     padding-right: 10px;
 }
 
-.weeklyPhotoDiv{
+.globalPhotoDiv{
     display: flex !important;
     flex-direction: row !important;
     justify-content: center;
     width: 180px;
 }
 
-.innerWeeklyPhotoDiv{
+.innerGlobalPhotoDiv{
     padding: 10px;
 }

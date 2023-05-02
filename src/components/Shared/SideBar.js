@@ -3,7 +3,7 @@ import '../../css/Shared/sideBar.css';
 
 const SideBar = () => {
 
-    let challengePages = ["/currentChallengePage",  "/weeklyChallengePage"];
+    let challengePages = ["/currentChallengePage",  "/globalChallengePage"];
     let socialPages = ["/socialFriendPage", "/socialLeaguePage"];
     let profileSettingsPages = ["/profileSettingsPage"];
     let profilePages = ["/profileStatsPage", "/profileMedalPage"];

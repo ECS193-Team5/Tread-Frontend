@@ -38,8 +38,8 @@ const PageSwitch = (props) => {
         setOnButton("current");
     }
 
-    function moveWeeklyChallenge(){
-        window.location.href = "./weeklyChallengePage";
+    function moveGlobalChallenge(){
+        window.location.href = "./globalChallengePage";
         setOnButton("global");
     }
 
@@ -68,7 +68,7 @@ const PageSwitch = (props) => {
         {  props.type === "challenge" ?
             <div id ="PageSwitch">
                 <button id = "current" className = "switchButton" onClick = {moveCurrentChallenge}><p className = "switchButtonText">Current</p></button>
-                <button id = "global" className = "switchButton" onClick = {moveWeeklyChallenge}><p className = "switchButtonText">Global</p></button>
+                <button id = "global" className = "switchButton" onClick = {moveGlobalChallenge}><p className = "switchButtonText">Global</p></button>
             </div>
             :
             <></>

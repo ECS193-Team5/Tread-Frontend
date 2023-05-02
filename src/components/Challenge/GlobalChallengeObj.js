@@ -11,7 +11,7 @@ import hardCodedInfo from "../../Helpers/SharedHardCodeInfo.json";
 
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
-const WeeklyChallengeObj = (props) => {
+const GlobalChallengeObj = (props) => {
     let myProgressBaseUnits = props.children.progress;
     let totalBaseUnits = props.children.exercise.convertedAmount;
     let totalRealUnits = props.children.exercise.amount;
@@ -107,9 +107,9 @@ const WeeklyChallengeObj = (props) => {
     <div className = "completeChallengeBox">
         <div className = "challengeBox">
         <div className="photoDiv">
-            <div className="weeklyPhotoDiv">
-                <img className = "innerWeeklyPhotoDiv" src = "https://i.imgur.com/XkWZOEN.png"/>
-                <p className = "innerWeeklyPhotoDiv challengeText">Global</p>
+            <div className="globalPhotoDiv">
+                <img className = "innerGlobalPhotoDiv" src = "https://i.imgur.com/XkWZOEN.png"/>
+                <p className = "innerGlobalPhotoDiv challengeText">Global</p>
             </div>
             <BoxLine></BoxLine>
         </div>
@@ -154,4 +154,4 @@ const WeeklyChallengeObj = (props) => {
 
 }
 
-export default WeeklyChallengeObj;
+export default GlobalChallengeObj;

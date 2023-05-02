@@ -19,7 +19,7 @@ export function createLeague(inputData, thenFunc, errorFunc){
             thenFunc();
         })
         .catch(function (error) {
-          redirectLogout();
-          errorFunc();
+            redirectLogout(error);
+            errorFunc();
         });
 }

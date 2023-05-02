@@ -2,146 +2,18 @@ import {useState, useEffect} from 'react';
 
 import IssuedChallengeObj from "./IssuedChallengeObj";
 import SentChallengeObj from "./SentChallengeObj";
-import WeeklyChallengeObj from "./WeeklyChallengeObj";
+import GlobalChallengeObj from "./GlobalChallengeObj";
 import ReceivedChallengeObj from "./ReceivedChallengeObj";
-import AddChallengeButton from "./AddChallengeButton";
 
-import axios from "axios";
-
+import { getIssuedFriendChallenges, getIssuedLeagueChallenges, getSentChallenges, getReceivedChallenges } from '../../PostRequests/challenges';
+import { getGlobalChallenges } from '../../PostRequests/global_challenges';
 import "../../css/Challenge/challenge.css";
-
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const ChallengeScroll = (props) => {
     let [scrollType] = useState(props.type);
-    let [leagueID] = useState(props.leagueID);
     let [ifLeague] = useState(props.ifLeague);
     let [information, setInformation] = useState([]);
 
-    function getIssuedFriend(){
-        var config = {
-            method : 'post',
-            url : backend_url + 'challenges/accepted_challenges',
-            headers: {
-            Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-        };
-        axios(config)
-        .then(function(response){
-
-            console.log("Issued, " , response.data);
-            setInformation(response.data);
-        })
-        .catch(function(error){
-            if(error.response.status===401){
-                console.log("User is not logged in");
-                window.location.href = "/loginPage";
-            }
-        });
-    }
-
-
-    function getIssuedLeague(){
-        var config = {
-            method : 'post',
-            url : backend_url + 'challenges/league_challenges',
-            headers: {
-            Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-            data:{
-                leagueID: leagueID
-            }
-        };
-        axios(config)
-        .then(function(response){
-
-            console.log(response);
-            setInformation(response.data);
-        })
-        .catch(function(error){
-            if(error.response.status===401){
-                window.location.href = "/loginPage";
-            }
-            console.log(error)
-        });
-    }
-
-    function getSent(){
-        var config = {
-            method : 'post',
-            url : backend_url + 'challenges/sent_challenges',
-            headers: {
-            Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-        };
-        axios(config)
-        .then(function(response){
-
-            console.log(response.data);
-            setInformation(response.data);
-        })
-        .catch(function(error){
-            if(error.response.status===401){
-                window.location.href = "/loginPage";
-            }
-            console.log(error)
-        });
-
-
-    }
-
-    function getReceived(){
-        var config = {
-            method : 'post',
-            url : backend_url + 'challenges/received_challenges',
-            headers: {
-            Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-        };
-        axios(config)
-        .then(function(response){
-            console.log(response.data);
-            setInformation(response.data);
-        })
-        .catch(function(error){
-            if(error.response.status===401){
-                window.location.href = "/loginPage";
-            }
-            console.log(error)
-        });
-
-    }
-    function getWeekly(){
-        var config = {
-            method : 'post',
-            url : backend_url + 'global_challenge/get_challenges',
-            headers: {
-            Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-        };
-        axios(config)
-        .then(function(response){
-            console.log("Weekly", response.data);
-            setInformation(response.data);
-        })
-        .catch(function(error){
-            if(error.response.status===401){
-                window.location.href = "/loginPage";
-            }
-            console.log(error)
-        });
-
-    }
     function makeIssuedChallengeObj(input){
         return (<IssuedChallengeObj key = {input["challengeId"]} >{input}</IssuedChallengeObj>);
     }
@@ -154,26 +26,26 @@ const ChallengeScroll = (props) => {
         return (<ReceivedChallengeObj key = {input["challengeId"]} >{input}</ReceivedChallengeObj>);
     }
 
-    function makeWeeklyChallengeObj(input){
-        return (<WeeklyChallengeObj key = {input["challengeId"]}>{input}</WeeklyChallengeObj>);
+    function makeGlobalChallengeObj(input){
+        return (<GlobalChallengeObj key = {input["challengeId"]}>{input}</GlobalChallengeObj>);
     }
 
     useEffect (
         () => {
             if(scrollType === "issued" && ifLeague){
-                getIssuedLeague();
+                getIssuedLeagueChallenges(props.leagueID, setInformation);
             }
             else if(scrollType === "issued" && !ifLeague){
-                getIssuedFriend();
+                getIssuedFriendChallenges(setInformation);
             }
             else if(scrollType === "sent"){
-                getSent();
+                getSentChallenges(setInformation);
             }
             else if(scrollType === "received"){
-                getReceived();
+                getReceivedChallenges(setInformation);
             }
-            else if(scrollType === "weekly"){
-                getWeekly();
+            else if(scrollType === "global"){
+                getGlobalChallenges(setInformation);
             }
         }, [scrollType]
     );
@@ -182,7 +54,7 @@ const ChallengeScroll = (props) => {
         {(scrollType === "issued") ? information.map(makeIssuedChallengeObj) : <></>}
         {(scrollType === "sent") ? information.map(makeSentChallengeObj) : <></>}
         {(scrollType === "received") ? information.map(makeReceivedChallengeObj) : <></>}
-        {(scrollType === "weekly") ? information.map(makeWeeklyChallengeObj) : <></>}
+        {(scrollType === "global") ? information.map(makeGlobalChallengeObj) : <></>}
     </div>);
 }
 
