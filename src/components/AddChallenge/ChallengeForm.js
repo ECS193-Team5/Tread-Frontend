@@ -1,14 +1,14 @@
 import {useState} from 'react';
 import Line from "../Shared/Line";
-
 import ChallengeStats from "./ChallengeStats";
 import ExerciseNameForm from "../Shared/Form/ExerciseNameForm";
 import ExericseAmountForm from "../Shared/Form/ExerciseAmountForm";
 import ExerciseDateForm from "../Shared/Form/ExerciseDateForm";
 import ExerciseReceiverForm from '../Shared/Form/ExerciseReceiverForm';
+import { addChallenge } from '../../PostRequests/challenges';
 import '../../css/Shared/form.css';
 import '../../css/Shared/button.css';
-import { addChallenge } from '../../PostRequests/challenges';
+
 
 
 const ChallengeForm = () =>{
@@ -75,6 +75,7 @@ const ChallengeForm = () =>{
     }
 
     const moveChallengePage = () => {
+      setSubmitError("Successfully sent challenge");
       window.location.href = "./currentChallengePage";
     }
 
