@@ -132,36 +132,6 @@ body{
     height: 35vh;
 }
 
-#weightLiftPhotoTopRow{
-    position: absolute;
-    top: 0%;
-    left: 80%;
-    z-index: 1;
-    overflow: hidden;
-}
-
-#weightLiftPhotoMiddleRow{
-    position: absolute;
-    left: 50%;
-    top: 30%;
-    z-index: 1;
-    overflow: hidden;
-}
-
-#weightLiftPhotoBottomRowLeft{
-    position: absolute;
-    left: 20%;
-    top: 60%;
-    z-index: 1;
-    overflow: hidden;
-}
-#weightLiftPhotoBottomRowRight{
-    position: absolute;
-    left: 80%;
-    top: 60%;
-    z-index: 1;
-    overflow: hidden;
-}
 
 #loginPage{
     background: radial-gradient(71.63% 88.13% at 21.02% 20.79%, #014421 0%, #000000 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;

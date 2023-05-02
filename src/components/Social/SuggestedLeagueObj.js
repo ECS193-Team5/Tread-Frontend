@@ -20,7 +20,7 @@ const SuggestedLeagueObj = (props) => {
     };
     axios(config)
     .then(function(response) {
-        setDisplayProperty(leagueID + "SuggestionObj", "none");
+        props.updateObjList(leagueID);
 
     })
     .catch(function(error){

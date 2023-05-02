@@ -14,8 +14,8 @@ const backend_url = process.env.REACT_APP_PROD_BACKEND;
 const ChallengeForm = () =>{
     const [exerciseName, setExerciseName] = useState("");
     const [defaultExerciseName, setDefaultExerciseName] = useState("");
-    const [unit, setUnit] = useState("ct");
-    const [defaultUnit, setDefaultUnit] = useState("ct");
+    const [unit, setUnit] = useState("min");
+    const [defaultUnit, setDefaultUnit] = useState("min");
     const [amount, setAmount] = useState(0);
     const [defaultAmount, setDefaultAmount] = useState(0);
     const [issueDate, setIssueDate] = useState("");

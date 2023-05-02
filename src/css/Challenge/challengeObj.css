@@ -1,8 +1,7 @@
 .challengeSection{
     min-width: 900px;
-    height: 100%;
-    overflow-y:hidden;
 }
+
 .completeChallengeBox{
     width: 870px;
 

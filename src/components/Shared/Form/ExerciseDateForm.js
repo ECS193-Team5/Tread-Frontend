@@ -83,8 +83,8 @@ const ExerciseDateForm = (props) => {
         return (year + "-" + month + "-" + date);
       }
 
-    function stopKey () {
-        return false;
+      const stopKey = (e) =>{
+        e.preventDefault();
     }
 
     return (

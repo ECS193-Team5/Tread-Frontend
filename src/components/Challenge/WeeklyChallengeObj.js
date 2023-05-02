@@ -7,6 +7,7 @@ import Leaderboard from "../Shared/Leaderboard";
 import axios from "axios";
 import { flipButton } from "../../Helpers/CssEffects";
 import "../../css/Challenge/challengeObj.css";
+import hardCodedInfo from "../../Helpers/SharedHardCodeInfo.json";
 
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
@@ -78,21 +79,8 @@ const WeeklyChallengeObj = (props) => {
 
     function convertProgress(progress, goal_unit){
 
-        let conversionKey = {
-            "ct":1,
-            "m":1,
-            "km":(1/1000),
-            "ft": 3.28084,
-            "yd": 1.0936133333333,
-            "mi": 0.00062137121212119323429,
-            "s": 60,
-            "min": 1,
-            "hr": (1/60)
-        }
+        return progress*hardCodedInfo.conversionKey[goal_unit];
 
-        return progress*conversionKey[goal_unit];
-
-        return 1;
 
     }
 
@@ -144,7 +132,7 @@ const WeeklyChallengeObj = (props) => {
                 (percentageDone < 100) ?
                 <p className = "challengeInnerEnd">{myProgressRealUnits}/{totalRealUnits}</p>
                 :
-                <p className = "challengeInnerEnd">Complete</p>
+                <p className = "challengeInnerEnd">{totalRealUnits}/{totalRealUnits}</p>
             }
         </div>
 

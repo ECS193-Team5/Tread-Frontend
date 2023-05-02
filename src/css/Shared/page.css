@@ -31,14 +31,14 @@ html{
 }
 
 .rightSide2Part{
-    height: 100%;
+    min-height: 100%;
     width: 100%;
     min-width: 950px;
     background-color: transparent;
 
     display: flex;
     justify-content: center;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .mainInfo{

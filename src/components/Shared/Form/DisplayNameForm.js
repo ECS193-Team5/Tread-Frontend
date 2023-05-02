@@ -5,13 +5,13 @@ const DisplayNameForm = (props) => {
     function validateDisplayName(event) {
         let displayNameInput = event.target.value;
         if (displayNameInput.length === 0 || displayNameInput.length > 32) {
-            setDisplayError("Cannot sign up, display name between 1-32 characters");
+            setDisplayError("Cannot sign up, display name must be between 1-32 characters");
             props.updateDisplayName("");
             return false;
         }
 
         if (!(/^[a-z0-9 ]+$/i.test(displayNameInput))) {
-            setDisplayError("Display Name input must only have alphanumeric and spaces");
+            setDisplayError("Display Name input must only have alphanumeric characters and spaces");
             props.updateDisplayName("");
             return false;
         }
@@ -24,7 +24,7 @@ const DisplayNameForm = (props) => {
     return (
         <div>
             <h1>Display Name</h1>
-            <p className="formObjInner">This is what others will see.</p>
+            <p className="formObjInner">This is public name that others will see.</p>
             <input className="formTextInput" type="text" placeholder = {props.placeholder} onChange={validateDisplayName} />
             <p className="errorBox">{displayError}</p>
         </div>
