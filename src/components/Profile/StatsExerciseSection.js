@@ -14,6 +14,7 @@ import "../../css/Shared/button.css";
 import { Bar } from 'react-chartjs-2';
 import StatsDownloadSection from './StatsDownloadSection';
 import hardCodedInfo from "../../Helpers/SharedHardCodeInfo.json";
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -33,10 +34,11 @@ const StatsExerciseSection = () => {
     const [labels, setLabels] = useState([]);
 
     const [availableExercises, setAvailableExercises] = useState([]);
+    const [availableUnits, setAvailableUnits] = useState([]);
 
     const [selectedExerciseName, setSelectedExerciseName] = useState("");
-    const [selectedExerciseUnit, setSelectedExerciseUnit] = useState("m");
-    const [selectedExerciseUnitType, setSelectedExerciseUnitType] = useState("distance");
+    const [selectedExerciseUnit, setSelectedExerciseUnit] = useState("");
+    const [selectedExerciseUnitType, setSelectedExerciseUnitType] = useState("");
 
     const [data, setData] = useState([]);
     const [config, setConfig] = useState(
@@ -77,25 +79,35 @@ const StatsExerciseSection = () => {
 
 
     useEffect(() => {
-        if((["m", "km", "mi", "ft", "yd"]).includes(selectedExerciseUnit)){
+        if((hardCodedInfo.distanceUnits).includes(selectedExerciseUnit)){
             setSelectedExerciseUnitType("distance");
 
         }
-        else if((["s", "min", "hr"]).includes(selectedExerciseUnit)){
+        else if((hardCodedInfo.timeUnits).includes(selectedExerciseUnit)){
             setSelectedExerciseUnitType("time");
 
         }
-        else if((["ct"]).includes(selectedExerciseUnit)){
+        else if((hardCodedInfo.countUnits).includes(selectedExerciseUnit)){
             setSelectedExerciseUnitType("count");
 
+        }
+        else{
+            setSelectedExerciseUnitType("");
         }
     },[selectedExerciseUnit]);
 
     useEffect(() => {
         if(selectedExerciseUnit){
+            console.log("the exercise unit should change, to ", selectedExerciseUnit);
             setGraphChange(true);
         }
     },[selectedExerciseUnit]);
+
+    useEffect(() => {
+        if(availableUnits){
+            setGraphChange(true);
+        }
+    },[availableUnits]);
 
     useEffect(() => {
         if(data){
@@ -125,9 +137,35 @@ const StatsExerciseSection = () => {
         }
     },[load]);
 
+    const calculateAvailableUnits = (exerciseName) => {
+        let unitTypeOptions = new Set();
+
+        exerciseLog.forEach((log) =>{
+            if (log.exercise.exerciseName === selectedExerciseName){
+                unitTypeOptions.add(log.exercise.unitType);
+            }
+
+
+        })
+
+        let unitOptions = [];
+        if (unitTypeOptions.has("distance")){
+            hardCodedInfo.distanceUnits.forEach(unit => {unitOptions.push(unit)});
+        }
+        if (unitTypeOptions.has("time")){
+            hardCodedInfo.timeUnits.forEach(unit => {unitOptions.push(unit)});
+        }
+        if (unitTypeOptions.has("count")){
+            hardCodedInfo.countUnits.forEach(unit => {unitOptions.push(unit)});
+        }
+
+        setSelectedExerciseUnit(unitOptions[0]);
+        setAvailableUnits(unitOptions);
+    }
+
     useEffect(() => {
         if(selectedExerciseName){
-            setGraphChange(true);
+            calculateAvailableUnits();
         }
     },[selectedExerciseName]);
 
@@ -252,23 +290,11 @@ const StatsExerciseSection = () => {
         <StatsDownloadSection type = "Exercise"/>
         </div>
         <div >
-            <select className = "formSelect exercisePicker" onChange = {changeExerciseName}>
+            <select className = "formSelect exercisePicker" onChange = {changeExerciseName} defaultValue={"none"}>
                 {availableExercises.map((item) => {return <option value = {item}>{item}</option>})}
             </select>
-            <select className = "formSelect exercisePicker" onChange = {changeUnit}>
-                <option value = "min">minute (min)</option>
-                <option value = "hr">hour (hr)</option>
-
-                <option value = "m">meter (m)</option>
-                <option value = "km">kilometer (km)</option>
-                <option value = "ft">feet (ft)</option>
-                <option value = "yd">yard (yd)</option>
-                <option value = "mi">mile (mi)</option>
-
-
-
-                <option value = "ct">count (ct)</option>
-
+            <select id = "challengeExerciseUnitPicker" className = "formSelect exercisePicker" onChange = {changeUnit} defaultValue={"none"}>
+                {availableUnits.map((item) =>{ return <option value = {item}> {hardCodedInfo.fullUnitName[item]}</option> })}
             </select>
         </div>
 

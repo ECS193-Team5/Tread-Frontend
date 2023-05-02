@@ -58,27 +58,16 @@ const RowBox = (props) => {
     );
 
     const updateObjList = (id) =>{
-        console.log("wall called on", id);
-        let deletedIndex = -1;
-        for(let i = 0; i< info.length; i++){
-            console.log(info[i][0])
-            console.log(props.children.socialType)
-            if(props.children.socialType === "friend" && info[i][0] === id){
-                deletedIndex = i;
-                break;
+        let newList = [];
+        info.forEach((item) => {
+            if(props.children.socialType === "friend" && item[0] !== id){
+                newList.push(item);
             }
-            if(props.children.socialType === "league" && info[i]._id === id){
-                deletedIndex = i;
-                break;
+            if(props.children.socialType === "league" && item._id !== id){
+                newList.push(item);
             }
-        }
-        console.log("index", deletedIndex, " was found");
-        let newInfo = info;
-        if (deletedIndex !== -1){
-            newInfo = info.splice(deletedIndex-1, 1);
-        }
-        console.log("new info was", newInfo);
-        setInfo(newInfo);
+        });
+        setInfo(newList);
     }
 
     function createSuggestFriendObj (input) {
