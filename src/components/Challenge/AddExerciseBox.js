@@ -80,7 +80,7 @@ const AddExerciseBox = () => {
     return (
         <div id="AddExerciseBox">
             <div id = "AddExerciseHeader">
-                <h2>Add an Exercise</h2>
+                <h2>Log an Exercise</h2>
                 <button className="dropDownButton" onClick={toggleShowState}><img className="dropDownButton" id="AddExerciseButtonShowState" src="https://i.imgur.com/msPQZqA.png" alt="Dropdown" /></button>
             </div>
             {showState
