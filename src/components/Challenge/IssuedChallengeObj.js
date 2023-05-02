@@ -110,7 +110,7 @@ const IssuedChallengeObj = (props) => {
                 (percentageDone < 100) ?
                 <p className = "challengeInnerEnd">{myProgressRealUnits}/{totalRealUnits}</p>
                 :
-                <p className = "challengeInnerEnd">Complete</p>
+                <p className = "challengeInnerEnd">{totalRealUnits}/{totalRealUnits}</p>
             }
         </div>
 
