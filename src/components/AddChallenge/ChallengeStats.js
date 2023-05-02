@@ -53,7 +53,7 @@ const ChallengeStats = (props) => {
 
         if(progressPercent >= 1){
             suggestion.data = recreateChallengeData(exercise, Math.round(exercise.exercise.amount * 1.1));
-            suggestion.message = "This challenge reflects on you have succeeded in the past. See if you can go a little further!";
+            suggestion.message = "This challenge reflects on one you have already completed. See if you can go a little further!";
         }
         else if(progressPercent >= .9){
             suggestion.data = recreateChallengeData(exercise, exercise.exercise.amount)

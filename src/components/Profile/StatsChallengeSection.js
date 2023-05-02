@@ -166,7 +166,7 @@ const StatsChallengeSection = () => {
   }
 
   return (
-    <div>
+    <div className="challengeStatsSection">
       <div className="downloadButtonHeader">
       <h1>Challenge History</h1>
       <StatsDownloadSection type = "Challenge"/>
