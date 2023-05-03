@@ -1,15 +1,15 @@
 import {useState} from 'react';
 import Line from "../Shared/Line";
-import axios from 'axios';
 import ChallengeStats from "./ChallengeStats";
 import ExerciseNameForm from "../Shared/Form/ExerciseNameForm";
 import ExericseAmountForm from "../Shared/Form/ExerciseAmountForm";
 import ExerciseDateForm from "../Shared/Form/ExerciseDateForm";
 import ExerciseReceiverForm from '../Shared/Form/ExerciseReceiverForm';
+import { addChallenge } from '../../PostRequests/challenges';
 import '../../css/Shared/form.css';
 import '../../css/Shared/button.css';
 
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
+
 
 const ChallengeForm = () =>{
     const [exerciseName, setExerciseName] = useState("");
@@ -70,6 +70,15 @@ const ChallengeForm = () =>{
       return (errorMessage === "");
     }
 
+    const setError = () => {
+      setSubmitError("Error in issuing challenge");
+    }
+
+    const moveChallengePage = () => {
+      setSubmitError("Successfully sent challenge");
+      window.location.href = "./currentChallengePage";
+    }
+
     const submitChallenge = () => {
         if (!checkValidInputs()){
           return false;
@@ -80,36 +89,18 @@ const ChallengeForm = () =>{
           recipient = receiver.split('-')[1].trim();
         }
 
-       var config ={
-          method : 'post',
-          url : backend_url+"challenges/add_"+receiverGroup+"_challenge",
-          headers: {
-            Accept: 'application/json',
-          },
-          withCredentials: true,
-          credentials: 'include',
-          data :
-          {
+        let inputData = {
+          "receiverGroup":receiverGroup,
+          data: {
             receivedUser : recipient,
             issueDate : issueDate.valueOf(),
             dueDate : dueDate.valueOf(),
             unit : unit,
             amount : amount,
-            exerciseName : exerciseName,
-          }
-        };
-        axios(config)
-        .then(function(response){
-          window.location.href = "./currentChallengePage";
-        })
-        .catch(function(error){
-            if(error.response.status===401){
-                window.location.href = "/loginPage";
-            }
-          setSubmitError("Error in issuing challenge");
-          console.log(error)
-        })
+            exerciseName : exerciseName}
+        }
 
+        addChallenge(inputData, moveChallengePage, setError);
     }
 
     return (

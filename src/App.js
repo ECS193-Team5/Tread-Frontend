@@ -34,7 +34,7 @@ function App() {
         <Route path = "/addChallengePage" element = {<AddChallenge/>} />
         <Route path = "/addLeaguePage" element = {<AddLeague/>} />
         <Route path = "/currentChallengePage" element = {<Challenge>{{"type":"current"}}</Challenge>} />
-        <Route path = "/weeklyChallengePage" element = {<Challenge>{{"type":"global"}}</Challenge>} />
+        <Route path = "/globalChallengePage" element = {<Challenge>{{"type":"global"}}</Challenge>} />
         <Route path = "/socialFriendPage" element = {<Social>{{"type":"friend"}}</Social>}/>
         <Route path = "/socialLeaguePage" element = {<Social>{{"type":"league"}}</Social>}/>
         <Route path = "/profileMedalPage" element = {<Profile>{{"type":"medal"}}</Profile>} />

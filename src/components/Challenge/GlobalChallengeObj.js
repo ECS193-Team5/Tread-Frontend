@@ -1,39 +1,64 @@
 import { useState, useEffect } from "react";
 
-import PhotoDisplay from "./PhotoDisplay";
 import BoxLine from "./BoxLine";
 import ProgressBar from "../Shared/ProgressBar";
 import Line from "../Shared/Line";
 import Leaderboard from "../Shared/Leaderboard";
-import { getChallengeLeaderboard } from "../../PostRequests/challenges";
 import { flipButton } from "../../Helpers/CssEffects";
 import { getChallengeTitle, calculateProgress } from "../../Helpers/calculationHelpers";
+import { getGlobalChallengeLeaderboard } from "../../PostRequests/global_challenges";
 import "../../css/Challenge/challengeObj.css";
-import "../../css/Shared/button.css";
 
-const IssuedChallengeObj = (props) => {
-    const [leaderboardInfo, setLeaderboardInfo] = useState([]);
+const GlobalChallengeObj = (props) => {
     const [showState, setState] = useState(false);
+    const [leaderboardInfo, setLeaderboardInfo] = useState([]);
+    const [load, setLoad] = useState(false);
 
-    let myProgressBaseUnits = props.children.progress.progress;
-    let totalBaseUnits = props.children.progress.exercise.convertedAmount;
-    let totalRealUnits = props.children.progress.exercise.amount;
-    let myProgressRealUnits = calculateProgress(myProgressBaseUnits, props.children.exercise.unit);
+    let myProgressBaseUnits = props.children.progress;
+    let totalBaseUnits = props.children.exercise.convertedAmount;
+    let totalRealUnits = props.children.exercise.amount;
+    let dueDate = props.children.dueDate.split("T")[0];
     let percentageDone = myProgressBaseUnits / totalBaseUnits * 100;
-    let title = getChallengeTitle(props.children.exercise);
-    let dueDate = new Date(props.children.dueDate).toISOString().split("T")[0];
-    let challengeID = props.children._id;
+    let title = getChallengeTitle(props.children.exercise)
+    let challengeID = props.children.challengeID;
+    let myProgressRealUnits = calculateProgress(myProgressBaseUnits, props.children.exercise.unit);
 
     useEffect(
         () => {
-            if (showState) {
-                getChallengeLeaderboard(props.children._id, parseChallengeLeaderboard);
+            if (!load) {
+                getGlobalChallengeLeaderboard(challengeID, buildLeaderboard);
+                setLoad(true);
             }
-        }, [showState]
+        }, [load]
     );
 
+    function selfInTop5(top5, selfData) {
+        let myUsername = selfData.username;
+
+        for (let i = 0; i < top5.length; i++) {
+            if (myUsername === top5[i].username) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function buildLeaderboard(response) {
+        let top5 = response.data[0];
+        let selfData = response.data[1];
+
+        let top5Info = top5.map(makeLeaderboardObj);
+
+        if (!selfInTop5(top5, selfData)) {
+            let item = selfData.map(makeLeaderboardObj);
+            item[0]["level"] = " - ";
+            top5Info.push(item[0]);
+        }
+
+        setLeaderboardInfo(top5Info);
+    }
+
     function makeLeaderboardObj(item, index) {
-        console.log(item, index);
         let entry = {}
         entry["level"] = index + 1;
         entry["photo"] = item["pictures"];
@@ -43,26 +68,26 @@ const IssuedChallengeObj = (props) => {
         return entry;
     }
 
-    const parseChallengeLeaderboard = (response) => {
-        setLeaderboardInfo(response.data.map(makeLeaderboardObj));
-    }
-
     function toggleState() {
         setState(!showState);
         flipButton(challengeID + "button", showState);
     }
 
     return (
-        <div id={"issuedChallengeObj" + props.children._id} className="completeChallengeBox">
+        <div className="completeChallengeBox">
             <div className="challengeBox">
                 <div className="photoDiv">
-                    <PhotoDisplay photos={props.children.participants}></PhotoDisplay><BoxLine></BoxLine>
+                    <div className="globalPhotoDiv">
+                        <img className="innerGlobalPhotoDiv" src="https://i.imgur.com/XkWZOEN.png" />
+                        <p className="innerGlobalPhotoDiv challengeText">Global</p>
+                    </div>
+                    <BoxLine></BoxLine>
                 </div>
+
                 <div className="challengeMiddle">
                     <div className="challengeInnerMiddle">
                         <p className="challengeText">{title}</p>
                         <p className="challengeText">{dueDate}</p>
-
                     </div>
                     <div className="challengeInnerMiddle">
                         <ProgressBar>{{ "completed": percentageDone }}</ProgressBar>
@@ -83,16 +108,20 @@ const IssuedChallengeObj = (props) => {
 
             </div>
 
-            {showState ?
+
+            {showState
+                ?
                 <div className="leaderboardSection">
                     <Line></Line>
-                    <Leaderboard>{{ "title": "Challenge", "entries": { leaderboardInfo } }}</Leaderboard>
+                    <Leaderboard>{{ "title": "Global Challenge", "entries": { leaderboardInfo } }}</Leaderboard>
                 </div>
                 :
                 <></>
             }
+
         </div>
     );
+
 }
 
-export default IssuedChallengeObj;
+export default GlobalChallengeObj;

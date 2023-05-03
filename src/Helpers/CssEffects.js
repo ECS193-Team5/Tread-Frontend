@@ -35,3 +35,9 @@ export const changeBarButton = (button, onButton) => {
     document.getElementById(button.name + "BarButton").className = classList;
 
 }
+
+export function redirectLogout(error){
+    if(error.response.status===401){
+        window.location.href = "/";
+    }
+}

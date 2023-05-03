@@ -1,25 +1,19 @@
 import { useState } from "react";
 import Line from "../Shared/Line";
 import PhotoUploadForm from "../Shared/Form/PhotoUploadForm";
-import axios from 'axios';
-
-import '../../css/Shared/form.css';
-import '../../css/Shared/button.css';
 import LeagueDescriptionForm from "../Shared/Form/LeagueDescriptionForm";
 import LeagueNameForm from "../Shared/Form/LeagueNameForm";
 import LeagueTypeForm from "../Shared/Form/LeagueTypeForm";
+import { createLeague } from "../../PostRequests/league";
+import '../../css/Shared/form.css';
+import '../../css/Shared/button.css';
 
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
-
-
-const LeagueForm = (props) => {
+const LeagueForm = () => {
   const [photo, setPhoto] = useState("");
   const [leagueName, setLeagueName] = useState("");
   const [leagueDescription, setLeagueDescription] = useState("");
   const [leagueType, setLeagueType] = useState("private");
-
   const [submitError, setSubmitError] = useState("");
-
 
   function validateInputs() {
     setSubmitError("");
@@ -38,7 +32,14 @@ const LeagueForm = (props) => {
 
   }
 
+  const moveSocialLeaguePage = () => {
+    setSubmitError("Sucessfully created league");
+    window.location.href = "./socialLeaguePage";
+  }
 
+  const setError = () => {
+    setSubmitError("Could not create league for unknown reason");
+  }
 
   function submitLeague() {
     if (!validateInputs()) {
@@ -56,27 +57,7 @@ const LeagueForm = (props) => {
     formData.append("leagueDescription", leagueDescription);
     formData.append("leaguePicture", submitPhoto);
 
-    var config = {
-      method: 'post',
-      url: backend_url + 'league/create_league',
-      headers: {
-        Accept: 'application/json',
-      },
-      withCredentials: true,
-      credentials: 'include',
-      data: formData
-    };
-    axios(config)
-      .then(function (response) {
-        window.location.href = "./socialLeaguePage";
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          window.location.href = "/loginPage";
-        }
-        setSubmitError("Could not create League for unknown reason")
-        console.log(error)
-      });
+    createLeague(formData, moveSocialLeaguePage, setError);
   }
 
   return (
