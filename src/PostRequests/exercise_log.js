@@ -1,4 +1,4 @@
-import { redirectLogout } from "../Helpers/postRequestHelpers";
+import { redirectLogout } from "../Helpers/CssEffects";
 import { reloadPage } from "../Helpers/CssEffects";
 
 import axios from 'axios';

@@ -2,9 +2,10 @@ import PhotoDisplay from "./PhotoDisplay";
 import BoxLine from "./BoxLine";
 import AcceptChallengeButton from "./AcceptChallengeButton";
 import DeclineChallengeButton from "./DeclineChallengeButton";
+import { getChallengeTitle } from "../../Helpers/calculationHelpers";
 
 const ReceivedChallengeObj = (props) => {
-    let title = props.children.exercise.exerciseName + " " + props.children.exercise.amount + " " + props.children.exercise.unit;
+    let title = getChallengeTitle(props.children.exercise);
     let dueDate = new Date(props.children.dueDate).toISOString().split("T")[0];
 
     return (

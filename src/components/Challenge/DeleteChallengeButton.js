@@ -1,33 +1,14 @@
-import axios from "axios";
-
 import '../../css/Shared/button.css';
 import { setDisplayProperty } from "../../Helpers/CssEffects";
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
+import { deleteChallenge } from '../../PostRequests/challenges';
 
 const DeleteChallengeButton = (props) => {
+    const hideSentObj = () => {
+        setDisplayProperty("sentObj"+props.id, "none");
+    }
+
     function onDelete(){
-        var config  = {
-            method : 'post',
-            url: backend_url+'challenges/delete_friend_challenge',
-            headers: {
-                Accept: 'application/json',
-              },
-            withCredentials: true,
-            credentials: 'include',
-            data:    {
-                challengeID: props.id
-            }
-        };
-        axios(config)
-        .then(function(response) {
-            setDisplayProperty("sentObj"+props.id, "none");
-        })
-        .catch(function(error){
-            console.log(error)
-            if(error.response.status===401){
-                window.location.href = "/loginPage";
-            }
-        });
+        deleteChallenge(props.id, hideSentObj);
     }
 
     return(

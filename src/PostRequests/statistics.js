@@ -1,4 +1,4 @@
-import { redirectLogout } from "../Helpers/postRequestHelpers";
+import { redirectLogout } from "../Helpers/CssEffects";
 
 import axios from 'axios';
 const backend_url = process.env.REACT_APP_PROD_BACKEND;

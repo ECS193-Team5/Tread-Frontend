@@ -1,33 +1,15 @@
-import axios from "axios";
-
-import '../../css/Shared/button.css';
 import { setDisplayProperty } from "../../Helpers/CssEffects";
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
+import { declineChallenge } from "../../PostRequests/challenges";
+import '../../css/Shared/button.css';
 
 const DeclineChallengeButton = (props) => {
+    const hideReceivedObj = () => {
+        setDisplayProperty("ReceivedChallengedObj"+props.id, "none");
+    }
+
     function onDecline(){
-        var config  = {
-            method : 'post',
-            url: backend_url+'challenges/decline_friend_challenge',
-            headers: {
-                Accept: 'application/json',
-              },
-            withCredentials: true,
-            credentials: 'include',
-            data:    {
-                challengeID: props.id
-            }
-        };
-        axios(config)
-        .then(function(response) {
-            setDisplayProperty("ReceivedChallengedObj"+props.id, "none");
-        })
-        .catch(function(error){
-            if(error.response.status===401){
-                window.location.href = "/loginPage";
-            }
-            console.log(error)
-        });
+        declineChallenge(props.id, hideReceivedObj);
+
     }
 
     return(
