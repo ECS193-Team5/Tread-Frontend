@@ -1,0 +1,10 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [{
+            "appID": "<TeamID>.<BundleId>",
+            "paths": ["/universal/*"]
+            }
+        ]
+    }
+}
