@@ -5,11 +5,8 @@ import LeagueDescriptionForm from "../Shared/Form/LeagueDescriptionForm";
 import LeagueTypeForm from "../Shared/Form/LeagueTypeForm";
 import Line from "../Shared/Line";
 import { createLeaguePictureURL } from "../../Helpers/CloudinaryURLHelpers";
-import { getLeagueInfo } from "../../PostRequests/league";
+import { getLeagueInfo, updateLeagueDescription, updateLeaguePhoto, updateLeagueName, updateLeagueType, deleteLeague } from "../../PostRequests/league";
 import "../../css/Shared/coloredText.css";
-
-import axios from 'axios';
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const LeagueEditForm = (props) => {
     const [load, setLoad] = useState("");
@@ -47,26 +44,7 @@ const LeagueEditForm = (props) => {
         formData.append("leaguePicture", photo);
         formData.append("leagueID", props.leagueID);
 
-        var config = {
-            method: 'post',
-            url: backend_url + 'league/update_picture',
-            headers: {
-                Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-            data: formData
-        };
-        axios(config)
-            .then(function (response) {
-            })
-            .catch(function (error) {
-                if (error.response.status === 401) {
-                    window.location.href = "/loginPage";
-                }
-                console.log(error)
-            });
-
+        updateLeaguePhoto(formData);
     }
 
     const submitUpdatedName = () => {
@@ -74,28 +52,7 @@ const LeagueEditForm = (props) => {
             return;
         }
 
-        var config = {
-            method: 'post',
-            url: backend_url + 'league/update_name',
-            headers: {
-                Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-            data: {
-                leagueName: name,
-                leagueID: props.leagueID
-            }
-        };
-        axios(config)
-            .then(function (response) {
-            })
-            .catch(function (error) {
-                if (error.response.status === 401) {
-                    window.location.href = "/loginPage";
-                }
-                console.log(error)
-            });
+        updateLeagueName(props.leagueID, name);
     }
 
     const submitUpdatedDescription = () => {
@@ -103,28 +60,7 @@ const LeagueEditForm = (props) => {
             return;
         }
 
-        var config = {
-            method: 'post',
-            url: backend_url + 'league/update_description',
-            headers: {
-                Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-            data: {
-                leagueDescription: description,
-                leagueID:props.leagueID
-            }
-        };
-        axios(config)
-            .then(function (response) {
-            })
-            .catch(function (error) {
-                if (error.response.status === 401) {
-                    window.location.href = "/loginPage";
-                }
-                console.log(error)
-            });
+        updateLeagueDescription(props.leagueID, description);
     }
 
     const submitUpdatedType = () => {
@@ -132,28 +68,7 @@ const LeagueEditForm = (props) => {
             return;
         }
 
-        var config = {
-            method: 'post',
-            url: backend_url + 'league/update_type',
-            headers: {
-                Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-            data: {
-                leagueType: type,
-                leagueID:props.leagueID
-            }
-        };
-        axios(config)
-            .then(function (response) {
-            })
-            .catch(function (error) {
-                if (error.response.status === 401) {
-                    window.location.href = "/loginPage";
-                }
-                console.log(error)
-            });
+        updateLeagueType(props.leagueID, type);
     }
 
     function submit(){
@@ -164,30 +79,20 @@ const LeagueEditForm = (props) => {
         submitUpdatedType();
         setSubmitError("Succesfully updated league information.")
     }
-    function deleteLeague(){
-        var config = {
-            method : 'post',
-            url : backend_url + 'league/delete_league',
-            headers: {
-              Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-            data:{
-                leagueID: props.leagueID
-            }
-          };
-          axios(config)
-          .then(function(response) {
-              window.location.href = "./SocialLeaguePage";
-          })
-          .catch(function(error){
-              setDeleteError("Could not delete league.")
-              if(error.response.status===401){
-                window.location.href = "/loginPage";
-            }
-          });
+
+    function moveLeaguePage(){
+        setDeleteError("Succesfully deleted league.");
+        window.location.href = "./SocialLeaguePage";
     }
+
+    function setLeagueError(){
+        setDeleteError("Could not delete league.")
+    }
+
+    function onDeleteLeague(){
+        deleteLeague(props.leagueID, moveLeaguePage, setLeagueError);
+    }
+
     return (
         <div>
             <div className="formObj">
@@ -210,7 +115,7 @@ const LeagueEditForm = (props) => {
             <span className = "greenBaseText"> all the previous challenges, leaderboard, and history. There will be </span>
             <span className = "redBaseText">no</span>
             <span className = "greenBaseText"> recovery</span></p>
-            <button className = "deleteButton" onClick = {deleteLeague}><p className = "deleteButtonText">Delete</p></button>
+            <button className = "deleteButton" onClick = {onDeleteLeague}><p className = "deleteButtonText">Delete</p></button>
             <p className="errorBox">{deleteError}</p>
             <p><br></br></p>
         </div>);
