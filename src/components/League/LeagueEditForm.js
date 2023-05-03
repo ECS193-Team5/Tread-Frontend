@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
-import "../../css/Shared/coloredText.css";
-import axios from 'axios';
 import PhotoUploadForm from "../Shared/Form/PhotoUploadForm";
-import { createLeaguePictureURL } from "../../Helpers/CloudinaryURLHelpers";
 import LeagueNameForm from "../Shared/Form/LeagueNameForm";
 import LeagueDescriptionForm from "../Shared/Form/LeagueDescriptionForm";
 import LeagueTypeForm from "../Shared/Form/LeagueTypeForm";
 import Line from "../Shared/Line";
+import { createLeaguePictureURL } from "../../Helpers/CloudinaryURLHelpers";
+import { getLeagueInfo } from "../../PostRequests/league";
+import "../../css/Shared/coloredText.css";
+
+import axios from 'axios';
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
+
 const LeagueEditForm = (props) => {
     const [load, setLoad] = useState("");
     const [defaultLeagueName, setDefaultLeagueName] = useState("");
@@ -23,37 +26,16 @@ const LeagueEditForm = (props) => {
     useEffect (
         () => {
             if(!load){
-                getLeagueInfo();
+                getLeagueInfo(props.leagueID, setUpPage);
                 setLoad(true);
             }
         }, [load]
     );
 
-    function getLeagueInfo(){
-        var config  = {
-          method : 'post',
-          url: backend_url+'league/get_league_name_description_type',
-          headers: {
-              Accept: 'application/json',
-            },
-          withCredentials: true,
-          credentials: 'include',
-          data : {
-            leagueID: props.leagueID
-          }
-        };
-        axios(config)
-        .then(function(response) {
-            setDefaultLeagueName(response.data.leagueName);
-            setDefaultLeagueDescription(response.data.leagueDescription);
-            setDefaultLeagueType(response.data.leagueType);
-        })
-        .catch(function(error){
-            if(error.response.status===401){
-                window.location.href = "/loginPage";
-            }
-            console.log(error)
-        });
+    function setUpPage(response){
+        setDefaultLeagueName(response.data.leagueName);
+        setDefaultLeagueDescription(response.data.leagueDescription);
+        setDefaultLeagueType(response.data.leagueType);
     }
 
     const submitUpdatedPhoto = () => {

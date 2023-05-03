@@ -2,7 +2,7 @@
     "applinks": {
         "apps": [],
         "details": [{
-            "appID": "URY2D3D7CG.<BundleId>",
+            "appID": "URY2D3D7CG.run.tread.treadmobile",
             "paths": ["/universal/*"]
             }
         ]
