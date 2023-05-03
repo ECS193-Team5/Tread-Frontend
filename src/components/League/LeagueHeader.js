@@ -1,12 +1,12 @@
 import {useState, useEffect} from 'react';
-import axios from "axios";
 import QRcode from "qrcode";
 import {createLeaguePictureURL} from "../../Helpers/CloudinaryURLHelpers";
+import { getLeagueInfo, getNumberActiveChallengesLeague, getMembersLeague, getLeagueRole } from '../../PostRequests/league';
 import "../../css/Shared/pictureHeader.css";
 import "../../css/Shared/button.css";
 import "../../css/Shared/coloredText.css";
 
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
+
 
 const LeagueHeader = (props) => {
     const [id] = useState(props.children.id);
@@ -24,11 +24,11 @@ const LeagueHeader = (props) => {
         () => {
             if(!loaded){
                 generateQRCode();
-                getLeagueInfo();
-                getNumberChallenges();
-                getLeaguePhoto();
-                getNumberMembers();
-                getRole();
+                getLeagueInfo(props.children.id, setLeagueInfo);
+                getNumberActiveChallengesLeague(props.children.id, setNumberChallenges);
+                setLeaguePhoto(createLeaguePictureURL(props.children.id));
+                getMembersLeague(props.children.id, getNumberMembers)
+                getLeagueRole(props.children.id, setRole);
                 setLoaded(true);
             }
         }, [loaded]
@@ -51,108 +51,19 @@ const LeagueHeader = (props) => {
             setLeagueType("Public League");
         }
     }
-    function getLeagueInfo(){
-        var config  = {
-          method : 'post',
-          url: backend_url+'league/get_league_name_description_type',
-          headers: {
-              Accept: 'application/json',
-            },
-          withCredentials: true,
-          credentials: 'include',
-          data : {
-            leagueID: id
-          }
-        };
-        axios(config)
-        .then(function(response) {
-            setLeagueName(response.data.leagueName);
-            setLeagueDescription(response.data.leagueDescription);
-            setLeagueTypeText(response.data.leagueType);
-        })
-        .catch(function(error){
-            if(error.response.status===401){
-                window.location.href = "/loginPage";
-            }
-            console.log(error)
-        });
+
+    const getNumberMembers = (response) =>{
+        setNumberMembers(response.data.length);
     }
 
-    function getRole(){
-        var config  = {
-          method : 'post',
-          url: backend_url+'league/get_role',
-          headers: {
-              Accept: 'application/json',
-            },
-          withCredentials: true,
-          credentials: 'include',
-          data : {
-            leagueID: props.children.id
-          }
-        };
-        axios(config)
-        .then(function(response) {
-            setRole(response.data);
-        })
-        .catch(function(error){
-            if(error.response.status===401){
-                window.location.href = "/loginPage";
-            }
-            console.log(error)
-        });
-    }
-
-    function getNumberChallenges(){
-        var config = {
-            method : 'post',
-            url : backend_url + 'league/get_league_active_challenges',
-            headers: {
-            Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-            data:{
-                leagueID: id
-            }
-        };
-        axios(config)
-        .then(function(response){
-            setNumberChallenges(response.data);
-        })
-        .catch(function(error){
-            console.log(error)
-        });
-    }
-
-    function getLeaguePhoto(){
-        setLeaguePhoto(createLeaguePictureURL(id));
-    }
-
-    function getNumberMembers(){
-        var config = {
-            method : 'post',
-            url : backend_url + 'league/get_member_list',
-            headers: {
-            Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-            data:{
-                leagueID: id
-            }
-        };
-        axios(config)
-        .then(function(response){
-            setNumberMembers(response.data.length);
-        })
-        .catch(function(error){
-            console.log(error)
-        });
+    const setLeagueInfo = (response) => {
+        setLeagueName(response.data.leagueName);
+        setLeagueDescription(response.data.leagueDescription);
+        setLeagueTypeText(response.data.leagueType);
     }
 
     const moveEditPage = () => {
-        window.location.href = "./leagueEditPage?="+id;
+        window.location.href = "./leagueEditPage?="+props.children.id;
     }
 
     return(
@@ -171,7 +82,7 @@ const LeagueHeader = (props) => {
                     </div>
                     <div className = "pictureHeaderButton">
                         {
-                            (role === "admin" || role === "owner")?
+                            (role === "owner")?
                             <button className = "editButton" onClick = {moveEditPage}><img className = "editButtonImage" src = {"https://i.imgur.com/but4GRp.png"} alt = "edit button"></img></button>
                             :
                             <></>
