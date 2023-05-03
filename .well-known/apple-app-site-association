@@ -2,7 +2,7 @@
     "applinks": {
         "apps": [],
         "details": [{
-            "appID": "<TeamID>.<BundleId>",
+            "appID": "URY2D3D7CG.<BundleId>",
             "paths": ["/universal/*"]
             }
         ]
