@@ -3,7 +3,7 @@
         "apps": [],
         "details": [{
             "appID": "URY2D3D7CG.run.tread.treadmobile",
-            "paths": ["/universal/*"]
+            "paths": ["*"]
             }
         ]
     }
