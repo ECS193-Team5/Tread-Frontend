@@ -44,6 +44,7 @@ function App() {
         <Route path = "/leagueMemberPage?" element = {<League>{{"type":"member"}}</League>}/>
         <Route path = "/requestFriend?" element = {<RedirectPage type = "Friend"></RedirectPage>}/>
         <Route path = "/requestLeague?" element = {<RedirectPage type = "League"></RedirectPage>}/>
+
       </Routes>
       </Router>
       </div>
