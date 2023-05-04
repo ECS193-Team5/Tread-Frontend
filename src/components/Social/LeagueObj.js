@@ -66,7 +66,7 @@ const LeagueObj = (props) => {
                 "none"
             );
             if(error.response.status===401){
-                window.location.href = "/loginPage";
+                window.location.href = "/";
             }
         });
     }
@@ -96,7 +96,7 @@ const LeagueObj = (props) => {
           .catch(function(error){
               console.log(error)
               if(error.response.status===401){
-                window.location.href = "/loginPage";
+                window.location.href = "/";
             }
           });
     }
@@ -122,7 +122,7 @@ const LeagueObj = (props) => {
           .catch(function(error){
               console.log(error)
               if(error.response.status===401){
-                window.location.href = "/loginPage";
+                window.location.href = "/";
             }
           });
     }
@@ -148,7 +148,7 @@ const LeagueObj = (props) => {
           .catch(function(error){
               console.log(error)
               if(error.response.status===401){
-                window.location.href = "/loginPage";
+                window.location.href = "/";
             }
           });
     }
@@ -174,7 +174,7 @@ const LeagueObj = (props) => {
           .catch(function(error){
               console.log(error)
               if(error.response.status===401){
-                window.location.href = "/loginPage";
+                window.location.href = "/";
             }
           });
     }
@@ -200,7 +200,7 @@ const LeagueObj = (props) => {
           .catch(function(error){
               console.log(error)
               if(error.response.status===401){
-                window.location.href = "/loginPage";
+                window.location.href = "/";
             }
           });
     }

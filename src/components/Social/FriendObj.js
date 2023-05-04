@@ -52,7 +52,7 @@ const FriendObj = (props) => {
           console.log("No response")
           if(error.response.status===401){
             setDisplayProperty("FriendObj"+props.children.username, "none");
-            window.location.href = "/loginPage";
+            window.location.href = "/";
         }
       });
     }
@@ -81,7 +81,7 @@ const FriendObj = (props) => {
           console.log("No response")
           if(error.response.status===401){
             setDisplayProperty("FriendObj"+props.children.username, "none");
-            window.location.href = "/loginPage";
+            window.location.href = "/";
         }
       });
     }
@@ -109,7 +109,7 @@ const FriendObj = (props) => {
           console.log(error)
           console.log("No response")
           if(error.response.status===401){
-            window.location.href = "/loginPage";
+            window.location.href = "/";
         }
       });
       console.log("Revoke sent request");
@@ -138,7 +138,7 @@ const FriendObj = (props) => {
           console.log(error)
           console.log("No response")
           if(error.response.status===401){
-            window.location.href = "/loginPage";
+            window.location.href = "/";
         }
       });
     }
@@ -166,7 +166,7 @@ const FriendObj = (props) => {
           console.log(error)
           console.log("No response")
           if(error.response.status===401){
-            window.location.href = "/loginPage";
+            window.location.href = "/";
         }
       });
     }
@@ -194,7 +194,7 @@ const FriendObj = (props) => {
           console.log(error)
           console.log("No response")
           if(error.response.status===401){
-            window.location.href = "/loginPage";
+            window.location.href = "/";
         }
       });
     }

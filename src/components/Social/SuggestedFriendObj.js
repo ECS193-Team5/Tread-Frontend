@@ -29,7 +29,7 @@ const SuggestedFriendObj = (props) => {
               console.log(error)
               console.log("No response")
               if(error.response.status===401){
-                window.location.href = "/loginPage";
+                window.location.href = "/";
             }
           });
     }

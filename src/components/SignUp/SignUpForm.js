@@ -103,7 +103,7 @@ const SignUpForm = (props) => {
       .catch(function (error) {
         console.log("Did not send sign up succesfully", error);
         if (error.response.status === 401) {
-          window.location.href = "/loginPage";
+          window.location.href = "/";
         }
       });
   }
