@@ -32,7 +32,7 @@ const FriendAdd = () => {
               console.log(error);
               setUserResponse("Sorry, could not send a friend request to that user");
               if(error.response.status===401){
-                window.location.href = "/loginPage";
+                window.location.href = "/";
             }
           });
     }

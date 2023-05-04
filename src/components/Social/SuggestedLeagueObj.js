@@ -25,7 +25,7 @@ const SuggestedLeagueObj = (props) => {
     })
     .catch(function(error){
         if(error.response.status===401){
-            window.location.href = "/loginPage";
+            window.location.href = "/";
         }
     });
     }

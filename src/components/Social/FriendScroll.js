@@ -28,7 +28,7 @@ const FriendScroll = (props) => {
             console.log(error)
             console.log("No response")
             if(error.response.status===401){
-                window.location.href = "/loginPage";
+                window.location.href = "/";
             }
         });
     }
@@ -52,7 +52,7 @@ const FriendScroll = (props) => {
             console.log(error)
             console.log("No response")
             if(error.response.status===401){
-                window.location.href = "/loginPage";
+                window.location.href = "/";
             }
         });
         // setInformation([[{"displayName":"Sent Requests", "username":"Batman", "profilePicture": "https://i.imgur.com/jJaPs4q.png"}]]);
@@ -78,7 +78,7 @@ const FriendScroll = (props) => {
             console.log(error)
             console.log("No response")
             if(error.response.status===401){
-                window.location.href = "/loginPage";
+                window.location.href = "/";
             }
         });
       }
@@ -103,7 +103,7 @@ const FriendScroll = (props) => {
             console.log(error)
             console.log("No response")
             if(error.response.status===401){
-                window.location.href = "/loginPage";
+                window.location.href = "/";
             }
         });        }
 

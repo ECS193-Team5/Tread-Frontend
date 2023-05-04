@@ -33,7 +33,7 @@ const ExerciseReceiverForm = (props) => {
             })
             .catch(function (error) {
                 if (error.response.status === 401) {
-                    window.location.href = "/loginPage";
+                    window.location.href = "/";
                 }
                 console.log(error);
                 console.log("No response")
@@ -60,7 +60,7 @@ const ExerciseReceiverForm = (props) => {
             })
             .catch(function (error) {
                 if (error.response.status === 401) {
-                    window.location.href = "/loginPage";
+                    window.location.href = "/";
                 }
                 console.log(error);
                 console.log("No response")

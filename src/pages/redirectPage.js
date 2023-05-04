@@ -59,7 +59,7 @@ const RedirectPage = (props) => {
               console.log(error)
               console.log("Not Logged in");
               if(error.response.status===401){
-                window.location.href = "/loginPage";
+                window.location.href = "/";
             }
             else{
                 window.location.href = "./currentChallengePage";
@@ -88,7 +88,7 @@ const RedirectPage = (props) => {
         .catch(function(error){
             console.log(error)
             if(error.response.status===401){
-                window.location.href = "/loginPage";
+                window.location.href = "/";
             }
             else{
                 window.location.href = "./currentChallengePage";
