@@ -14,6 +14,7 @@ import RedirectPage from "./pages/redirectPage";
 import { useEffect } from "react";
 
 import { onForegroundMessage } from "./firebase";
+import TestDiv from "./pages/test";
 function App() {
   useEffect(() => {
     onForegroundMessage()
@@ -44,7 +45,7 @@ function App() {
         <Route path = "/leagueMemberPage?" element = {<League>{{"type":"member"}}</League>}/>
         <Route path = "/requestFriend?" element = {<RedirectPage type = "Friend"></RedirectPage>}/>
         <Route path = "/requestLeague?" element = {<RedirectPage type = "League"></RedirectPage>}/>
-
+        <Route path = "/test" element = {<TestDiv/>}/>
       </Routes>
       </Router>
       </div>
