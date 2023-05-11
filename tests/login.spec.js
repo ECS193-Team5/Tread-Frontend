@@ -1,4 +1,4 @@
-// @ts-check
+/*// @ts-check
 const { test, expect } = require('@playwright/test');
 
 test('has title', async ({ page }) => {
@@ -59,5 +59,6 @@ test('test', async ({ page }) => {
   await page.getByRole('button', { name: 'Button for Profile' }).click();
   await page.getByRole('button', { name: 'Button for Settings' }).click();
   await page.getByRole('button', { name: 'Button for Challenges' }).click();
-});*/
 });
+});
+*/

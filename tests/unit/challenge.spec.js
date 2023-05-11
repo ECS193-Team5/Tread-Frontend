@@ -1,7 +1,8 @@
-/*// @ts-check
+// @ts-check
+/*
 const { test, expect } = require('@playwright/test');
 
-test('has title', async ({ page }) => {
+test('click accept challenge button works', async ({ page }) => {
   await page.goto('https://playwright.dev/');
 
   // Expect a title "to contain" a substring.
@@ -16,4 +17,5 @@ test('get started link', async ({ page }) => {
 
   // Expects the URL to contain intro.
   await expect(page).toHaveURL(/.*intro/);
-});*/
+});
+*/
