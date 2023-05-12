@@ -6,8 +6,8 @@ import "../../css/Shared/userSettingsButton.css";
 import "../../css/Shared/form.css";
 import { getToken } from 'firebase/messaging';
 import { exportMessaging, requestPermission } from "../../firebase";
-import { createProfilePictureURL } from "../../Helpers/CloudinaryURLHelpers";
-import { flipButton } from '../../Helpers/CssEffects';
+import { createProfilePictureURL } from "../../helpers/CloudinaryURLHelpers";
+import { flipButton } from '../../helpers/CssEffects';
 import DropDown from './DropDown';
 
 const backend_url = process.env.REACT_APP_PROD_BACKEND;

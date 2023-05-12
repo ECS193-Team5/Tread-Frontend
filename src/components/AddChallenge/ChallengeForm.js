@@ -5,7 +5,7 @@ import ExerciseNameForm from "../Shared/Form/ExerciseNameForm";
 import ExericseAmountForm from "../Shared/Form/ExerciseAmountForm";
 import ExerciseDateForm from "../Shared/Form/ExerciseDateForm";
 import ExerciseReceiverForm from '../Shared/Form/ExerciseReceiverForm';
-import { addChallenge } from '../../PostRequests/challenges';
+import { addChallenge } from '../../routes/challenges';
 import '../../css/Shared/form.css';
 import '../../css/Shared/button.css';
 

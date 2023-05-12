@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import QRcode from "qrcode";
 import axios from "axios";
-import { createProfilePictureURL } from "../../Helpers/CloudinaryURLHelpers";
+import { createProfilePictureURL } from "../../helpers/CloudinaryURLHelpers";
 import "../../css/Shared/button.css";
 import "../../css/Shared/pictureHeader.css";
 const backend_url = process.env.REACT_APP_PROD_BACKEND;

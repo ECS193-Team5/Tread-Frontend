@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
-import hardCodedInfo from "../../../Helpers/SharedHardCodeInfo.json";
-import { setDisplayProperty } from "../../../Helpers/CssEffects";
+import hardCodedInfo from "../../../helpers/SharedHardCodeInfo.json";
+import { setDisplayProperty } from "../../../helpers/CssEffects";
 
 let sportList = hardCodedInfo.sportList;
 

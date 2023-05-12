@@ -1,5 +1,5 @@
 import "../../css/Shared/leaderboard.css";
-import {createProfilePictureURL} from "../../Helpers/CloudinaryURLHelpers";
+import {createProfilePictureURL} from "../../helpers/CloudinaryURLHelpers";
 
 const LeagueLeaderboardEntry = (props) => {
     console.log(props);

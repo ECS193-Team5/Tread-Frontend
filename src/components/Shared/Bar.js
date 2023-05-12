@@ -1,5 +1,5 @@
 import BarButton from "./BarButton";
-import { changeBarButton } from "../../Helpers/CssEffects";
+import { changeBarButton } from "../../helpers/CssEffects";
 import "../../css/Shared/button.css";
 import "../../css/Shared/bar.css";
 const Bar = (props) => {

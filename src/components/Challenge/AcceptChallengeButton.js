@@ -1,5 +1,5 @@
-import { setDisplayProperty } from "../../Helpers/CssEffects";
-import { acceptChallenge } from "../../PostRequests/challenges";
+import { setDisplayProperty } from "../../helpers/CssEffects";
+import { acceptChallenge } from "../../routes/challenges";
 import '../../css/Shared/button.css';
 
 const AcceptChallengeButton = (props) => {

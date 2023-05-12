@@ -4,7 +4,7 @@ import '../css/Login/login.css';
 import { getToken } from 'firebase/messaging';
 import { exportMessaging, requestPermission } from "../firebase";
 import { useState } from "react";
-import  hardCodedInfo  from "../Helpers/SharedHardCodeInfo.json";
+import  hardCodedInfo  from "../helpers/SharedHardCodeInfo.json";
 //const backend_url = process.env.REACT_APP_PROD_BACKEND
 const backend_url = process.env.REACT_APP_PROD_BACKEND
 const env_client_id = process.env.REACT_APP_CLIENT_ID

@@ -5,8 +5,8 @@ import SentChallengeObj from "./SentChallengeObj";
 import GlobalChallengeObj from "./GlobalChallengeObj";
 import ReceivedChallengeObj from "./ReceivedChallengeObj";
 
-import { getIssuedFriendChallenges, getIssuedLeagueChallenges, getSentChallenges, getReceivedChallenges } from '../../PostRequests/challenges';
-import { getGlobalChallenges } from '../../PostRequests/global_challenges';
+import { getIssuedFriendChallenges, getIssuedLeagueChallenges, getSentChallenges, getReceivedChallenges } from '../../routes/challenges';
+import { getGlobalChallenges } from '../../routes/global_challenges';
 import "../../css/Challenge/challenge.css";
 
 const ChallengeScroll = (props) => {

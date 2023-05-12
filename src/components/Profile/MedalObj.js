@@ -1,5 +1,5 @@
 import "../../css/Profile/medalObj.css";
-import hardCodedInfo from "../../Helpers/SharedHardCodeInfo.json";
+import hardCodedInfo from "../../helpers/SharedHardCodeInfo.json";
 let calculateProgress = (progress, goalUnit) => {
     // Turn the progress in base units to this unit
 

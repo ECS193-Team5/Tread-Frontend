@@ -1,4 +1,4 @@
-import {createProfilePictureURL} from "../../Helpers/CloudinaryURLHelpers";
+import {createProfilePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import "../../css/Shared/coloredText.css";
 const ActivityObj = (props) => {
     let username = props.children.username;

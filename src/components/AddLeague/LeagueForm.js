@@ -4,7 +4,7 @@ import PhotoUploadForm from "../Shared/Form/PhotoUploadForm";
 import LeagueDescriptionForm from "../Shared/Form/LeagueDescriptionForm";
 import LeagueNameForm from "../Shared/Form/LeagueNameForm";
 import LeagueTypeForm from "../Shared/Form/LeagueTypeForm";
-import { createLeague } from "../../PostRequests/league";
+import { createLeague } from "../../routes/league";
 import '../../css/Shared/form.css';
 import '../../css/Shared/button.css';
 

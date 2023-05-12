@@ -4,8 +4,8 @@ import LeagueNameForm from "../Shared/Form/LeagueNameForm";
 import LeagueDescriptionForm from "../Shared/Form/LeagueDescriptionForm";
 import LeagueTypeForm from "../Shared/Form/LeagueTypeForm";
 import Line from "../Shared/Line";
-import { createLeaguePictureURL } from "../../Helpers/CloudinaryURLHelpers";
-import { getLeagueInfo, updateLeagueDescription, updateLeaguePhoto, updateLeagueName, updateLeagueType, deleteLeague } from "../../PostRequests/league";
+import { createLeaguePictureURL } from "../../helpers/CloudinaryURLHelpers";
+import { getLeagueInfo, updateLeagueDescription, updateLeaguePhoto, updateLeagueName, updateLeagueType, deleteLeague } from "../../routes/league";
 import "../../css/Shared/coloredText.css";
 
 const LeagueEditForm = (props) => {

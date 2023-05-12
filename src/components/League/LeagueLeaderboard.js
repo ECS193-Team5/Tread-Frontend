@@ -1,6 +1,6 @@
 import LeagueLeaderboardEntry from "./LeagueLeaderboardEntry";
 import {useState, useEffect} from "react";
-import {setDisplayProperty} from "../../Helpers/CssEffects";
+import {setDisplayProperty} from "../../helpers/CssEffects";
 import axios from 'axios';
 
 const backend_url = process.env.REACT_APP_PROD_BACKEND;

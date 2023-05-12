@@ -13,7 +13,7 @@ import "../../css/Profile/profile.css";
 import "../../css/Shared/button.css";
 import { Bar } from 'react-chartjs-2';
 import StatsDownloadSection from './StatsDownloadSection';
-import hardCodedInfo from "../../Helpers/SharedHardCodeInfo.json";
+import hardCodedInfo from "../../helpers/SharedHardCodeInfo.json";
 
 ChartJS.register(
     CategoryScale,

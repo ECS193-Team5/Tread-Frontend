@@ -1,5 +1,5 @@
-import {createLeaguePictureURL} from "../../Helpers/CloudinaryURLHelpers";
-import { setDisplayProperty } from "../../Helpers/CssEffects";
+import {createLeaguePictureURL} from "../../helpers/CloudinaryURLHelpers";
+import { setDisplayProperty } from "../../helpers/CssEffects";
 import axios from 'axios';
 const backend_url = process.env.REACT_APP_PROD_BACKEND
 const SuggestedLeagueObj = (props) => {

@@ -1,6 +1,6 @@
 import '../../css/Shared/button.css';
-import { setDisplayProperty } from "../../Helpers/CssEffects";
-import { deleteChallenge } from '../../PostRequests/challenges';
+import { setDisplayProperty } from "../../helpers/CssEffects";
+import { deleteChallenge } from '../../routes/challenges';
 
 const DeleteChallengeButton = (props) => {
     const hideSentObj = () => {

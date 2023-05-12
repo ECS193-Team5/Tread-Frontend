@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { getPastChallenges } from "../../PostRequests/statistics";
-import { getToday } from "../../Helpers/FormHelpers";
+import { getPastChallenges } from "../../routes/statistics";
+import { getToday } from "../../helpers/FormHelpers";
 import "../../css/Shared/coloredText.css";
 
 const ChallengeStats = (props) => {

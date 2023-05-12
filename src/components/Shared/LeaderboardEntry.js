@@ -1,6 +1,6 @@
 import ProgressBar from "./ProgressBar";
 import "../../css/Shared/leaderboard.css";
-import {createProfilePictureURL} from "../../Helpers/CloudinaryURLHelpers";
+import {createProfilePictureURL} from "../../helpers/CloudinaryURLHelpers";
 
 const LeaderboardEntry = (props) => {
     return (

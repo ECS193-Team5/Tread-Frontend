@@ -1,7 +1,7 @@
 import BoxLine from "./BoxLine";
 import PhotoDisplay from "./PhotoDisplay";
 import DeleteChallengeButton from "./DeleteChallengeButton";
-import { getChallengeTitle } from "../../Helpers/calculationHelpers";
+import { getChallengeTitle } from "../../helpers/calculationHelpers";
 
 const SentChallengeObj = (props) => {
     let title = getChallengeTitle(props.children.exercise);
