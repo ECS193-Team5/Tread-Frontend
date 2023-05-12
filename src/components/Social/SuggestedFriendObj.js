@@ -1,6 +1,6 @@
 import axios from "axios";
-import {createProfilePictureURL} from "../../Helpers/CloudinaryURLHelpers";
-import { setDisplayProperty } from "../../Helpers/CssEffects";
+import {createProfilePictureURL} from "../../helpers/CloudinaryURLHelpers";
+import { setDisplayProperty } from "../../helpers/CssEffects";
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 

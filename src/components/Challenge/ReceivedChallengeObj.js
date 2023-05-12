@@ -2,7 +2,7 @@ import PhotoDisplay from "./PhotoDisplay";
 import BoxLine from "./BoxLine";
 import AcceptChallengeButton from "./AcceptChallengeButton";
 import DeclineChallengeButton from "./DeclineChallengeButton";
-import { getChallengeTitle } from "../../Helpers/calculationHelpers";
+import { getChallengeTitle } from "../../helpers/calculationHelpers";
 
 const ReceivedChallengeObj = (props) => {
     let title = getChallengeTitle(props.children.exercise);

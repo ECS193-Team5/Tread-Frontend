@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import QRcode from "qrcode";
-import {createLeaguePictureURL} from "../../Helpers/CloudinaryURLHelpers";
-import { getLeagueInfo, getNumberActiveChallengesLeague, getMembersLeague, getLeagueRole } from '../../PostRequests/league';
+import {createLeaguePictureURL} from "../../helpers/CloudinaryURLHelpers";
+import { getLeagueInfo, getNumberActiveChallengesLeague, getMembersLeague, getLeagueRole } from '../../routes/league';
 import "../../css/Shared/pictureHeader.css";
 import "../../css/Shared/button.css";
 import "../../css/Shared/coloredText.css";

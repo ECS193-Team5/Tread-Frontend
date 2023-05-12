@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import "../../css/League/member.css";
-import { createProfilePictureURL } from "../../Helpers/CloudinaryURLHelpers";
-import { setDisplayProperty, reloadPage } from '../../Helpers/CssEffects';
+import { createProfilePictureURL } from "../../helpers/CloudinaryURLHelpers";
+import { setDisplayProperty, reloadPage } from '../../helpers/CssEffects';
 import DropDown from '../Shared/DropDown';
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 

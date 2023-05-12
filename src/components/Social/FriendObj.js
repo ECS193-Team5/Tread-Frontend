@@ -2,9 +2,9 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import "../../css/Shared/button.css";
 import "../../css/Social/obj.css";
-import {createProfilePictureURL} from "../../Helpers/CloudinaryURLHelpers";
+import {createProfilePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import DropDown from '../Shared/DropDown';
-import { setDisplayProperty } from '../../Helpers/CssEffects';
+import { setDisplayProperty } from '../../helpers/CssEffects';
 
 
 const backend_url = process.env.REACT_APP_PROD_BACKEND;

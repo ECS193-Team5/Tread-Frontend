@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import ActivityObj from './ActivityObj';
 import axios from "axios";
-import { setDisplayProperty } from "../../Helpers/CssEffects";
+import { setDisplayProperty } from "../../helpers/CssEffects";
 import SuggestedFriendObj from './SuggestedFriendObj';
 import SuggestedLeagueObj from './SuggestedLeagueObj';
 import "../../css/Social/rowBox.css";

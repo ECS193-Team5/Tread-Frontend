@@ -1,5 +1,5 @@
-import { setDisplayProperty } from "../../Helpers/CssEffects";
-import { declineChallenge } from "../../PostRequests/challenges";
+import { setDisplayProperty } from "../../helpers/CssEffects";
+import { declineChallenge } from "../../routes/challenges";
 import '../../css/Shared/button.css';
 
 const DeclineChallengeButton = (props) => {

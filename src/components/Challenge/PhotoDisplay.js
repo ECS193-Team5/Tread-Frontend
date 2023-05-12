@@ -1,5 +1,5 @@
 import { useState , useEffect} from 'react';
-import { createProfilePictureURL } from '../../Helpers/CloudinaryURLHelpers';
+import { createProfilePictureURL } from '../../helpers/CloudinaryURLHelpers';
 import '../../css/Challenge/photoDisplay.css';
 
 const PhotoDisplay = (props) => {

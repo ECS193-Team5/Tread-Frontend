@@ -4,9 +4,9 @@ import BoxLine from "./BoxLine";
 import ProgressBar from "../Shared/ProgressBar";
 import Line from "../Shared/Line";
 import Leaderboard from "../Shared/Leaderboard";
-import { flipButton } from "../../Helpers/CssEffects";
-import { getChallengeTitle, calculateProgress } from "../../Helpers/calculationHelpers";
-import { getGlobalChallengeLeaderboard } from "../../PostRequests/global_challenges";
+import { flipButton } from "../../helpers/CssEffects";
+import { getChallengeTitle, calculateProgress } from "../../helpers/calculationHelpers";
+import { getGlobalChallengeLeaderboard } from "../../routes/global_challenges";
 import "../../css/Challenge/challengeObj.css";
 
 const GlobalChallengeObj = (props) => {
