@@ -40,7 +40,7 @@ const ProfileSettingsForm = (props) => {
     });
     }
     function submitDisplayName(){
-        if (displayErrorResponse !== ""){
+        if (displayErrorResponse !== "" && displayErrorResponse !== "Successfully submitted display name"){
           return;
         }
         var config = {
@@ -58,18 +58,13 @@ const ProfileSettingsForm = (props) => {
         };
       axios(config)
       .then(function(response){
-        setDisplayErrorResponse("succesfully updated display name");
+        setDisplayErrorResponse("Successfully submitted display name")
       })
       .catch(function(error){
-        console.log(error)
         if(error.response.status===401){
           window.location.href = "/";
       }
       });
-    }
-
-    function stopSubmit(event){
-      event.preventDefault();
     }
 
     return (
@@ -83,6 +78,7 @@ const ProfileSettingsForm = (props) => {
             <div className="formObj">
             <DisplayNameForm placeholder = {props.children.displayName} updateDisplayName = {setDisplayName}/>
             <button className="submitButton" onClick = {submitDisplayName}><p className = "submitButtonText">Submit</p></button>
+            <p>{displayErrorResponse}</p>
             </div>
     </div>
     );
