@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@Babel/Preset-react": "npm:@babel/preset-react@^7.18.6",
     "@react-oauth/google": "^0.6.1",
     "axios": "^1.3.1",
     "chart.js": "^4.2.1",
@@ -11,6 +12,7 @@
     "fs": "^0.0.1-security",
     "mongo": "^0.1.0",
     "mongodb": "^5.0.1",
+    "nyc": "^15.1.0",
     "qrcode": "^1.5.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
@@ -21,16 +23,27 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.21.5",
+    "@babel/preset-react": "^7.18.6",
     "@playwright/test": "^1.33.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0"
+    "@testing-library/user-event": "^13.5.0",
+    "babel-jest": "^29.5.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.5.1",
+    "msw": "^1.2.1",
+    "playwright-test-coverage": "^1.2.12",
+    "react-test-renderer": "^18.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "e2e_test": "npx playwright test",
+    "e2e_coverage_test": "nyc npx playwright test",
+    "unit_test": "jest --verbose ./tests/unit/* --env=jsdom",
+    "unit_coverage_test": "nyc npx playwright test"
   },
   "eslintConfig": {
     "extends": [

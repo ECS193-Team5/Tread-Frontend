@@ -12,9 +12,10 @@ import Profile from "./pages/profile";
 import League from "./pages/league";
 import RedirectPage from "./pages/redirectPage";
 import { useEffect } from "react";
-
+import Privacy from "./pages/privacy";
 import { onForegroundMessage } from "./firebase";
 import TestDiv from "./pages/test";
+import DeleteAccountInfo from "./pages/deleteAccountInfo";
 function App() {
   useEffect(() => {
     onForegroundMessage()
@@ -46,6 +47,8 @@ function App() {
         <Route path = "/requestFriend?" element = {<RedirectPage type = "Friend"></RedirectPage>}/>
         <Route path = "/requestLeague?" element = {<RedirectPage type = "League"></RedirectPage>}/>
         <Route path = "/test" element = {<TestDiv/>}/>
+        <Route path = "/privacy" element = {<Privacy/>}/>
+        <Route path = "/deleteAccountInfo" element = {<DeleteAccountInfo/>}/>
       </Routes>
       </Router>
       </div>
