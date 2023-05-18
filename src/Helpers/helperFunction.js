@@ -1,5 +1,5 @@
 // @ts-check
-import {getTodayString, getTomorrowString} from "../src/helpers/FormHelpers";
+import {getTodayString, getTomorrowString} from "./FormHelpers";
 
 const { test, expect } = require("playwright-test-coverage");
 //const { test, expect } = require('@playwright/test');
