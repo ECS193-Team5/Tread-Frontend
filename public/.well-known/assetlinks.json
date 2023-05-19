@@ -4,8 +4,10 @@
       "target": {
         "namespace": "android_app",
         "package_name": "com.treadmobile",
-        "sha256_cert_fingerprints":
-          ["FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C"]
+        "sha256_cert_fingerprints": [
+            "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C",
+            "66:B8:96:1F:74:45:CA:1D:96:EB:3D:C8:A6:6D:36:70:FF:DC:AF:60:6D:F0:0C:60:FE:53:99:1E:77:EC:55:64"
+          ]
       }
     }
   ]
