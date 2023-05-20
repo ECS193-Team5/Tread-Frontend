@@ -23,6 +23,16 @@ const MemberEntry = (props) => {
     }, [load]
   );
 
+  useEffect(
+    () => {
+      if (memberDropDownEntries.length === 0) {
+        setDisplayProperty("moreInfoButtonMember"+ props.children.username, "none");
+      }else{
+        setDisplayProperty("moreInfoButtonMember"+ props.children.username, "flex");
+      }
+    }, [memberDropDownEntries]
+  );
+
   function isFriend(){
     return props.friends.includes(props.children.username);
   }
@@ -434,7 +444,7 @@ const MemberEntry = (props) => {
           }
         </div>
 
-        <div className="moreInfoDiv">
+        <div className="moreInfoDiv" id = {"moreInfoButtonMember"+ props.children.username}>
           <button className="moreInfoButton" onClick={toggleSelectShow}>
             <img src={moreInfoButton} />
           </button>
