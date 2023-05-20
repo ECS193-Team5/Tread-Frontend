@@ -1,10 +1,11 @@
 import "../../css/SignUp/signUpSideBar.css";
-
+import sideBarExcerciseImage from "../../assets/SideBarExerciseImage.png";
+import sideBarLogoImage from "../../assets/sideBarLogoImage.png"
 const SignUpSideBar = () => {
     return (
         <div id = "SignUpSideBar">
-            <img id = "SideBarLogo" src = "https://i.imgur.com/qajrJEV.png" alt = "tread logo"/>
-            <img id = "SideBarImage" src = "https://i.imgur.com/lCxkPiY.png" alt = "tread logo"/>
+            <img id = "SideBarLogo" src = {sideBarLogoImage} alt = "tread logo"/>
+            <img id = "SideBarImage" src = {sideBarExcerciseImage} alt = "tread logo"/>
         </div>
     );
 }

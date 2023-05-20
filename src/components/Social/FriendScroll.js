@@ -50,9 +50,7 @@ const FriendScroll = (props) => {
             if(error.response.status===401){
                 window.location.href = "/";
             }
-        });
-        // setInformation([[{"displayName":"Sent Requests", "username":"Batman", "profilePicture": "https://i.imgur.com/jJaPs4q.png"}]]);
-    }
+        });    }
 
     function getReceived(){
         // get Received

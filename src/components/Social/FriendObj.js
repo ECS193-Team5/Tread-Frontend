@@ -5,7 +5,7 @@ import "../../css/Social/obj.css";
 import {createProfilePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import DropDown from '../Shared/DropDown';
 import { setDisplayProperty } from '../../helpers/CssEffects';
-
+import moreInfoButton from "../../assets/moreInfoButton.png";
 
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
@@ -211,7 +211,7 @@ const FriendObj = (props) => {
             </div>
             <div className = "objSection objButtonSection">
                 <button className = "moreInfoButton objButtonMore" onClick = {toggleSelectShow}>
-                    <img src = "https://i.imgur.com/pnzihUp.png" alt = "toggle button"/>
+                    <img src = {moreInfoButton} alt = "toggle button"/>
                 </button>
                 {(selectShow) ?<div className='objDropdown'><DropDown>{dropdownOptions}</DropDown></div> : <></>}
             </div>

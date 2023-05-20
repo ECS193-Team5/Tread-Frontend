@@ -11,6 +11,7 @@ import { getChallengeTitle, calculateProgress } from "../../helpers/calculationH
 import "../../css/Challenge/challengeObj.css";
 import "../../css/Shared/button.css";
 
+import challengeDropDownButton from "../../assets/challengeDropdown.png";
 const IssuedChallengeObj = (props) => {
     const [leaderboardInfo, setLeaderboardInfo] = useState([]);
     const [showState, setState] = useState(false);
@@ -70,7 +71,7 @@ const IssuedChallengeObj = (props) => {
 
                 <div className="challengeEnd">
                     <button className="challengeDropButton" onClick={toggleState}>
-                        <img src="https://i.imgur.com/DiUB6gk.png" id={challengeID + "button"} alt="expandButton" />
+                        <img src={challengeDropDownButton} id={challengeID + "button"} alt="expandButton" />
                     </button>
                     {
                         (percentageDone < 100) ?

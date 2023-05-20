@@ -1,5 +1,8 @@
 import "../../css/Profile/medalObj.css";
 import hardCodedInfo from "../../helpers/SharedHardCodeInfo.json";
+import goldTrophy from "../../assets/GoldTrophy.png";
+import silverTrophy from "../../assets/SilverTrophy.png";
+import bronzeTrophy from "../../assets/BronzeTrophy.png";
 let calculateProgress = (progress, goalUnit) => {
     // Turn the progress in base units to this unit
 
@@ -20,9 +23,9 @@ const MedalObj = (props) => {
         <div id = "MedalObj">
             <div className = "medalLeft">
                 <div>
-                    {props.children.level === 3 ? <img  className = "medalsItem" src = "https://i.imgur.com/o2XvWn9.png"></img> : <></>}
-                    {props.children.level === 2 ? <img  className = "medalsItem" src = "https://i.imgur.com/72N0DMU.png"></img> : <></>}
-                    {props.children.level === 1 ? <img  className = "medalsItem" src = "https://i.imgur.com/iCqnM41.png"></img> : <></>}
+                    {props.children.level === 3 ? <img  className = "medalsItem" src = {goldTrophy}></img> : <></>}
+                    {props.children.level === 2 ? <img  className = "medalsItem" src = {silverTrophy}></img> : <></>}
+                    {props.children.level === 1 ? <img  className = "medalsItem" src = {bronzeTrophy}></img> : <></>}
                 </div>
                 <div>
                     <p className = "medalsItem medalsText">{props.children.exercise.exerciseName + " " + props.children.exercise.amount + " " + props.children.exercise.unit}</p>

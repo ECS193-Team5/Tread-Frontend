@@ -1,6 +1,8 @@
 import {createLeaguePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import { setDisplayProperty } from "../../helpers/CssEffects";
 import axios from 'axios';
+
+import plusButtonImage from "../../assets/plusButtonImage.png";
 const backend_url = process.env.REACT_APP_PROD_BACKEND
 const SuggestedLeagueObj = (props) => {
     let leagueID = props.children._id;
@@ -36,7 +38,7 @@ const SuggestedLeagueObj = (props) => {
                 <img className = "ItemsProfilePhoto" src = {createLeaguePictureURL(leagueID)} alt = "league"/>
                 <p className = "greenBaseText ItemsObjText">{props.children.leagueName}</p>
             </div>
-            <button className = "submitCircleButton" onClick = {requestJoinLeague}><img className = "submitCircleButtonIcon" src = "https://i.imgur.com/hzH7hdK.png"/></button>
+            <button className = "submitCircleButton" onClick = {requestJoinLeague}><img className = "submitCircleButtonIcon" src = {plusButtonImage}/></button>
         </div>
     )
 }

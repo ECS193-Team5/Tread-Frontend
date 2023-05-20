@@ -1,6 +1,7 @@
 import axios from "axios";
 import {createProfilePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import { setDisplayProperty } from "../../helpers/CssEffects";
+import plusButtonImage from "../../assets/plusButtonImage.png";
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 
@@ -38,7 +39,7 @@ const SuggestedFriendObj = (props) => {
             <img className = "ItemsProfilePhoto" src = {createProfilePictureURL(props.children[0])} alt = "profile"/>
             <p className = "greenBaseText ItemsObjText">{props.children[0]}: {props.children[1]} Mutual Friend(s)</p>
           </div>
-          <button className = "submitCircleButton" onClick = {sendFriendRequest}><img className = "submitCircleButtonIcon" src = "https://i.imgur.com/hzH7hdK.png"/></button>
+          <button className = "submitCircleButton" onClick = {sendFriendRequest}><img className = "submitCircleButtonIcon" src = {plusButtonImage}/></button>
         </div>
     );
 }

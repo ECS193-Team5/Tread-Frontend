@@ -1,6 +1,8 @@
 import { setDisplayProperty } from "../../helpers/CssEffects";
 import { acceptChallenge } from "../../routes/challenges";
 import '../../css/Shared/button.css';
+import checkMark from "../../assets/checkMark.png";
+
 const AcceptChallengeButton = (props) => {
     const hideReceivedChallengeObj = () => {
         setDisplayProperty("ReceivedChallengedObj"+props.id, "none");
@@ -12,7 +14,7 @@ const AcceptChallengeButton = (props) => {
 
     return(
         <button id = {"AcceptButton"+props.id} className = "circleButton" onClick = {onAccept}>
-            <img className = "circleButtonInner" src ={"../../../public/assets/checkMark.png"}/>
+            <img className = "circleButtonInner" src ={checkMark}/>
         </button>
     );
 }

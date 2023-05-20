@@ -10,6 +10,8 @@ import { createProfilePictureURL } from "../../helpers/CloudinaryURLHelpers";
 import { flipButton } from '../../helpers/CssEffects';
 import DropDown from './DropDown';
 
+import dropdownImage from "../../assets/dropdown.png";
+
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const UserSettingsButton = () => {
@@ -142,7 +144,7 @@ const UserSettingsButton = () => {
         </div>
       </div>
       <div id="userSettingButtonSection">
-        <button id = "buttonUserDropDown" className="dropDownButton" onClick={toggleLogoutDisplay}><img id="UserSettingsTriangle" src="https://i.imgur.com/msPQZqA.png" alt="Dropdown" /></button>
+        <button id = "buttonUserDropDown" className="dropDownButton" onClick={toggleLogoutDisplay}><img id="UserSettingsTriangle" src={dropdownImage} alt="Dropdown" /></button>
         {
           logoutDisplay ?
           <div className = "userSettingsDropDown"><DropDown>{dropdownFunctions}</DropDown></div>

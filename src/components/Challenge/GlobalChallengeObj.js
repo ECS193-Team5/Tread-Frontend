@@ -7,8 +7,9 @@ import Leaderboard from "../Shared/Leaderboard";
 import { flipButton } from "../../helpers/CssEffects";
 import { getChallengeTitle, calculateProgress } from "../../helpers/calculationHelpers";
 import { getGlobalChallengeLeaderboard } from "../../routes/global_challenges";
+import globalChallengeImage from "../../assets/globalChallenge.png";
 import "../../css/Challenge/challengeObj.css";
-
+import challengeDropDownButton from "../../assets/challengeDropdown.png";
 const GlobalChallengeObj = (props) => {
     const [showState, setState] = useState(false);
     const [leaderboardInfo, setLeaderboardInfo] = useState([]);
@@ -78,7 +79,7 @@ const GlobalChallengeObj = (props) => {
             <div className="challengeBox">
                 <div className="photoDiv">
                     <div className="globalPhotoDiv">
-                        <img className="innerGlobalPhotoDiv" src="https://i.imgur.com/XkWZOEN.png" />
+                        <img className="innerGlobalPhotoDiv" src={globalChallengeImage} />
                         <p className="innerGlobalPhotoDiv challengeText">Global</p>
                     </div>
                     <BoxLine></BoxLine>
@@ -96,7 +97,7 @@ const GlobalChallengeObj = (props) => {
 
                 <div className="challengeEnd">
                     <button className="challengeDropButton" onClick={toggleState}>
-                        <img src="https://i.imgur.com/DiUB6gk.png" id={challengeID + "button"} alt="expandButton" />
+                        <img src={challengeDropDownButton} id={challengeID + "button"} alt="expandButton" />
                     </button>
                     {
                         (percentageDone < 100) ?

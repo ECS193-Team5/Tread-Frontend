@@ -1,5 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import '../../css/Shared/sideBar.css';
+import frontPageTreadLogo from "../../assets/frontPageTreadLogo.png";
+import challengeButtonImage from "../../assets/challengeButtonImage.png";
+import profileButtonImage from "../../assets/ProfileButton.png";
+import socialButtonImage from "../../assets/SocialButtonImage.png";
+import profileSettingsButtonImage from "../../assets/ProfileSettingsButtonImage.png";
 
 const SideBar = () => {
 
@@ -111,29 +116,29 @@ const SideBar = () => {
 
     return (
         <div className = "sideBarClass">
-            <button id = "sideBarTreadLogo" ><img id = "treadLogoSideBar" onClick={moveToFrontPage} src = "https://i.imgur.com/5SSwq0U.png" alt = "Tread logo"/></button>
+            <button id = "sideBarTreadLogo" ><img id = "treadLogoSideBar" onClick={moveToFrontPage} src = {frontPageTreadLogo} alt = "Tread logo"/></button>
             <div id = "sideBarButtons">
                 <div id = "sideBarChallenges" className = "sideBarButtonSet">
                     <button title = "Challenges" className = "sideBarButtonClass" onClick = {clickChallengeButton}  id = "sideBarButtonChallenges">
-                        <img className = "sideBarButtonClassInner" id = "challengeImage" src = "https://i.imgur.com/orph0OI.png" alt = "Button for Challenges"/>
+                        <img className = "sideBarButtonClassInner" id = "challengeImage" src = {challengeButtonImage} alt = "Button for Challenges"/>
                     </button>
                     <p className = "sideBarText">Challenges</p>
                 </div>
                 <div id = "sideBarSocial" className = "sideBarButtonSet">
                     <button title = "Social Page" className = "sideBarButtonClass" onClick = {clickSocialButton} id = "sideBarButtonSocial">
-                        <img className = "sideBarButtonClassInner" id = "socialImage" src = "https://i.imgur.com/GR3dM2t.png" alt = "Button for Social"/>
+                        <img className = "sideBarButtonClassInner" id = "socialImage" src = {socialButtonImage} alt = "Button for Social"/>
                     </button>
                     <p className = "sideBarText">Social</p>
                 </div>
                 <div id = "sideBarProfile" className = "sideBarButtonSet">
                     <button title = "Exercise History" className = "sideBarButtonClass" onClick = {clickProfileButton} id = "sideBarButtonProfile">
-                        <img className = "sideBarButtonClassInner" id = "profileImage" src = "https://i.imgur.com/iMx9Um9.png" alt = "Button for Profile"/>
+                        <img className = "sideBarButtonClassInner" id = "profileImage" src = {profileButtonImage} alt = "Button for Profile"/>
                     </button>
                     <p className = "sideBarText">Exercise History</p>
                 </div>
                 <div id = "sideBarSettings" className = "sideBarButtonSet">
                     <button title = "Profile Settings" className = "sideBarButtonClass" onClick = {clickSettingsButton} id = "sideBarButtonSettings">
-                        <img className = "sideBarButtonClassInner" id = "settingsImage" src = "https://i.imgur.com/4XiFFVT.png" alt = "Button for Settings"/>
+                        <img className = "sideBarButtonClassInner" id = "settingsImage" src = {profileSettingsButtonImage} alt = "Button for Settings"/>
                     </button>
                     <p className = "sideBarText">Profile Settings</p>
                 </div>
