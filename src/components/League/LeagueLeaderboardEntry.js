@@ -2,7 +2,6 @@ import "../../css/Shared/leaderboard.css";
 import {createProfilePictureURL} from "../../helpers/CloudinaryURLHelpers";
 
 const LeagueLeaderboardEntry = (props) => {
-    console.log(props);
     return (
     <div id = "LeaderboardEntry">
         <div className = "leaderboardEntryImage">

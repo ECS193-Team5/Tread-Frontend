@@ -80,8 +80,6 @@ const MemberEntry = (props) => {
         reloadPage();
       })
       .catch(function (error) {
-        console.log(error)
-        console.log("No response");
         if (error.response.status === 401) {
           window.location.href = "/";
         }
@@ -108,8 +106,6 @@ const MemberEntry = (props) => {
         reloadPage();
       })
       .catch(function (error) {
-        console.log(error)
-        console.log("No response");
         if (error.response.status === 401) {
           window.location.href = "/";
         }
@@ -136,8 +132,6 @@ const MemberEntry = (props) => {
         setDisplayProperty(props.children.username + "MemberEntry", "none");
       })
       .catch(function (error) {
-        console.log(error)
-        console.log("No response");
         if (error.response.status === 401) {
           window.location.href = "/";
         }
@@ -164,8 +158,6 @@ const MemberEntry = (props) => {
         setDisplayProperty(props.children.username + "MemberEntry", "none");
       })
       .catch(function (error) {
-        console.log(error)
-        console.log("No response");
         if (error.response.status === 401) {
           window.location.href = "/";
         }
@@ -190,11 +182,8 @@ const MemberEntry = (props) => {
     axios(config)
       .then(function (response) {
         reloadPage();
-        console.log(response.data)
       })
       .catch(function (error) {
-        console.log(error)
-        console.log("No response");
         if (error.response.status === 401) {
           window.location.href = "/";
         }
@@ -219,11 +208,8 @@ const MemberEntry = (props) => {
     axios(config)
       .then(function (response) {
         reloadPage();
-        console.log(response.data)
       })
       .catch(function (error) {
-        console.log(error)
-        console.log("No response");
         if (error.response.status === 401) {
           window.location.href = "/";
         }
@@ -248,11 +234,8 @@ const MemberEntry = (props) => {
     axios(config)
       .then(function (response) {
         setDisplayProperty(props.children.username + "MemberEntry", "none");
-        console.log(response.data)
       })
       .catch(function (error) {
-        console.log(error)
-        console.log("No response");
         if (error.response.status === 401) {
           window.location.href = "/";
         }
@@ -277,11 +260,8 @@ const MemberEntry = (props) => {
     axios(config)
       .then(function (response) {
         setDisplayProperty(props.children.username + "MemberEntry", "none");
-        console.log(response.data)
       })
       .catch(function (error) {
-        console.log(error)
-        console.log("No response")
         if (error.response.status === 401) {
           window.location.href = "/";
         }
@@ -305,12 +285,9 @@ const MemberEntry = (props) => {
     };
     axios(config)
       .then(function (response) {
-        console.log(response.data)
         setDisplayProperty(props.children.username + "MemberEntry", "none");
       })
       .catch(function (error) {
-        console.log(error)
-        console.log("No response")
         if (error.response.status === 401) {
           window.location.href = "/";
         }
@@ -318,7 +295,6 @@ const MemberEntry = (props) => {
   }
 
   function revoke() {
-    console.log("revoke!");
     var config = {
       method: 'post',
       url: backend_url + 'league/undo_invite',
@@ -336,11 +312,8 @@ const MemberEntry = (props) => {
     axios(config)
       .then(function (response) {
         setDisplayProperty(props.children.username + "MemberEntry", "none");
-        console.log(response.data)
       })
       .catch(function (error) {
-        console.log(error)
-        console.log("No response");
         if (error.response.status === 401) {
           window.location.href = "/";
         }

@@ -90,11 +90,9 @@ const LeagueObj = (props) => {
           };
           axios(config)
           .then(function(response) {
-              console.log(response.data);
               setDisplayProperty("LeagueObj"+props.children._id, "none");
           })
           .catch(function(error){
-              console.log(error)
               if(error.response.status===401){
                 window.location.href = "/";
             }
@@ -116,11 +114,9 @@ const LeagueObj = (props) => {
           };
           axios(config)
           .then(function(response) {
-              console.log(response.data);
               setDisplayProperty("LeagueObj"+props.children._id, "none");
           })
           .catch(function(error){
-              console.log(error)
               if(error.response.status===401){
                 window.location.href = "/";
             }
@@ -142,11 +138,9 @@ const LeagueObj = (props) => {
           };
           axios(config)
           .then(function(response) {
-              console.log(response.data);
               setDisplayProperty("LeagueObj"+props.children._id, "none");
           })
           .catch(function(error){
-              console.log(error)
               if(error.response.status===401){
                 window.location.href = "/";
             }
@@ -168,11 +162,9 @@ const LeagueObj = (props) => {
           };
           axios(config)
           .then(function(response) {
-              console.log(response.data);
               setDisplayProperty("LeagueObj"+props.children._id, "none");
           })
           .catch(function(error){
-              console.log(error)
               if(error.response.status===401){
                 window.location.href = "/";
             }
@@ -194,11 +186,9 @@ const LeagueObj = (props) => {
           };
           axios(config)
           .then(function(response) {
-              console.log(response.data);
               setDisplayProperty("LeagueObj"+props.children._id, "none");
           })
           .catch(function(error){
-              console.log(error)
               if(error.response.status===401){
                 window.location.href = "/";
             }
@@ -213,7 +203,6 @@ const LeagueObj = (props) => {
             options.push({ "name": "Remove Self as Admin", "func": removeAdmin });
         }
         if(type === "sent"){
-            console.log("log sent type");
             options.push({ "name": "Revoke Request", "func": revoke });
         }
         if(type ==="invite"){

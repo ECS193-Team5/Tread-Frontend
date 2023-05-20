@@ -27,12 +27,9 @@ const MemberAdd = (props) => {
           };
           axios(config)
           .then(function(response) {
-            console.log("Send invite");
               setUserText(response.data);
           })
           .catch(function(error){
-              console.log(error);
-              setUserText("Sorry, could not invite that user");
               if(error.response.status===401){
                 window.location.href = "/";
             }

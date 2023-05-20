@@ -13,7 +13,6 @@ const PhotoUploadForm = (props) => {
           props.children.func(reader.result);
         };
         reader.onerror = function (error) {
-          console.log('Error: ', error);
         };
      }
 

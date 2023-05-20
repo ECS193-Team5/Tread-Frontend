@@ -101,7 +101,6 @@ const SignUpForm = (props) => {
         window.location.href = "./currentChallengePage";
       })
       .catch(function (error) {
-        console.log("Did not send sign up succesfully", error);
         if (error.response.status === 401) {
           window.location.href = "/";
         }

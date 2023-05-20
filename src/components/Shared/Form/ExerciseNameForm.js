@@ -11,7 +11,6 @@ const ExerciseNameForm = (props) => {
     useEffect (
         () => {
             if(props.defaultExerciseName){
-                console.log(props.defaultExerciseName);
                 if (sportList.includes(props.defaultExerciseName)){
                     setSelfSpecify(false);
                     setSpecifyError("");
@@ -21,7 +20,7 @@ const ExerciseNameForm = (props) => {
                 else{
                     setSelfSpecify(true);
                     setSpecifyError("");
-                    document.getElementById("AddChallengeExerciseNameSelect").value = "Other (Specify Below)";
+                    document.getElementById("AddChallengeExerciseNameSelect").value = "Enter Your Own";
                     document.getElementById("AddChallengeSelfSpecifyExerciseName").setAttribute("value", props.defaultExerciseName);
 
                 }
@@ -41,10 +40,10 @@ const ExerciseNameForm = (props) => {
     );
 
     function sportChange(event){
-        setSelfSpecify((event.target.value === "Other (Specify Below)"));
+        setSelfSpecify((event.target.value === "Enter Your Own"));
         setSpecifyError("");
 
-        if (event.target.value !== "Other (Specify Below)"){
+        if (event.target.value !== "Enter Your Own"){
             props.updateExerciseName(event.target.value);
         }
         else{

@@ -79,7 +79,6 @@ const UserSettingsButton = () => {
         return response.data.displayName;
       })
       .catch(function (error) {
-        console.log(error)
       });
   }
 
@@ -100,7 +99,6 @@ const UserSettingsButton = () => {
         return response.data;
       })
       .catch(function (error) {
-        console.log(error)
       });
   }
 
@@ -129,8 +127,6 @@ const UserSettingsButton = () => {
 
       })
       .catch(function (error) {
-        console.log(error)
-        console.log("No response")
       });
   }
   let dropdownFunctions = [{"name":"Logout", "func":logout}];

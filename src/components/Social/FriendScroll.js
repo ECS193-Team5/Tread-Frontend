@@ -25,8 +25,6 @@ const FriendScroll = (props) => {
 
         })
         .catch(function(error){
-            console.log(error)
-            console.log("No response")
             if(error.response.status===401){
                 window.location.href = "/";
             }
@@ -49,8 +47,6 @@ const FriendScroll = (props) => {
             setInformation(response.data);
         })
         .catch(function(error){
-            console.log(error)
-            console.log("No response")
             if(error.response.status===401){
                 window.location.href = "/";
             }
@@ -71,12 +67,9 @@ const FriendScroll = (props) => {
         };
         axios(config)
         .then(function(response) {
-            console.log(response.data)
             setInformation(response.data)
         })
         .catch(function(error){
-            console.log(error)
-            console.log("No response")
             if(error.response.status===401){
                 window.location.href = "/";
             }
@@ -96,12 +89,9 @@ const FriendScroll = (props) => {
         };
         axios(config)
         .then(function(response) {
-            console.log(response.data)
             setInformation(response.data)
         })
         .catch(function(error){
-            console.log(error)
-            console.log("No response")
             if(error.response.status===401){
                 window.location.href = "/";
             }

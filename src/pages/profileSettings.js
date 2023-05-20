@@ -40,7 +40,6 @@ const ProfileSettings = () => {
         setDisplayName(response.data.displayName);
       })
       .catch(function (error) {
-        console.log(error)
       });
   }
 
@@ -60,7 +59,6 @@ const ProfileSettings = () => {
         return response.data;
       })
       .catch(function (error) {
-        console.log(error)
       });
   }
 
