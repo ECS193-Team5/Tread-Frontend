@@ -114,6 +114,7 @@ const RowBox = (props) => {
         };
         axios(config)
         .then(function(response){
+            console.log("Info for kaushik", response.data);
             setInfo(response.data)
         })
         .catch(function(error){

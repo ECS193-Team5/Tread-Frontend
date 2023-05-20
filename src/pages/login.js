@@ -3,18 +3,29 @@ import axios from 'axios';
 import '../css/Login/login.css';
 import { getToken } from 'firebase/messaging';
 import { exportMessaging, requestPermission } from "../firebase";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import  hardCodedInfo  from "../helpers/SharedHardCodeInfo.json";
+import { getUsername } from '../routes/user';
 //const backend_url = process.env.REACT_APP_PROD_BACKEND
 const backend_url = process.env.REACT_APP_PROD_BACKEND
 const env_client_id = process.env.REACT_APP_CLIENT_ID
 
 const Login = () => {
   const [deviceToken, setToken] = useState("");
+  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    function moveCurrentChallenge(){
+      window.location.href = "./currentChallengePage";
+    }
+    if(!load){
+      getUsername(moveCurrentChallenge);
+      setLoad(true);
+    }
+  }, [load]);
+
   // needs variable for nonce
   function handleCredentialResponse(token) {
-
-
     // Check that recieved nonce is correct
     // Send request to backend for nonce reply in result with cnonce:
     // nonce with timestamp so repeat attacks won't work.
