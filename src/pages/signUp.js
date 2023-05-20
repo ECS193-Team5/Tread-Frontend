@@ -35,7 +35,6 @@ const SignUp = () => {
             setPhoto(response.data);
         })
         .catch(function(error){
-            console.log(error)
             if(error.response.status===400){
                 window.location.href = "/";
             }

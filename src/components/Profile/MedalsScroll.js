@@ -23,11 +23,9 @@ const MedalsScroll = (props) => {
         };
         axios(config)
         .then(function(response){
-            console.log("In progress", response.data);
             setInformationMap(response.data)
         })
         .catch(function(error){
-            console.log(error);
             if(error.response.status===401){
                 window.location.href = "/";
             }
@@ -48,11 +46,9 @@ const MedalsScroll = (props) => {
         };
         axios(config)
         .then(function(response){
-            console.log("earned", response.data);
             setInformationMap(response.data)
         })
         .catch(function(error){
-            console.log(error)
             if(error.response.status===401){
                 window.location.href = "/";
             }

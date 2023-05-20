@@ -30,7 +30,6 @@ const ProfileHeader = () => {
                 return response.data.displayName;
             })
             .catch(function (error) {
-                console.log(error)
             });
     }
 
@@ -51,7 +50,6 @@ const ProfileHeader = () => {
                 return response.data;
             })
             .catch(function (error) {
-                console.log(error)
             });
     }
     useEffect(

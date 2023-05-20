@@ -95,7 +95,6 @@ const RowBox = (props) => {
             setInfo(response.data)
         })
         .catch(function(error){
-            console.log(error);
             if(error.response.status===401){
                 window.location.href = "/";
             }
@@ -117,7 +116,6 @@ const RowBox = (props) => {
             setInfo(response.data)
         })
         .catch(function(error){
-            console.log(error)
             if(error.response.status===401){
                 window.location.href = "/";
             }
@@ -136,11 +134,9 @@ const RowBox = (props) => {
         };
         axios(config)
             .then(function (response) {
-                console.log("The recent activity friend looks like: ", response.data);
                 setInfo(response.data)
             })
             .catch(function (error) {
-                console.log(error)
                 if (error.response.status === 401) {
                     window.location.href = "/";
                 }
@@ -159,11 +155,9 @@ const RowBox = (props) => {
         };
         axios(config)
             .then(function (response) {
-                console.log("The recent activity league looks like: ", response.data);
                 setInfo(response.data)
             })
             .catch(function (error) {
-                console.log(error)
                 if (error.response.status === 401) {
                     window.location.href = "/";
                 }

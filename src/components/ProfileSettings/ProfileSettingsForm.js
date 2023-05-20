@@ -30,10 +30,8 @@ const ProfileSettingsForm = (props) => {
       };
     axios(config)
     .then(function(response){
-      console.log("succesfully uploaded photo");
     })
     .catch(function(error){
-      console.log(error)
       if(error.response.status===401){
         window.location.href = "/";
     }

@@ -7,7 +7,6 @@ const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const LeagueLeaderboard = (props) => {
     let leagueID = props.children.id;
-    console.log("LeagueId is", leagueID);
     const [leaderboardInfo, setLeaderboardInfo] = useState([]);
     const [load, setLoad] = useState(false);
 
@@ -31,12 +30,9 @@ const LeagueLeaderboard = (props) => {
             for(let i = 0; i< information_list.length; i++){
                 information_list[i]["level"] = i+1;
             }
-            console.log(information_list);
             setLeaderboardInfo(information_list);
           })
           .catch(function(error){
-              console.log(error);
-              console.log("No response");
               if(error.response.status===401){
                 window.location.href = "/";
             }

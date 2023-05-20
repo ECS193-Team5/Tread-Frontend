@@ -35,8 +35,6 @@ const ExerciseReceiverForm = (props) => {
                 if (error.response.status === 401) {
                     window.location.href = "/";
                 }
-                console.log(error);
-                console.log("No response")
             });
     }
 
@@ -62,8 +60,6 @@ const ExerciseReceiverForm = (props) => {
                 if (error.response.status === 401) {
                     window.location.href = "/";
                 }
-                console.log(error);
-                console.log("No response")
             });
     }
 

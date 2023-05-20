@@ -44,12 +44,9 @@ const FriendObj = (props) => {
       };
       axios(config)
       .then(function(response) {
-          console.log(response.data)
           setDisplayProperty("FriendObj"+props.children.username, "none");
       })
       .catch(function(error){
-          console.log(error)
-          console.log("No response")
           if(error.response.status===401){
             setDisplayProperty("FriendObj"+props.children.username, "none");
             window.location.href = "/";
@@ -73,12 +70,9 @@ const FriendObj = (props) => {
       };
       axios(config)
       .then(function(response) {
-          console.log(response.data)
           setDisplayProperty("FriendObj"+props.children.username, "none");
       })
       .catch(function(error){
-          console.log(error)
-          console.log("No response")
           if(error.response.status===401){
             setDisplayProperty("FriendObj"+props.children.username, "none");
             window.location.href = "/";
@@ -103,16 +97,12 @@ const FriendObj = (props) => {
       axios(config)
       .then(function(response) {
         setDisplayProperty("FriendObj"+props.children.username, "none");
-          console.log(response.data)
       })
       .catch(function(error){
-          console.log(error)
-          console.log("No response")
           if(error.response.status===401){
             window.location.href = "/";
         }
       });
-      console.log("Revoke sent request");
     }
 
     function unblock(){
@@ -132,11 +122,8 @@ const FriendObj = (props) => {
       axios(config)
       .then(function(response) {
         setDisplayProperty("FriendObj"+props.children.username, "none");
-          console.log(response.data)
       })
       .catch(function(error){
-          console.log(error)
-          console.log("No response")
           if(error.response.status===401){
             window.location.href = "/";
         }
@@ -160,11 +147,8 @@ const FriendObj = (props) => {
       axios(config)
       .then(function(response) {
         setDisplayProperty("FriendObj"+props.children.username, "none");
-          console.log(response.data)
       })
       .catch(function(error){
-          console.log(error)
-          console.log("No response")
           if(error.response.status===401){
             window.location.href = "/";
         }
@@ -188,11 +172,8 @@ const FriendObj = (props) => {
       axios(config)
       .then(function(response) {
           setDisplayProperty("FriendObj"+props.children.username, "none");
-          console.log(response.data)
       })
       .catch(function(error){
-          console.log(error)
-          console.log("No response")
           if(error.response.status===401){
             window.location.href = "/";
         }
@@ -217,7 +198,6 @@ const FriendObj = (props) => {
       else if(type === "blocked"){
         friendOptions.push({ "name": "Unblock", "func": unblock });
       }
-      console.log(friendOptions)
       setDropdownOptions(friendOptions);
     }
     return(

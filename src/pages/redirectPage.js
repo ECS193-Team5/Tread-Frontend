@@ -35,7 +35,6 @@ const RedirectPage = (props) => {
 
 
     async function sendFriendRequest(requestID){
-        console.log("sent friend request");
         var config = {
             method : 'post',
             url : backend_url + 'friend_list/send_friend_request',
@@ -51,13 +50,9 @@ const RedirectPage = (props) => {
           };
           axios(config)
           .then(function(response) {
-            console.log("sent request succesffully");
             window.location.href = "/socialFriendPage";
           })
           .catch(function(error){
-            console.log("could not send request");
-              console.log(error)
-              console.log("Not Logged in");
               if(error.response.status===401){
                 window.location.href = "/";
             }
@@ -86,7 +81,6 @@ const RedirectPage = (props) => {
             window.location.href = "./socialLeaguePage";
         })
         .catch(function(error){
-            console.log(error)
             if(error.response.status===401){
                 window.location.href = "/";
             }

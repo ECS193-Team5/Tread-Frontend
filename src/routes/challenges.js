@@ -193,6 +193,6 @@ export function getChallengeLeaderboard(challengeID, thenFunc) {
             thenFunc(response);
         })
         .catch(function (error) {
-            redirectLogout();
+            redirectLogout(error);
         });
 }

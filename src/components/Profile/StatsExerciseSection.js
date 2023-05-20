@@ -104,14 +104,12 @@ const StatsExerciseSection = () => {
 
     useEffect(() => {
         if(availableUnits){
-            console.log("set graph change");
             setGraphChange(true);
         }
     },[availableUnits]);
 
     useEffect(() => {
         if(data){
-            console.log(data);
             recalculateConfig();
         }
     },[data]);

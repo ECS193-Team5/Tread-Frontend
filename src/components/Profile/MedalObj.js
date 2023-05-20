@@ -15,9 +15,7 @@ const min = (a, b) => {
 const MedalObj = (props) => {
 
     let convertedProgress = min(calculateProgress(props.children.progress, props.children.exercise.unit), props.children.exercise.amount);
-    console.log("Medal gets", props.children);
-    /*
-    <a href="https://www.flaticon.com/free-icons/silver-cup" title="silver cup icons">Silver cup icons created by Freepik - Flaticon</a>*/
+
     return(
         <div id = "MedalObj">
             <div className = "medalLeft">

@@ -26,8 +26,6 @@ const SuggestedFriendObj = (props) => {
             props.updateObjList(props.children[0]);
           })
           .catch(function(error){
-              console.log(error)
-              console.log("No response")
               if(error.response.status===401){
                 window.location.href = "/";
             }

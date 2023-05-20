@@ -29,7 +29,6 @@ const FriendAdd = () => {
               setUserResponse("Sent!");
           })
           .catch(function(error){
-              console.log(error);
               setUserResponse("Sorry, could not send a friend request to that user");
               if(error.response.status===401){
                 window.location.href = "/";

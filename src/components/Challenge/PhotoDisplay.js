@@ -9,9 +9,7 @@ const PhotoDisplay = (props) => {
         () => {
             if (props.photos) {
                 let pictures = createURLS(props.photos);
-                console.log("pCitures" , pictures);
                 let firstThreePhotos = moveList(pictures);
-                console.log("first Three photos", firstThreePhotos);
                 calculatePictureDiv(firstThreePhotos, pictures.length - 3);
             }
         }, [props.photos]

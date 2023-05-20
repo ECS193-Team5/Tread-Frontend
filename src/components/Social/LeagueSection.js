@@ -20,9 +20,6 @@ const LeagueSection = () => {
             if(leagueState === "Create League"){
                 window.location.href = "./addLeaguePage";
             }
-            else{
-                console.log( "Set league state to not create", leagueState);
-            }
         }, [leagueState]
     );
 

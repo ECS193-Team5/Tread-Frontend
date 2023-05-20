@@ -37,7 +37,12 @@ export const changeBarButton = (button, onButton) => {
 }
 
 export function redirectLogout(error){
+    try{
     if(error.response.status===401){
         window.location.href = "/";
+    }
+    }
+    catch(error){
+        console.log(error);
     }
 }

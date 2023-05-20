@@ -33,7 +33,6 @@ const IssuedChallengeObj = (props) => {
     );
 
     function makeLeaderboardObj(item, index) {
-        console.log(item, index);
         let entry = {}
         entry["level"] = index + 1;
         entry["photo"] = item["pictures"];

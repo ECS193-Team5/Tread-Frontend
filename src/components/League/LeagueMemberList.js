@@ -39,11 +39,9 @@ const LeagueMemberList = (props) => {
         };
         axios(config)
         .then(function(response){
-            console.log("Leagues", response.data);
             setMemberList(response.data);
         })
         .catch(function(error){
-            console.log(error);
             if(error.response.status===401){
                 window.location.href = "/";
             }
@@ -66,12 +64,9 @@ const LeagueMemberList = (props) => {
         };
         axios(config)
         .then(function(response){
-
-            console.log("Request", response.data);
             setMemberList(response.data);
         })
         .catch(function(error){
-            console.log(error)
         });
     }
 
@@ -91,12 +86,9 @@ const LeagueMemberList = (props) => {
         };
         axios(config)
         .then(function(response){
-
-            console.log("Banned", response.data);
             setMemberList(response.data);
         })
         .catch(function(error){
-            console.log(error)
         });
     }
 
@@ -116,12 +108,9 @@ const LeagueMemberList = (props) => {
         };
         axios(config)
         .then(function(response){
-
-            console.log("Invited", response.data);
             setMemberList(response.data);
         })
         .catch(function(error){
-            console.log(error)
         });
     }
 
@@ -143,7 +132,6 @@ const LeagueMemberList = (props) => {
             setSelfType(response.data);
         })
         .catch(function(error){
-            console.log(error)
         });
     }
 
