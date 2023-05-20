@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import '../../css/Shared/sideBar.css';
-import frontPageTreadLogo from "../../assets/frontPageTreadLogo.png";
-import challengeButtonImage from "../../assets/challengeButtonImage.png";
+import frontPageTreadLogo from "../../assets/sideBarLogoMain.png";
+import challengeButtonImage from "../../assets/ChallengeButtonImage.png";
 import profileButtonImage from "../../assets/ProfileButton.png";
-import socialButtonImage from "../../assets/SocialButtonImage.png";
-import profileSettingsButtonImage from "../../assets/ProfileSettingsButtonImage.png";
+import socialButtonImage from "../../assets/socialButtonImage.png";
+import profileSettingsButtonImage from "../../assets/profileSettingsButtonImage.png";
 
 const SideBar = () => {
 
