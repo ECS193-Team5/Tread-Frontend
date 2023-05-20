@@ -1,6 +1,9 @@
 import { redirectLogout } from "../helpers/CssEffects";
 
-export function requestNotifications(thenFunc){/*
+import axios from 'axios';
+const backend_url = process.env.REACT_APP_PROD_BACKEND;
+
+export function requestNotifications(thenFunc){
     var config = {
         method: 'post',
         url: backend_url + 'notifications/get_notifications',
@@ -16,14 +19,10 @@ export function requestNotifications(thenFunc){/*
         })
         .catch(function (error) {
             redirectLogout(error);
-        });*/
-
-        thenFunc([
-        {_id:"me", "message":"You have been added to X league"}, {_id:"meow", "message":"You have been sent a friend request"}
-        ]);
+        });
 }
 
-export function deleteNotification(id, thenFunc){/*
+export function deleteNotification(id, thenFunc){
     var config = {
         method: 'post',
         url: backend_url + 'notifications/delete_notification',
@@ -40,6 +39,6 @@ export function deleteNotification(id, thenFunc){/*
         })
         .catch(function (error) {
             redirectLogout(error);
-        });*/
+        });
 
 }
