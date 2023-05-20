@@ -35,11 +35,16 @@ const ExerciseAmountForm = (props) => {
     );
 
 
+    function preventEKey(event){
+        if(event.key === "e"){
+            event.preventDefault();
+        }
+    }
     return (
         <div className="formObj">
             <p className="formObjInner">How much?</p>
             <div className="formObjInner">
-                <input className="formTextInput" min = "0" placeholder={props.defaultAmount} type="number" onChange={amountChange} onKeyDown={ (evt) => evt.key === 'e' && evt.preventDefault() }/>
+                <input className="formTextInput" min = "0" placeholder={props.defaultAmount} type="number" onChange={amountChange} onKeyDown={ preventEKey }/>
                 <select id = "addChallengeFormSelect" className="formSelect" onChange={unitChange}>
                     <option value = "min">minute (min)</option>
                     <option value = "hr">hour (hr)</option>

@@ -1,5 +1,3 @@
-import { redirectLogout } from "../helpers/CssEffects";
-
 import axios from 'axios';
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
@@ -18,6 +16,6 @@ export function getUsername(thenFunc) {
         thenFunc();
       })
       .catch(function (error) {
-        console.log(error)
+
       });
   }
