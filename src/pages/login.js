@@ -16,7 +16,7 @@ const Login = () => {
   const [load, setLoad] = useState(false);
 
   useEffect(() => {
-    function moveCurrentChallenge(){
+    function moveCurrentChallenge(response){
       window.location.href = "./currentChallengePage";
     }
     if(!load){

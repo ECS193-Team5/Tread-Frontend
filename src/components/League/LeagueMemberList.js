@@ -9,7 +9,8 @@ import axios from "axios";
 import "../../css/Shared/section.css";
 import "../../css/Shared/bar.css";
 import { getLeagueInfo } from '../../routes/league';
-
+import { getUsername } from '../../routes/user';
+import { getFriendList, getBlockedList } from '../../routes/friend_list';
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const LeagueMemberList = (props) => {
@@ -18,9 +19,12 @@ const LeagueMemberList = (props) => {
     const [memberScroll, setMemberScroll] = useState("Members");
     const [memberList, setMemberList] = useState([]);
     const [load, setLoad] = useState(false);
+    const [username, setUsername] = useState("");
     const [selfType, setSelfType] = useState("");
+    const [blockedList, setBlockedList] = useState([]);
+    const [friendList, setFriendList] = useState([]);
     let buttonList = [{"name": "Members", "defaultOn":true, "create":false},
-    {"name": "Pending", "defaultOn":false, "create":false},
+    {"name": "Received", "defaultOn":false, "create":false},
     {"name": "Invited", "defaultOn":false, "create":false},
     {"name": "Banned", "defaultOn":false, "create":false},
     {"name": "Add User", "defaultOn":false, "create":true}];
@@ -142,10 +146,18 @@ const LeagueMemberList = (props) => {
         setLeagueName(response.data.leagueName)
     }
 
+    function processBlockedList(response){
+        let blockedPeople = response.map((item)=> {return item.username});
+        setBlockedList(blockedPeople);
+    }
+
     useEffect (
         () => {
             if(!load){
                 getLeagueInfo(props.children.id, setName)
+                getUsername(setUsername);
+                getFriendList(setFriendList);
+                getBlockedList(processBlockedList);
                 getSelfType();
             }
         }, [load]
@@ -156,7 +168,7 @@ const LeagueMemberList = (props) => {
             if(memberScroll === "Members"){
                 getAll();
             }
-            else if(memberScroll === "Pending" && (selfType === "admin" || selfType === "owner")){
+            else if(memberScroll === "Received" && (selfType === "admin" || selfType === "owner")){
                 getRequesting();
             }
             else if(memberScroll === "Banned" && (selfType === "admin" || selfType === "owner")){
@@ -170,10 +182,10 @@ const LeagueMemberList = (props) => {
 
     function makeMemberEntryObj(input, index){
         if (index === 0){
-            return(<div><MemberEntry leagueName = {leagueName} leagueID = {id} scrollType = {memberScroll} selfType = {selfType}>{input}</MemberEntry></div>);
+            return(<div><MemberEntry username = {username} blocked = {blockedList} friends = {friendList} leagueName = {leagueName} leagueID = {id} scrollType = {memberScroll} selfType = {selfType}>{input}</MemberEntry></div>);
         }
         else {
-            return(<div><div className = "memberLine"></div><MemberEntry leagueName = {leagueName} leagueID = {id} scrollType = {memberScroll} selfType = {selfType}>{input}</MemberEntry></div>);
+            return(<div><div className = "memberLine"></div><MemberEntry username = {username} blocked = {blockedList} friends = {friendList} leagueName = {leagueName} leagueID = {id} scrollType = {memberScroll} selfType = {selfType}>{input}</MemberEntry></div>);
         }
     }
 
@@ -189,7 +201,7 @@ const LeagueMemberList = (props) => {
                 (memberScroll === "Members") ? <div id = "LeagueMemberList">{memberList.map(makeMemberEntryObj)}</div> : <></>
             }
             {
-                (memberScroll === "Pending" && (selfType === "admin" || selfType === "owner")) ? <div id = "LeagueMemberList">{memberList.map(makeMemberEntryObj)}</div> : <></>
+                (memberScroll === "Received" && (selfType === "admin" || selfType === "owner")) ? <div id = "LeagueMemberList">{memberList.map(makeMemberEntryObj)}</div> : <></>
             }
             {
                 (memberScroll === "Banned" && (selfType === "admin" || selfType === "owner")) ? <div id = "LeagueMemberList">{memberList.map(makeMemberEntryObj)}</div> : <></>
