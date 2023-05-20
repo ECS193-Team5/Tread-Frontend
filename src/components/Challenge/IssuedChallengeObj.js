@@ -62,7 +62,6 @@ const IssuedChallengeObj = (props) => {
                     <div className="challengeInnerMiddle">
                         <p className="challengeText">{title}</p>
                         <p className="challengeText">{dueDate}</p>
-
                     </div>
                     <div className="challengeInnerMiddle">
                         <ProgressBar>{{ "completed": percentageDone }}</ProgressBar>

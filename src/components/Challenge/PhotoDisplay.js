@@ -32,12 +32,31 @@ const PhotoDisplay = (props) => {
         return list_;
     }
 
-    function createPhotoObj(pictureURL){
-        return (<div className = "holder" key = {pictureURL}><img className = "photoDisplayObj"  src = {pictureURL} alt = "profile"/></div>);
+    function calculateStyle(index, photoLength, additionalNumber){
+        let length = photoLength;
+
+        if(additionalNumber> 0){
+            length += 1;
+        }
+
+        let startingIndex = (180 - (46 + 36*(length-1)))/2;
+        let position = startingIndex + (-10)*index;
+        let z_index = index;
+        let style = {"position":"relative", "z-index":z_index, "left":position};
+
+        return style
+    }
+
+    function createPhotoObj(pictureURL, index, photoLength, additionalNumber){
+        console.log("Index is", index);
+        return (<div className = "holder" key = {pictureURL}><img className = "photoDisplayObj"  style = {calculateStyle(index, photoLength, additionalNumber)} src = {pictureURL} alt = "profile"/></div>);
     }
 
     function calculatePictureDiv(firstThreePhotos, additionalNumber){
-        let photoObj = firstThreePhotos.map(createPhotoObj);
+        let photoObj = [];
+        for(let i = 0; i < firstThreePhotos.length; i++){
+            photoObj.push(createPhotoObj(firstThreePhotos[i], i, firstThreePhotos.length, additionalNumber));
+        }
 
         if (additionalNumber > 0){
             let additional = <div id = "numberObj" className='photoDisplayObj lastPhotoDisplay'><p className = "lastPhotoText">+{additionalNumber}</p></div>
