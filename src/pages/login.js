@@ -7,7 +7,8 @@ import { useState, useEffect } from "react";
 import  hardCodedInfo  from "../helpers/SharedHardCodeInfo.json";
 import { getUsername } from '../routes/user';
 import frontPageTreadLogo from "../assets/frontPageTreadLogo.png";
-//const backend_url = process.env.REACT_APP_PROD_BACKEND
+import downloadImageAppStore from "../assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg";
+import downloadImageGoogle from "../assets/google-play-badge.jpg"
 const backend_url = process.env.REACT_APP_PROD_BACKEND
 const env_client_id = process.env.REACT_APP_CLIENT_ID
 
@@ -128,6 +129,7 @@ const Login = () => {
 
   return (
   <div id = "loginPage">
+    <div id = "loginPageWeb">
       <div id = "logoBox">
         <div>
           <img id="treadLogo" src={frontPageTreadLogo} alt="logo" />
@@ -139,6 +141,15 @@ const Login = () => {
       </div>
       <p className='frontPageDescriptionText'>{hardCodedInfo.frontPageDescription}</p>
       <div id="buttonDiv"></div>
+      </div>
+
+      <div id = "loginPageMobile">
+        <div id = "frontPageLogoSectionMobile">
+          <img id="treadLogo" src={frontPageTreadLogo} alt="logo" />
+          <p id = "frontPageTitleMobile">Tread</p>
+        </div>
+
+      </div>
   </div>)
 }
 export default Login;
