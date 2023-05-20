@@ -7,6 +7,7 @@ import { addExerciseLog } from '../../routes/exercise_log';
 import "../../css/Challenge/addExercise.css";
 import "../../css/Shared/form.css";
 import "../../css/Shared/button.css";
+import dropdownImage from "../../assets/dropdown.png";
 
 const AddExerciseBox = () => {
     const [exerciseName, setExerciseName] = useState("");
@@ -58,7 +59,7 @@ const AddExerciseBox = () => {
         <div id="AddExerciseBox">
             <div id="AddExerciseHeader">
                 <h2>Log an Exercise</h2>
-                <button className="dropDownButton" onClick={toggleShowState}><img className="dropDownButton" id="AddExerciseButtonShowState" src="https://i.imgur.com/msPQZqA.png" alt="Dropdown" /></button>
+                <button className="dropDownButton" onClick={toggleShowState}><img className="dropDownButton" id="AddExerciseButtonShowState" src={dropdownImage} alt="Dropdown" /></button>
             </div>
             {showState
                 ?

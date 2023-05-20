@@ -4,6 +4,8 @@ import axios from "axios";
 import { createProfilePictureURL } from "../../helpers/CloudinaryURLHelpers";
 import "../../css/Shared/button.css";
 import "../../css/Shared/pictureHeader.css";
+
+import editButtonImage from "../../assets/editButton.png";
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const ProfileHeader = () => {
@@ -95,7 +97,7 @@ const ProfileHeader = () => {
                         <h3>{displayName}</h3>
                     </div>
                     <div id = "pictureHeaderButton">
-                        <button className="editButton" onClick={moveSettingsPage}><img className="editButtonImage" src={"https://i.imgur.com/but4GRp.png"} alt="edit button"></img></button>
+                        <button className="editButton" onClick={moveSettingsPage}><img className="editButtonImage" src={editButtonImage} alt="edit button"></img></button>
 
                     </div>
                 </div>

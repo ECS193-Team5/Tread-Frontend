@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import axios from 'axios';
 import "../../css/Shared/button.css";
+import downloadButtonImage from "../../assets/DownloadButton.png";
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const StatsDownloadSection = (props) => {
@@ -108,7 +109,7 @@ const StatsDownloadSection = (props) => {
     return (
     <div className = "downloadButtonDiv">
         <p className = "downloadButtonText">Download {props.type} History</p>
-        <a href={ownBlob} download><img className = "downloadButtonImage" src = "https://i.imgur.com/jdDx2cV.png"></img></a>
+        <a href={ownBlob} download><img className = "downloadButtonImage" src = {downloadButtonImage}></img></a>
     </div>)
 }
 

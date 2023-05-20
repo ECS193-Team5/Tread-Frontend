@@ -1,6 +1,7 @@
 import '../../css/Shared/button.css';
 import { setDisplayProperty } from "../../helpers/CssEffects";
 import { deleteChallenge } from '../../routes/challenges';
+import trashCanImage from "../../assets/trashCan.png";
 
 const DeleteChallengeButton = (props) => {
     const hideSentObj = () => {
@@ -13,7 +14,7 @@ const DeleteChallengeButton = (props) => {
 
     return(
         <button id = {"DeleteButton"+props.id} className = "circleButton" onClick = {onDelete}>
-            <img className = "circleButtonInner" src ="https://i.imgur.com/WgGT2MJ.png"/>
+            <img className = "circleButtonInner" src ={trashCanImage}/>
         </button>
     );
 }

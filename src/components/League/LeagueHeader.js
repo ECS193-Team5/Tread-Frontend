@@ -5,7 +5,7 @@ import { getLeagueInfo, getNumberActiveChallengesLeague, getMembersLeague, getLe
 import "../../css/Shared/pictureHeader.css";
 import "../../css/Shared/button.css";
 import "../../css/Shared/coloredText.css";
-
+import editButtonImage from "../../assets/editButton.png";
 
 
 const LeagueHeader = (props) => {
@@ -83,7 +83,7 @@ const LeagueHeader = (props) => {
                     <div className = "pictureHeaderButton">
                         {
                             (role === "owner")?
-                            <button className = "editButton" onClick = {moveEditPage}><img className = "editButtonImage" src = {"https://i.imgur.com/but4GRp.png"} alt = "edit button"></img></button>
+                            <button className = "editButton" onClick = {moveEditPage}><img className = "editButtonImage" src = {editButtonImage} alt = "edit button"></img></button>
                             :
                             <></>
                         }

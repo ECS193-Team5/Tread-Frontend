@@ -4,6 +4,9 @@ import "../../css/League/member.css";
 import { createProfilePictureURL } from "../../helpers/CloudinaryURLHelpers";
 import { setDisplayProperty, reloadPage } from '../../helpers/CssEffects';
 import DropDown from '../Shared/DropDown';
+import adminKey from "../../assets/key.png";
+import ownerCrown from "../../assets/Crown.png";
+import moreInfoButton from "../../assets/moreInfoButton.png";
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const MemberEntry = (props) => {
@@ -122,7 +125,8 @@ const MemberEntry = (props) => {
       data:
       {
         recipient: props.children.username,
-        leagueID: props.leagueID
+        leagueID: props.leagueID,
+        leagueName: props.leagueName
       },
       withCredentials: true,
       credentials: 'include'
@@ -148,7 +152,8 @@ const MemberEntry = (props) => {
       data:
       {
         recipient: props.children.username,
-        leagueID: props.leagueID
+        leagueID: props.leagueID,
+        leagueName: props.leagueName
       },
       withCredentials: true,
       credentials: 'include'
@@ -174,7 +179,8 @@ const MemberEntry = (props) => {
       data:
       {
         recipient: props.children.username,
-        leagueID: props.leagueID
+        leagueID: props.leagueID,
+        leagueName: props.leagueName
       },
       withCredentials: true,
       credentials: 'include'
@@ -200,7 +206,8 @@ const MemberEntry = (props) => {
       data:
       {
         recipient: props.children.username,
-        leagueID: props.leagueID
+        leagueID: props.leagueID,
+        leagueName: props.leagueName
       },
       withCredentials: true,
       credentials: 'include'
@@ -340,14 +347,14 @@ const MemberEntry = (props) => {
 
         <div>
           {(props.children.role === "admin" || props.children.role === "owner") ?
-            <img src="https://i.imgur.com/551l8WX.png" alt="key" />
+            <img src={adminKey} alt="key" />
             :
             <></>
           }
         </div>
         <div>
           {(props.children.role === "owner") ?
-            <img src="https://i.imgur.com/FuiEy2B.png" alt="crown" />
+            <img src={ownerCrown} alt="crown" />
             :
             <></>
           }
@@ -355,7 +362,7 @@ const MemberEntry = (props) => {
 
         <div className="moreInfoDiv">
           <button className="moreInfoButton" onClick={toggleSelectShow}>
-            <img src="https://i.imgur.com/pnzihUp.png" />
+            <img src={moreInfoButton} />
           </button>
           {(selectShow) ? <div className="memberSelectOptions"><DropDown>{memberDropDownEntries}</DropDown></div> : <></>}
         </div>

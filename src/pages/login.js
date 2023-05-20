@@ -6,6 +6,7 @@ import { exportMessaging, requestPermission } from "../firebase";
 import { useState, useEffect } from "react";
 import  hardCodedInfo  from "../helpers/SharedHardCodeInfo.json";
 import { getUsername } from '../routes/user';
+import frontPageTreadLogo from "../assets/frontPageTreadLogo.png";
 //const backend_url = process.env.REACT_APP_PROD_BACKEND
 const backend_url = process.env.REACT_APP_PROD_BACKEND
 const env_client_id = process.env.REACT_APP_CLIENT_ID
@@ -124,45 +125,12 @@ const Login = () => {
     });
 
   }
-  /*
-  return (
 
-    <div className="loginPage">
-      <div className="loginSide">
-        <div className="loginBox">
-          <div className="loginTitle"><img id="treadLogo" src="https://i.imgur.com/cHe0EGL.png" alt="logo" /><p className="loginTitleText">Tread</p></div>
-          <p className="loginText">Log In Below</p>
-          <div>
-            <div id="buttonDiv"></div>
-          </div>
-        </div>
-      </div>
-      <div className="backgroundSide">
-        <div>
-          <div className='titleBox'>
-            <p id = "frontPageTitle">Tread</p>
-            <p id = "frontPageSubtitle">Stay Fit with Friends</p>
-          </div>
-            <div className='frontPageDescription'><p className='frontPageDescriptionText'>
-            Welcome to Tread, the ultimate exercise challenge app! Tread is a dynamic platform that allows users to compete against their friends or within leagues to achieve their fitness goals. With Tread, you have full control over when and how you exercise, making it the perfect tool for anyone looking to stay motivated and push their limits. Challenge your friends to daily step competitions, distance runs, or other exercise challenges, and track your progress in real-time. Whether you're a fitness enthusiast or just looking to add a fun and competitive twist to your exercise routine, Tread is the app for you. Join the community of like-minded individuals, and let the friendly competition and encouragement from fellow Treaders drive you to new fitness heights!
-            </p></div>
-        </div>
-        <div>
-          <div><img className = "exercisePhoto" id="weightLiftPhotoTopRow" src="https://i.imgur.com/ifnDau9.png" alt="Weightlifting" /></div>
-          <div><img className = "exercisePhoto"  id="weightLiftPhotoMiddleRow" src="https://i.imgur.com/ifnDau9.png" alt="Weightlifting" /></div>
-          <div>
-            <img className = "exercisePhoto"  id="weightLiftPhotoBottomRowLeft" src="https://i.imgur.com/ifnDau9.png" alt="Weightlifting" />
-            <img className = "exercisePhoto"  id="weightLiftPhotoBottomRowRight" src="https://i.imgur.com/ifnDau9.png" alt="Weightlifting" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );*/
   return (
   <div id = "loginPage">
       <div id = "logoBox">
         <div>
-          <img id="treadLogo" src="https://i.imgur.com/qajrJEV.png" alt="logo" />
+          <img id="treadLogo" src={frontPageTreadLogo} alt="logo" />
         </div>
         <div className='titleBox'>
             <p id = "frontPageTitle">Tread</p>

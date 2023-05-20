@@ -1,7 +1,7 @@
 import { setDisplayProperty } from "../../helpers/CssEffects";
 import { declineChallenge } from "../../routes/challenges";
 import '../../css/Shared/button.css';
-
+import declineImage from "../../assets/declineButtonX.png";
 const DeclineChallengeButton = (props) => {
     const hideReceivedObj = () => {
         setDisplayProperty("ReceivedChallengedObj"+props.id, "none");
@@ -14,7 +14,7 @@ const DeclineChallengeButton = (props) => {
 
     return(
         <button id = {"DeclineButton"+props.id} className = "circleButton" onClick = {onDecline}>
-            <img className = "circleButtonInner" src ="https://i.imgur.com/4e8Io40.png"/>
+            <img className = "circleButtonInner" src ={declineImage}/>
         </button>
     );
 }

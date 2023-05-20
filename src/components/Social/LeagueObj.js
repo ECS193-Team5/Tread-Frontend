@@ -5,6 +5,7 @@ import {createLeaguePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import {setDisplayProperty} from "../../helpers/CssEffects";
 import "../../css/Social/obj.css";
 import "../../css/Shared/dropDown.css";
+import moreInfoButton from "../../assets/moreInfoButton.png";
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const LeagueObj = (props) => {
@@ -226,7 +227,7 @@ const LeagueObj = (props) => {
             </div>
             <div className = "objButtonSection objSection">
                 <button id = {props.children._id+"moreInfoButton"} className = "moreInfoButton objButtonMore" onClick = {toggleSelectShow}>
-                    <img src = "https://i.imgur.com/pnzihUp.png" alt = "toggle button"/>
+                    <img src = {moreInfoButton} alt = "toggle button"/>
                 </button>
                 {(selectShow) ? <div className='objDropdown'><DropDown>{dropdownOptions}</DropDown></div>: <></>}
             </div>

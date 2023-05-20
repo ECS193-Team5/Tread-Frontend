@@ -6,7 +6,7 @@ import MedalsSection from '../components/Profile/MedalsSection';
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import '../css/Shared/page.css';
 import StatsChallengeSection from '../components/Profile/StatsChallengeSection';
-import StatsDownloadSection from '../components/Profile/StatsDownloadSection';
+import MailBox from '../components/Profile/MailBox';
 
 const Profile = (props) => {
     return (
@@ -19,6 +19,7 @@ const Profile = (props) => {
                     <Header>{{"title":"Profile", "type":"profile", "onButton":props.children.type}}</Header>
                     <ProfileHeader></ProfileHeader>
                     <Line/>
+                    <MailBox></MailBox>
                     {
                         (props.children.type === "stats") ?
                         <div>
