@@ -8,10 +8,12 @@ import axios from "axios";
 
 import "../../css/Shared/section.css";
 import "../../css/Shared/bar.css";
+import { getLeagueInfo } from '../../routes/league';
 
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const LeagueMemberList = (props) => {
+    const [leagueName, setLeagueName] = useState("");
     const [id] = useState(props.children.id);
     const [memberScroll, setMemberScroll] = useState("Members");
     const [memberList, setMemberList] = useState([]);
@@ -22,6 +24,7 @@ const LeagueMemberList = (props) => {
     {"name": "Invited", "defaultOn":false, "create":false},
     {"name": "Banned", "defaultOn":false, "create":false},
     {"name": "Add User", "defaultOn":false, "create":true}];
+
 
 
     function getAll(){
@@ -135,9 +138,14 @@ const LeagueMemberList = (props) => {
         });
     }
 
+    function setName(response){
+        setLeagueName(response.data.leagueName)
+    }
+
     useEffect (
         () => {
             if(!load){
+                getLeagueInfo(props.children.id, setName)
                 getSelfType();
             }
         }, [load]
@@ -162,10 +170,10 @@ const LeagueMemberList = (props) => {
 
     function makeMemberEntryObj(input, index){
         if (index === 0){
-            return(<div><MemberEntry leagueID = {id} scrollType = {memberScroll} selfType = {selfType}>{input}</MemberEntry></div>);
+            return(<div><MemberEntry leagueName = {leagueName} leagueID = {id} scrollType = {memberScroll} selfType = {selfType}>{input}</MemberEntry></div>);
         }
         else {
-            return(<div><div className = "memberLine"></div><MemberEntry leagueID = {id} scrollType = {memberScroll} selfType = {selfType}>{input}</MemberEntry></div>);
+            return(<div><div className = "memberLine"></div><MemberEntry leagueName = {leagueName} leagueID = {id} scrollType = {memberScroll} selfType = {selfType}>{input}</MemberEntry></div>);
         }
     }
 

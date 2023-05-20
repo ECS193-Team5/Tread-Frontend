@@ -1,0 +1,21 @@
+.mailBoxEntry{
+    box-sizing: border-box;
+    height: 95px;
+    background: #F1EEEA;
+    border: 1px solid #F9A800;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.mailBoxEntryText{
+    padding-left: 10px;
+    font-family: '?????';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+}

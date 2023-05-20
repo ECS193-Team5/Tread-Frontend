@@ -122,7 +122,8 @@ const MemberEntry = (props) => {
       data:
       {
         recipient: props.children.username,
-        leagueID: props.leagueID
+        leagueID: props.leagueID,
+        leagueName: props.leagueName
       },
       withCredentials: true,
       credentials: 'include'
@@ -148,7 +149,8 @@ const MemberEntry = (props) => {
       data:
       {
         recipient: props.children.username,
-        leagueID: props.leagueID
+        leagueID: props.leagueID,
+        leagueName: props.leagueName
       },
       withCredentials: true,
       credentials: 'include'
@@ -174,7 +176,8 @@ const MemberEntry = (props) => {
       data:
       {
         recipient: props.children.username,
-        leagueID: props.leagueID
+        leagueID: props.leagueID,
+        leagueName: props.leagueName
       },
       withCredentials: true,
       credentials: 'include'
@@ -200,7 +203,8 @@ const MemberEntry = (props) => {
       data:
       {
         recipient: props.children.username,
-        leagueID: props.leagueID
+        leagueID: props.leagueID,
+        leagueName: props.leagueName
       },
       withCredentials: true,
       credentials: 'include'

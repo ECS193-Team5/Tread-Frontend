@@ -8,7 +8,7 @@ export async function loginTread1(page) {
         page.waitForEvent('popup'),
         page.getByRole('button', { name: 'Sign in with Google' }).click()
     ])
-    console.log(await page1.title());
+
     await page1.getByRole('textbox', { name: 'Email or phone' }).click();
     await page1.getByRole('textbox', { name: 'Email or phone' }).fill('treadtestuser1@gmail.com');
     await page1.getByRole('button', { name: 'Next' }).click();
