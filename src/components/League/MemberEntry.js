@@ -23,15 +23,39 @@ const MemberEntry = (props) => {
     }, [load]
   );
 
+  function isFriend(){
+    return props.friends.includes(props.children.username);
+  }
+
+  function isBlocked(){
+    return props.blocked.includes(props.children.username);
+  }
+
+  function isSelf(){
+    return props.children.username === props.username;
+  }
+
   function calculateMemberEntries() {
     let scrollType = props.scrollType;
     let otherUserType = props.children.role;
     let selfType = props.selfType;
     let ifSelfAdmin = selfType === "admin" || selfType === "owner";
-    let ifTeamMember = selfType === "admin" || selfType === "owner" || selfType === "participant";
 
     let dropdownOptions = [];
-    if (ifTeamMember) {
+
+    if(isSelf()){
+      return dropdownOptions;
+    }
+
+    if (isFriend()) {
+      dropdownOptions.push({ "name": "Unfriend", "func": unfriend });
+      dropdownOptions.push({ "name": "Block", "func": block });
+    }
+    else if(!isFriend() && isBlocked()){
+      dropdownOptions.push({ "name": "Friend", "func": addFriend });
+      dropdownOptions.push({ "name": "Unblock", "func": unblock });
+    }
+    else if(!isFriend() && !isBlocked()){
       dropdownOptions.push({ "name": "Friend", "func": addFriend });
       dropdownOptions.push({ "name": "Block", "func": block });
     }
@@ -49,7 +73,7 @@ const MemberEntry = (props) => {
       dropdownOptions.push({ "name": "Add Admin", "func": addAdmin });
     }
 
-    if (scrollType === "Pending" && (ifSelfAdmin)) {
+    if (scrollType === "Received" && (ifSelfAdmin)) {
       dropdownOptions.push({ "name": "Accept", "func": accept });
       dropdownOptions.push({ "name": "Decline", "func": decline });
     }
@@ -68,6 +92,56 @@ const MemberEntry = (props) => {
     var config = {
       method: 'post',
       url: backend_url + 'friend_list/send_friend_request',
+      headers: {
+        Accept: 'application/json',
+      },
+      data:
+      {
+        friendName: props.children.username
+      },
+      withCredentials: true,
+      credentials: 'include'
+    };
+    axios(config)
+      .then(function (response) {
+        reloadPage();
+      })
+      .catch(function (error) {
+        if (error.response.status === 401) {
+          window.location.href = "/";
+        }
+      });
+  }
+
+  function unfriend() {
+    var config = {
+      method: 'post',
+      url: backend_url + 'friend_list/remove_friend',
+      headers: {
+        Accept: 'application/json',
+      },
+      data:
+      {
+        friendName: props.children.username
+      },
+      withCredentials: true,
+      credentials: 'include'
+    };
+    axios(config)
+      .then(function (response) {
+        reloadPage();
+      })
+      .catch(function (error) {
+        if (error.response.status === 401) {
+          window.location.href = "/";
+        }
+      });
+  }
+
+  function unblock() {
+    var config = {
+      method: 'post',
+      url: backend_url + 'friend_list/unblock_user',
       headers: {
         Accept: 'application/json',
       },

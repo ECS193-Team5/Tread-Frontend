@@ -13,7 +13,7 @@ export function getUsername(thenFunc) {
     };
     axios(config)
       .then(function (response) {
-        thenFunc();
+        thenFunc(response.data);
       })
       .catch(function (error) {
 
