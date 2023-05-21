@@ -25,6 +25,7 @@ export function createLeague(inputData, thenFunc, errorFunc) {
 }
 
 export function getLeagueInfo(leagueID, thenFunc) {
+  console.log("Get League Func gets", leagueID, thenFunc);
   var config = {
     method: 'post',
     url: backend_url + 'league/get_league_name_description_type',

@@ -2,11 +2,19 @@ import LeagueObj from './LeagueObj';
 import {useState,useEffect} from 'react';
 import "../../css/Social/scroll.css";
 import axios from 'axios';
+import ZeroItem from '../Shared/ZeroItem';
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const LeagueScroll = (props) => {
     let [scrollType] = useState(props.type);
     let [information, setInformation] = useState([]);
+    let [showZero, setShowZero] = useState(false);
+    let showMessage = {
+        "league":"You are not in any leagues at this time.",
+        "sent":"You have no sent requests at this time.",
+        "admin":"You are not on the admin team for any leagues.",
+        "invite":"You have not been invited to any leagues at this time."
+    }
 
     function getAll(){
         // get Friends
@@ -23,6 +31,9 @@ const LeagueScroll = (props) => {
         axios(config)
         .then(function(response) {
             setInformation(response.data)
+            if (response.data.length === 0){
+                setShowZero(true);
+            }
         })
         .catch(function(error){
             if(error.response.status===401){
@@ -45,6 +56,9 @@ const LeagueScroll = (props) => {
         axios(config)
         .then(function(response) {
             setInformation(response.data)
+            if (response.data.length === 0){
+                setShowZero(true);
+            }
         })
         .catch(function(error){
             if(error.response.status===401){
@@ -66,6 +80,9 @@ const LeagueScroll = (props) => {
         axios(config)
         .then(function(response) {
             setInformation(response.data)
+            if (response.data.length === 0){
+                setShowZero(true);
+            }
         })
         .catch(function(error){
             if(error.response.status===401){
@@ -87,6 +104,9 @@ const LeagueScroll = (props) => {
           axios(config)
           .then(function(response) {
               setInformation(response.data)
+              if (response.data.length === 0){
+                setShowZero(true);
+            }
           })
           .catch(function(error){
               if(error.response.status===401){
@@ -122,6 +142,7 @@ const LeagueScroll = (props) => {
     return(
         <div className = "scroll">
             {information.map(makeLeagueObj)}
+            {(showZero) ? <ZeroItem message = {showMessage[scrollType]}></ZeroItem> : <></>}
         </div>
     )
 }

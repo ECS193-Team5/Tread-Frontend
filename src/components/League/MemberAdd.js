@@ -5,6 +5,7 @@ import '../../css/Shared/addUser.css';
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const MemberAdd = (props) => {
+    console.log("Member Add gets", props.leagueID);
 
     const [userText, setUserText] = useState("");
     const [usernameText, setUsernameText] = useState("");
@@ -30,6 +31,10 @@ const MemberAdd = (props) => {
               setUserText(response.data);
           })
           .catch(function(error){
+            if(error){
+                console.log(error);
+                return;
+            }
               if(error.response.status===401){
                 window.location.href = "/";
             }

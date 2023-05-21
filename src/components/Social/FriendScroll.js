@@ -1,13 +1,20 @@
 import {useState,useEffect} from 'react';
 import FriendObj from './FriendObj';
 import axios from 'axios';
+import ZeroItem from '../Shared/ZeroItem';
 import "../../css/Social/scroll.css";
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const FriendScroll = (props) => {
     let [scrollType] = useState(props.type);
     let [information, setInformation] = useState([]);
-
+    const [showZero, setShowZero] = useState(false);
+    let showMessage = {
+        "friend":"You have no friends at this time.",
+        "sent":"You have no sent requests at this time.",
+        "received":"You have no received requests at this time.",
+        "blocked":"You have not blocked anyone at this time."
+    }
     function getFriends(){
         // get Friends
         var config = {
@@ -22,6 +29,10 @@ const FriendScroll = (props) => {
         axios(config)
         .then(function(response) {
             setInformation(response.data);
+
+            if (response.data.length === 0){
+                setShowZero(true);
+            }
 
         })
         .catch(function(error){
@@ -45,6 +56,9 @@ const FriendScroll = (props) => {
         axios(config)
         .then(function(response) {
             setInformation(response.data);
+
+            setShowZero(response.data.length === 0);
+
         })
         .catch(function(error){
             if(error.response.status===401){
@@ -66,6 +80,8 @@ const FriendScroll = (props) => {
         axios(config)
         .then(function(response) {
             setInformation(response.data)
+
+            setShowZero(response.data.length === 0);
         })
         .catch(function(error){
             if(error.response.status===401){
@@ -88,6 +104,8 @@ const FriendScroll = (props) => {
         axios(config)
         .then(function(response) {
             setInformation(response.data)
+
+            setShowZero(response.data.length === 0);
         })
         .catch(function(error){
             if(error.response.status===401){
@@ -119,6 +137,7 @@ const FriendScroll = (props) => {
     return(
         <div className = "scroll">
             {information.map(makeFriendObj)}
+            {(showZero) ? <ZeroItem message = {showMessage[scrollType]}></ZeroItem> : <></>}
         </div>
     )
 }

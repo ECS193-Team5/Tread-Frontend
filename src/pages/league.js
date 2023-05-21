@@ -5,7 +5,7 @@ import Header from "../components/Shared/Header";
 import LeagueEditForm from '../components/League/LeagueEditForm';
 import LeagueHeader from "../components/League/LeagueHeader";
 import LeagueChallengeList from "../components/League/LeagueChallengeList";
-import LeagueMemberList from "../components/League/LeagueMemberList";
+import LeagueMemberSection from "../components/League/LeagueMemberSection";
 import LeagueLeaderboard from '../components/League/LeagueLeaderboard';
 
 import "../css/Shared/page.css";
@@ -40,7 +40,7 @@ const League = (props) => {
                                 <LeagueChallengeList>{{ "id": leagueName }}</LeagueChallengeList>
 
                                 :
-                                <LeagueMemberList>{{ "id": leagueName }}</LeagueMemberList>
+                                <LeagueMemberSection>{{ "id": leagueName }}</LeagueMemberSection>
                         }
                         {
                             (props.children.type === "description") ?
