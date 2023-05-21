@@ -12,6 +12,7 @@ import "../../css/Challenge/challengeObj.css";
 import "../../css/Shared/button.css";
 
 import challengeDropDownButton from "../../assets/challengeDropdown.png";
+import ShowDueDate from "./ShowDueDate";
 const IssuedChallengeObj = (props) => {
     const [leaderboardInfo, setLeaderboardInfo] = useState([]);
     const [showState, setState] = useState(false);
@@ -61,7 +62,7 @@ const IssuedChallengeObj = (props) => {
                 <div className="challengeMiddle">
                     <div className="challengeInnerMiddle">
                         <p className="challengeText">{title}</p>
-                        <p className="challengeText">{dueDate}</p>
+                        <ShowDueDate dueDate = {props.children.dueDate}/>
                     </div>
                     <div className="challengeInnerMiddle">
                         <ProgressBar>{{ "completed": percentageDone }}</ProgressBar>

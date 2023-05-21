@@ -1,12 +1,10 @@
 import PhotoDisplay from "../components/Challenge/PhotoDisplay";
+import ShowDueDate from "../components/Challenge/ShowDueDate";
 
 const TestDiv = () => {
     return(
         <div>
-            <PhotoDisplay photos={["NewUser#2224"]}/>
-            <PhotoDisplay photos={["NewUser#2224", "NewUser#2224"]}/>
-            <PhotoDisplay photos={["NewUser#2224", "NewUser#2224","NewUser#2224"]}/>
-            <PhotoDisplay photos={["NewUser#2224", "NewUser#2224","NewUser#2224", "NewUser#2224"]}/>
+            <ShowDueDate dueDate = {1684700000}/>
         </div>
     );
 }

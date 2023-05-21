@@ -3,6 +3,7 @@ import BoxLine from "./BoxLine";
 import AcceptChallengeButton from "./AcceptChallengeButton";
 import DeclineChallengeButton from "./DeclineChallengeButton";
 import { getChallengeTitle } from "../../helpers/calculationHelpers";
+import ShowDueDate from "./ShowDueDate";
 
 const ReceivedChallengeObj = (props) => {
     let title = getChallengeTitle(props.children.exercise);
@@ -16,7 +17,7 @@ const ReceivedChallengeObj = (props) => {
         </div>
         <div className="challengeMiddle">
             <p className="challengeText">{title}</p>
-            <p className="challengeText">{dueDate}</p>
+            <ShowDueDate dueDate = {props.children.dueDate}/>
         </div>
         <div className = "challengeEnd">
             <AcceptChallengeButton id = {props.children._id}></AcceptChallengeButton>
