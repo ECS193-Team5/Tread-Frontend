@@ -1,9 +1,11 @@
 import Line from "../Shared/Line";
-import { requestNotifications } from "../../routes/notifications";
+import { requestNotifications, deleteAllNotifications } from "../../routes/notifications";
 import { setDisplayProperty } from "../../helpers/CssEffects";
 import {useState, useEffect} from "react";
 import MailBoxEntry from "./MailBoxEntry";
+import deleteCircleButton from "../../assets/declineButtonX.png";
 import "../../css/Profile/mailBox.css";
+import "../../css/Shared/button.css";
 const MailBox = () =>{
     const [load, setLoad] = useState(false);
     const [info, setInfo] = useState([]);
@@ -36,8 +38,20 @@ const MailBox = () =>{
         return <MailBoxEntry decrementCount = {decrementCount}>{item}</MailBoxEntry>
     }
 
+    function turnOff(){
+        setDisplayProperty("MailBox", "none");
+    }
+    function deleteAll(){
+        deleteAllNotifications(turnOff);
+    }
     return(
         <div id = "MailBox">
+            <div id = "MailBoxHeader">
+                <h1>Notifications</h1>
+                <button onClick = {deleteAll} className="mailBoxDeleteButton"><p className="mailBoxDeleteButtonText">Delete All</p><img src = {deleteCircleButton}></img></button>
+            </div>
+
+
             {info.map(createMailBoxObj)}
             <Line></Line>
         </div>

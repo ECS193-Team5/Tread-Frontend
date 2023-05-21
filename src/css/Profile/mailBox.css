@@ -1,3 +1,9 @@
+#MailBoxHeader{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .mailBoxEntry{
     box-sizing: border-box;
     height: 95px;

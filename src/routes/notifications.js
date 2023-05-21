@@ -42,3 +42,23 @@ export function deleteNotification(id, thenFunc){
         });
 
 }
+
+export function deleteAllNotifications(thenFunc){
+    var config = {
+        method: 'post',
+        url: backend_url + 'notifications/delete_all_notifications',
+        headers: {
+            Accept: 'application/json',
+        },
+        withCredentials: true,
+        credentials: 'include'
+    };
+    axios(config)
+        .then(function (response) {
+            thenFunc()
+        })
+        .catch(function (error) {
+            redirectLogout(error);
+        });
+
+}
