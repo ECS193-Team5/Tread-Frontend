@@ -23,7 +23,6 @@ const IssuedChallengeObj = (props) => {
     let myProgressRealUnits = calculateProgress(myProgressBaseUnits, props.children.exercise.unit);
     let percentageDone = myProgressBaseUnits / totalBaseUnits * 100;
     let title = getChallengeTitle(props.children.exercise);
-    let dueDate = new Date(props.children.dueDate).toISOString().split("T")[0];
     let challengeID = props.children._id;
 
     useEffect(
