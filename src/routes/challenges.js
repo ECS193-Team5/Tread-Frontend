@@ -5,6 +5,7 @@ const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 /*** Add Challenges  ***/
 export function addChallenge(inputData, thenFunc, errorFunc) {
+    console.log(inputData);
     var config = {
         method: 'post',
         url: backend_url + "challenges/add_" + inputData.receiverGroup + "_challenge",
