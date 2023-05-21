@@ -3,7 +3,7 @@ import "../../css/Shared/zeroItem.css";
 
 const ZeroItem = (props) => {
     return(
-        <div>
+        <div className="zeroItemBox">
             <img className = "zeroItemImg" src = {zeroItemImage}></img>
             <p className = "zeroItemText">{props.message}</p>
         </div>
