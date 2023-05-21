@@ -76,6 +76,7 @@
 .objDropdown{
     position: relative;
     top: 20px;
+    left: -45px;
 }
 
 .objWritingLeagueSection:hover{
