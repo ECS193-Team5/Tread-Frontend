@@ -10,6 +10,8 @@ import { getGlobalChallengeLeaderboard } from "../../routes/global_challenges";
 import globalChallengeImage from "../../assets/globalChallenge.png";
 import "../../css/Challenge/challengeObj.css";
 import challengeDropDownButton from "../../assets/challengeDropdown.png";
+import ShowDueDate from "./ShowDueDate";
+
 const GlobalChallengeObj = (props) => {
     const [showState, setState] = useState(false);
     const [leaderboardInfo, setLeaderboardInfo] = useState([]);
@@ -88,7 +90,7 @@ const GlobalChallengeObj = (props) => {
                 <div className="challengeMiddle">
                     <div className="challengeInnerMiddle">
                         <p className="challengeText">{title}</p>
-                        <p className="challengeText">{dueDate}</p>
+                        <ShowDueDate dueDate = {props.children.dueDate}/>
                     </div>
                     <div className="challengeInnerMiddle">
                         <ProgressBar>{{ "completed": percentageDone }}</ProgressBar>

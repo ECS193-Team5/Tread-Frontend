@@ -84,5 +84,6 @@
     position:relative;
     top: 25px;
     z-index: 2;
+    left: -20px;
     overflow: visible;
 }

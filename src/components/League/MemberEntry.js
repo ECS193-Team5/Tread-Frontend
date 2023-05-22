@@ -26,29 +26,29 @@ const MemberEntry = (props) => {
   useEffect(
     () => {
       if (memberDropDownEntries.length === 0) {
-        setDisplayProperty("moreInfoButtonMember"+ props.children.username, "none");
+        setDisplayProperty("moreInfoButtonMember"+ props.children.memberData.username, "none");
       }else{
-        setDisplayProperty("moreInfoButtonMember"+ props.children.username, "flex");
+        setDisplayProperty("moreInfoButtonMember"+ props.children.memberData.username, "flex");
       }
     }, [memberDropDownEntries]
   );
 
   function isFriend(){
-    return props.friends.includes(props.children.username);
+    return props.children.scrollData.friends.includes(props.children.memberData.username);
   }
 
   function isBlocked(){
-    return props.blocked.includes(props.children.username);
+    return props.children.scrollData.blocked.includes(props.children.memberData.username);
   }
 
   function isSelf(){
-    return props.children.username === props.username;
+    return props.children.memberData.username === props.children.scrollData.username;
   }
 
   function calculateMemberEntries() {
-    let scrollType = props.scrollType;
-    let otherUserType = props.children.role;
-    let selfType = props.selfType;
+    let scrollType = props.children.scrollData.scrollType;
+    let otherUserType = props.children.memberData.role;
+    let selfType = props.children.scrollData.role;
     let ifSelfAdmin = selfType === "admin" || selfType === "owner";
 
     let dropdownOptions = [];
@@ -107,7 +107,7 @@ const MemberEntry = (props) => {
       },
       data:
       {
-        friendName: props.children.username
+        friendName: props.children.memberData.username
       },
       withCredentials: true,
       credentials: 'include'
@@ -132,7 +132,7 @@ const MemberEntry = (props) => {
       },
       data:
       {
-        friendName: props.children.username
+        friendName: props.children.memberData.username
       },
       withCredentials: true,
       credentials: 'include'
@@ -157,7 +157,7 @@ const MemberEntry = (props) => {
       },
       data:
       {
-        friendName: props.children.username
+        friendName: props.children.memberData.username
       },
       withCredentials: true,
       credentials: 'include'
@@ -183,7 +183,7 @@ const MemberEntry = (props) => {
       data:
       {
 
-        friendName: props.children.username
+        friendName: props.children.memberData.username
       },
       withCredentials: true,
       credentials: 'include'
@@ -208,16 +208,16 @@ const MemberEntry = (props) => {
       },
       data:
       {
-        recipient: props.children.username,
-        leagueID: props.leagueID,
-        leagueName: props.leagueName
+        recipient: props.children.memberData.username,
+        leagueID: props.children.scrollData.leagueID,
+        leagueName: props.children.scrollData.leagueName
       },
       withCredentials: true,
       credentials: 'include'
     };
     axios(config)
       .then(function (response) {
-        setDisplayProperty(props.children.username + "MemberEntry", "none");
+        setDisplayProperty(props.children.memberData.username + "MemberEntry", "none");
       })
       .catch(function (error) {
         if (error.response.status === 401) {
@@ -235,16 +235,16 @@ const MemberEntry = (props) => {
       },
       data:
       {
-        recipient: props.children.username,
-        leagueID: props.leagueID,
-        leagueName: props.leagueName
+        recipient: props.children.memberData.username,
+        leagueID: props.children.scrollData.leagueID,
+        leagueName: props.children.scrollData.leagueName
       },
       withCredentials: true,
       credentials: 'include'
     };
     axios(config)
       .then(function (response) {
-        setDisplayProperty(props.children.username + "MemberEntry", "none");
+        setDisplayProperty(props.children.memberData.username + "MemberEntry", "none");
       })
       .catch(function (error) {
         if (error.response.status === 401) {
@@ -262,9 +262,9 @@ const MemberEntry = (props) => {
       },
       data:
       {
-        recipient: props.children.username,
-        leagueID: props.leagueID,
-        leagueName: props.leagueName
+        recipient: props.children.memberData.username,
+        leagueID: props.children.scrollData.leagueID,
+        leagueName: props.children.scrollData.leagueName
       },
       withCredentials: true,
       credentials: 'include'
@@ -289,9 +289,9 @@ const MemberEntry = (props) => {
       },
       data:
       {
-        recipient: props.children.username,
-        leagueID: props.leagueID,
-        leagueName: props.leagueName
+        recipient: props.children.memberData.username,
+        leagueID: props.children.scrollData.leagueID,
+        leagueName: props.children.scrollData.leagueName
       },
       withCredentials: true,
       credentials: 'include'
@@ -316,15 +316,15 @@ const MemberEntry = (props) => {
       },
       data:
       {
-        recipient: props.children.username,
-        leagueID: props.leagueID
+        recipient: props.children.memberData.username,
+        leagueID: props.children.scrollData.leagueID
       },
       withCredentials: true,
       credentials: 'include'
     };
     axios(config)
       .then(function (response) {
-        setDisplayProperty(props.children.username + "MemberEntry", "none");
+        setDisplayProperty(props.children.memberData.username + "MemberEntry", "none");
       })
       .catch(function (error) {
         if (error.response.status === 401) {
@@ -342,15 +342,15 @@ const MemberEntry = (props) => {
       },
       data:
       {
-        recipient: props.children.username,
-        leagueID: props.leagueID
+        recipient: props.children.memberData.username,
+        leagueID: props.children.scrollData.leagueID
       },
       withCredentials: true,
       credentials: 'include'
     };
     axios(config)
       .then(function (response) {
-        setDisplayProperty(props.children.username + "MemberEntry", "none");
+        setDisplayProperty(props.children.memberData.username + "MemberEntry", "none");
       })
       .catch(function (error) {
         if (error.response.status === 401) {
@@ -368,15 +368,15 @@ const MemberEntry = (props) => {
       },
       data:
       {
-        recipient: props.children.username,
-        leagueID: props.leagueID
+        recipient: props.children.memberData.username,
+        leagueID: props.children.scrollData.leagueID
       },
       withCredentials: true,
       credentials: 'include'
     };
     axios(config)
       .then(function (response) {
-        setDisplayProperty(props.children.username + "MemberEntry", "none");
+        setDisplayProperty(props.children.memberData.username + "MemberEntry", "none");
       })
       .catch(function (error) {
         if (error.response.status === 401) {
@@ -394,15 +394,15 @@ const MemberEntry = (props) => {
       },
       data:
       {
-        recipient: props.children.username,
-        leagueID: props.leagueID
+        recipient: props.children.memberData.username,
+        leagueID: props.children.scrollData.leagueID
       },
       withCredentials: true,
       credentials: 'include'
     };
     axios(config)
       .then(function (response) {
-        setDisplayProperty(props.children.username + "MemberEntry", "none");
+        setDisplayProperty(props.children.memberData.username + "MemberEntry", "none");
       })
       .catch(function (error) {
         if (error.response.status === 401) {
@@ -416,35 +416,35 @@ const MemberEntry = (props) => {
   }
 
   return (
-    <div id = {props.children.username + "MemberEntry"} className="memberEntry">
+    <div id = {props.children.memberData.username + "MemberEntry"} className="memberEntry">
       <div className="memberEntryLeft">
         <div>
-          <img className="memberPicture" src={createProfilePictureURL(props.children.username)} />
+          <img className="memberPicture" src={createProfilePictureURL(props.children.memberData.username)} />
         </div>
         <div class="memberNames">
-          <p className="memberDisplayName memberEntryText">{props.children.displayName}</p>
-          <p className="memberUsername memberEntryText">{props.children.username}</p>
+          <p className="memberDisplayName memberEntryText">{props.children.memberData.displayName}</p>
+          <p className="memberUsername memberEntryText">{props.children.memberData.username}</p>
         </div>
       </div>
       <div className="memberEntryRight">
 
 
         <div>
-          {(props.children.role === "admin" || props.children.role === "owner") ?
+          {(props.children.memberData.role === "admin" || props.children.memberData.role === "owner") ?
             <img src={adminKey} alt="key" />
             :
             <></>
           }
         </div>
         <div>
-          {(props.children.role === "owner") ?
+          {(props.children.memberData.role === "owner") ?
             <img src={ownerCrown} alt="crown" />
             :
             <></>
           }
         </div>
 
-        <div className="moreInfoDiv" id = {"moreInfoButtonMember"+ props.children.username}>
+        <div className="moreInfoDiv" id = {"moreInfoButtonMember"+ props.children.memberData.username}>
           <button className="moreInfoButton" onClick={toggleSelectShow}>
             <img src={moreInfoButton} />
           </button>

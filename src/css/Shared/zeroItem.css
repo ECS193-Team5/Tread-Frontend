@@ -1,0 +1,16 @@
+.zeroItemBox{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+.zeroItemImg{
+    width: 50px;
+}
+
+.zeroItemText{
+    color: #014421;
+    padding: 10px;
+    margin: 0;
+}

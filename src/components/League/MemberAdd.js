@@ -30,6 +30,9 @@ const MemberAdd = (props) => {
               setUserText(response.data);
           })
           .catch(function(error){
+            if(error){
+                return;
+            }
               if(error.response.status===401){
                 window.location.href = "/";
             }

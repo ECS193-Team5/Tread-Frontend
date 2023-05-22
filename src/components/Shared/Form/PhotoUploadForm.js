@@ -18,7 +18,6 @@ const PhotoUploadForm = (props) => {
 
 
     function onImageChange (event) {
-        // Select the photo
         let photo = event.target.files[0];
         getBase64(photo);
     }

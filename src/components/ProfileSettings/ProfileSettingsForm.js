@@ -11,9 +11,10 @@ import DisplayNameForm from '../Shared/Form/DisplayNameForm';
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const ProfileSettingsForm = (props) => {
-    const [photo, setPhoto] = useState(props.children.photo);
+    const [photo, setPhoto] = useState();
     const [displayName, setDisplayName] = useState(props.children.displayName);
     const [displayErrorResponse, setDisplayErrorResponse] = useState("");
+    const [photoResponse, setPhotoResponse] = useState("");
 
     function submitPhoto(){
       var formData = new FormData();
@@ -30,8 +31,10 @@ const ProfileSettingsForm = (props) => {
       };
     axios(config)
     .then(function(response){
+      setPhotoResponse("You have succesfully uploaded your photo. Please give around 5 minutes to see changes.");
     })
     .catch(function(error){
+      setPhotoResponse("Could not update photo at this time. Please try again later.");
       if(error.response.status===401){
         window.location.href = "/";
     }
@@ -71,6 +74,7 @@ const ProfileSettingsForm = (props) => {
                 <h2>Profile Picture</h2>
                 <PhotoUploadForm>{{"default":props.children.photo, "func":setPhoto}}</PhotoUploadForm>
                 <button className="submitButton" onClick = {submitPhoto}><p className = "submitButtonText">Submit</p></button>
+                <p>{photoResponse}</p>
 
           </div>
             <div className="formObj">

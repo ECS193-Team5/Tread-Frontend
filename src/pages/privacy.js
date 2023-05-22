@@ -145,7 +145,7 @@ const Privacy = () => {
 
 <ul>
 
-<li><span className="body_text"><em>Mobile Device Access.</em> We may request access or permission to certain features from your mobile device, including your mobile device's camera, healthkit, healthconnect, and other features. If you wish to change our access or permissions, you may do so in your device's settings.</span></li>
+<li><span className="body_text"><em>Mobile Device Access.</em> We may request access or permission to certain features from your mobile device, including your mobile device's camera, healthKit (Apple), healthConnect, and other features. The use of information received from Health Connect will adhere to the Health Connect Permissions policy, including the Limited Use requirements. If you wish to change our access or permissions, you may do so in your device's settings. </span></li>
 
 </ul>
 

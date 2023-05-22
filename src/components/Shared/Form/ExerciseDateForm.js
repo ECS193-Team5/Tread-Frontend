@@ -68,8 +68,10 @@ const ExerciseDateForm = (props) => {
         let date = ("0" + date_ob.getDate()).slice(-2);
         let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
         let year = date_ob.getFullYear();
+        let hour = ("0" + (date_ob.getHours() + 1)).slice(-2);
+        let sec = ("0" + (date_ob.getSeconds() + 1)).slice(-2);
 
-        return (year + "-" + month + "-" + date);
+        return (year + "-" + month + "-" + date +"T"+hour+":"+sec);
     }
 
     function getTomorrow(){
@@ -79,8 +81,10 @@ const ExerciseDateForm = (props) => {
         let date = ("0" + date_ob.getDate()).slice(-2);
         let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
         let year = date_ob.getFullYear();
+        let hour = ("0" + (date_ob.getHours() + 1)).slice(-2);
+        let sec = ("0" + (date_ob.getSeconds() + 1)).slice(-2);
 
-        return (year + "-" + month + "-" + date);
+        return (year + "-" + month + "-" + date +"T"+hour+":"+sec);
       }
 
       const stopKey = (e) =>{
@@ -91,12 +95,12 @@ const ExerciseDateForm = (props) => {
         <div>
             <div className="formObj">
                 <p className="formObjInner">Issue Date</p>
-                <input id="issueDateInput" onKeyDown={stopKey} className="formDateInput" type="date" min={getToday()} onChange={issueDateChange}></input>
+                <input id="issueDateInput" onKeyDown={stopKey} className="formDateInput" type="datetime-local" min={getToday()} onChange={issueDateChange}></input>
             </div>
 
             <div className="formObj">
                 <p className="formObjInner">Due Date</p>
-                <input id="dueDateInput"   onKeyDown={stopKey}  className="formDateInput" type="date" min={getTomorrow()} onChange={dueDateChange}></input>
+                <input id="dueDateInput"   onKeyDown={stopKey}  className="formDateInput" type="datetime-local" min={getTomorrow()} onChange={dueDateChange}></input>
                 <p className="errorBox">{dueDateError}</p>
             </div>
         </div>);

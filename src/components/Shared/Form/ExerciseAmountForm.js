@@ -10,6 +10,11 @@ const ExerciseAmountForm = (props) => {
             props.updateAmount(0);
             return;
         }
+        else if(targetAmount >= 1000000){
+            setAmountError("Exercise Amount must be less than 1000000");
+            props.updateAmount(0);
+            return;
+        }
         setAmountError("");
         props.updateAmount(targetAmount);
     }

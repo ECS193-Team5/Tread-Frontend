@@ -3,11 +3,7 @@ import hardCodedInfo from "../../helpers/SharedHardCodeInfo.json";
 import goldTrophy from "../../assets/GoldTrophy.png";
 import silverTrophy from "../../assets/SilverTrophy.png";
 import bronzeTrophy from "../../assets/BronzeTrophy.png";
-let calculateProgress = (progress, goalUnit) => {
-    // Turn the progress in base units to this unit
-
-    return progress*hardCodedInfo.conversionKey[goalUnit];
-}
+import { calculateProgress } from "../../helpers/calculationHelpers";
 
 const min = (a, b) => {
     if (a < b){

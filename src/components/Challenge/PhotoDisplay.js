@@ -48,7 +48,6 @@ const PhotoDisplay = (props) => {
     }
 
     function createPhotoObj(pictureURL, index, photoLength, additionalNumber){
-        console.log("Index is", index);
         return (<div className = "holder" key = {pictureURL}><img className = "photoDisplayObj"  style = {calculateStyle(index, photoLength, additionalNumber)} src = {pictureURL} alt = "profile"/></div>);
     }
 
