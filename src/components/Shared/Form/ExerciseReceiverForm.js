@@ -44,10 +44,19 @@ const ExerciseReceiverForm = (props) => {
 
     useEffect (
         () => {
-            if(inviteOptions && props.defaultReceiverGroup !== ""){
+            if(inviteOptions && props.defaultReceiverGroup === "friend"){
                 if (inviteOptions.includes(props.defaultReceiver)){
                     document.getElementById("receiverChangeElement").value = props.defaultReceiver;
                     props.updateReceiver(props.defaultReceiver);
+                }
+            }
+            if(inviteOptions && props.defaultReceiverGroup === "league"){
+                console.log(inviteOptions);
+                for(let i = 0; i< inviteOptions.length; i++){
+                    if (inviteOptions[i].split(" - ")[1] === props.defaultReceiver){
+                        document.getElementById("receiverChangeElement").value = inviteOptions[i];
+                        props.updateReceiver(props.defaultReceiver);
+                    }
                 }
             }
         }, [props.defaultReceiverGroup, props.defaultReceiver, inviteOptions]
