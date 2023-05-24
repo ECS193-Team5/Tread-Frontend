@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import BoxLine from "./BoxLine";
 import ProgressBar from "../Shared/ProgressBar";

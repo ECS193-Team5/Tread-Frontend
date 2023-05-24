@@ -1,3 +1,4 @@
+import React from "react";
 import "../../css/Profile/medalObj.css";
 import hardCodedInfo from "../../helpers/SharedHardCodeInfo.json";
 import goldTrophy from "../../assets/GoldTrophy.png";

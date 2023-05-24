@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import React from 'react';
 import ChallengeScroll from "../Challenge/ChallengeScroll";
 
 const LeagueChallengeList = (props) => {

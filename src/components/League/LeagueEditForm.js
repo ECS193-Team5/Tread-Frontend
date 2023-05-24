@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PhotoUploadForm from "../Shared/Form/PhotoUploadForm";
 import LeagueNameForm from "../Shared/Form/LeagueNameForm";
 import LeagueDescriptionForm from "../Shared/Form/LeagueDescriptionForm";

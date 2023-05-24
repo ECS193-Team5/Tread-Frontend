@@ -1,5 +1,5 @@
 import LeagueLeaderboardEntry from "./LeagueLeaderboardEntry";
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {setDisplayProperty} from "../../helpers/CssEffects";
 import axios from 'axios';
 

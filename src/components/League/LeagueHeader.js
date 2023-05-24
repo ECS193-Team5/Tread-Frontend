@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import QRcode from "qrcode";
 import {createLeaguePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import { getLeagueInfo, getNumberActiveChallengesLeague, getMembersLeague, getLeagueRole } from '../../routes/league';

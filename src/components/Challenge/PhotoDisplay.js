@@ -1,4 +1,4 @@
-import { useState , useEffect} from 'react';
+import React, { useState , useEffect} from 'react';
 import { createProfilePictureURL } from '../../helpers/CloudinaryURLHelpers';
 import '../../css/Challenge/photoDisplay.css';
 

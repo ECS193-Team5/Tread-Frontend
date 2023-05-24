@@ -1,3 +1,4 @@
+import React from "react";
 import ChallengeForm from "../components/AddChallenge/ChallengeForm";
 import SideBar from "../components/Shared/SideBar";
 import "../css/Shared/page.css";

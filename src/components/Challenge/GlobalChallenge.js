@@ -1,3 +1,4 @@
+import React from "react";
 import ChallengeScroll from "./ChallengeScroll";
 
 import "../../css/Challenge/challengeObj.css";

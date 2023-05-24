@@ -1,3 +1,4 @@
+import React from "react";
 import PhotoDisplay from "./PhotoDisplay";
 import BoxLine from "./BoxLine";
 import AcceptChallengeButton from "./AcceptChallengeButton";

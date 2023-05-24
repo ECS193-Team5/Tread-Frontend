@@ -1,3 +1,4 @@
+import React from "react";
 import PhotoDisplay from "../components/Challenge/PhotoDisplay";
 import ShowDueDate from "../components/Challenge/ShowDueDate";
 import LeagueMemberScroll from "../components/League/LeagueMemberScroll";

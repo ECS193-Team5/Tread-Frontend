@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "../../css/League/member.css";
 import { createProfilePictureURL } from "../../helpers/CloudinaryURLHelpers";

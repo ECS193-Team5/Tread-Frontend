@@ -1,3 +1,4 @@
+import React from "react";
 import LeagueMemberScroll from "./LeagueMemberScroll";
 import MemberAdd from "./MemberAdd";
 import Bar from "../Shared/Bar";

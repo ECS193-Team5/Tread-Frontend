@@ -1,3 +1,4 @@
+import React from "react";
 import zeroItemImage from "../../assets/ZeroItem.png";
 import "../../css/Shared/zeroItem.css";
 

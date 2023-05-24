@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ExerciseNameForm from '../Shared/Form/ExerciseNameForm';
 import ExerciseAmountForm from '../Shared/Form/ExerciseAmountForm';
 import ExerciseLoggedDateForm from "../Shared/Form/ExerciseLoggedDateForm";

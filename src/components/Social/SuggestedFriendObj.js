@@ -1,3 +1,4 @@
+import React from "react";
 import axios from "axios";
 import {createProfilePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import { setDisplayProperty } from "../../helpers/CssEffects";

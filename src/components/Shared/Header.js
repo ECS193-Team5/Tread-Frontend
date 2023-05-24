@@ -1,3 +1,4 @@
+import React from "react";
 import PageSwitch from "./PageSwitch";
 import UserSettingsButton from "./UserSettingsButton";
 import "../../css/Shared/header.css";

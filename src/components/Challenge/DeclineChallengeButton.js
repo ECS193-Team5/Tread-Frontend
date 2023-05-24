@@ -1,4 +1,4 @@
-import { setDisplayProperty } from "../../helpers/CssEffects";
+import React, { setDisplayProperty } from "../../helpers/CssEffects";
 import { declineChallenge } from "../../routes/challenges";
 import '../../css/Shared/button.css';
 import declineImage from "../../assets/declineButtonX.png";

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const LeagueNameForm = (props) => {
     const [nameError, setNameError] = useState("");

@@ -1,3 +1,4 @@
+import React from "react";
 import SideBar from "../components/Shared/SideBar";
 import Header from "../components/Shared/Header";
 import AddExerciseBox from "../components/Challenge/AddExerciseBox";

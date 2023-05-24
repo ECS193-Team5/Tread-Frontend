@@ -1,3 +1,4 @@
+import React from "react";
 import LeaderboardEntry from "./LeaderboardEntry";
 
 const Leaderboard = (props) => {

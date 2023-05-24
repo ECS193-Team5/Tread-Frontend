@@ -1,3 +1,4 @@
+import React from "react";
 import BarButton from "./BarButton";
 import { changeBarButton } from "../../helpers/CssEffects";
 import "../../css/Shared/button.css";

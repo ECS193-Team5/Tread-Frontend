@@ -1,3 +1,4 @@
+import React from "react";
 import {createLeaguePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import { setDisplayProperty } from "../../helpers/CssEffects";
 import axios from 'axios';

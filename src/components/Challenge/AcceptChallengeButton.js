@@ -1,3 +1,4 @@
+import React from "react";
 import { setDisplayProperty } from "../../helpers/CssEffects";
 import { acceptChallenge } from "../../routes/challenges";
 import '../../css/Shared/button.css';

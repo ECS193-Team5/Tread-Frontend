@@ -1,7 +1,7 @@
 import Line from "../Shared/Line";
 import { requestNotifications, deleteAllNotifications } from "../../routes/notifications";
 import { setDisplayProperty } from "../../helpers/CssEffects";
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import MailBoxEntry from "./MailBoxEntry";
 import deleteCircleButton from "../../assets/declineButtonX.png";
 import "../../css/Profile/mailBox.css";
@@ -41,9 +41,11 @@ const MailBox = () =>{
     function turnOff(){
         setDisplayProperty("MailBox", "none");
     }
+
     function deleteAll(){
         deleteAllNotifications(turnOff);
     }
+
     return(
         <div id = "MailBox">
             <div id = "MailBoxHeader">

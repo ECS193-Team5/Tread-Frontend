@@ -1,5 +1,5 @@
 
-import {useState,useEffect} from 'react';
+import React, {useState,useEffect} from 'react';
 import { getBlockedList, getFriendList } from '../../routes/friend_list';
 import axios from 'axios';
 import ZeroItem from '../Shared/ZeroItem';

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Line from "../Shared/Line";
 import PhotoUploadForm from "../Shared/Form/PhotoUploadForm";
 import LeagueDescriptionForm from "../Shared/Form/LeagueDescriptionForm";

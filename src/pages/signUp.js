@@ -2,7 +2,7 @@ import "../css/SignUp/signUp.css";
 
 import SignUpSideBar from "../components/SignUp/SignUpSideBar";
 import SignUpForm from "../components/SignUp/SignUpForm";
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 
 // const backend_url = process.env.REACT_APP_PROD_BACKEND
