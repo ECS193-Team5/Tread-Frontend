@@ -81,9 +81,9 @@ const ChallengeStats = (props) => {
     }
 
     return (
-        <div>
-            <button className="submitButton" onClick={recommendExercise}><p className="submitButtonText">Recommend a Challenge</p></button>
-            <p className="greenBaseText">{message}</p>
+        <div data-testid="ChallengeStatsComponent">
+            <button data-testid="ChallengeStatsButton" className="submitButton" onClick={recommendExercise}><p className="submitButtonText">Recommend a Challenge</p></button>
+            <p data-testid="ChallengeStatsMessage" className="greenBaseText">{message}</p>
         </div>
     )
 }

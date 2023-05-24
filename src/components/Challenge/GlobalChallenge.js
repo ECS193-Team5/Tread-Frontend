@@ -5,7 +5,7 @@ import "../../css/Challenge/challengeObj.css";
 
 const GlobalChallenge = () => {
   return (
-    <div id="GlobalChallenge" className="challengeSection">
+    <div data-testid="GlobalChallengeComponent" id="GlobalChallenge" className="challengeSection">
       <div>
         <h2>Global Challenges</h2>
       </div>

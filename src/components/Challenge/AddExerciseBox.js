@@ -56,10 +56,10 @@ const AddExerciseBox = () => {
     }
 
     return (
-        <div id="AddExerciseBox">
+        <div data-testid="AddExerciseBoxComponent" id="AddExerciseBox">
             <div id="AddExerciseHeader">
                 <h2>Log an Exercise</h2>
-                <button className="dropDownButton" onClick={toggleShowState}><img className="dropDownButton" id="AddExerciseButtonShowState" src={dropdownImage} alt="Dropdown" /></button>
+                <button data-testid="AddExerciseBoxToggleShowStateButton" className="dropDownButton" onClick={toggleShowState}><img className="dropDownButton" id="AddExerciseButtonShowState" src={dropdownImage} alt="Dropdown" /></button>
             </div>
             {showState
                 ?
@@ -69,9 +69,9 @@ const AddExerciseBox = () => {
                     <ExerciseLoggedDateForm updateLoggedDate={setLoggedDate} />
 
                     <div className="formButton">
-                        <button className="submitButton" onClick={submitExercise}><p className="submitButtonText">Submit</p></button>
+                        <button data-testid="AddExerciseBoxSubmitExerciseButton" className="submitButton" onClick={submitExercise}><p className="submitButtonText">Submit</p></button>
                     </div>
-                    <p className="errorBox">{submitError}</p>
+                    <p data-testid="AddExerciseBoxErrorBox" className="errorBox">{submitError}</p>
                 </div>
                 :
                 <></>

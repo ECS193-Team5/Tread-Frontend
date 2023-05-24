@@ -58,7 +58,7 @@ const ChallengeScroll = (props) => {
         }, [scrollType]
     );
 
-    return (<div id = "ChallengeScroll">
+    return (<div data-testid="ChallengeScrollComponent" id = "ChallengeScroll">
         {(scrollType === "issued") ? information.map(makeIssuedChallengeObj) : <></>}
         {(scrollType === "sent") ? information.map(makeSentChallengeObj) : <></>}
         {(scrollType === "received") ? information.map(makeReceivedChallengeObj) : <></>}

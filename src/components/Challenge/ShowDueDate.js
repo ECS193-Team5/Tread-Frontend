@@ -46,7 +46,7 @@ const ShowDueDate = (props) => {
         return () => clearInterval(interval);
       }, []);
 
-    return (<p style={styleColor}>
+    return (<p data-testid="ShowDueDateComponent" style={styleColor}>
         {timeLeft}
     </p>)
 };

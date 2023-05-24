@@ -14,7 +14,7 @@ const DeleteChallengeButton = (props) => {
     }
 
     return(
-        <button id = {"DeleteButton"+props.id} className = "circleButton" onClick = {onDelete}>
+        <button data-testid="DeleteChallengeButtonComponent" id = {"DeleteButton"+props.id} className = "circleButton" onClick = {onDelete}>
             <img className = "circleButtonInner" src ={trashCanImage}/>
         </button>
     );

@@ -104,7 +104,7 @@ const ChallengeForm = () =>{
     }
 
     return (
-        <div id = "ChallengeForm" className = "Form">
+        <div id = "ChallengeForm" className = "Form" data-testid="ChallengeFormComponent">
             <h1>Challenges</h1>
             <h2>Create a Challenge</h2>
             <Line/>
@@ -116,8 +116,8 @@ const ChallengeForm = () =>{
 
 
             <div className = "formObj">
-            <button className="submitButton" onClick = {submitChallenge}><p className = "submitButtonText">Submit</p></button>
-            <p className = "errorBox">{submitError}</p>
+            <button data-testid="ChallengeFormSubmitButton" className="submitButton" onClick = {submitChallenge}><p className = "submitButtonText">Submit</p></button>
+            <p data-testid="ChallengeFormErrorBox" className = "errorBox">{submitError}</p>
             </div>
 
         </div>

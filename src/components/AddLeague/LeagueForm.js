@@ -61,7 +61,7 @@ const LeagueForm = () => {
   }
 
   return (
-    <div id="LeagueForm" className="Form">
+    <div data-testid="LeagueFormComponent" id="LeagueForm" className="Form">
       <h1>Social Hub</h1>
       <h2>Create a League</h2>
       <Line />
@@ -78,8 +78,8 @@ const LeagueForm = () => {
 
 
       <div className="formObj">
-        <button className="submitButton" onClick={submitLeague}><p className="submitButtonText">Submit</p></button>
-        <p className="errorBox">{submitError}</p>
+        <button data-testid="LeagueFormButton" className="submitButton" onClick={submitLeague}><p className="submitButtonText">Submit</p></button>
+        <p data-testid="LeagueFormButtonErrorBox" className="errorBox">{submitError}</p>
       </div>
 
     </div>
