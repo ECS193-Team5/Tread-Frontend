@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { setDisplayProperty } from "../../../helpers/CssEffects";
+
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const ExerciseReceiverForm = (props) => {
@@ -9,6 +11,7 @@ const ExerciseReceiverForm = (props) => {
     useEffect(
         () => {
             if (receiverGroup === "friend") {
+                console.log("get friends");
                 getFriends();
             }
             else if (receiverGroup === "league") {
@@ -17,6 +20,38 @@ const ExerciseReceiverForm = (props) => {
         }, [receiverGroup]
     );
 
+    useEffect(
+        () => {
+            if (receiverGroup === "friend" || receiverGroup === "league") {
+                setDisplayProperty("secondarySelect", "block");
+            }
+            else {
+                console.log("the else");
+                setDisplayProperty("secondarySelect", "none");
+            }
+        }, [receiverGroup]
+    );
+
+    useEffect (
+        () => {
+            if(props.defaultReceiverGroup){
+                setReceiverGroup(props.defaultReceiverGroup);
+                props.updateReceiverGroup(props.defaultReceiverGroup);
+                document.getElementById("receiverGroupChangeElement").value = props.defaultReceiverGroup;
+            }
+        }, [props.defaultReceiverGroup]
+    );
+
+    useEffect (
+        () => {
+            if(inviteOptions && props.defaultReceiverGroup !== ""){
+                if (inviteOptions.includes(props.defaultReceiver)){
+                    document.getElementById("receiverChangeElement").value = props.defaultReceiver;
+                    props.updateReceiver(props.defaultReceiver);
+                }
+            }
+        }, [props.defaultReceiverGroup, props.defaultReceiver, inviteOptions]
+    );
     function getFriends() {
         var config = {
             method: 'post',
@@ -66,7 +101,6 @@ const ExerciseReceiverForm = (props) => {
     const receiverGroupChange = (event) => {
         setReceiverGroup(event.target.value);
         props.updateReceiverGroup(event.target.value);
-
     }
 
     const receiverChange = (event) => {
@@ -78,7 +112,7 @@ const ExerciseReceiverForm = (props) => {
             <div className="formObj">
                 <p className="formObjInner">What kind of challenge?</p>
                 <div className="formObjInner">
-                    <select className="formSelect" onChange={receiverGroupChange} defaultValue = "self">
+                    <select className="formSelect" id = "receiverGroupChangeElement" onChange={receiverGroupChange} defaultValue = "self">
                         <option value="self">Self</option>
                         <option value="friend">Friend</option>
                         <option value="league">League</option>
@@ -86,22 +120,16 @@ const ExerciseReceiverForm = (props) => {
                 </div>
             </div>
 
-            {
-                (receiverGroup === "friend" || receiverGroup === "league") ?
-                    <div className="formObj">
-                        <p className="formObjInner">Who should receive the challenge?</p>
-                        <div>
-                            <select onChange={receiverChange} className="formSelect" defaultValue = "none">
-                                <option value="none" disabled hidden></option>
-                                {inviteOptions.map((name) => { return <option value={name} key = {name}>{name.split("-")[0]}</option>; })}
-                            </select>
-                        </div>
-                    </div>
 
-                    :
-
-                    <></>
-            }
+            <div id = "secondarySelect" className="formObj">
+                <p className="formObjInner">Who should receive the challenge?</p>
+                <div>
+                    <select id = "receiverChangeElement" onChange={receiverChange}  className="formSelect" defaultValue = "none">
+                        <option value="none" disabled hidden></option>
+                        {inviteOptions.map((name) => { return <option value={name} key = {name}>{name.split("-")[0]}</option>; })}
+                    </select>
+                </div>
+            </div>
         </div>
     );
 }

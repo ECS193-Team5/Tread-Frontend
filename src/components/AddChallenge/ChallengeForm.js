@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Line from "../Shared/Line";
 import ChallengeStats from "./ChallengeStats";
 import ExerciseNameForm from "../Shared/Form/ExerciseNameForm";
@@ -9,9 +9,8 @@ import { addChallenge } from '../../routes/challenges';
 import '../../css/Shared/form.css';
 import '../../css/Shared/button.css';
 
-
-
 const ChallengeForm = () =>{
+    const [load, setLoad] = useState(false);
     const [exerciseName, setExerciseName] = useState("");
     const [defaultExerciseName, setDefaultExerciseName] = useState("");
     const [unit, setUnit] = useState("min");
@@ -25,6 +24,27 @@ const ChallengeForm = () =>{
     const [receiverGroup, setReceiverGroup] = useState("self");
     const [receiver, setReceiver] = useState("");
     const [submitError, setSubmitError] = useState("");
+    const [defaultReceiverGroup, setDefaultReceiverGroup] = useState("");
+    const [defaultReceiver, setDefaultReceiver] = useState("");
+
+    useEffect(
+      () => {
+          if (!load) {
+              let url = window.location.href;
+              let encodedInfo = url.split("?prefill=");
+              console.log(encodedInfo);
+
+              if(encodedInfo.length > 1){
+                let information = encodedInfo[1].split(".");
+                if(information.length == 2){
+                  setDefaultReceiverGroup(information[0].toLowerCase());
+                  setDefaultReceiver(information[1].toLowerCase());
+                }
+              }
+              setLoad(true);
+          }
+      }, [load]
+  );
 
     const updateInputs = (data) => {
       if (data === "NA"){
@@ -112,7 +132,7 @@ const ChallengeForm = () =>{
             <ExerciseNameForm defaultExerciseName = {defaultExerciseName} updateExerciseName = {setExerciseName}/>
             <ExericseAmountForm defaultAmount = {defaultAmount} defaultUnit = {defaultUnit} updateAmount = {setAmount} updateUnit = {setUnit}/>
             <ExerciseDateForm defaultIssueDate = {defaultIssueDate} defaultDueDate =  {defaultDueDate} updateIssueDate = {setIssueDate} updateDueDate = {setDueDate} />
-            <ExerciseReceiverForm updateReceiver = {setReceiver} updateReceiverGroup = {setReceiverGroup}/>
+            <ExerciseReceiverForm defaultReceiver = {defaultReceiver} defaultReceiverGroup = {defaultReceiverGroup} updateReceiver = {setReceiver} updateReceiverGroup = {setReceiverGroup}/>
 
 
             <div className = "formObj">
