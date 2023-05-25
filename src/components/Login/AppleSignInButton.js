@@ -1,6 +1,13 @@
 import React, {useState, useEffect} from "react";
 import AppleSignin from 'react-apple-signin-auth';
 import { v4 as uuid } from 'uuid';
+import { getToken } from 'firebase/messaging';
+import { exportMessaging, requestPermission } from "../../firebase";
+import axios from 'axios';
+const backend_url = process.env.REACT_APP_PROD_BACKEND;
+
+
+
 /**
  *
  * /*
