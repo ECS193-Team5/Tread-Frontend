@@ -82,10 +82,6 @@ const SideBar = () => {
         }, [location]
       );
 
-    function moveToFrontPage(){
-      window.location.href = "/";
-    }
-
     function clickChallengeButton(){
       if(challengePages.includes(window.location.pathname)){
         return;
@@ -116,7 +112,7 @@ const SideBar = () => {
 
     return (
         <div className = "sideBarClass">
-            <button id = "sideBarTreadLogo" ><img id = "treadLogoSideBar" onClick={moveToFrontPage} src = {frontPageTreadLogo} alt = "Tread logo"/></button>
+            <img id = "treadLogoSideBar" src = {frontPageTreadLogo} alt = "Tread logo"/>
             <div id = "sideBarButtons">
                 <div id = "sideBarChallenges" className = "sideBarButtonSet">
                     <button title = "Challenges" className = "sideBarButtonClass" onClick = {clickChallengeButton}  id = "sideBarButtonChallenges">

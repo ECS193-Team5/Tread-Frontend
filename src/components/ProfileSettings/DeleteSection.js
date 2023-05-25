@@ -30,6 +30,11 @@ const DeleteSection = () => {
         }
         });
     }
+
+    function deleteAccountHandler(){
+      const deleteConfirmed = window.prompt('Deleted accounts cannot be recovered. Type "delete account" into the box to confirm you want to delete your account.');
+      if(deleteConfirmed === "delete account"){  deleteAccount()};
+    }
     return (
         <div id = "DeleteSection">
             <h2>Delete Account</h2><p>
@@ -38,7 +43,7 @@ const DeleteSection = () => {
             <span className = "greenBaseText"> your account. You will </span>
             <span className = "redBaseText">lose</span>
             <span className = "greenBaseText"> all your friends, leagues, and medals. All your information will be gone with no way to recover it. </span></p>
-            <button className = "deleteButton" onClick = {deleteAccount}><p className = "deleteButtonText">Delete</p></button>
+            <button className = "deleteButton" onClick = {deleteAccountHandler}><p className = "deleteButtonText">Delete</p></button>
 
         </div>
     )
