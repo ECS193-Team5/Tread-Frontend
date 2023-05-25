@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
@@ -147,7 +147,7 @@ const UserSettingsButton = () => {
         <button id = "buttonUserDropDown" className="dropDownButton" onClick={toggleLogoutDisplay}><img id="UserSettingsTriangle" src={dropdownImage} alt="Dropdown" /></button>
         {
           logoutDisplay ?
-          <div className = "userSettingsDropDown"><DropDown>{dropdownFunctions}</DropDown></div>
+          <div className = "userSettingsDropDown"><DropDown uniqueDeterminer = {"userSettingsDropDown"}>{dropdownFunctions}</DropDown></div>
 
             : <></>
         }

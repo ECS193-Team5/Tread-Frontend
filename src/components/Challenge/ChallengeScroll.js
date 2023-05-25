@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import IssuedChallengeObj from "./IssuedChallengeObj";
 import SentChallengeObj from "./SentChallengeObj";
@@ -16,20 +16,20 @@ const ChallengeScroll = (props) => {
     let [information, setInformation] = useState([]);
     const [showZero, setShowZero] = useState(false);
 
-    function makeIssuedChallengeObj(input){
-        return (<IssuedChallengeObj key = {input["challengeId"]} >{input}</IssuedChallengeObj>);
+    function makeIssuedChallengeObj(input, index){
+        return (<IssuedChallengeObj key = {input["challengeId"]} index = {index} >{input}</IssuedChallengeObj>);
     }
 
-    function makeSentChallengeObj(input){
-        return (<SentChallengeObj key = {input["challengeId"]} >{input}</SentChallengeObj>);
+    function makeSentChallengeObj(input, index){
+        return (<SentChallengeObj key = {input["challengeId"]} index = {index}>{input}</SentChallengeObj>);
     }
 
-    function makeReceivedChallengeObj(input){
-        return (<ReceivedChallengeObj key = {input["challengeId"]} >{input}</ReceivedChallengeObj>);
+    function makeReceivedChallengeObj(input, index){
+        return (<ReceivedChallengeObj key = {input["challengeId"]} index = {index}>{input}</ReceivedChallengeObj>);
     }
 
-    function makeGlobalChallengeObj(input){
-        return (<GlobalChallengeObj key = {input["challengeId"]}>{input}</GlobalChallengeObj>);
+    function makeGlobalChallengeObj(input, index){
+        return (<GlobalChallengeObj key = {input["challengeId"]} index = {index}>{input}</GlobalChallengeObj>);
     }
 
     function reactChallengeList(response){
@@ -58,7 +58,7 @@ const ChallengeScroll = (props) => {
         }, [scrollType]
     );
 
-    return (<div id = "ChallengeScroll">
+    return (<div data-testid="ChallengeScrollComponent" id = "ChallengeScroll">
         {(scrollType === "issued") ? information.map(makeIssuedChallengeObj) : <></>}
         {(scrollType === "sent") ? information.map(makeSentChallengeObj) : <></>}
         {(scrollType === "received") ? information.map(makeReceivedChallengeObj) : <></>}

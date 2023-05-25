@@ -1,4 +1,4 @@
-import { setDisplayProperty } from "../../helpers/CssEffects";
+import React, { setDisplayProperty } from "../../helpers/CssEffects";
 import { declineChallenge } from "../../routes/challenges";
 import '../../css/Shared/button.css';
 import declineImage from "../../assets/declineButtonX.png";
@@ -13,7 +13,7 @@ const DeclineChallengeButton = (props) => {
     }
 
     return(
-        <button id = {"DeclineButton"+props.id} className = "circleButton" onClick = {onDecline}>
+        <button data-testid="DeclineChallengeButtonComponent" id = {"DeclineButton"+props.id} className = "circleButton" onClick = {onDecline}>
             <img className = "circleButtonInner" src ={declineImage}/>
         </button>
     );

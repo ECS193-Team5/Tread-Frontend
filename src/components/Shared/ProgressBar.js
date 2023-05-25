@@ -1,3 +1,5 @@
+import React from "react";
+
 const ProgressBar = (props) => {
   function min(a,b){
     if (a<b){

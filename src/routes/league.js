@@ -25,7 +25,6 @@ export function createLeague(inputData, thenFunc, errorFunc) {
 }
 
 export function getLeagueInfo(leagueID, thenFunc) {
-  console.log("Get League Func gets", leagueID, thenFunc);
   var config = {
     method: 'post',
     url: backend_url + 'league/get_league_name_description_type',
@@ -222,4 +221,28 @@ export function getMembersLeague(leagueID, thenFunc){
   .catch(function(error){
       redirectLogout(error);
   });
+}
+
+/* League Interaction Functions */
+export function sendLeagueInvite(data, thenFunc, errorFunc){
+
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/invite_to_join',
+      headers: {
+        Accept: 'application/json',
+      },
+      data : data,
+      withCredentials: true,
+      credentials: 'include'
+    };
+    axios(config)
+    .then(function(response) {
+        thenFunc(response.data);
+    })
+    .catch(function(error){
+      console.log(error);
+      errorFunc();
+      redirectLogout(error);
+    });
 }

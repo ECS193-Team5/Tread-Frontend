@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getPastChallenges } from "../../routes/statistics";
 import { getToday } from "../../helpers/FormHelpers";
 import "../../css/Shared/coloredText.css";
@@ -81,9 +81,9 @@ const ChallengeStats = (props) => {
     }
 
     return (
-        <div>
-            <button className="submitButton" onClick={recommendExercise}><p className="submitButtonText">Recommend a Challenge</p></button>
-            <p className="greenBaseText">{message}</p>
+        <div data-testid="ChallengeStatsComponent">
+            <button data-testid="ChallengeStatsButton" className="submitButton" onClick={recommendExercise}><p className="submitButtonText">Recommend a Challenge</p></button>
+            <p data-testid="ChallengeStatsMessage" className="greenBaseText">{message}</p>
         </div>
     )
 }

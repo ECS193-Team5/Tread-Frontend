@@ -1,7 +1,7 @@
 import Line from "../Shared/Line";
 import { requestNotifications, deleteAllNotifications } from "../../routes/notifications";
 import { setDisplayProperty } from "../../helpers/CssEffects";
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import MailBoxEntry from "./MailBoxEntry";
 import deleteCircleButton from "../../assets/declineButtonX.png";
 import "../../css/Profile/mailBox.css";
@@ -34,16 +34,18 @@ const MailBox = () =>{
     function decrementCount(){
         setCount(count-1);
     }
-    function createMailBoxObj(item){
-        return <MailBoxEntry decrementCount = {decrementCount}>{item}</MailBoxEntry>
+    function createMailBoxObj(item, index){
+        return <MailBoxEntry index = {index} decrementCount = {decrementCount}>{item}</MailBoxEntry>
     }
 
     function turnOff(){
         setDisplayProperty("MailBox", "none");
     }
+
     function deleteAll(){
         deleteAllNotifications(turnOff);
     }
+
     return(
         <div id = "MailBox">
             <div id = "MailBoxHeader">

@@ -1,8 +1,9 @@
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import DropDown from '../Shared/DropDown';
 import {createLeaguePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import {setDisplayProperty} from "../../helpers/CssEffects";
+import { sendChallengeRedirect } from '../../helpers/FormHelpers';
 import "../../css/Social/obj.css";
 import "../../css/Shared/dropDown.css";
 import moreInfoButton from "../../assets/moreInfoButton.png";
@@ -195,8 +196,16 @@ const LeagueObj = (props) => {
             }
           });
     }
+
+    function sendLeagueChallengeRedirect(){
+        sendChallengeRedirect("league", props.children._id);
+      }
+
     function calculateDropdownOptions(){
         let options = [];
+        if((role === "admin" || role === "owner")){
+            options.push({"name": "Send Challenge", "func": sendLeagueChallengeRedirect})
+        }
         if((role === "admin" || role === "participant")&&(type==="league"||type === "admin")){
             options.push({ "name": "Leave League", "func": leave });
         }
@@ -229,7 +238,7 @@ const LeagueObj = (props) => {
                 <button id = {props.children._id+"moreInfoButton"} className = "moreInfoButton objButtonMore" onClick = {toggleSelectShow}>
                     <img src = {moreInfoButton} alt = "toggle button"/>
                 </button>
-                {(selectShow) ? <div className='objDropdown'><DropDown>{dropdownOptions}</DropDown></div>: <></>}
+                {(selectShow) ? <div className='objDropdown'><DropDown uniqueDeterminer = {props.children.leagueName+"LeagueObj"}>{dropdownOptions}</DropDown></div>: <></>}
             </div>
         </div>
     )

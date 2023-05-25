@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import "../../css/Shared/button.css";
 import "../../css/Social/obj.css";
@@ -6,6 +6,7 @@ import {createProfilePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import DropDown from '../Shared/DropDown';
 import { setDisplayProperty } from '../../helpers/CssEffects';
 import moreInfoButton from "../../assets/moreInfoButton.png";
+import { sendChallengeRedirect } from '../../helpers/FormHelpers';
 
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
@@ -180,11 +181,15 @@ const FriendObj = (props) => {
       });
     }
 
+    function sendFriendChallengeRedirect(){
+      sendChallengeRedirect("friend", props.children.username);
+    }
     function calculateFriendOptions (){
       let friendOptions = [];
       if(type === "friend"){
         friendOptions.push({ "name": "Unfriend", "func": unfriend });
         friendOptions.push({ "name": "Block", "func": block });
+        friendOptions.push({ "name": "Send Challenge", "func": sendFriendChallengeRedirect });
       }
       else if(type === "sent"){
         friendOptions.push({ "name": "Revoke Request", "func": revoke });
@@ -213,7 +218,7 @@ const FriendObj = (props) => {
                 <button className = "moreInfoButton objButtonMore" onClick = {toggleSelectShow}>
                     <img src = {moreInfoButton} alt = "toggle button"/>
                 </button>
-                {(selectShow) ?<div className='objDropdown'><DropDown>{dropdownOptions}</DropDown></div> : <></>}
+                {(selectShow) ?<div className='objDropdown'><DropDown uniqueDeterminer = {props.children.username+"FriendObj"}>{dropdownOptions}</DropDown></div> : <></>}
             </div>
         </div>
     )

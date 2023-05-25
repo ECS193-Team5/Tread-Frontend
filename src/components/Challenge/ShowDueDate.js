@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 const MIN_IN_YEAR = 60*24*365;
 const MIN_IN_DAY = 60*24;
@@ -46,7 +46,7 @@ const ShowDueDate = (props) => {
         return () => clearInterval(interval);
       }, []);
 
-    return (<p style={styleColor}>
+    return (<p data-testid="ShowDueDateComponent" style={styleColor}>
         {timeLeft}
     </p>)
 };

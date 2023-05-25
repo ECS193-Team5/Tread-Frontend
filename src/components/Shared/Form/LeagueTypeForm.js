@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 const LeagueTypeForm = (props) => {
     function updateLeagueType(event){
         props.updateLeagueType(event.target.value);

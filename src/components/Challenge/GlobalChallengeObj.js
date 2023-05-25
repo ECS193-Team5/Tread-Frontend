@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import BoxLine from "./BoxLine";
 import ProgressBar from "../Shared/ProgressBar";
@@ -77,20 +77,20 @@ const GlobalChallengeObj = (props) => {
     }
 
     return (
-        <div className="completeChallengeBox">
+        <div data-testid="GlobalChallengeObjComponent" className="completeChallengeBox">
             <div className="challengeBox">
                 <div className="photoDiv">
                     <div className="globalPhotoDiv">
                         <img className="innerGlobalPhotoDiv" src={globalChallengeImage} />
-                        <p className="innerGlobalPhotoDiv challengeText">Global</p>
+                        <p data-testid="GlobalChallengeObjGlobal" className="innerGlobalPhotoDiv challengeText">Global</p>
                     </div>
                     <BoxLine></BoxLine>
                 </div>
 
                 <div className="challengeMiddle">
                     <div className="challengeInnerMiddle">
-                        <p className="challengeText">{title}</p>
-                        <ShowDueDate dueDate = {props.children.dueDate}/>
+                        <p data-testid="GlobalChallengeObjTitle" className="challengeText">{title}</p>
+                        <ShowDueDate index = {props.index} dueDate = {props.children.dueDate}/>
                     </div>
                     <div className="challengeInnerMiddle">
                         <ProgressBar>{{ "completed": percentageDone }}</ProgressBar>
@@ -98,14 +98,14 @@ const GlobalChallengeObj = (props) => {
                 </div>
 
                 <div className="challengeEnd">
-                    <button className="challengeDropButton" onClick={toggleState}>
+                    <button data-testid="GlobalChallengeObjToggleStateButton" className="challengeDropButton" onClick={toggleState}>
                         <img src={challengeDropDownButton} id={challengeID + "button"} alt="expandButton" />
                     </button>
                     {
                         (percentageDone < 100) ?
-                            <p className="challengeInnerEnd">{myProgressRealUnits}/{totalRealUnits}</p>
+                            <p data-testid="GlobalChallengeObjPartialProgress" className="challengeInnerEnd">{myProgressRealUnits}/{totalRealUnits}</p>
                             :
-                            <p className="challengeInnerEnd">{totalRealUnits}/{totalRealUnits}</p>
+                            <p data-testid="GlobalChallengeFinishedProgress" className="challengeInnerEnd">{totalRealUnits}/{totalRealUnits}</p>
                     }
                 </div>
 

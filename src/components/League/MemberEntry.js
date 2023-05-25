@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "../../css/League/member.css";
 import { createProfilePictureURL } from "../../helpers/CloudinaryURLHelpers";
@@ -448,7 +448,7 @@ const MemberEntry = (props) => {
           <button className="moreInfoButton" onClick={toggleSelectShow}>
             <img src={moreInfoButton} />
           </button>
-          {(selectShow) ? <div className="memberSelectOptions"><DropDown>{memberDropDownEntries}</DropDown></div> : <></>}
+          {(selectShow) ? <div className="memberSelectOptions"><DropDown uniqueDeterminer = {props.children.memberData.username+"MemberEntry"}>{memberDropDownEntries}</DropDown></div> : <></>}
         </div>
       </div>
 

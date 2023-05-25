@@ -1,3 +1,4 @@
+import React from "react";
 import ProgressBar from "./ProgressBar";
 import "../../css/Shared/leaderboard.css";
 import {createProfilePictureURL} from "../../helpers/CloudinaryURLHelpers";

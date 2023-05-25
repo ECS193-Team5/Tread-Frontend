@@ -3,24 +3,14 @@ import {getTodayString, getTomorrowString} from "./FormHelpers";
 
 const { test, expect } = require("playwright-test-coverage");
 //const { test, expect } = require('@playwright/test');
-export async function loginTread1(page) {
-    const [page1] = await Promise.all([
-        page.waitForEvent('popup'),
-        page.getByRole('button', { name: 'Sign in with Google' }).click()
-    ])
 
-    await page1.getByRole('textbox', { name: 'Email or phone' }).click();
-    await page1.getByRole('textbox', { name: 'Email or phone' }).fill('treadtestuser1@gmail.com');
-    await page1.getByRole('button', { name: 'Next' }).click();
-    await page1.getByRole('textbox', { name: 'Enter your password' }).click();
-    await page1.getByRole('textbox', { name: 'Enter your password' }).fill('Tr');
-    await page1.locator('div').filter({ hasText: /^Enter your passwordShow passwordType the text you hear or see$/ }).first().click();
-    await page1.getByRole('textbox', { name: 'Enter your password' }).click();
-    await page1.getByRole('textbox', { name: 'Enter your password' }).fill('TreadTest!!!12');
-    await page1.getByRole('button', { name: 'Next' }).click();
-    await page.goto('https://tread.run/currentChallengePage');
-    await expect(page).toHaveURL('https://tread.run/currentChallengePage');
+const treadUser1File = 'playwright/.auth/treadUser1.json';
+
+export async function logoutUser(page) {
+    await page.locator('#buttonUserDropDown').click();
+    await page.getByText('Logout').click();
 }
+
 
 export async function fillCorrectAddChallengeData(page) {
     await page.locator('#AddChallengeExerciseNameSelect').selectOption('Badminton');
@@ -33,4 +23,15 @@ export async function fillCorrectAddChallengeData(page) {
     await page.locator('div').filter({ hasText: /^TreadTest2#6945$/ }).getByRole('combobox').selectOption('TreadTest2#6945');
 
 
+}
+
+async function signUp(page){
+//sign in as third account
+    await page.goto('https://tread.run/signUpPage');
+    await page.locator('div').filter({ hasText: /^UsernameThis is a unique identifier for your account\. It is public\.$/ }).getByRole('textbox').click();
+    await page.locator('div').filter({ hasText: /^UsernameThis is a unique identifier for your account\. It is public\.$/ }).getByRole('textbox').fill('TreadTest');
+    await page.locator('div').filter({ hasText: /^Display NameThis is public name that others will see\.$/ }).getByRole('textbox').click();
+    await page.locator('div').filter({ hasText: /^Display NameThis is public name that others will see\.$/ }).getByRole('textbox').fill('Tready');
+    await page.getByRole('button', { name: 'Sign Up' }).click();
+    await page.goto('https://tread.run/currentChallengePage');
 }

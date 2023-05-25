@@ -1,3 +1,4 @@
+import React from "react";
 import "../../css/Shared/leaderboard.css";
 import {createProfilePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import firstMedal from "../../assets/firstMedal.png";

@@ -1,11 +1,12 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 
 import FriendScroll from './FriendScroll';
-import FriendAdd from './FriendAdd';
 import Bar from '../Shared/Bar';
+import UserAddForm from '../Shared/Form/UserAddForm';
 
 import "../../css/Shared/section.css";
 import "../../css/Shared/bar.css";
+
 
 const FriendSection = (props) => {
     const [friendState, setFriendState] = useState("Friends");
@@ -25,7 +26,7 @@ const FriendSection = (props) => {
         { (friendState === "Sent") ? <FriendScroll type = "sent"></FriendScroll> : <></>}
         { (friendState === "Received") ? <FriendScroll type = "received"></FriendScroll> : <></>}
         { (friendState === "Blocked") ? <FriendScroll type = "blocked"></FriendScroll> : <></>}
-        { (friendState === "Add User") ? <FriendAdd></FriendAdd> : <></>}
+        { (friendState === "Add User") ? <UserAddForm type = "friend"></UserAddForm> : <></>}
     </div>
     )
 }

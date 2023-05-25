@@ -1,3 +1,4 @@
+import React from "react";
 import '../../../css/Shared/photoUploadForm.css';
 
 const PhotoUploadForm = (props) => {

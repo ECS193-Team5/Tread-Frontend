@@ -1,3 +1,4 @@
+import React from "react";
 import "../../css/SignUp/signUpSideBar.css";
 import sideBarExcerciseImage from "../../assets/SideBarExerciseImage.png";
 import sideBarLogoImage from "../../assets/sideBarLogoImage.png"

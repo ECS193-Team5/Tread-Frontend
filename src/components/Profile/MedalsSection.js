@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import Bar from '../Shared/Bar';
 import MedalsScroll from './MedalsScroll';
 import "../../css/Shared/section.css";

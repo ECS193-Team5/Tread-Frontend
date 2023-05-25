@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import QRcode from "qrcode";
 import axios from "axios";
 import { createProfilePictureURL } from "../../helpers/CloudinaryURLHelpers";

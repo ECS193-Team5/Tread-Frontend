@@ -1,9 +1,9 @@
-#addFriendInputForm{
+#addUserInputForm{
     display: flex;
     flex-direction: column;
 }
 
-#addFriendInput{
+#addUserInput{
     width: 500px;
     display: flex;
     flex-direction: row;

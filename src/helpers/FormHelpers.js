@@ -28,3 +28,7 @@ export function getTomorrowString(){
 
     return year + "-" + month + "-" + date;
   }
+
+export function sendChallengeRedirect(type, identifier){
+    window.location.href = "./addChallengePage?prefill="+type+"."+identifier;
+  }

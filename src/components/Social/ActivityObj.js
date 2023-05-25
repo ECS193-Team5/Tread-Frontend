@@ -1,3 +1,4 @@
+import React from "react";
 import {createProfilePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import "../../css/Shared/coloredText.css";
 const ActivityObj = (props) => {

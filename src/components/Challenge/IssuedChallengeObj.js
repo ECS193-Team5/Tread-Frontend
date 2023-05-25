@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import PhotoDisplay from "./PhotoDisplay";
 import BoxLine from "./BoxLine";
@@ -53,15 +53,15 @@ const IssuedChallengeObj = (props) => {
     }
 
     return (
-        <div id={"issuedChallengeObj" + props.children._id} className="completeChallengeBox">
+        <div data-testid="IssuedChallengeObjComponent" id={"issuedChallengeObj" + props.children._id} className="completeChallengeBox">
             <div className="challengeBox">
                 <div className="photoDiv">
-                    <PhotoDisplay photos={props.children.participants}></PhotoDisplay><BoxLine></BoxLine>
+                    <PhotoDisplay index = {props.index} photos={props.children.participants}></PhotoDisplay><BoxLine></BoxLine>
                 </div>
                 <div className="challengeMiddle">
                     <div className="challengeInnerMiddle">
-                        <p className="challengeText">{title}</p>
-                        <ShowDueDate dueDate = {props.children.dueDate}/>
+                        <p data-testid="IssuedChallengeObjTitle" className="challengeText">{title}</p>
+                        <ShowDueDate index = {props.index} dueDate = {props.children.dueDate}/>
                     </div>
                     <div className="challengeInnerMiddle">
                         <ProgressBar>{{ "completed": percentageDone }}</ProgressBar>
@@ -69,14 +69,14 @@ const IssuedChallengeObj = (props) => {
                 </div>
 
                 <div className="challengeEnd">
-                    <button className="challengeDropButton" onClick={toggleState}>
+                    <button data-testid="IssuedChallengeObjToggleStateButton" className="challengeDropButton" onClick={toggleState}>
                         <img src={challengeDropDownButton} id={challengeID + "button"} alt="expandButton" />
                     </button>
                     {
                         (percentageDone < 100) ?
-                            <p className="challengeInnerEnd">{myProgressRealUnits}/{totalRealUnits}</p>
+                            <p data-testid="IssuedChallengeObjPartialProgress" className="challengeInnerEnd">{myProgressRealUnits}/{totalRealUnits}</p>
                             :
-                            <p className="challengeInnerEnd">{totalRealUnits}/{totalRealUnits}</p>
+                            <p data-testid="IssuedChallengeObjCompleteProgress" className="challengeInnerEnd">{totalRealUnits}/{totalRealUnits}</p>
                     }
                 </div>
 

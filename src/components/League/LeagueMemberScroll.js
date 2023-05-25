@@ -1,5 +1,5 @@
 
-import {useState,useEffect} from 'react';
+import React, {useState,useEffect} from 'react';
 import { getBlockedList, getFriendList } from '../../routes/friend_list';
 import axios from 'axios';
 import ZeroItem from '../Shared/ZeroItem';
@@ -134,10 +134,10 @@ const LeagueMemberScroll = (props) => {
 
     function makeMemberEntryObj(input, index){
         if (index === 0){
-            return(<div><MemberEntry>{{"memberData":input, "scrollData":scrollData}}</MemberEntry></div>);
+            return(<div><MemberEntry index = {index}>{{"memberData":input, "scrollData":scrollData}}</MemberEntry></div>);
         }
         else {
-            return(<div><div className = "memberLine"></div><MemberEntry>{{"memberData":input, "scrollData":scrollData}}</MemberEntry></div>);
+            return(<div><div className = "memberLine"></div><MemberEntry index = {index}>{{"memberData":input, "scrollData":scrollData}}</MemberEntry></div>);
         }
     }
 

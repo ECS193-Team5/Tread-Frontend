@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import hardCodedInfo from "../../../helpers/SharedHardCodeInfo.json";
 import { setDisplayProperty } from "../../../helpers/CssEffects";
 

@@ -1,6 +1,7 @@
 import LeagueLeaderboardEntry from "./LeagueLeaderboardEntry";
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {setDisplayProperty} from "../../helpers/CssEffects";
+import "../../css/League/leagueDescriptionPage.css";
 import axios from 'axios';
 
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
@@ -51,10 +52,10 @@ const LeagueLeaderboard = (props) => {
       useEffect(
         () => {
           if (leaderboardInfo.length === 0) {
-            setDisplayProperty("Leaderboard", "none")
+            setDisplayProperty("LeagueLeaderboard", "none")
           }
           else if(leaderboardInfo){
-            setDisplayProperty("Leaderboard", "block")
+            setDisplayProperty("LeagueLeaderboard", "block")
           }
         }, [leaderboardInfo]
       );
@@ -62,15 +63,17 @@ const LeagueLeaderboard = (props) => {
 
     // Send out the request
     // set the information to map
-    function makeLeaderboardEntryObj(input){
-        return (<LeagueLeaderboardEntry>{input}</LeagueLeaderboardEntry>)
+    function makeLeaderboardEntryObj(input, index){
+        return (<LeagueLeaderboardEntry index = {index}>{input}</LeagueLeaderboardEntry>)
     }
     return(
-        <div id = "Leaderboard">
+        <div id = "LeagueLeaderboard">
             <h2>League Leaderboard</h2>
 
-            <div>
-                {leaderboardInfo.map(makeLeaderboardEntryObj)}
+            <div id = "LeagueLeaderboardExterior">
+              <div id = "LeagueLeaderboardList">
+                  {leaderboardInfo.map(makeLeaderboardEntryObj)}
+              </div>
             </div>
         </div>
 

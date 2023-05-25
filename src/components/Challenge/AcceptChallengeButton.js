@@ -1,3 +1,4 @@
+import React from "react";
 import { setDisplayProperty } from "../../helpers/CssEffects";
 import { acceptChallenge } from "../../routes/challenges";
 import '../../css/Shared/button.css';
@@ -13,7 +14,7 @@ const AcceptChallengeButton = (props) => {
     }
 
     return(
-        <button id = {"AcceptButton"+props.id} className = "circleButton" onClick = {onAccept}>
+        <button data-testid="AcceptChallengeButtonComponent" id = {"AcceptButton"+props.id} className = "circleButton" onClick = {onAccept}>
             <img className = "circleButtonInner" src ={checkMark}/>
         </button>
     );
