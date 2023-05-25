@@ -132,7 +132,7 @@ const AppleSigninButton = () => {
       /** State string that is returned with the apple response */
       state: 'state',
       /** Nonce */
-      nonce: {nonncy},
+      nonce: nonncy,
       /** Uses popup auth instead of redirection */
       usePopup: true}} // REQUIRED
     /** General props */
