@@ -9,7 +9,7 @@ import { getUsername } from '../routes/user';
 import frontPageTreadLogo from "../assets/frontPageTreadLogo.png";
 import downloadImageAppStore from "../assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg";
 import downloadImageGoogle from "../assets/google-play-badge.jpg"
-import AppleLogin from 'react-apple-login';
+import AppleSigninButton from '../components/Login/AppleSignInButton';
 const backend_url = process.env.REACT_APP_PROD_BACKEND
 const env_client_id = process.env.REACT_APP_CLIENT_ID
 //const APPLE_REDIRECT_URL =
@@ -171,7 +171,7 @@ const Login = () => {
       </div>
       <p className='frontPageDescriptionText'>{hardCodedInfo.frontPageDescription}</p>
       <div id="buttonDiv"></div>
-
+      <AppleSigninButton/>
       </div>
 
       <div id = "loginPageMobile">
