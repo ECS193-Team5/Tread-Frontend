@@ -51,7 +51,8 @@ const AddExerciseBox = () => {
             loggedDate: loggedDate.valueOf(),
             exerciseName: exerciseName,
             unit: unit,
-            amount: amount
+            amount: amount,
+            dataOrigin: "web"
         });
     }
 
