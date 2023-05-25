@@ -47,12 +47,13 @@ Object*/
 const AppleSigninButton = () => {
   const [deviceToken, setToken] = useState("");
   const [load, setLoad] = useState(false);
-  const rawNonce = uuid();
-
+  const [rawNonce, setNonce] = useState("");
   useEffect(() => {
     if(!load){
       setDeviceToken();
       setLoad(true);
+      setNonce(uuid());
+      console.log("rawNonce", rawNonce);
     }
   }, [load]);
 
