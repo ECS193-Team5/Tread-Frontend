@@ -45,6 +45,7 @@ Object*/
 
 /** Apple Signin button */
 const AppleSigninButton = () => {
+  let nonncy = "6c40329f-01af-4f22-9d57-9e0604995de4"
   const [deviceToken, setToken] = useState("");
   const [load, setLoad] = useState(false);
   const [rawNonce, setNonce] = useState("6c40329f-01af-4f22-9d57-9e0604995de4");
@@ -53,7 +54,7 @@ const AppleSigninButton = () => {
       setDeviceToken();
       setLoad(true);
       let val = uuid();
-      setNonce(val);
+      setNonce(val.toString());
       console.log(val);
     }
   }, [load]);
@@ -77,9 +78,12 @@ const AppleSigninButton = () => {
   }
 
   const loginApple = (response) => {
-    let fullname = "";
+    let fullname = {};
     if (response.user){
-      fullname = response.user.firstName + response.user.lastName
+      fullname = {
+        givenName: response.user.firstName,
+        familyName: response.user.lastName
+      }
     }
 
     var config = {
@@ -128,7 +132,7 @@ const AppleSigninButton = () => {
       /** State string that is returned with the apple response */
       state: 'state',
       /** Nonce */
-      nonce: {rawNonce},
+      nonce: {nonncy},
       /** Uses popup auth instead of redirection */
       usePopup: true}} // REQUIRED
     /** General props */
