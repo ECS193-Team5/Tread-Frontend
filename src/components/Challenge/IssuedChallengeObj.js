@@ -85,7 +85,7 @@ const IssuedChallengeObj = (props) => {
             {showState ?
                 <div className="leaderboardSection">
                     <Line></Line>
-                    <Leaderboard>{{ "title": "Challenge", "entries": { leaderboardInfo } }}</Leaderboard>
+                    <Leaderboard uniqueIdentifier = {props.index}>{{ "title": "Challenge", "entries": { leaderboardInfo } }}</Leaderboard>
                 </div>
                 :
                 <></>

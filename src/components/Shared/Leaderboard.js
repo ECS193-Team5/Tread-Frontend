@@ -2,10 +2,8 @@ import React from "react";
 import LeaderboardEntry from "./LeaderboardEntry";
 
 const Leaderboard = (props) => {
-
-
-    function makeLeaderboardEntryObj(input){
-        return (<LeaderboardEntry>{input}</LeaderboardEntry>)
+    function makeLeaderboardEntryObj(input, index){
+        return (<LeaderboardEntry index = {props.uniqueIndentifier+"-"+index}>{input}</LeaderboardEntry>)
     }
     return(
         <div id = "Leaderboard">
