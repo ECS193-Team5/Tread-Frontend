@@ -12,8 +12,8 @@ import downloadImageGoogle from "../assets/google-play-badge.jpg"
 import AppleLogin from 'react-apple-login';
 const backend_url = process.env.REACT_APP_PROD_BACKEND
 const env_client_id = process.env.REACT_APP_CLIENT_ID
-const env_apple_client_id = process.env.REACT_APP_APPLE_CLIENT_ID
-const env_redirect_url = process.env.REACT_APP_APPLE_REDIRECT_URL
+//const APPLE_REDIRECT_URL =
+//const env_redirect_url = process.env.REACT_APP_APPLE_REDIRECT_URL
 
 const Login = () => {
   const [deviceToken, setToken] = useState("");
@@ -36,7 +36,7 @@ const Login = () => {
     // nonce with timestamp so repeat attacks won't work.
     // Figure out CSRF attacks (double cookie sending)
     // Also alot of stuff will have to change for HTTPS.
-
+    console.log(`${token.credential}`);
     var config = {
       method: 'post',
       url: backend_url + 'auth/login/google',

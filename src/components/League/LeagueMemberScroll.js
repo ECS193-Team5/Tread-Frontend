@@ -134,10 +134,10 @@ const LeagueMemberScroll = (props) => {
 
     function makeMemberEntryObj(input, index){
         if (index === 0){
-            return(<div><MemberEntry>{{"memberData":input, "scrollData":scrollData}}</MemberEntry></div>);
+            return(<div><MemberEntry index = {index}>{{"memberData":input, "scrollData":scrollData}}</MemberEntry></div>);
         }
         else {
-            return(<div><div className = "memberLine"></div><MemberEntry>{{"memberData":input, "scrollData":scrollData}}</MemberEntry></div>);
+            return(<div><div className = "memberLine"></div><MemberEntry index = {index}>{{"memberData":input, "scrollData":scrollData}}</MemberEntry></div>);
         }
     }
 

@@ -34,8 +34,8 @@ const MailBox = () =>{
     function decrementCount(){
         setCount(count-1);
     }
-    function createMailBoxObj(item){
-        return <MailBoxEntry decrementCount = {decrementCount}>{item}</MailBoxEntry>
+    function createMailBoxObj(item, index){
+        return <MailBoxEntry index = {index} decrementCount = {decrementCount}>{item}</MailBoxEntry>
     }
 
     function turnOff(){

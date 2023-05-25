@@ -2,7 +2,7 @@ import React from 'react';
 import ChallengeScroll from "../Challenge/ChallengeScroll";
 import Bar from "../Shared/Bar";
 import { sendChallengeRedirect } from '../../helpers/FormHelpers';
-import "../../css/League/leagueActiveChallengeList.css";
+import "../../css/League/leagueDescriptionPage.css";
 import "../../css/Shared/bar.css";
 const LeagueChallengeList = (props) => {
     const challengesBarButtonList =  [{"name": "Send Challenge", "defaultOn":false, "create":true}];

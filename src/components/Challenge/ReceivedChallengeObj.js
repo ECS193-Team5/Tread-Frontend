@@ -13,16 +13,15 @@ const ReceivedChallengeObj = (props) => {
     return (
     <div data-testid="ReceivedChallengeObjComponent" id = {"ReceivedChallengedObj"+props.children._id} className = "challengeBox completeChallengeBox">
         <div className="photoDiv">
-            <PhotoDisplay photos = {props.children.participants}></PhotoDisplay>
-            <BoxLine></BoxLine>
+        <PhotoDisplay index = {props.index} photos={props.children.participants}></PhotoDisplay><BoxLine></BoxLine>
         </div>
         <div className="challengeMiddle">
             <p data-testid="ReceivedChallengeObjTitle" className="challengeText">{title}</p>
-            <ShowDueDate dueDate = {props.children.dueDate}/>
+            <ShowDueDate index = {props.index} dueDate = {props.children.dueDate}/>
         </div>
         <div className = "challengeEnd">
-            <AcceptChallengeButton id = {props.children._id}></AcceptChallengeButton>
-            <DeclineChallengeButton id = {props.children._id}></DeclineChallengeButton>
+            <AcceptChallengeButton id = {props.children._id} index = {props.index}></AcceptChallengeButton>
+            <DeclineChallengeButton id = {props.children._id} index = {props.index}></DeclineChallengeButton>
         </div>
     </div>
     );

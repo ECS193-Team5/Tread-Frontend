@@ -1,6 +1,6 @@
 import React from "react";
 import LeagueMemberScroll from "./LeagueMemberScroll";
-import MemberAdd from "./MemberAdd";
+import UserAddForm from "../Shared/Form/UserAddForm";
 import Bar from "../Shared/Bar";
 
 import {useState, useEffect} from "react";
@@ -18,7 +18,7 @@ const LeagueMemberSection = (props) => {
     {"name": "Received", "defaultOn":false, "create":false},
     {"name": "Invited", "defaultOn":false, "create":false},
     {"name": "Banned", "defaultOn":false, "create":false},
-    {"name": "Add User", "defaultOn":false, "create":true}];
+    {"name": "Invite User", "defaultOn":false, "create":true}];
 
     useEffect(() => {
         if(!load){
@@ -49,7 +49,7 @@ const LeagueMemberSection = (props) => {
         { (memberState === "Invited") ? <LeagueMemberScroll type = "Invited" leagueID = {props.children.id}>{scrollInput}</LeagueMemberScroll> : <></>}
         { (memberState === "Received") ? <LeagueMemberScroll type = "Received" leagueID = {props.children.id}>{scrollInput}</LeagueMemberScroll> : <></>}
         { (memberState === "Banned") ? <LeagueMemberScroll type = "Banned" leagueID = {props.children.id}>{scrollInput}</LeagueMemberScroll> : <></>}
-        { (memberState === "Add User") ? <MemberAdd leagueID = {props.children.id}></MemberAdd>:<></>}
+        { (memberState === "Invite User") ? <UserAddForm leagueID = {props.children.id} type = "league"></UserAddForm>:<></>}
     </div>
     )
 }

@@ -21,7 +21,7 @@ const LeagueNameForm = (props) => {
         }
 
         if ((/^\s+$/i.test(leagueName))) {
-          setNameError("Cannot create league, League Name cannot be a string of spaces");
+          setNameError("Cannot create league, League Name cannot be a string of spaces.");
           props.updateLeagueName("");
           return false
         }

@@ -56,12 +56,12 @@ const MedalsScroll = (props) => {
     }
 
 
-    function createObj(input){
+    function createObj(input, index){
         if(type === "earned"){
-            return(<MedalObj>{input}</MedalObj>);
+            return(<MedalObj key = {index} index = {index}>{input}</MedalObj>);
         }
         else if(type === "progress"){
-            return(<MedalObj>{input}</MedalObj>);
+            return(<MedalObj key = {index} index = {index}>{input}</MedalObj>);
         }
     }
 

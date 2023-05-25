@@ -14,7 +14,7 @@ const LeagueDescriptionForm = (props) => {
 
     const updateDescription = (event) => {
         if (event.target.value === "") {
-            setDescriptionError("Need to fill in a description");
+            setDescriptionError("Need to fill in a description.");
             props.updateDescription("");
             return;
         }

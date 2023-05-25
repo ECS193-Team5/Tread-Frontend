@@ -238,7 +238,7 @@ const LeagueObj = (props) => {
                 <button id = {props.children._id+"moreInfoButton"} className = "moreInfoButton objButtonMore" onClick = {toggleSelectShow}>
                     <img src = {moreInfoButton} alt = "toggle button"/>
                 </button>
-                {(selectShow) ? <div className='objDropdown'><DropDown>{dropdownOptions}</DropDown></div>: <></>}
+                {(selectShow) ? <div className='objDropdown'><DropDown uniqueDeterminer = {props.children.leagueName+"LeagueObj"}>{dropdownOptions}</DropDown></div>: <></>}
             </div>
         </div>
     )

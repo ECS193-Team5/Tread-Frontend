@@ -90,7 +90,7 @@ const GlobalChallengeObj = (props) => {
                 <div className="challengeMiddle">
                     <div className="challengeInnerMiddle">
                         <p data-testid="GlobalChallengeObjTitle" className="challengeText">{title}</p>
-                        <ShowDueDate dueDate = {props.children.dueDate}/>
+                        <ShowDueDate index = {props.index} dueDate = {props.children.dueDate}/>
                     </div>
                     <div className="challengeInnerMiddle">
                         <ProgressBar>{{ "completed": percentageDone }}</ProgressBar>

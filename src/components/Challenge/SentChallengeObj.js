@@ -11,7 +11,7 @@ const SentChallengeObj = (props) => {
     return (
     <div data-testid="SentChallengeObjComponent" id = {"sentObj" + props.children._id} className = "challengeBox completeChallengeBox">
         <div className="photoDiv">
-            <PhotoDisplay photos = {props.children.participants}></PhotoDisplay>
+            <PhotoDisplay index = {props.index} photos={props.children.participants}></PhotoDisplay>
             <BoxLine></BoxLine>
         </div>
         <div className="challengeMiddle">
@@ -19,7 +19,7 @@ const SentChallengeObj = (props) => {
             <p data-testid="SentChallengeObjReceivedUser" className="challengeText">{receivedUser} hasn't accepted your challenge.</p>
         </div>
         <div className = "challengeEnd">
-            <DeleteChallengeButton id = {props.children._id}></DeleteChallengeButton>
+            <DeleteChallengeButton id = {props.children._id} index = {props.index}></DeleteChallengeButton>
         </div>
     </div>
     );

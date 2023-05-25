@@ -56,12 +56,12 @@ const IssuedChallengeObj = (props) => {
         <div data-testid="IssuedChallengeObjComponent" id={"issuedChallengeObj" + props.children._id} className="completeChallengeBox">
             <div className="challengeBox">
                 <div className="photoDiv">
-                    <PhotoDisplay photos={props.children.participants}></PhotoDisplay><BoxLine></BoxLine>
+                    <PhotoDisplay index = {props.index} photos={props.children.participants}></PhotoDisplay><BoxLine></BoxLine>
                 </div>
                 <div className="challengeMiddle">
                     <div className="challengeInnerMiddle">
                         <p data-testid="IssuedChallengeObjTitle" className="challengeText">{title}</p>
-                        <ShowDueDate dueDate = {props.children.dueDate}/>
+                        <ShowDueDate index = {props.index} dueDate = {props.children.dueDate}/>
                     </div>
                     <div className="challengeInnerMiddle">
                         <ProgressBar>{{ "completed": percentageDone }}</ProgressBar>

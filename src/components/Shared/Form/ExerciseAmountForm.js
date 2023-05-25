@@ -6,12 +6,12 @@ const ExerciseAmountForm = (props) => {
         let targetAmount = event.target.value;
 
         if (targetAmount <= 0){
-            setAmountError("Exercise Amount must be greater than zero");
+            setAmountError("Exercise Amount must be greater than zero.");
             props.updateAmount(0);
             return;
         }
         else if(targetAmount >= 1000000){
-            setAmountError("Exercise Amount must be less than 1000000");
+            setAmountError("Exercise Amount must be less than 1000000.");
             props.updateAmount(0);
             return;
         }

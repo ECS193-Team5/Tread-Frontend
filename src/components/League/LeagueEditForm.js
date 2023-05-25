@@ -81,12 +81,11 @@ const LeagueEditForm = (props) => {
     }
 
     function moveLeaguePage(){
-        setDeleteError("Succesfully deleted league.");
         window.location.href = "./SocialLeaguePage";
     }
 
     function setLeagueError(){
-        setDeleteError("Could not delete league.")
+        setDeleteError("Could not delete league. Please refresh the page or try again later.")
     }
 
     function onDeleteLeague(){

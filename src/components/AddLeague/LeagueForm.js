@@ -33,12 +33,11 @@ const LeagueForm = () => {
   }
 
   const moveSocialLeaguePage = () => {
-    setSubmitError("Sucessfully created league");
     window.location.href = "./socialLeaguePage";
   }
 
   const setError = () => {
-    setSubmitError("Could not create league for unknown reason");
+    setSubmitError("The league could not be created. Please try again later.");
   }
 
   function submitLeague() {

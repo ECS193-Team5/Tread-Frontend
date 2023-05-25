@@ -32,7 +32,6 @@ const ChallengeForm = () =>{
           if (!load) {
               let url = window.location.href;
               let encodedInfo = url.split("?prefill=");
-              console.log(encodedInfo);
 
               if(encodedInfo.length > 1){
                 let information = encodedInfo[1].split(".");
@@ -91,11 +90,10 @@ const ChallengeForm = () =>{
     }
 
     const setError = () => {
-      setSubmitError("Error in issuing challenge");
+      setSubmitError("The challenge could not be issued. Please try again later.");
     }
 
     const moveChallengePage = () => {
-      setSubmitError("Successfully sent challenge");
       window.location.href = "./currentChallengePage";
     }
 

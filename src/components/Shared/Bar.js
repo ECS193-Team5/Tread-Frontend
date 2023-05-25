@@ -28,8 +28,8 @@ const Bar = (props) => {
         return classList;
     }
 
-    const createBarButton = (input) => {
-        return (<BarButton name = {input.name} func = {buttonChange} classes = {createClassList(input)}></BarButton>);
+    const createBarButton = (input, index) => {
+        return (<BarButton index = {index} name = {input.name} func = {buttonChange} classes = {createClassList(input)}></BarButton>);
     }
 
     return(

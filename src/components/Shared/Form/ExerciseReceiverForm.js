@@ -11,7 +11,6 @@ const ExerciseReceiverForm = (props) => {
     useEffect(
         () => {
             if (receiverGroup === "friend") {
-                console.log("get friends");
                 getFriends();
             }
             else if (receiverGroup === "league") {
@@ -26,7 +25,6 @@ const ExerciseReceiverForm = (props) => {
                 setDisplayProperty("secondarySelect", "block");
             }
             else {
-                console.log("the else");
                 setDisplayProperty("secondarySelect", "none");
             }
         }, [receiverGroup]
@@ -51,7 +49,6 @@ const ExerciseReceiverForm = (props) => {
                 }
             }
             if(inviteOptions && props.defaultReceiverGroup === "league"){
-                console.log(inviteOptions);
                 for(let i = 0; i< inviteOptions.length; i++){
                     if (inviteOptions[i].split(" - ")[1] === props.defaultReceiver){
                         document.getElementById("receiverChangeElement").value = inviteOptions[i];

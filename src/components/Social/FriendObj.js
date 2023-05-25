@@ -218,7 +218,7 @@ const FriendObj = (props) => {
                 <button className = "moreInfoButton objButtonMore" onClick = {toggleSelectShow}>
                     <img src = {moreInfoButton} alt = "toggle button"/>
                 </button>
-                {(selectShow) ?<div className='objDropdown'><DropDown>{dropdownOptions}</DropDown></div> : <></>}
+                {(selectShow) ?<div className='objDropdown'><DropDown uniqueDeterminer = {props.children.username+"FriendObj"}>{dropdownOptions}</DropDown></div> : <></>}
             </div>
         </div>
     )
