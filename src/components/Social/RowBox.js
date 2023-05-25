@@ -70,14 +70,14 @@ const RowBox = (props) => {
         setInfo(newList);
     }
 
-    function createSuggestFriendObj (input) {
-        return <SuggestedFriendObj updateObjList = {updateObjList}>{input}</SuggestedFriendObj>
+    function createSuggestFriendObj (input, index) {
+        return <SuggestedFriendObj index = {index} updateObjList = {updateObjList}>{input}</SuggestedFriendObj>
     }
-    function createSuggestLeagueObj (input) {
-        return <SuggestedLeagueObj  updateObjList = {updateObjList}>{input}</SuggestedLeagueObj>
+    function createSuggestLeagueObj (input, index) {
+        return <SuggestedLeagueObj  index = {index} updateObjList = {updateObjList}>{input}</SuggestedLeagueObj>
     }
-    function createRecentObj (input) {
-        return <ActivityObj>{input}</ActivityObj>
+    function createRecentObj (input, index) {
+        return <ActivityObj index = {index}> {input}</ActivityObj>
     }
 
     function getSuggestedFriends() {
@@ -168,7 +168,7 @@ const RowBox = (props) => {
         if (index === 0) {
             return (
                 <div className="fullRow">
-                    {callFunc[props.children.socialType][props.children.informationType]["create"](input)}
+                    {callFunc[props.children.socialType][props.children.informationType]["create"](input, index)}
                 </div>
             );
         }
@@ -176,7 +176,7 @@ const RowBox = (props) => {
             return (
                 <div className="fullRow">
                     <div className="topLine"></div>
-                    {callFunc[props.children.socialType][props.children.informationType]["create"](input)}
+                    {callFunc[props.children.socialType][props.children.informationType]["create"](input, index)}
                 </div>
             );
         }

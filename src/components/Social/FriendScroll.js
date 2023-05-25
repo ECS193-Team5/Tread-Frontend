@@ -114,7 +114,7 @@ const FriendScroll = (props) => {
         });        }
 
     function makeFriendObj(input){
-        return (<FriendObj type = {scrollType}>{input}</FriendObj>);
+        return (<FriendObj index = {input.username} type = {scrollType}>{input}</FriendObj>);
     }
 
     useEffect (

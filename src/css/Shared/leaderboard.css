@@ -23,7 +23,7 @@
     align-items: center;
     box-sizing: border-box;
 
-    width: 600px;
+    width: 790px;
     height: 50px;
 
     background: #F1EEEA;
@@ -45,13 +45,15 @@
 .firstDiv{
     width: 30px;
     padding-left: 20px;
-    padding-right: 10px;
 }
 
 .secondDiv{
     width: 150px;
     padding-left: 10px;
     padding-right: 10px;
+
+    text-overflow: clip !important;
+    text-align: left;
 }
 
 .thirdDiv{
@@ -69,7 +71,7 @@
 }
 
 .fifthDiv{
-    width: 40px;
+    width: 60px;
 
     padding-left: 10px;
     padding-right: 20px;

@@ -116,7 +116,7 @@ const LeagueScroll = (props) => {
       }
 
     function makeLeagueObj(input){
-        return (<LeagueObj type = {scrollType}>{input}</LeagueObj>);
+        return (<LeagueObj index = {input.leagueName} type = {scrollType}>{input}</LeagueObj>);
     }
 
     useEffect (

@@ -130,33 +130,6 @@ const Login = () => {
 
   }
 
-  /*{<AppleLogin
-  clientId={env_apple_client_id}
-  redirectURI={env_redirect_url}
-  usePopup={true}
-  callback={appleCallback} // Catch the response
-  scope="email name"
-  responseMode="query"
-  render={renderProps => (  //Custom Apple Sign in Button
-            <button
-              onClick={renderProps.onClick}
-              style={{
-                    backgroundColor: "white",
-                    padding: 10,
-                    border: "1px solid black",
-                    fontFamily: "none",
-                    lineHeight: "25px",
-                    fontSize: "25px"
-                  }}
-                >
-                  <i className="fa-brands fa-apple px-2 "></i>
-                  Continue with Apple
-            </button>
-              )}/>} response
-   */
-  const appleCallback = (response) => {
-    console.log(response);
-  }
   return (
   <div id = "loginPage">
     <div id = "loginPageWeb">
