@@ -5,7 +5,7 @@ const AppleSigninButton = () => (
   <AppleSignin
     authOptions={{
       /** Client ID - eg: 'com.example.com' */
-      clientId: 'run.tread.treadmobile',
+      clientId: 'run.tread.applesignin',
       /** Requested scopes, seperated by spaces - eg: 'email name' */
       scope: 'email name',
       /** Apple's redirectURI - must be one of the URIs you added to the serviceID - the undocumented trick in apple docs is that you should call auth from a page that is listed as a redirectURI, localhost fails */

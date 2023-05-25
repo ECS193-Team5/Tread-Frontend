@@ -116,7 +116,7 @@ const GlobalChallengeObj = (props) => {
                 ?
                 <div className="leaderboardSection">
                     <Line></Line>
-                    <Leaderboard>{{ "title": "Global Challenge", "entries": { leaderboardInfo } }}</Leaderboard>
+                    <Leaderboard uniqueIdentifier = {props.index}>{{ "title": "Global Challenge", "entries": { leaderboardInfo } }}</Leaderboard>
                 </div>
                 :
                 <></>
