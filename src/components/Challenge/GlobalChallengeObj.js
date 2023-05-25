@@ -53,9 +53,10 @@ const GlobalChallengeObj = (props) => {
         let top5Info = top5.map(makeLeaderboardObj);
 
         if (!selfInTop5(top5, selfData)) {
-            let item = selfData.map(makeLeaderboardObj);
-            item[0]["level"] = " - ";
-            top5Info.push(item[0]);
+            console.log(selfData);
+            let item = makeLeaderboardObj(selfData, 6);
+            item["level"] = " - ";
+            top5Info.push(item);
         }
 
         setLeaderboardInfo(top5Info);
@@ -64,7 +65,6 @@ const GlobalChallengeObj = (props) => {
     function makeLeaderboardObj(item, index) {
         let entry = {}
         entry["level"] = index + 1;
-        entry["photo"] = item["pictures"];
         entry["name"] = item["username"];
         entry["complete"] = item["progress"] / totalBaseUnits * 100;
         entry["score"] = calculateProgress(item["progress"], props.children.exercise.unit);
