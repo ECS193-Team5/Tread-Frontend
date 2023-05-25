@@ -91,7 +91,7 @@ const AppleSigninButton = () => {
       withCredentials: true,
       credentials: 'include',
       headers: {
-        Authorization: response.data.id_token,
+        Authorization: response.data.authorization.id_token,
         Accept: 'application/json',
       },
       data:
