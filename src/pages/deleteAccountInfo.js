@@ -1,7 +1,7 @@
 import React from "react";
 const DeleteAccountInfo = () => {
     return (
-        <div>
+        <div data-testid={"DeleteAccountInfoComponent"}>
             <h1>How to Delete Your Account</h1>
             <ol>
                 <li>Go to https://tread.run/profileSettingsPage</li>

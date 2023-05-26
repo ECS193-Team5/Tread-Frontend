@@ -166,7 +166,7 @@ const StatsChallengeSection = () => {
   }
 
   return (
-    <div className="challengeStatsSection">
+    <div data-testid="StatsChallengeSectionComponent" className="challengeStatsSection">
       <div className="downloadButtonHeader">
       <h1>Challenge History</h1>
       <StatsDownloadSection type = "Challenge"/>

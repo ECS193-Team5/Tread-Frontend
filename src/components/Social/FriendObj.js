@@ -206,16 +206,16 @@ const FriendObj = (props) => {
       setDropdownOptions(friendOptions);
     }
     return(
-        <div id = {"FriendObj"+props.children.username} className = "displayObj">
+        <div data-testid={"FriendObjComponent"+props.index} id = {"FriendObj"+props.children.username} className = "displayObj">
             <div className = "objSection objSectionLeague">
                 <img className = "objProfilePhoto objSectionLeague" src = {createProfilePictureURL(props.children.username)} alt = "profile"/>
             </div>
             <div className = "objSection objWritingSection">
-                <p className = "objDisplayName">{props.children.displayName}</p>
-                <p className = "objUsername">{props.children.username}</p>
+                <p data-testid={"FriendObjDisplayName"+props.index} className = "objDisplayName">{props.children.displayName}</p>
+                <p data-testid={"FriendObjUsername"+props.index} className = "objUsername">{props.children.username}</p>
             </div>
             <div className = "objSection objButtonSection">
-                <button className = "moreInfoButton objButtonMore" onClick = {toggleSelectShow}>
+                <button data-testid={"FriendObjMoreInfoButton"+props.index} className = "moreInfoButton objButtonMore" onClick = {toggleSelectShow}>
                     <img src = {moreInfoButton} alt = "toggle button"/>
                 </button>
                 {(selectShow) ?<div className='objDropdown'><DropDown uniqueDeterminer = {props.children.username+"FriendObj"}>{dropdownOptions}</DropDown></div> : <></>}

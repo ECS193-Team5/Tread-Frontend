@@ -114,11 +114,11 @@ const ExerciseReceiverForm = (props) => {
     }
 
     return (
-        <div>
+        <div data-testid="ExerciseReceiverFormComponent">
             <div className="formObj">
                 <p className="formObjInner">What kind of challenge?</p>
                 <div className="formObjInner">
-                    <select className="formSelect" id = "receiverGroupChangeElement" onChange={receiverGroupChange} defaultValue = "self">
+                    <select data-testid="ExerciseReceiverFormChallengeTypeSelect" className="formSelect" id = "receiverGroupChangeElement" onChange={receiverGroupChange} defaultValue = "self">
                         <option value="self">Self</option>
                         <option value="friend">Friend</option>
                         <option value="league">League</option>
@@ -130,7 +130,7 @@ const ExerciseReceiverForm = (props) => {
             <div id = "secondarySelect" className="formObj">
                 <p className="formObjInner">Who should receive the challenge?</p>
                 <div>
-                    <select id = "receiverChangeElement" onChange={receiverChange}  className="formSelect" defaultValue = "none">
+                    <select data-testid="ExerciseReceiverFormReceiverSelect" id = "receiverChangeElement" onChange={receiverChange}  className="formSelect" defaultValue = "none">
                         <option value="none" disabled hidden></option>
                         {inviteOptions.map((name) => { return <option value={name} key = {name}>{name.split("-")[0]}</option>; })}
                     </select>

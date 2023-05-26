@@ -24,11 +24,11 @@ const PhotoUploadForm = (props) => {
     }
 
     return (
-        <div>
+        <div data-testid="PhotoUploadFormComponent">
             <div className = "photoShow">
                 <img id = "uploadProfilePicture" className = "loadedProfileImage" src = {props.children.default} alt = "profile"></img>
             </div>
-            <input className = "uploadPhoto" type = "file" accept = "image/*" onChange = {onImageChange}></input>
+            <input data-testid="PhotoUploadFormUploadPhotoInput" className = "uploadPhoto" type = "file" accept = "image/*" onChange = {onImageChange}></input>
         </div>
     );
 

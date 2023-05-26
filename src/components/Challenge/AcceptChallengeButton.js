@@ -14,7 +14,7 @@ const AcceptChallengeButton = (props) => {
     }
 
     return(
-        <button data-testid="AcceptChallengeButtonComponent" id = {"AcceptButton"+props.id} className = "circleButton" onClick = {onAccept}>
+        <button data-testid={"AcceptChallengeButtonComponent"+props.index} id = {"AcceptButton"+props.id} className = "circleButton" onClick = {onAccept}>
             <img className = "circleButtonInner" src ={checkMark}/>
         </button>
     );

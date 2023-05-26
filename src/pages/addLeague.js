@@ -4,7 +4,7 @@ import LeagueForm from "../components/AddLeague/LeagueForm";
 import "../css/Shared/page.css";
 const AddLeague = () => {
     return (
-        <div id="AddLeague" className="Body2Part">
+        <div data-testid="AddLeagueComponent" id="AddLeague" className="Body2Part">
             <div className="leftSide2Part">
                 <SideBar></SideBar>
             </div>

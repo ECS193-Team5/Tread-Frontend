@@ -204,7 +204,7 @@ const LeagueMemberScroll = (props) => {
     );
 
     return(
-            <div>
+            <div data-testid="LeagueMemberScrollComponent">
                 <div id = "LeagueMemberList">
                     {information.map(makeMemberEntryObj)}
                 </div>

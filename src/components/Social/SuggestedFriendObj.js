@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import {createProfilePictureURL} from "../../helpers/CloudinaryURLHelpers";
-import { setDisplayProperty } from "../../helpers/CssEffects";
 import plusButtonImage from "../../assets/plusButtonImage.png";
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
@@ -35,12 +34,12 @@ const SuggestedFriendObj = (props) => {
     }
 
     return (
-        <div id = {props.children[0] + "SuggestionObj"} className="ItemsSuggestionObj">
+        <div data-testid={"SuggestedFriendObjComponent"+props.index} id = {props.children[0] + "SuggestionObj"} className="ItemsSuggestionObj">
           <div className = "ItemsSuggestionInner">
             <img className = "ItemsProfilePhoto" src = {createProfilePictureURL(props.children[0])} alt = "profile"/>
-            <p className = "greenBaseText ItemsObjText">{props.children[0]}: {props.children[1]} Mutual Friend(s)</p>
+            <p data-testid={"SuggestedFriendObjMutualFriendText"+props.index} className = "greenBaseText ItemsObjText">{props.children[0]}: {props.children[1]} Mutual Friend(s)</p>
           </div>
-          <button className = "submitCircleButton" onClick = {sendFriendRequest}><img className = "submitCircleButtonIcon" src = {plusButtonImage}/></button>
+          <button data-testid={"SuggestedFriendObjSendFriendRequestButton"+props.index} className = "submitCircleButton" onClick = {sendFriendRequest}><img className = "submitCircleButtonIcon" src = {plusButtonImage}/></button>
         </div>
     );
 }

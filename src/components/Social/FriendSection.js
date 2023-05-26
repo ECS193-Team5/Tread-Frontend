@@ -17,7 +17,7 @@ const FriendSection = (props) => {
     {"name": "Add User", "defaultOn":false, "create":true}];
 
     return (
-    <div id = "FriendSection" className='section'>
+    <div data-testid="FriendSectionComponent" id = "FriendSection" className='section'>
         <div className ="selectButtonHeader">
             <h1>Friends</h1>
             <Bar>{{"buttonList":buttonList, "updateFunc":setFriendState}}</Bar>

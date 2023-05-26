@@ -9,7 +9,7 @@ import '../css/Shared/page.css'
 const Social = (props) => {
 
     return (
-        <div id = "Social" className='Body2Part'>
+        <div data-testid="SocialComponent" id = "Social" className='Body2Part'>
             <div className = "leftSide2Part">
                 <SideBar></SideBar>
             </div>

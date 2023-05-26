@@ -91,7 +91,7 @@ const AppleSigninButton = () => {
       withCredentials: true,
       credentials: 'include',
       headers: {
-        Authorization: response.data.authorization.id_token,
+        Authorization: response.authorization.id_token,
         Accept: 'application/json',
       },
       data:
@@ -120,7 +120,7 @@ const AppleSigninButton = () => {
     console.log(error);
   }
 
-  return(<AppleSignin
+  return(<div data-testid="AppleSignInButtonComponent"><AppleSignin
     authOptions={{
       /** Client ID - eg: 'com.example.com' */
       clientId: 'run.tread.applesignin',
@@ -154,7 +154,7 @@ const AppleSigninButton = () => {
     /** render function - called with all props - can be used to fully customize the UI by rendering your own component  */
     /*render={(props) => <button {...props}>My Custom Button</button>}*/
 
-  />);
+  /></div>);
   };
 
 export default AppleSigninButton;

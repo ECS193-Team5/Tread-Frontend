@@ -36,14 +36,14 @@ const DeleteSection = () => {
       if(deleteConfirmed === "delete account"){  deleteAccount()};
     }
     return (
-        <div id = "DeleteSection">
+        <div data-testid="DeleteSectionComponent" id = "DeleteSection">
             <h2>Delete Account</h2><p>
             <span className = "greenBaseText">This will </span>
             <span className = "redBaseText">permanently delete</span>
             <span className = "greenBaseText"> your account. You will </span>
             <span className = "redBaseText">lose</span>
             <span className = "greenBaseText"> all your friends, leagues, and medals. All your information will be gone with no way to recover it. </span></p>
-            <button className = "deleteButton" onClick = {deleteAccountHandler}><p className = "deleteButtonText">Delete</p></button>
+            <button data-testid="DeleteSectionDeleteAccountButton" className = "deleteButton" onClick = {deleteAccountHandler}><p className = "deleteButtonText">Delete</p></button>
 
         </div>
     )

@@ -49,17 +49,17 @@ const UserAddForm = (props) => {
         }
     }
 
-    return (<div >
+    return (<div data-testid="UserAddFormComponent">
         <div id="addUserForm">
             <h3>{descriptionText[props.type]["header"]}</h3>
-            <p className="greenBaseText">{descriptionText[props.type]["subHeader"]}</p>
+            <p data-testid="UserAddFormDescriptionText" className="greenBaseText">{descriptionText[props.type]["subHeader"]}</p>
             <div id="addUserInput">
-                <input id="textInput" placeholder="username#0000" type="text" onChange={handleTextChange} onKeyDown={handleEnter}></input>
-                <button id="buttonInput" type="button" onClick={sendRequest}>Send</button>
+                <input data-testid="UserAddFormDescriptionUsernameInput" id="textInput" placeholder="username#0000" type="text" onChange={handleTextChange} onKeyDown={handleEnter}></input>
+                <button data-testid="UserAddFormSendButton" id="buttonInput" type="button" onClick={sendRequest}>Send</button>
             </div>
             <div>
-                <p className='greenBaseText'>{userGoodResponse}</p>
-                <p className='redBaseText'>{userBadResponse}</p>
+                <p data-testid="UserAddFormUserGoodResponse" className='greenBaseText'>{userGoodResponse}</p>
+                <p data-testid="UserAddFormUserBadResponse" className='redBaseText'>{userBadResponse}</p>
             </div>
         </div>
     </div>);

@@ -33,7 +33,7 @@ const Bar = (props) => {
     }
 
     return(
-        <div className="bar">
+        <div data-testid="BarComponent" className="bar">
             {props.children.buttonList.map(createBarButton)}
         </div>
     )

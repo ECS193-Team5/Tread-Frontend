@@ -11,7 +11,7 @@ const LeagueChallengeList = (props) => {
     }
 
     return(
-    <div>
+    <div data-testid="LeagueChallengeListComponent">
         <div className = "selectButtonHeader">
             <h2 className='activeChallengesHeader'>Active Challenges</h2>
             <Bar>{{"buttonList":challengesBarButtonList, "updateFunc":sendLeagueChallengeRedirect}}</Bar>

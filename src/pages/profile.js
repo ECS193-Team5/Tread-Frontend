@@ -11,7 +11,7 @@ import MailBox from '../components/Profile/MailBox';
 
 const Profile = (props) => {
     return (
-        <div id = "Profile" className='Body2Part'>
+        <div data-testid="ProfileComponent" id = "Profile" className='Body2Part'>
             <div className = "leftSide2Part">
                 <SideBar></SideBar>
             </div>

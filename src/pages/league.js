@@ -22,7 +22,7 @@ const League = (props) => {
     const [leagueName] = useState(getLeagueName());
 
     return (
-        <div id="League" className='Body2Part'>
+        <div data-testid="LeagueComponent" id="League" className='Body2Part'>
             <div className="leftSide2Part">
                 <SideBar></SideBar>
             </div>

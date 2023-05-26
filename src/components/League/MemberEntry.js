@@ -416,14 +416,14 @@ const MemberEntry = (props) => {
   }
 
   return (
-    <div id = {props.children.memberData.username + "MemberEntry"} className="memberEntry">
+    <div data-testid={"MemberEntryComponent"+props.index} id = {props.children.memberData.username + "MemberEntry"} className="memberEntry">
       <div className="memberEntryLeft">
         <div>
           <img className="memberPicture" src={createProfilePictureURL(props.children.memberData.username)} />
         </div>
         <div class="memberNames">
-          <p className="memberDisplayName memberEntryText">{props.children.memberData.displayName}</p>
-          <p className="memberUsername memberEntryText">{props.children.memberData.username}</p>
+          <p data-testid={"MemberEntryMemberDisplayName"+props.index} className="memberDisplayName memberEntryText">{props.children.memberData.displayName}</p>
+          <p data-testid={"MemberEntryMemberUsername"+props.index} className="memberUsername memberEntryText">{props.children.memberData.username}</p>
         </div>
       </div>
       <div className="memberEntryRight">
@@ -445,7 +445,7 @@ const MemberEntry = (props) => {
         </div>
 
         <div className="moreInfoDiv" id = {"moreInfoButtonMember"+ props.children.memberData.username}>
-          <button className="moreInfoButton" onClick={toggleSelectShow}>
+          <button data-testid={"MemberEntryMoreInfoButton"+props.index} className="moreInfoButton" onClick={toggleSelectShow}>
             <img src={moreInfoButton} />
           </button>
           {(selectShow) ? <div className="memberSelectOptions"><DropDown uniqueDeterminer = {props.children.memberData.username+"MemberEntry"}>{memberDropDownEntries}</DropDown></div> : <></>}

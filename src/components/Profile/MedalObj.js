@@ -17,7 +17,7 @@ const MedalObj = (props) => {
     let convertedProgress = min(calculateProgress(props.children.progress, props.children.exercise.unit), props.children.exercise.amount);
 
     return(
-        <div id = "MedalObj">
+        <div data-testid="MedalObjComponent" id = "MedalObj">
             <div className = "medalLeft">
                 <div>
                     {props.children.level === 3 ? <img  className = "medalsItem" src = {goldTrophy}></img> : <></>}
@@ -25,12 +25,12 @@ const MedalObj = (props) => {
                     {props.children.level === 1 ? <img  className = "medalsItem" src = {bronzeTrophy}></img> : <></>}
                 </div>
                 <div>
-                    <p className = "medalsItem medalsText">{props.children.exercise.exerciseName + " " + props.children.exercise.amount + " " + props.children.exercise.unit}</p>
+                    <p data-testid="MedalObjMedalsText" className = "medalsItem medalsText">{props.children.exercise.exerciseName + " " + props.children.exercise.amount + " " + props.children.exercise.unit}</p>
                 </div>
             </div>
 
             <div className = "medalRight">
-                <p className = "medalsItem medalsText">Progress : {convertedProgress}/{props.children.exercise.amount} {props.children.exercise.unit}</p>
+                <p data-testid="MedalObjMedalProgress" className = "medalsItem medalsText">Progress : {convertedProgress}/{props.children.exercise.amount} {props.children.exercise.unit}</p>
 
             </div>
         </div>

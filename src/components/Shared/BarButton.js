@@ -6,6 +6,6 @@ const BarButton = (props) => {
         props.func(props.name);
     }
 
-    return (<button id = {props.name+"BarButton"} onClick = {buttonChange} className = {props.classes}>{props.name}</button>);
+    return (<button data-testid={"BarButtonComponent"+props.index} id = {props.name+"BarButton"} onClick = {buttonChange} className = {props.classes}>{props.name}</button>);
 }
 export default BarButton;

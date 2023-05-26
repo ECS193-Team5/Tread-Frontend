@@ -84,7 +84,7 @@ const ProfileHeader = () => {
         window.location.href = "./profileSettingsPage";
     }
     return (
-        <div className="pictureHeader">
+        <div data-testid="ProfileHeaderComponent" className="pictureHeader">
             <div className="pictureHeaderLeft">
                 <div className="pictureHeaderFarLeft">
                     <div className = "pictureHolderDiv">
@@ -97,7 +97,7 @@ const ProfileHeader = () => {
                         <h3>{displayName}</h3>
                     </div>
                     <div id = "pictureHeaderButton">
-                        <button className="editButton" onClick={moveSettingsPage}><img className="editButtonImage" src={editButtonImage} alt="edit button"></img></button>
+                        <button data-testid="ProfileHeaderMoveSettingPageButton" className="editButton" onClick={moveSettingsPage}><img className="editButtonImage" src={editButtonImage} alt="edit button"></img></button>
 
                     </div>
                 </div>

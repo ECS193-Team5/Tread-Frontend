@@ -71,13 +71,13 @@ const RowBox = (props) => {
     }
 
     function createSuggestFriendObj (input, index) {
-        return <SuggestedFriendObj index = {index} updateObjList = {updateObjList}>{input}</SuggestedFriendObj>
+        return <SuggestedFriendObj updateObjList = {updateObjList} index = {index}>{input}</SuggestedFriendObj>
     }
     function createSuggestLeagueObj (input, index) {
-        return <SuggestedLeagueObj  index = {index} updateObjList = {updateObjList}>{input}</SuggestedLeagueObj>
+        return <SuggestedLeagueObj  updateObjList = {updateObjList} index = {index}>{input}</SuggestedLeagueObj>
     }
     function createRecentObj (input, index) {
-        return <ActivityObj index = {index}> {input}</ActivityObj>
+        return <ActivityObj index = {index}>{input}</ActivityObj>
     }
 
     function getSuggestedFriends() {
@@ -165,6 +165,8 @@ const RowBox = (props) => {
     }
 
     function createBoxSection(input, index) {
+        console.log("info is", info);
+        console.log("Box Section has input", input);
         if (index === 0) {
             return (
                 <div className="fullRow">
@@ -184,7 +186,7 @@ const RowBox = (props) => {
     }
 
     return (
-        <div className="rowBox" id={props.children.socialType + props.children.informationType + "Box"}>
+        <div data-testid="RowBoxComponent" className="rowBox" id={props.children.socialType + props.children.informationType + "Box"}>
             <h2>{title}</h2>
             <div className="ItemsBox">
                 {info.map(createBoxSection)}
