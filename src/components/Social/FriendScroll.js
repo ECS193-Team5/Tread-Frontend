@@ -135,7 +135,7 @@ const FriendScroll = (props) => {
     );
 
     return(
-        <div className = "scroll">
+        <div data-testid="FriendScrollComponent" className = "scroll">
             {information.map(makeFriendObj)}
             {(showZero) ? <ZeroItem message = {showMessage[scrollType]}></ZeroItem> : <></>}
         </div>

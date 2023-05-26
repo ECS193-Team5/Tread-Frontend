@@ -111,29 +111,29 @@ const SideBar = () => {
     }
 
     return (
-        <div className = "sideBarClass">
+        <div data-testid="SideBarComponent" className = "sideBarClass">
             <img id = "treadLogoSideBar" src = {frontPageTreadLogo} alt = "Tread logo"/>
             <div id = "sideBarButtons">
                 <div id = "sideBarChallenges" className = "sideBarButtonSet">
-                    <button title = "Challenges" className = "sideBarButtonClass" onClick = {clickChallengeButton}  id = "sideBarButtonChallenges">
+                    <button data-testid="SideBarChallengesButton" title = "Challenges" className = "sideBarButtonClass" onClick = {clickChallengeButton}  id = "sideBarButtonChallenges">
                         <img className = "sideBarButtonClassInner" id = "challengeImage" src = {challengeButtonImage} alt = "Button for Challenges"/>
                     </button>
                     <p className = "sideBarText">Challenges</p>
                 </div>
                 <div id = "sideBarSocial" className = "sideBarButtonSet">
-                    <button title = "Social Page" className = "sideBarButtonClass" onClick = {clickSocialButton} id = "sideBarButtonSocial">
+                    <button data-testid="SideBarSocialPageButton" title = "Social Page" className = "sideBarButtonClass" onClick = {clickSocialButton} id = "sideBarButtonSocial">
                         <img className = "sideBarButtonClassInner" id = "socialImage" src = {socialButtonImage} alt = "Button for Social"/>
                     </button>
                     <p className = "sideBarText">Social</p>
                 </div>
                 <div id = "sideBarProfile" className = "sideBarButtonSet">
-                    <button title = "Exercise History" className = "sideBarButtonClass" onClick = {clickProfileButton} id = "sideBarButtonProfile">
+                    <button data-testid="SideBarExerciseHistoryButton" title = "Exercise History" className = "sideBarButtonClass" onClick = {clickProfileButton} id = "sideBarButtonProfile">
                         <img className = "sideBarButtonClassInner" id = "profileImage" src = {profileButtonImage} alt = "Button for Profile"/>
                     </button>
                     <p className = "sideBarText">Exercise History</p>
                 </div>
                 <div id = "sideBarSettings" className = "sideBarButtonSet">
-                    <button title = "Profile Settings" className = "sideBarButtonClass" onClick = {clickSettingsButton} id = "sideBarButtonSettings">
+                    <button data-testid="SideBarProfileSettingsButton" title = "Profile Settings" className = "sideBarButtonClass" onClick = {clickSettingsButton} id = "sideBarButtonSettings">
                         <img className = "sideBarButtonClassInner" id = "settingsImage" src = {profileSettingsButtonImage} alt = "Button for Settings"/>
                     </button>
                     <p className = "sideBarText">Profile Settings</p>

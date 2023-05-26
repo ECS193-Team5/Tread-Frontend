@@ -64,35 +64,35 @@ const PageSwitch = (props) => {
     }
 
     return(
-        <div>
+        <div data-testid="PageSwitchComponent">
         {  props.type === "challenge" ?
             <div id ="PageSwitch">
-                <button id = "current" className = "switchButton" onClick = {moveCurrentChallenge}><p className = "switchButtonText">Current</p></button>
-                <button id = "global" className = "switchButton" onClick = {moveGlobalChallenge}><p className = "switchButtonText">Global</p></button>
+                <button data-testid="PageSwitchCurrentButton" id = "current" className = "switchButton" onClick = {moveCurrentChallenge}><p className = "switchButtonText">Current</p></button>
+                <button data-testid="PageSwitchGlobalButton" id = "global" className = "switchButton" onClick = {moveGlobalChallenge}><p className = "switchButtonText">Global</p></button>
             </div>
             :
             <></>
         }
         {  props.type === "social" ?
             <div id ="PageSwitch">
-                <button id = "friend" className = "switchButton" onClick = {moveSocialFriend}><p className = "switchButtonText">Friend</p></button>
-                <button id = "league" className = "switchButton" onClick = {moveSocialLeague}><p className = "switchButtonText">League</p></button>
+                <button data-testid="PageSwitchFriendButton" id = "friend" className = "switchButton" onClick = {moveSocialFriend}><p className = "switchButtonText">Friend</p></button>
+                <button data-testid="PageSwitchLeagueButton" id = "league" className = "switchButton" onClick = {moveSocialLeague}><p className = "switchButtonText">League</p></button>
             </div>
             :
             <></>
         }
         {  props.type === "profile" ?
             <div id ="PageSwitch">
-                <button id = "stats" className = "switchButton" onClick = {moveProfileStats}><p className = "switchButtonText">Stats</p></button>
-                <button id = "medal" className = "switchButton" onClick = {moveProfileMedals}><p className = "switchButtonText">Medals</p></button>
+                <button data-testid="PageSwitchStatsButton" id = "stats" className = "switchButton" onClick = {moveProfileStats}><p className = "switchButtonText">Stats</p></button>
+                <button data-testid="PageSwitchMedalButton" id = "medal" className = "switchButton" onClick = {moveProfileMedals}><p className = "switchButtonText">Medals</p></button>
             </div>
             :
             <></>
         }
         {  props.type === "league" ?
             <div id ="PageSwitch">
-                <button id = "description" className = "switchButton" onClick = {moveLeagueDescription}><p className = "switchButtonText">Description</p></button>
-                <button id = "member" className = "switchButton" onClick = {moveLeagueMember}><p className = "switchButtonText">Members</p></button>
+                <button data-testid="PageSwitchDescriptionButton" id = "description" className = "switchButton" onClick = {moveLeagueDescription}><p className = "switchButtonText">Description</p></button>
+                <button data-testid="PageSwitchMemberButton" id = "member" className = "switchButton" onClick = {moveLeagueMember}><p className = "switchButtonText">Members</p></button>
             </div>
             :
             <></>

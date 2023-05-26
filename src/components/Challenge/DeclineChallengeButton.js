@@ -13,7 +13,7 @@ const DeclineChallengeButton = (props) => {
     }
 
     return(
-        <button data-testid="DeclineChallengeButtonComponent" id = {"DeclineButton"+props.id} className = "circleButton" onClick = {onDecline}>
+        <button data-testid={"DeclineChallengeButtonComponent"+props.index} id = {"DeclineButton"+props.id} className = "circleButton" onClick = {onDecline}>
             <img className = "circleButtonInner" src ={declineImage}/>
         </button>
     );

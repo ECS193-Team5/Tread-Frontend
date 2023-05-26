@@ -11,12 +11,12 @@ const ReceivedChallengeObj = (props) => {
     let dueDate = new Date(props.children.dueDate).toISOString().split("T")[0];
 
     return (
-    <div data-testid="ReceivedChallengeObjComponent" id = {"ReceivedChallengedObj"+props.children._id} className = "challengeBox completeChallengeBox">
+    <div data-testid={"ReceivedChallengeObjComponent"+props.index} id = {"ReceivedChallengedObj"+props.children._id} className = "challengeBox completeChallengeBox">
         <div className="photoDiv">
         <PhotoDisplay index = {props.index} photos={props.children.participants}></PhotoDisplay><BoxLine></BoxLine>
         </div>
         <div className="challengeMiddle">
-            <p data-testid="ReceivedChallengeObjTitle" className="challengeText">{title}</p>
+            <p data-testid={"ReceivedChallengeObjTitle"+props.index} className="challengeText">{title}</p>
             <ShowDueDate index = {props.index} dueDate = {props.children.dueDate}/>
         </div>
         <div className = "challengeEnd">

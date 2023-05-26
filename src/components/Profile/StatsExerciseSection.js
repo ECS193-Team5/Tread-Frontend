@@ -283,16 +283,16 @@ const StatsExerciseSection = () => {
 
 
 
-    return (<div>
+    return (<div data-testid="StatsExerciseSectionComponent">
         <div className = "downloadButtonHeader">
         <h1 >Exercise History</h1>
         <StatsDownloadSection type = "Exercise"/>
         </div>
         <div >
-            <select className = "formSelect exercisePicker" onChange = {changeExerciseName} defaultValue={"none"}>
+            <select data-testid="StatsExerciseSectionExerciseNameSelect" className = "formSelect exercisePicker" onChange = {changeExerciseName} defaultValue={"none"}>
                 {availableExercises.map((item) => {return <option value = {item}>{item}</option>})}
             </select>
-            <select id = "challengeExerciseUnitPicker" className = "formSelect exercisePicker" onChange = {changeUnit} defaultValue={"none"}>
+            <select data-testid="StatsExerciseSectionExerciseUnitSelect" id = "challengeExerciseUnitPicker" className = "formSelect exercisePicker" onChange = {changeUnit} defaultValue={"none"}>
                 {availableUnits.map((item) =>{ return <option value = {item}> {hardCodedInfo.fullUnitName[item]}</option> })}
             </select>
         </div>

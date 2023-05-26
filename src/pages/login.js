@@ -131,7 +131,7 @@ const Login = () => {
   }
 
   return (
-  <div id = "loginPage">
+  <div data-testid="LoginComponent" id = "loginPage">
     <div id = "loginPageWeb">
       <div id = "logoBox">
         <div>
@@ -142,7 +142,7 @@ const Login = () => {
             <p id = "frontPageSubtitle">Stay Fit with Friends</p>
         </div>
       </div>
-      <p className='frontPageDescriptionText'>{hardCodedInfo.frontPageDescription}</p>
+      <p data-testid="LoginFrontPageDescription" className='frontPageDescriptionText'>{hardCodedInfo.frontPageDescription}</p>
       <div id="buttonDiv"></div>
       <AppleSigninButton/>
       </div>

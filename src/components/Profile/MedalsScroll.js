@@ -76,7 +76,7 @@ const MedalsScroll = (props) => {
         }, [type]
       );
     return (
-        <div id = "MedalsScroll">
+        <div data-testid="MedalsScrollComponent" id = "MedalsScroll">
             {informationMap.map(createObj)}
         </div>
     );

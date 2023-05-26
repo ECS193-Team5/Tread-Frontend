@@ -67,7 +67,7 @@ const LeagueHeader = (props) => {
     }
 
     return(
-        <div className = "pictureHeader">
+        <div data-testid="LeagueHeaderComponent" className = "pictureHeader">
             <div className = "pictureHeaderLeft">
                 <div className = "pictureHeaderFarLeft">
                     <div className = "pictureHolderDiv">
@@ -77,13 +77,13 @@ const LeagueHeader = (props) => {
                 <div className = "pictureHeaderMiddle">
                     <div className = "pictureHeaderContent">
                         <h2>{leagueName}</h2>
-                        <p className = "pictureHeaderText">Description: {leagueDescription}</p>
-                        <p className = "pictureHeaderText">{leagueType}<br></br>{numberChallenges} Active Challenges  <br></br>{numberMembers} Members</p>
+                        <p data-testid="LeagueHeaderLeagueDescription" className = "pictureHeaderText">Description: {leagueDescription}</p>
+                        <p data-testid="LeagueHeaderLeagueType" className = "pictureHeaderText">{leagueType}<br></br>{numberChallenges} Active Challenges  <br></br>{numberMembers} Members</p>
                     </div>
                     <div className = "pictureHeaderButton">
                         {
                             (role === "owner")?
-                            <button className = "editButton" onClick = {moveEditPage}><img className = "editButtonImage" src = {editButtonImage} alt = "edit button"></img></button>
+                            <button data-testid="LeagueHeaderMoveEditPageButton" className = "editButton" onClick = {moveEditPage}><img className = "editButtonImage" src = {editButtonImage} alt = "edit button"></img></button>
                             :
                             <></>
                         }

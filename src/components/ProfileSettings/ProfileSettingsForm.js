@@ -69,18 +69,18 @@ const ProfileSettingsForm = (props) => {
     }
 
     return (
-    <div className = "Form">
+    <div data-testid="ProfileSettingsFormComponent" className = "Form">
         <div className="formObj">
                 <h2>Profile Picture</h2>
                 <PhotoUploadForm>{{"default":props.children.photo, "func":setPhoto}}</PhotoUploadForm>
                 <button className="submitButton" onClick = {submitPhoto}><p className = "submitButtonText">Submit</p></button>
-                <p>{photoResponse}</p>
+                <p data-testid="ProfileSettingsFormPhotoResponse">{photoResponse}</p>
 
           </div>
             <div className="formObj">
             <DisplayNameForm placeholder = {props.children.displayName} updateDisplayName = {setDisplayName}/>
-            <button className="submitButton" onClick = {submitDisplayName}><p className = "submitButtonText">Submit</p></button>
-            <p>{displayErrorResponse}</p>
+            <button data-testid="ProfileSettingsFormSubmitButton" className="submitButton" onClick = {submitDisplayName}><p className = "submitButtonText">Submit</p></button>
+            <p data-testid="ProfileSettingsFormDisplayErrorResponse">{displayErrorResponse}</p>
             </div>
     </div>
     );

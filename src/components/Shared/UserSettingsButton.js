@@ -133,18 +133,18 @@ const UserSettingsButton = () => {
   }
   let dropdownFunctions = [{"name":"Logout", "func":logout}];
   return (
-    <div id="UserSettingsButton" >
+    <div data-testid="UserSettingsButtonComponent" id="UserSettingsButton" >
       <div id="UserSettingsLeft">
         <div>
           <img id="UserSettingButtonProfileImage" src={profilePhoto} alt="Profile" />
         </div>
         <div id="userSettingNaming">
-          <p id="userSettingDisplayName">{displayName}</p>
-          <p id="userSettingUsername">{username}</p>
+          <p data-testid="UserSettingsButtonDisplayName" id="userSettingDisplayName">{displayName}</p>
+          <p data-testid="UserSettingsButtonUsername" id="userSettingUsername">{username}</p>
         </div>
       </div>
       <div id="userSettingButtonSection">
-        <button id = "buttonUserDropDown" className="dropDownButton" onClick={toggleLogoutDisplay}><img id="UserSettingsTriangle" src={dropdownImage} alt="Dropdown" /></button>
+        <button data-testid="UserSettingsButtonUserDropDown" id = "buttonUserDropDown" className="dropDownButton" onClick={toggleLogoutDisplay}><img id="UserSettingsTriangle" src={dropdownImage} alt="Dropdown" /></button>
         {
           logoutDisplay ?
           <div className = "userSettingsDropDown"><DropDown uniqueDeterminer = {"userSettingsDropDown"}>{dropdownFunctions}</DropDown></div>

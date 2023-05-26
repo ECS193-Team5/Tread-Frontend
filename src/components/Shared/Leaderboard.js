@@ -6,7 +6,7 @@ const Leaderboard = (props) => {
         return (<LeaderboardEntry index = {props.uniqueIndentifier+"-"+index}>{input}</LeaderboardEntry>)
     }
     return(
-        <div id = "Leaderboard">
+        <div data-testid="LeaderboardComponent" id = "Leaderboard">
             <h2>{props.children.title}</h2>
 
             <div>

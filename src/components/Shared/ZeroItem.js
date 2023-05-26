@@ -4,9 +4,9 @@ import "../../css/Shared/zeroItem.css";
 
 const ZeroItem = (props) => {
     return(
-        <div className="zeroItemBox">
+        <div data-testid="ZeroItemComponent" className="zeroItemBox">
             <img className = "zeroItemImg" src = {zeroItemImage}></img>
-            <p className = "zeroItemText">{props.message}</p>
+            <p data-testid="ZeroItemMessage" className = "zeroItemText">{props.message}</p>
         </div>
     )
 }

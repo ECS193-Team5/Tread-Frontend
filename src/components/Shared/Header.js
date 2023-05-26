@@ -9,7 +9,7 @@ const Header = (props) => {
     let leagueID = props.children.leagueID;
 
     return (
-        <div id = "Header">
+        <div data-testid="HeaderComponent" id = "Header">
             <h1>{title}</h1>
             {
             (pageSwitchType !== "none" && pageSwitchType !== "league")

@@ -47,10 +47,10 @@ const MailBox = () =>{
     }
 
     return(
-        <div id = "MailBox">
+        <div data-testid="MailBoxComponent" id = "MailBox">
             <div id = "MailBoxHeader">
                 <h1>Notifications</h1>
-                <button onClick = {deleteAll} className="mailBoxDeleteButton"><p className="mailBoxDeleteButtonText">Delete All</p><img src = {deleteCircleButton}></img></button>
+                <button data-testid="MailBoxDeleteAllButton" onClick = {deleteAll} className="mailBoxDeleteButton"><p className="mailBoxDeleteButtonText">Delete All</p><img src = {deleteCircleButton}></img></button>
             </div>
 
 

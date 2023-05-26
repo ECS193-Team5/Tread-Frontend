@@ -1,6 +1,5 @@
 import React from "react";
 import {createLeaguePictureURL} from "../../helpers/CloudinaryURLHelpers";
-import { setDisplayProperty } from "../../helpers/CssEffects";
 import axios from 'axios';
 
 import plusButtonImage from "../../assets/plusButtonImage.png";
@@ -34,12 +33,12 @@ const SuggestedLeagueObj = (props) => {
     }
 
     return(
-        <div id = {leagueID + "SuggestionObj"} className="ItemsSuggestionObj">
+        <div data-testid={"SuggestedLeagueObjComponent"+props.index} id = {leagueID + "SuggestionObj"} className="ItemsSuggestionObj">
             <div className = "ItemsSuggestionInner">
                 <img className = "ItemsProfilePhoto" src = {createLeaguePictureURL(leagueID)} alt = "league"/>
-                <p className = "greenBaseText ItemsObjText">{props.children.leagueName}</p>
+                <p data-testid={"SuggestedLeagueObjLeagueName"+props.index} className = "greenBaseText ItemsObjText">{props.children.leagueName}</p>
             </div>
-            <button className = "submitCircleButton" onClick = {requestJoinLeague}><img className = "submitCircleButtonIcon" src = {plusButtonImage}/></button>
+            <button data-testid={"SuggestedLeagueObjRequestJoinLeagueButton"+props.index} className = "submitCircleButton" onClick = {requestJoinLeague}><img className = "submitCircleButtonIcon" src = {plusButtonImage}/></button>
         </div>
     )
 }

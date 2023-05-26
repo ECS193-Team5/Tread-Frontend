@@ -93,7 +93,7 @@ const LeagueEditForm = (props) => {
     }
 
     return (
-        <div>
+        <div data-testid="LeagueEditFormComponent">
             <div className="formObj">
                 <h2>League Picture</h2>
                 <PhotoUploadForm>{{ "default": createLeaguePictureURL(props.leagueID), "func": setPhoto }}</PhotoUploadForm>
@@ -102,8 +102,8 @@ const LeagueEditForm = (props) => {
             <LeagueNameForm defaultValue = {defaultLeagueName} updateLeagueName={setLeagueName} />
             <LeagueDescriptionForm defaultValue = {defaultLeagueDescription} updateDescription={setLeagueDescription} />
             <LeagueTypeForm defaultValue={defaultLeagueType} updateLeagueType={setLeagueType} />
-            <button className="submitButton" onClick={submit}><p className="submitButtonText">Submit</p></button>
-            <p className = "greenBaseText">{submitError}</p>
+            <button data-testid="LeagueEditFormSubmitButton" className="submitButton" onClick={submit}><p data-testid="LeagueEditFormSubmitButtonText" className="submitButtonText">Submit</p></button>
+            <p data-testid="LeagueEditFormSubmitError" className = "greenBaseText">{submitError}</p>
 
             <Line></Line>
             <h2>Delete League</h2><p>
@@ -114,8 +114,8 @@ const LeagueEditForm = (props) => {
             <span className = "greenBaseText"> all the previous challenges, leaderboard, and history. There will be </span>
             <span className = "redBaseText">no</span>
             <span className = "greenBaseText"> recovery</span></p>
-            <button className = "deleteButton" onClick = {onDeleteLeague}><p className = "deleteButtonText">Delete</p></button>
-            <p className="errorBox">{deleteError}</p>
+            <button data-testid="LeagueEditFormDeleteButton" className = "deleteButton" onClick = {onDeleteLeague}><p className = "deleteButtonText">Delete</p></button>
+            <p data-testid="LeagueEditFormDeleteError" className="errorBox">{deleteError}</p>
             <p><br></br></p>
         </div>);
 }

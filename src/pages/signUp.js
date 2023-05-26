@@ -42,7 +42,7 @@ const SignUp = () => {
     }
 
     return (
-        <div id = "SignUp">
+        <div data-testid="SignUpComponent" id = "SignUp">
             <SignUpSideBar id = "SignUpBar"/>
             <SignUpForm id = "SignUpForm">{{"profilePhoto":profilePhoto}}</SignUpForm>
 

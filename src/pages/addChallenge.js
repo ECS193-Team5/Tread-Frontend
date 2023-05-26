@@ -4,7 +4,7 @@ import SideBar from "../components/Shared/SideBar";
 import "../css/Shared/page.css";
 const AddChallenge = () => {
     return (
-        <div id="AddChallenge" className="Body2Part">
+        <div data-testid="AddChallengeComponent" id="AddChallenge" className="Body2Part">
             <div className="leftSide2Part">
                 <SideBar></SideBar>
             </div>

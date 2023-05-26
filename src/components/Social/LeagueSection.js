@@ -24,19 +24,21 @@ const LeagueSection = () => {
     );
 
     return (
-        <div id = "LeagueSection" className="section">
-            <div className ="selectButtonHeader">
-                <h1>Leagues</h1>
-                <Bar>{{"buttonList":buttonList, "updateFunc":setLeagueState}}</Bar>
+        <div data-testid="LeagueSectionComponent">
+            <div id="LeagueSection" className="section">
+                <div className="selectButtonHeader">
+                    <h1>Leagues</h1>
+                    <Bar>{{ "buttonList": buttonList, "updateFunc": setLeagueState }}</Bar>
+                </div>
+
+                <div>
+
+                </div>
+                {(leagueState === "Leagues") ? <LeagueScroll type="league"></LeagueScroll> : <></>}
+                {(leagueState === "Admin") ? <LeagueScroll type="admin"></LeagueScroll> : <></>}
+                {(leagueState === "Sent") ? <LeagueScroll type="sent"></LeagueScroll> : <></>}
+                {(leagueState === "Received") ? <LeagueScroll type="invite"></LeagueScroll> : <></>}
             </div>
-
-        <div>
-
-        </div>
-            { (leagueState === "Leagues") ? <LeagueScroll type = "league"></LeagueScroll> : <></>}
-            { (leagueState === "Admin") ? <LeagueScroll type = "admin"></LeagueScroll> : <></>}
-            { (leagueState === "Sent") ? <LeagueScroll type = "sent"></LeagueScroll> : <></>}
-            { (leagueState === "Received") ? <LeagueScroll type = "invite"></LeagueScroll> : <></>}
         </div>
         )
 }

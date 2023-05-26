@@ -7,12 +7,14 @@ const ActivityObj = (props) => {
     let progress = props.children.exercise.amount;
     let unit = props.children.exercise.unit;
     let date = props.children.loggedDate.split("T")[0];
+
     return (
-        <div className = "ItemsRecentObj">
+        <div data-testid="ActivityObjComponent" className = "ItemsRecentObj">
             <img className= "ItemsProfilePhoto" src = {createProfilePictureURL(username)} alt = "profile"></img>
-            <p className = "greenBaseText ItemsObjText">{username} did {exerciseName} {progress} {unit} on {date}</p>
+            <p data-testid="ActivityObjActivityText" className = "greenBaseText ItemsObjText">{username} did {exerciseName} {progress} {unit} on {date}</p>
         </div>
     );
+
 }
 
 export default ActivityObj;

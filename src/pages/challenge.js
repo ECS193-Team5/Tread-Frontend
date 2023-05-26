@@ -9,7 +9,7 @@ import "../css/Shared/page.css";
 const Challenge = (props) => {
 
     return (
-        <div id="Challenge" className="Body2Part">
+        <div data-testid="ChallengeComponent" id="Challenge" className="Body2Part">
             <div className="leftSide2Part">
                 <SideBar ></SideBar>
             </div>

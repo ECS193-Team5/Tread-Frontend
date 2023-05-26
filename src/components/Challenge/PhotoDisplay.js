@@ -58,7 +58,7 @@ const PhotoDisplay = (props) => {
         }
 
         if (additionalNumber > 0){
-            let additional = <div id = "numberObj" className='photoDisplayObj lastPhotoDisplay'><p data-testid="PhotoDisplayAdditionalNumber" className = "lastPhotoText">+{additionalNumber}</p></div>
+            let additional = <div id = "numberObj" className='photoDisplayObj lastPhotoDisplay'><p data-testid={"PhotoDisplayAdditionalNumber"+props.index} className = "lastPhotoText">+{additionalNumber}</p></div>
             photoObj.push(additional);
         }
 
@@ -66,7 +66,7 @@ const PhotoDisplay = (props) => {
     }
 
     return (
-        <div data-testid="PhotoDisplayComponent" id = "PhotoDisplay">
+        <div data-testid={"PhotoDisplayComponent"+props.index} id = "PhotoDisplay">
             {pictureDiv}
         </div>
     );

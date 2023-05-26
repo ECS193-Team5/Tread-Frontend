@@ -22,11 +22,11 @@ const DisplayNameForm = (props) => {
     }
 
     return (
-        <div>
+        <div data-testid="DisplayNameFormComponent">
             <h1>Display Name</h1>
             <p className="formObjInner">This is public name that others will see.</p>
-            <input className="formTextInput" type="text" placeholder = {props.placeholder} onChange={validateDisplayName} />
-            <p className="errorBox">{displayError}</p>
+            <input data-testid="DisplayNameFormDisplayNameInput" className="formTextInput" type="text" placeholder = {props.placeholder} onChange={validateDisplayName} />
+            <p data-testid="DisplayNameFormDisplayError" className="errorBox">{displayError}</p>
         </div>
     );
 }

@@ -67,7 +67,7 @@ const LeagueLeaderboard = (props) => {
         return (<LeagueLeaderboardEntry index = {index}>{input}</LeagueLeaderboardEntry>)
     }
     return(
-        <div id = "LeagueLeaderboard">
+        <div data-testid="LeagueLeaderboardComponent" id = "LeagueLeaderboard">
             <h2>League Leaderboard</h2>
 
             <div id = "LeagueLeaderboardExterior">

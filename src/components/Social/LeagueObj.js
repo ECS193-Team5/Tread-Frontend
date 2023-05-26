@@ -225,17 +225,17 @@ const LeagueObj = (props) => {
         window.location.href = "leagueDescriptionPage?=" + props.children._id;
     }
     return(
-        <div id = {"LeagueObj"+props.children._id} className = "displayObj">
+        <div data-testid={"LeagueObjComponent"+props.index} id = {"LeagueObj"+props.children._id} className = "displayObj">
             <div className = "objSection"  onClick = {moveLeaguePage}>
                 <img className = "objProfilePhoto" src = {createLeaguePictureURL(id)} alt = "league"/>
             </div>
             <div className = "objSection objWritingSection objWritingLeagueSection"  onClick = {moveLeaguePage}>
-                <p className = "objDisplayName">{props.children.leagueName}</p>
-                <p className = "objUsername">{props.children.members.length} Member(s)</p>
-                <p className = "objUsername">{props.children.activeChallenges} active challenges</p>
+                <p data-testid={"LeagueObjLeagueName"+props.index} className = "objDisplayName">{props.children.leagueName}</p>
+                <p data-testid={"LeagueObjMembersCount"+props.index} className = "objUsername">{props.children.members.length} Member(s)</p>
+                <p data-testid={"LeagueObjActiveChallengeCount"+props.index} className = "objUsername">{props.children.activeChallenges} active challenges</p>
             </div>
             <div className = "objButtonSection objSection">
-                <button id = {props.children._id+"moreInfoButton"} className = "moreInfoButton objButtonMore" onClick = {toggleSelectShow}>
+                <button data-testid={"LeagueObjMoreInfoButton"+props.index} id = {props.children._id+"moreInfoButton"} className = "moreInfoButton objButtonMore" onClick = {toggleSelectShow}>
                     <img src = {moreInfoButton} alt = "toggle button"/>
                 </button>
                 {(selectShow) ? <div className='objDropdown'><DropDown uniqueDeterminer = {props.children.leagueName+"LeagueObj"}>{dropdownOptions}</DropDown></div>: <></>}

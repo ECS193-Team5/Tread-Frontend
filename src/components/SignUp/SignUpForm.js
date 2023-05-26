@@ -108,7 +108,7 @@ const SignUpForm = (props) => {
   }
 
   return (
-    <div id="SignUpForm">
+    <div data-testid="SignUpFormComponent" id="SignUpForm">
       <div>
         <p id="title">Tread</p>
         <p id="subtitle">Looks like you're new here</p>
@@ -124,8 +124,8 @@ const SignUpForm = (props) => {
 
 
       <div className="formObj">
-        <button className="submitButton" onClick={submitSignUp}><p className="submitButtonText">Sign Up</p></button>
-        <p className="errorBox">{submitError}</p>
+        <button data-testid="SignUpFormSignUpButton" className="submitButton" onClick={submitSignUp}><p className="submitButtonText">Sign Up</p></button>
+        <p data-testid="SignUpFormSubmitError" className="errorBox">{submitError}</p>
       </div>
 
     </div>

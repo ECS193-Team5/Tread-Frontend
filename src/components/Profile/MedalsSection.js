@@ -9,7 +9,7 @@ const MedalsSection = () => {
     let buttonList = [{"name": "Earned", "defaultOn":true, "create":false},
     {"name": "In Progress", "defaultOn":false, "create":false},];
     return (
-    <div id = "MedalsSection" className='section'>
+    <div data-testid="MedalsSectionComponent" id = "MedalsSection" className='section'>
         <div id = "MedalsHeader" className ="selectButtonHeader">
             <h1>Medals</h1>
             <Bar>{{"buttonList":buttonList, "updateFunc":setIfEarned}}</Bar>

@@ -53,14 +53,14 @@ const IssuedChallengeObj = (props) => {
     }
 
     return (
-        <div data-testid="IssuedChallengeObjComponent" id={"issuedChallengeObj" + props.children._id} className="completeChallengeBox">
+        <div data-testid={"IssuedChallengeObjComponent"+props.index} id={"issuedChallengeObj" + props.children._id} className="completeChallengeBox">
             <div className="challengeBox">
                 <div className="photoDiv">
                     <PhotoDisplay index = {props.index} photos={props.children.participants}></PhotoDisplay><BoxLine></BoxLine>
                 </div>
                 <div className="challengeMiddle">
                     <div className="challengeInnerMiddle">
-                        <p data-testid="IssuedChallengeObjTitle" className="challengeText">{title}</p>
+                        <p data-testid={"IssuedChallengeObjTitle"+props.index} className="challengeText">{title}</p>
                         <ShowDueDate index = {props.index} dueDate = {props.children.dueDate}/>
                     </div>
                     <div className="challengeInnerMiddle">
@@ -69,14 +69,14 @@ const IssuedChallengeObj = (props) => {
                 </div>
 
                 <div className="challengeEnd">
-                    <button data-testid="IssuedChallengeObjToggleStateButton" className="challengeDropButton" onClick={toggleState}>
+                    <button data-testid={"IssuedChallengeObjToggleStateButton"+props.index} className="challengeDropButton" onClick={toggleState}>
                         <img src={challengeDropDownButton} id={challengeID + "button"} alt="expandButton" />
                     </button>
                     {
                         (percentageDone < 100) ?
-                            <p data-testid="IssuedChallengeObjPartialProgress" className="challengeInnerEnd">{myProgressRealUnits}/{totalRealUnits}</p>
+                            <p data-testid={"IssuedChallengeObjPartialProgress"+props.index} className="challengeInnerEnd">{myProgressRealUnits}/{totalRealUnits}</p>
                             :
-                            <p data-testid="IssuedChallengeObjCompleteProgress" className="challengeInnerEnd">{totalRealUnits}/{totalRealUnits}</p>
+                            <p data-testid={"IssuedChallengeObjCompleteProgress"+props.index} className="challengeInnerEnd">{totalRealUnits}/{totalRealUnits}</p>
                     }
                 </div>
 

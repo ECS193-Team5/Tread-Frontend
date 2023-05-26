@@ -7,7 +7,7 @@ import thirdMedal from "../../assets/thirdMedal.png";
 
 const LeagueLeaderboardEntry = (props) => {
     return (
-    <div id = "LeaderboardEntry">
+    <div data-testid={"LeagueLeaderboardEntryComponent"+props.index} id = "LeaderboardEntry">
         <div className = "leaderboardEntryImage">
             {(props.children.level === 1) ? <img src = {firstMedal}/>: <></>}
             {(props.children.level === 2) ? <img src = {secondMedal}/>: <></>}
@@ -16,8 +16,8 @@ const LeagueLeaderboardEntry = (props) => {
         </div>
         <div className = "leaderboardRightSide">
             <img className = "leaderboardPhoto firstDiv" src={createProfilePictureURL(props.children[0])}/>
-            <p className="leaderboardText secondDiv">{props.children[0]}</p>
-            <p className="leaderboardText fifthDiv">{props.children[1]}</p>
+            <p data-testid={"LeagueLeaderboardEntryUserName"+props.index} className="leaderboardText secondDiv">{props.children[0]}</p>
+            <p data-testid={"LeagueLeaderboardEntryProgress"+props.index} className="leaderboardText fifthDiv">{props.children[1]}</p>
         </div>
     </div>
     );

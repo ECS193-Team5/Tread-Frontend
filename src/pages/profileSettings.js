@@ -66,7 +66,7 @@ const ProfileSettings = () => {
 
 
   return (
-    <div id="ProfileSettings" className="Body2Part">
+    <div data-testid="ProfileSettingsComponent" id="ProfileSettings" className="Body2Part">
       <div className="leftSide2Part">
         <SideBar></SideBar>
       </div>

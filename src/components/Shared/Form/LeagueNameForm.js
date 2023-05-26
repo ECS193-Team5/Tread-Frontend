@@ -31,10 +31,10 @@ const LeagueNameForm = (props) => {
       }
 
     return (
-        <div className="formObj">
+        <div data-testid="LeagueNameFormComponent" className="formObj">
             <h2>League Name</h2>
-            <input id = "leagueNameInput" className="formTextInput" type="text" onChange={updateLeagueName} />
-            <p className="errorBox">{nameError}</p>
+            <input data-testid="LeagueNameFormUpdateLeagueNameInput" id = "leagueNameInput" className="formTextInput" type="text" onChange={updateLeagueName} />
+            <p data-testid="LeagueNameFormNameError" className="errorBox">{nameError}</p>
         </div>
     );
 

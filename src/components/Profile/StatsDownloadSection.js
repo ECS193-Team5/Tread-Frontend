@@ -107,9 +107,9 @@ const StatsDownloadSection = (props) => {
     }, [props.type]);
 
     return (
-    <div className = "downloadButtonDiv">
-        <p className = "downloadButtonText">Download {props.type} History</p>
-        <a href={ownBlob} download><img className = "downloadButtonImage" src = {downloadButtonImage}></img></a>
+    <div data-testid="StatsDownloadSectionComponent" className = "downloadButtonDiv">
+        <p data-testid="StatsDownloadSectionDownloadButtonText" className = "downloadButtonText">Download {props.type} History</p>
+        <a data-testid="StatsDownloadSectionOwnBlob" href={ownBlob} download><img className = "downloadButtonImage" src = {downloadButtonImage}></img></a>
     </div>)
 }
 

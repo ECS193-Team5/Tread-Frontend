@@ -77,19 +77,19 @@ const GlobalChallengeObj = (props) => {
     }
 
     return (
-        <div data-testid="GlobalChallengeObjComponent" className="completeChallengeBox">
+        <div data-testid={"GlobalChallengeObjComponent"+props.index} className="completeChallengeBox">
             <div className="challengeBox">
                 <div className="photoDiv">
                     <div className="globalPhotoDiv">
                         <img className="innerGlobalPhotoDiv" src={globalChallengeImage} />
-                        <p data-testid="GlobalChallengeObjGlobal" className="innerGlobalPhotoDiv challengeText">Global</p>
+                        <p data-testid={"GlobalChallengeObjGlobal"+props.index} className="innerGlobalPhotoDiv challengeText">Global</p>
                     </div>
                     <BoxLine></BoxLine>
                 </div>
 
                 <div className="challengeMiddle">
                     <div className="challengeInnerMiddle">
-                        <p data-testid="GlobalChallengeObjTitle" className="challengeText">{title}</p>
+                        <p data-testid={"GlobalChallengeObjTitle"+props.index} className="challengeText">{title}</p>
                         <ShowDueDate index = {props.index} dueDate = {props.children.dueDate}/>
                     </div>
                     <div className="challengeInnerMiddle">
@@ -98,14 +98,14 @@ const GlobalChallengeObj = (props) => {
                 </div>
 
                 <div className="challengeEnd">
-                    <button data-testid="GlobalChallengeObjToggleStateButton" className="challengeDropButton" onClick={toggleState}>
+                    <button data-testid={"GlobalChallengeObjToggleStateButton"+props.index} className="challengeDropButton" onClick={toggleState}>
                         <img src={challengeDropDownButton} id={challengeID + "button"} alt="expandButton" />
                     </button>
                     {
                         (percentageDone < 100) ?
-                            <p data-testid="GlobalChallengeObjPartialProgress" className="challengeInnerEnd">{myProgressRealUnits}/{totalRealUnits}</p>
+                            <p data-testid={"GlobalChallengeObjPartialProgress"+props.index} className="challengeInnerEnd">{myProgressRealUnits}/{totalRealUnits}</p>
                             :
-                            <p data-testid="GlobalChallengeFinishedProgress" className="challengeInnerEnd">{totalRealUnits}/{totalRealUnits}</p>
+                            <p data-testid={"GlobalChallengeFinishedProgress"+props.index} className="challengeInnerEnd">{totalRealUnits}/{totalRealUnits}</p>
                     }
                 </div>
 

@@ -20,7 +20,7 @@ const DropDown = (props) => {
     }
 
     return (
-    <div className="dropdown">
+    <div data-testid={"DropDownComponent"+props.index} className="dropdown">
         {props.children.map(makeDropDownObj)}
     </div>
     );

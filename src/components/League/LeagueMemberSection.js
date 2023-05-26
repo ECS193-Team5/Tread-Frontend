@@ -40,7 +40,7 @@ const LeagueMemberSection = (props) => {
     }, [username, role]);
 
     return (
-    <div id = "LeagueMemberSection">
+    <div data-testid="LeagueMemberSectionComponent" id = "LeagueMemberSection">
         <div className ="selectButtonHeader">
                 <h1>Members</h1>
                 {role === "owner" || role === "admin" ? <Bar>{{"buttonList":buttonList, "updateFunc":setMemberState}}</Bar> : <></>}

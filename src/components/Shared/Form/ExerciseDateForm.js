@@ -92,16 +92,16 @@ const ExerciseDateForm = (props) => {
     }
 
     return (
-        <div>
+        <div data-testid="ExerciseDateFormComponent">
             <div className="formObj">
                 <p className="formObjInner">Issue Date</p>
-                <input id="issueDateInput" onKeyDown={stopKey} className="formDateInput" type="datetime-local" min={getToday()} onChange={issueDateChange}></input>
+                <input data-testid="ExerciseDateFormIssueDateInput" id="issueDateInput" onKeyDown={stopKey} className="formDateInput" type="datetime-local" min={getToday()} onChange={issueDateChange}></input>
             </div>
 
             <div className="formObj">
                 <p className="formObjInner">Due Date</p>
-                <input id="dueDateInput"   onKeyDown={stopKey}  className="formDateInput" type="datetime-local" min={getTomorrow()} onChange={dueDateChange}></input>
-                <p className="errorBox">{dueDateError}</p>
+                <input data-testid="ExerciseDateFormDueDateInput" id="dueDateInput"   onKeyDown={stopKey}  className="formDateInput" type="datetime-local" min={getTomorrow()} onChange={dueDateChange}></input>
+                <p data-testid="ExerciseDateFormDueDateError"className="errorBox">{dueDateError}</p>
             </div>
         </div>);
 }

@@ -140,7 +140,7 @@ const LeagueScroll = (props) => {
     );
 
     return(
-        <div className = "scroll">
+        <div data-testid="LeagueScrollComponent" className = "scroll">
             {information.map(makeLeagueObj)}
             {(showZero) ? <ZeroItem message = {showMessage[scrollType]}></ZeroItem> : <></>}
         </div>

@@ -81,11 +81,11 @@ const ExerciseNameForm = (props) => {
 
 
     return (
-        <div>
+        <div data-testid="ExerciseNameFormComponent">
             <div className = "formObj">
                 <p className = "formObjInner">Exercise Type:</p>
                 <div className = "formObjInner">
-                    <select id = "AddChallengeExerciseNameSelect" className = "formSelect" onChange = {sportChange} defaultValue = "none">
+                    <select data-testid="ExerciseNameFormAddChallengeExerciseNameSelect" id = "AddChallengeExerciseNameSelect" className = "formSelect" onChange = {sportChange} defaultValue = "none">
                     <option value="none" disabled hidden></option>
                         {sportList.map((name)=>{return <option value = {name} key = {name}>{name}</option>;})}
                     </select>
@@ -96,8 +96,8 @@ const ExerciseNameForm = (props) => {
 
             <div id = "SpecifyElement" className="formObj">
                 <p className = "formObjInner">Specify your own activity: </p>
-                <input id = "AddChallengeSelfSpecifyExerciseName" className = "formTextInput" type = "text" onChange = {selfSpecifyChange}/>
-                <p className = "errorBox">{specifyError}</p>
+                <input data-testid="ExerciseNameFormAddChallengeSelfSpecifyExerciseNameInput" id = "AddChallengeSelfSpecifyExerciseName" className = "formTextInput" type = "text" onChange = {selfSpecifyChange}/>
+                <p data-testid="ExerciseNameFormSpecifyError" className = "errorBox">{specifyError}</p>
             </div>
 
         </div>
