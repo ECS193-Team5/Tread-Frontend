@@ -5,7 +5,6 @@ const PhotoUploadForm = (props) => {
 
     function getBase64(file) {
         var reader = new FileReader();
-        console.log(file);
         reader.readAsDataURL(file);
         reader.onload = function () {
           // Set the viewing image
@@ -21,7 +20,9 @@ const PhotoUploadForm = (props) => {
 
     function onImageChange (event) {
         let photo = event.target.files[0];
-        console.log(photo);
+        if(!photo){
+            return;
+        }
         getBase64(photo);
     }
 
