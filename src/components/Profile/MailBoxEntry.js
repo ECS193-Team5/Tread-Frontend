@@ -5,7 +5,7 @@ import { setDisplayProperty } from "../../helpers/CssEffects";
 import {deleteNotification} from "../../routes/notifications";
 import declineX from "../../assets/declineButtonX.png";
 const MailBoxEntry = (props) => {
-    console.log(props);
+
     const hideReceivedObj = () => {
         setDisplayProperty("MailBoxEntry"+props.children._id, "none");
         props.decrementCount();
