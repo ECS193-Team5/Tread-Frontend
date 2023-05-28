@@ -4,8 +4,9 @@ import { v4 as uuid } from 'uuid';
 import { getToken } from 'firebase/messaging';
 import { exportMessaging, requestPermission } from "../../firebase";
 import axios from 'axios';
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
 import "../../css/Login/login.css";
+const backend_url = process.env.REACT_APP_PROD_BACKEND;
+
 
 
 /**
