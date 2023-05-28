@@ -10,8 +10,8 @@ const FriendScroll = (props) => {
     let [information, setInformation] = useState([]);
     const [showZero, setShowZero] = useState(false);
     let showMessage = {
-        "friend":"You have no friends at this time.",
-        "sent":"You have no sent requests at this time.",
+        "friend":"You have no friends at this time. If you start logging exercises, you'll start getting recommended leagues on the league page. From there, you can make friends! Alternatively, you know a friend's username, you can send them a request from the \"Add User\" button in the bar above.",
+        "sent":"You have no sent requests at this time. If you start logging exercises, you'll start getting recommended leagues on the league page. From there, you can make friends! Alternatively, you know a friend's username, you can send them a request from the \"Add User\" button in the bar above.",
         "received":"You have no received requests at this time.",
         "blocked":"You have not blocked anyone at this time."
     }

@@ -24,10 +24,15 @@ const Login = () => {
       window.location.href = "./currentChallengePage";
     }
     if(!load){
+      window.addEventListener('resize', handleResize)
+      if(window.innerWidth >= 641){
+        loadGoogleScriptOnScreenLoad();
+      }
       getUsername(moveCurrentChallenge);
       setLoad(true);
     }
   }, [load]);
+
 
   // needs variable for nonce
   function handleCredentialResponse(token) {
@@ -99,19 +104,23 @@ const Login = () => {
     }
   }
 
-  // google sign in
-  loadScript('https://accounts.google.com/gsi/client')
-    .then(() => {
-      googleSignIn();
-      setDeviceToken();
-    })
-    .catch(() => {
-      console.error('Script loading failed! Handle this error');
-    });
+  function loadGoogleScriptOnScreenLoad(){
+    loadScript('https://accounts.google.com/gsi/client')
+        .then(() => {
+          googleSignIn();
+          setDeviceToken();
+        })
+        .catch(() => {
 
-
+          console.error('Script loading failed! Handle this error');
+        });
+  }
   // log out function to log the user out of google and set the profile array to null
-
+  function handleResize(event){
+    if(window.innerWidth >= 641){
+      loadGoogleScriptOnScreenLoad()
+    }
+  }
   const setDeviceToken = () => {
     getToken(exportMessaging, { vapidKey: "BDXZrQCKEnAfnJWh6oIbEYKTuogSmiNl4gKVIDNmOEabzRt2BpAVIV4Znb7OgKzWJAz9eLOKde6YhWLpAdw1EZ0" }).then((currentToken) => {
       if (currentToken) {

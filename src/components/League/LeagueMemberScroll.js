@@ -31,7 +31,7 @@ const LeagueMemberScroll = (props) => {
     let showMessage = {
         "Members":"This league seems to be empty.",
         "Received":"You have no received requests for this league at this time.",
-        "Invited":"You have not invited any users at this time.",
+        "Invited":"You have not invited any users at this time. You can invite users from the \"Invite User\" button in the bar above",
         "Banned":"You have no banned users at this time."
     }
 

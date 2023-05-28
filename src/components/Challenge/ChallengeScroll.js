@@ -63,7 +63,7 @@ const ChallengeScroll = (props) => {
         {(scrollType === "sent") ? information.map(makeSentChallengeObj) : <></>}
         {(scrollType === "received") ? information.map(makeReceivedChallengeObj) : <></>}
         {(scrollType === "global") ? information.map(makeGlobalChallengeObj) : <></>}
-        {(showZero) ? <ZeroItem message= {"No "+ scrollType +"  challenges are available at this time"}/>:<></>}
+        {(showZero) ? <ZeroItem message= {"No "+ scrollType +"  challenges are available at this time. You can create your own challenge by clicking the \"Send Challenge\" in the bar above"}/>:<></>}
     </div>);
 }
 
