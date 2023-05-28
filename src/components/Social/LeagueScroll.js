@@ -9,11 +9,14 @@ const LeagueScroll = (props) => {
     let [scrollType] = useState(props.type);
     let [information, setInformation] = useState([]);
     let [showZero, setShowZero] = useState(false);
-    let showMessage = {
-        "league":"You are not in any leagues at this time.",
-        "sent":"You have no sent requests at this time.",
-        "admin":"You are not on the admin team for any leagues.",
-        "invite":"You have not been invited to any leagues at this time."
+    let zeroItemInfo = {
+        "Message":
+        {
+        "league":"You are not in any leagues at this time. You can create your own league by hitting \"Create League\" in the bar above. If you start logging exercises, you'll get recommended leagues that you can join.",
+        "sent":"You have no sent requests at this time. You can create your own league by hitting \"Create League\" in the bar above. If you start logging exercises, you'll get recommended leagues that you can join.",
+        "admin":"You are not on the admin team for any leagues. You can create your own league by hitting \"Create League\" in the bar above. If you start logging exercises, you'll get recommended leagues that you can join.",
+        "invite":"You have not been invited to any leagues at this time. You can create your own league by hitting \"Create League\" in the bar above. If you start logging exercises, you'll get recommended leagues that you can join."
+        }
     }
 
     function getAll(){
@@ -142,7 +145,7 @@ const LeagueScroll = (props) => {
     return(
         <div data-testid="LeagueScrollComponent" className = "scroll">
             {information.map(makeLeagueObj)}
-            {(showZero) ? <ZeroItem message = {showMessage[scrollType]}></ZeroItem> : <></>}
+            {(showZero) ? <ZeroItem message = {zeroItemInfo["Message"][scrollType]}></ZeroItem> : <></>}
         </div>
     )
 }
