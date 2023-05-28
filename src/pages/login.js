@@ -92,7 +92,7 @@ const Login = () => {
         nonce: ""
       });
       google.accounts.id.renderButton(
-        document.getElementById("buttonDiv"),
+        document.getElementById("buttonDivGoogle"),
         { theme: "outline", size: "large" }  // customization attributes
       );
       google.accounts.id.prompt(); // also display the One Tap dialog
@@ -143,7 +143,7 @@ const Login = () => {
         </div>
       </div>
       <p data-testid="LoginFrontPageDescription" className='frontPageDescriptionText'>{hardCodedInfo.frontPageDescription}</p>
-      <div id="buttonDiv"></div>
+      <div id="buttonDivGoogle"></div>
       <AppleSigninButton/>
       </div>
 

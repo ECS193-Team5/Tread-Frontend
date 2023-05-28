@@ -223,6 +223,9 @@ body{
     #loginPageWeb{
         display:none
     }
+    #buttonDivGoogle{
+        display: none;
+    }
     #loginPageMobile{
         display:flex
     }
@@ -231,6 +234,9 @@ body{
 @media(min-width: 641px){
     #loginPageWeb{
         display:flex
+    }
+    #buttonDivGoogle{
+        display: block;
     }
     #loginPageMobile{
         display:none
