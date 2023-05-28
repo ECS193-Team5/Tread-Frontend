@@ -17,7 +17,7 @@ const ReceivedChallengeObj = (props) => {
         </div>
         <div className="challengeMiddle">
             <p data-testid={"ReceivedChallengeObjTitle"+props.index} className="challengeText">{title}</p>
-            <ShowDueDate index = {props.index} dueDate = {props.children.dueDate}/>
+            <ShowDueDate index = {props.index} dueDate = {props.children.dueDate} issueDate={props.children.issueDate}/>
         </div>
         <div className = "challengeEnd">
             <AcceptChallengeButton id = {props.children._id} index = {props.index}></AcceptChallengeButton>
