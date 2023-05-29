@@ -64,9 +64,8 @@ const ChallengeStats = (props) => {
                 results.push(result);
             }
 
-        }
-
         setSuggestedExercises(results);
+        }
     }
 
     const recommendExercise = () => {

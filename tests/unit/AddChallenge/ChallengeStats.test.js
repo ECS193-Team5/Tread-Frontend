@@ -6,6 +6,9 @@ import * as statisticsFunc from '../../../src/routes/statistics.js';
 
 const updateInputsMock = jest.fn();
 
+let m = jest.spyOn(statisticsFunc, "getPastChallenges");
+let expectedAmountValuesOnCall = [2, 23, 25, 25, 23, 2, 25];
+
 const fakeFuncEmptyList = (setExerciseList) => {
     setExerciseList([]);
 }
@@ -117,10 +120,6 @@ const fakeFuncMultipleChallenges = (setExerciseList) => {
     ])
 }
 
-let m = jest.spyOn(statisticsFunc, "getPastChallenges");
-
-let expectedAmountValuesOnCall = [2, 23, 25, 25, 23, 2, 25];
-
 const getToday = () => {
     const MILLISECONDS_IN_DAY = 24*60*60*1000
     let date =  Date.now();
@@ -135,6 +134,7 @@ const getDistanceFromToday = () => {
     today  = today + 3 * 24 * 60 * 60 * 1000;
     return new Date(today).toISOString();
 }
+
 const checkCalledSuggestionObj = (mockedFunc, callNumber) => {
     expect(mockedFunc.mock.calls[callNumber][0]).toHaveProperty("exerciseName", "Baseball");
     expect(mockedFunc.mock.calls[callNumber][0]).toHaveProperty("amount", expectedAmountValuesOnCall[callNumber-2]);
