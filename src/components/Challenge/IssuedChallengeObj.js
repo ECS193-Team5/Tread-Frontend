@@ -24,6 +24,7 @@ const IssuedChallengeObj = (props) => {
     let percentageDone = myProgressBaseUnits / totalBaseUnits * 100;
     let title = getChallengeTitle(props.children.exercise);
     let challengeID = props.children._id;
+    let issueDate = props.children.issueDate;
 
     useEffect(
         () => {
@@ -61,7 +62,7 @@ const IssuedChallengeObj = (props) => {
                 <div className="challengeMiddle">
                     <div className="challengeInnerMiddle">
                         <p data-testid={"IssuedChallengeObjTitle"+props.index} className="challengeText">{title}</p>
-                        <ShowDueDate index = {props.index} dueDate = {props.children.dueDate}/>
+                        <ShowDueDate index = {props.index} dueDate = {props.children.dueDate} issueDate={props.children.issueDate}/>
                     </div>
                     <div className="challengeInnerMiddle">
                         <ProgressBar>{{ "completed": percentageDone }}</ProgressBar>

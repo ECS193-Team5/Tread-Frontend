@@ -53,7 +53,6 @@ const GlobalChallengeObj = (props) => {
         let top5Info = top5.map(makeLeaderboardObj);
 
         if (!selfInTop5(top5, selfData)) {
-            console.log(selfData);
             let item = makeLeaderboardObj(selfData, 6);
             item["level"] = " - ";
             top5Info.push(item);
@@ -90,7 +89,7 @@ const GlobalChallengeObj = (props) => {
                 <div className="challengeMiddle">
                     <div className="challengeInnerMiddle">
                         <p data-testid={"GlobalChallengeObjTitle"+props.index} className="challengeText">{title}</p>
-                        <ShowDueDate index = {props.index} dueDate = {props.children.dueDate}/>
+                        <ShowDueDate index = {props.index} dueDate = {props.children.dueDate} issueDate={props.children.issueDate}/>
                     </div>
                     <div className="challengeInnerMiddle">
                         <ProgressBar>{{ "completed": percentageDone }}</ProgressBar>
