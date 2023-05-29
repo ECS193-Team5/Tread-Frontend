@@ -53,7 +53,6 @@ const GlobalChallengeObj = (props) => {
         let top5Info = top5.map(makeLeaderboardObj);
 
         if (!selfInTop5(top5, selfData)) {
-            console.log(selfData);
             let item = makeLeaderboardObj(selfData, 6);
             item["level"] = " - ";
             top5Info.push(item);

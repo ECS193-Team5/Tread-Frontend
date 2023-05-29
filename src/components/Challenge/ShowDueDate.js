@@ -36,7 +36,7 @@ const ShowDueDate = (props) => {
     const isToday = (date) => {
         let input = new Date(date);
         let today = new Date();
-        console.log(input.toISOString(), today.toISOString())
+
         if (today.getDate() !== input.getDate()){
             return false;
         }

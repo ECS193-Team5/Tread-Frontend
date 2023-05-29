@@ -55,7 +55,6 @@ const AppleSigninButton = () => {
       setLoad(true);
       let val = uuid();
       setNonce(val.toString());
-      console.log(val);
     }
   }, [load]);
 

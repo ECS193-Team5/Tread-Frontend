@@ -3,7 +3,7 @@ import BoxLine from "./BoxLine";
 import PhotoDisplay from "./PhotoDisplay";
 import DeleteChallengeButton from "./DeleteChallengeButton";
 import { getChallengeTitle } from "../../helpers/calculationHelpers";
-
+import ShowDueDate from "./ShowDueDate";
 const SentChallengeObj = (props) => {
     let title = getChallengeTitle(props.children.exercise);
     let receivedUser = props.children.receivedUser;
@@ -15,8 +15,10 @@ const SentChallengeObj = (props) => {
             <BoxLine></BoxLine>
         </div>
         <div className="challengeMiddle">
-            <p data-testid={"SentChallengeObjTitle"+props.index} className="challengeText">{title}</p>
-            <p data-testid={"SentChallengeObjReceivedUser"+props.index} className="challengeText">{receivedUser} hasn't accepted your challenge.</p>
+            <div className="challengeInnerMiddle">
+                        <p data-testid={"IssuedChallengeObjTitle"+props.index} className="challengeText">{title}</p>
+                        <ShowDueDate index = {props.index} dueDate = {props.children.dueDate} issueDate={props.children.issueDate}/>
+                    </div><p data-testid={"SentChallengeObjReceivedUser"+props.index} className="challengeText">{receivedUser} hasn't accepted your challenge.</p>
         </div>
         <div className = "challengeEnd">
             <DeleteChallengeButton id = {props.children._id} index = {props.index}></DeleteChallengeButton>

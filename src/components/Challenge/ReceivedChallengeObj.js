@@ -8,7 +8,6 @@ import ShowDueDate from "./ShowDueDate";
 
 const ReceivedChallengeObj = (props) => {
     let title = getChallengeTitle(props.children.exercise);
-    let dueDate = new Date(props.children.dueDate).toISOString().split("T")[0];
 
     return (
     <div data-testid={"ReceivedChallengeObjComponent"+props.index} id = {"ReceivedChallengedObj"+props.children._id} className = "challengeBox completeChallengeBox">

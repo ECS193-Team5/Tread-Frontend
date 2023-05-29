@@ -165,8 +165,6 @@ const RowBox = (props) => {
     }
 
     function createBoxSection(input, index) {
-        console.log("info is", info);
-        console.log("Box Section has input", input);
         if (index === 0) {
             return (
                 <div className="fullRow">
