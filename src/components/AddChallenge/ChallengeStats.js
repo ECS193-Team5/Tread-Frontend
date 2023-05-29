@@ -39,7 +39,6 @@ const ChallengeStats = (props) => {
         let progressPercent = exercise.progress/exercise.exercise.convertedAmount;
         let suggestion = {};
 
-
         if(progressPercent >= 1){
             suggestion.data = recreateChallengeData(exercise, Math.round(exercise.exercise.amount * 1.1));
             suggestion.message = "This challenge reflects on one you have already completed. See if you can go a little further!";
@@ -53,28 +52,30 @@ const ChallengeStats = (props) => {
             suggestion.message = "You can do this!";
         }
 
-        return;
+        return suggestion;
     }
 
     const createExerciseList = (response) => {
         let results = [];
-        for(let i = 0; i<response.data.length; i++){
-            let result = createExercise(response.data[i]);
+        for(let i = 0; i<response.length; i++){
+            let result = createExercise(response[i]);
 
-            if (result){
+            if (Object.keys(result).length > 0){
                 results.push(result);
             }
 
         }
+
         setSuggestedExercises(results);
     }
 
     const recommendExercise = () => {
-        if (suggestedExercises.length <= 0) {
+        if (suggestedExercises.length === 0) {
             props.updateInputs("NA");
             setMessage("We do not currently have enough data to recommend a challenge.");
             return;
         }
+
         setMessage(suggestedExercises[exerciseIndex].message);
         props.updateInputs(suggestedExercises[exerciseIndex].data);
         setExerciseIndex((exerciseIndex + 1) % suggestedExercises.length);

@@ -46,7 +46,7 @@
     "e2e_test": "npx playwright test",
     "e2e_coverage_test": "nyc npx playwright test",
     "unit_test": "jest --verbose ./tests/unit/* --env=jsdom",
-    "unit_coverage_test": "nyc npx playwright test"
+    "unit_coverage_test": "jest --verbose ./tests/unit/AddChallenge/ChallengeStats.test.js --env=jsdom --coverage"
   },
   "eslintConfig": {
     "extends": [
