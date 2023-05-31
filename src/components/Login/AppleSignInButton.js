@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import AppleSignin from 'react-apple-signin-auth';
+import crypto from 'crypto';
 import { v4 as uuid } from 'uuid';
 import { getToken } from 'firebase/messaging';
 import { exportMessaging, requestPermission } from "../../firebase";
@@ -54,7 +55,8 @@ const AppleSigninButton = () => {
       setDeviceToken();
       setLoad(true);
       let val = uuid();
-      setNonce(val.toString());
+      console.log(uuid);
+      setNonce(crypto.createHash('sha256').update(val.toString()).digest('hex'));
     }
   }, [load]);
 

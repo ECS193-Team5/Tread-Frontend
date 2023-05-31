@@ -9,6 +9,7 @@ const ShowDueDate = (props) => {
     const [timeLeft, setTimeLeft] = useState("");
     const [styleColor, setStyleColor] = useState({color:"green"});
     const [startDateString, setStartDateString] = useState("");
+
     const convertTimeLeft = (minLeft) => {
 
         if (minLeft/MIN_IN_YEAR > 1){
@@ -37,16 +38,7 @@ const ShowDueDate = (props) => {
         let input = new Date(date);
         let today = new Date();
 
-        if (today.getDate() !== input.getDate()){
-            return false;
-        }
-        if(today.getMonth() !== input.getMonth()){
-            return false;
-        }
-        if(today.getFullYear() !== input.getFullYear()){
-            return false;
-        }
-        return true;
+        return (today.getDate() === input.getDate() && today.getMonth() === input.getMonth() && today.getFullYear() === input.getFullYear());
     }
 
     useEffect(() => {
@@ -69,14 +61,19 @@ const ShowDueDate = (props) => {
                 getDayStart(issueDate);
             }
         }
-
       }, []);
 
 
     const getHourStart = (issueDate) => {
         let date = new Date(issueDate);
         let timeStringSort = (date.getHours() >= 12) ? "PM" : "AM";
-        setStartDateString("at " +  date.getHours()%12 + ":" + date.getMinutes() + " "+ timeStringSort);
+        let minutes = String(date.getMinutes());
+
+        if (minutes.length == 1){
+            minutes = "0"+minutes;
+        }
+
+        setStartDateString("Starting at " +  date.getHours()%12 + ":" + minutes + " "+ timeStringSort);
     }
 
     const getDayStart = (issueDate) => {
@@ -87,17 +84,18 @@ const ShowDueDate = (props) => {
         dayString += months[date.getMonth()] +" ";
         dayString += date.getDate() +", ";
         dayString += date.getFullYear();
-        setStartDateString("on " + dayString)
+        setStartDateString("Starting on " + dayString)
     }
 
     return (
         <div data-testid={"ShowDueDateComponent"+props.index}>
             { (issueDate < Date.now()) ?
-                <p  style={styleColor}>
+                <p data-testid={"ShowDueDateComponent"+props.index+"timeLeft"} style={styleColor}>
                     {timeLeft}
-            </p>
-            :<p  style={styleColor}>
-                {"Starting "+ startDateString}
+                </p>
+                :
+                <p  style={styleColor} data-testid={"ShowDueDateComponent"+props.index+"startDateString"}>
+                    {startDateString}
                 </p>
             }
         </div>
