@@ -59,18 +59,34 @@ const AppleSigninButton = () => {
     }
   }, [load]);
 
+
+  const convertHex = (num) => {
+    let string = num.toString(16);
+
+    if(string.length === 1){
+      string = "0"+string
+    }
+    return string
+  }
+
+  const convertHexNonce = (string) => {
+    let stringEx = ""
+    string.forEach(
+      (item)=>{stringEx += convertHex(item)}
+    );
+    return stringEx;
+  }
+
   async function createHashedNonce() {
     let uuidVal = uuid().toString();
     setRawNonce(uuidVal);
-    console.log(uuidVal);
     let hash = new Sha256();
     hash.update(uuidVal);
-    console.log("hash", hash);
-    let result = await hash.digest('hex')
-
-    console.log("result", result.toString());
-    setHashedNonce(result.toString());
+    let result = await hash.digest()
+    let hashedNonce = convertHexNonce(result);
+    setHashedNonce(hashedNonce);
   }
+
   const setDeviceToken = () => {
     getToken(exportMessaging, { vapidKey: "BDXZrQCKEnAfnJWh6oIbEYKTuogSmiNl4gKVIDNmOEabzRt2BpAVIV4Znb7OgKzWJAz9eLOKde6YhWLpAdw1EZ0" }).then((currentToken) => {
       if (currentToken) {
