@@ -49,7 +49,8 @@ Object*/
 const AppleSigninButton = () => {
   const [deviceToken, setToken] = useState("");
   const [load, setLoad] = useState(false);
-  const [rawNonce, setNonce] = useState("");
+  const [rawNonce, setRawNonce] = useState("");
+  const [hashedNonce, setHashedNonce] = useState("");
   useEffect(() => {
     if (!load) {
       setDeviceToken();
@@ -60,6 +61,7 @@ const AppleSigninButton = () => {
 
   async function createHashedNonce() {
     let uuidVal = uuid().toString();
+    setRawNonce(uuidVal);
     console.log(uuidVal);
     let hash = new Sha256();
     hash.update(uuidVal);
@@ -67,7 +69,7 @@ const AppleSigninButton = () => {
     let result = await hash.digest('hex')
 
     console.log("result", result.toString());
-    setNonce(result.toString());
+    setHashedNonce(result.toString());
   }
   const setDeviceToken = () => {
     getToken(exportMessaging, { vapidKey: "BDXZrQCKEnAfnJWh6oIbEYKTuogSmiNl4gKVIDNmOEabzRt2BpAVIV4Znb7OgKzWJAz9eLOKde6YhWLpAdw1EZ0" }).then((currentToken) => {
@@ -95,6 +97,9 @@ const AppleSigninButton = () => {
         familyName: response.user.lastName
       }
     }
+
+    console.log("response", response)
+    console.log("idToken", response.authorization.id_token);
 
     var config = {
       method: 'post',
@@ -133,7 +138,7 @@ const AppleSigninButton = () => {
 
   return (<div data-testid="AppleSignInButtonComponent" id="AppleSignInButton">
 
-    {(rawNonce !== "") ?
+    {(hashedNonce !== "") ?
       <AppleSignin
         authOptions={{
           /** Client ID - eg: 'com.example.com' */
@@ -145,7 +150,7 @@ const AppleSigninButton = () => {
           /** State string that is returned with the apple response */
           state: 'state',
           /** Nonce */
-          nonce: rawNonce,
+          nonce: hashedNonce,
           /** Uses popup auth instead of redirection */
           usePopup: true
         }} // REQUIRED
