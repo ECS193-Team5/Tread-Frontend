@@ -66,7 +66,7 @@ const AppleSigninButton = () => {
     console.log("hash", hash);
     let result = await hash.digest('hex')
 
-    console.log(result);
+    console.log("result", result.toString());
     setNonce(result.toString());
   }
   const setDeviceToken = () => {
