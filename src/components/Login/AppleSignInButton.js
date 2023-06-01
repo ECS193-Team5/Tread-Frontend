@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import AppleSignin from 'react-apple-signin-auth';
-import crypto from 'crypto';
+import { Sha256 } from '@aws-crypto/sha256-browser';
 import { v4 as uuid } from 'uuid';
 import { getToken } from 'firebase/messaging';
 import { exportMessaging, requestPermission } from "../../firebase";
@@ -51,15 +51,24 @@ const AppleSigninButton = () => {
   const [load, setLoad] = useState(false);
   const [rawNonce, setNonce] = useState("");
   useEffect(() => {
-    if(!load){
+    if (!load) {
       setDeviceToken();
       setLoad(true);
-      let val = uuid();
-      console.log(uuid);
-      setNonce(crypto.createHash('sha256').update(val.toString()).digest('hex'));
+      createHashedNonce();
     }
   }, [load]);
 
+  async function createHashedNonce() {
+    let uuidVal = uuid().toString();
+    console.log(uuidVal);
+    let hash = new Sha256();
+    hash.update(uuidVal);
+    console.log("hash", hash);
+    let result = await hash.digest('hex')
+
+    console.log(result);
+    setNonce(result.toString());
+  }
   const setDeviceToken = () => {
     getToken(exportMessaging, { vapidKey: "BDXZrQCKEnAfnJWh6oIbEYKTuogSmiNl4gKVIDNmOEabzRt2BpAVIV4Znb7OgKzWJAz9eLOKde6YhWLpAdw1EZ0" }).then((currentToken) => {
       if (currentToken) {
@@ -80,7 +89,7 @@ const AppleSigninButton = () => {
 
   const loginApple = (response) => {
     let fullname = {};
-    if (response.user){
+    if (response.user) {
       fullname = {
         givenName: response.user.firstName,
         familyName: response.user.lastName
@@ -99,7 +108,7 @@ const AppleSigninButton = () => {
       data:
       {
         deviceToken: deviceToken,
-        fullname: fullname ,
+        fullname: fullname,
         nonce: rawNonce
       }
     };
@@ -122,41 +131,48 @@ const AppleSigninButton = () => {
     console.log(error);
   }
 
-  return(<div data-testid="AppleSignInButtonComponent" id = "AppleSignInButton"><AppleSignin
-    authOptions={{
-      /** Client ID - eg: 'com.example.com' */
-      clientId: 'run.tread.applesignin',
-      /** Requested scopes, seperated by spaces - eg: 'email name' */
-      scope: 'email name',
-      /** Apple's redirectURI - must be one of the URIs you added to the serviceID - the undocumented trick in apple docs is that you should call auth from a page that is listed as a redirectURI, localhost fails */
-      redirectURI: 'https://tread.run',
-      /** State string that is returned with the apple response */
-      state: 'state',
-      /** Nonce */
-      nonce: rawNonce,
-      /** Uses popup auth instead of redirection */
-      usePopup: true}} // REQUIRED
-    /** General props */
-    uiType="dark"
-    /** className */
-    className="apple-auth-btn"
-    /** Removes default style tag */
-    noDefaultStyle={false}
-    /** Allows to change the button's children, eg: for changing the button text */
-    buttonExtraChildren="Continue with Apple"
-    /** Extra controlling props */
-    /** Called upon signin success in case authOptions.usePopup = true -- which means auth is handled client side */
-    onSuccess={(response) => {loginApple(response)}} // default = undefined
-    /** Called upon signin error */
-    onError={(error) => {setErrorResponse(error)}} // default = undefined
-    /** Skips loading the apple script if true */
-    skipScript={false} // default = undefined
-    /** Apple image props */
-    iconProp={{ style: { marginTop: '10px' } }} // default = undefined
-    /** render function - called with all props - can be used to fully customize the UI by rendering your own component  */
-    /*render={(props) => <button {...props}>My Custom Button</button>}*/
+  return (<div data-testid="AppleSignInButtonComponent" id="AppleSignInButton">
 
-  /></div>);
-  };
+    {(rawNonce !== "") ?
+      <AppleSignin
+        authOptions={{
+          /** Client ID - eg: 'com.example.com' */
+          clientId: 'run.tread.applesignin',
+          /** Requested scopes, seperated by spaces - eg: 'email name' */
+          scope: 'email name',
+          /** Apple's redirectURI - must be one of the URIs you added to the serviceID - the undocumented trick in apple docs is that you should call auth from a page that is listed as a redirectURI, localhost fails */
+          redirectURI: 'https://tread.run',
+          /** State string that is returned with the apple response */
+          state: 'state',
+          /** Nonce */
+          nonce: rawNonce,
+          /** Uses popup auth instead of redirection */
+          usePopup: true
+        }} // REQUIRED
+        /** General props */
+        uiType="dark"
+        /** className */
+        className="apple-auth-btn"
+        /** Removes default style tag */
+        noDefaultStyle={false}
+        /** Allows to change the button's children, eg: for changing the button text */
+        buttonExtraChildren="Continue with Apple"
+        /** Extra controlling props */
+        /** Called upon signin success in case authOptions.usePopup = true -- which means auth is handled client side */
+        onSuccess={(response) => { loginApple(response) }} // default = undefined
+        /** Called upon signin error */
+        onError={(error) => { setErrorResponse(error) }} // default = undefined
+        /** Skips loading the apple script if true */
+        skipScript={false} // default = undefined
+        /** Apple image props */
+        iconProp={{ style: { marginTop: '10px' } }} // default = undefined
+      /** render function - called with all props - can be used to fully customize the UI by rendering your own component  */
+      /*render={(props) => <button {...props}>My Custom Button</button>}*/
+
+      />
+      : <></>}
+  </div>
+  )
+};
 
 export default AppleSigninButton;
