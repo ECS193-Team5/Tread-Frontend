@@ -18,7 +18,7 @@ const env_client_id = process.env.REACT_APP_CLIENT_ID
 const Login = () => {
   const [deviceToken, setToken] = useState("");
   const [load, setLoad] = useState(false);
-
+  const [loadedToken, setLoadedToken] = useState(false);
   useEffect(() => {
     function moveCurrentChallenge(response){
       window.location.href = "./currentChallengePage";
@@ -34,8 +34,16 @@ const Login = () => {
   }, [load]);
 
 
+  useEffect(() => {
+    if(loadedToken){
+      googleSignIn();
+    }
+  }, [loadedToken]);
+
   // needs variable for nonce
   function handleCredentialResponse(token) {
+    console.log(deviceToken, " has value");
+
     // Check that recieved nonce is correct
     // Send request to backend for nonce reply in result with cnonce:
     // nonce with timestamp so repeat attacks won't work.
@@ -90,6 +98,7 @@ const Login = () => {
   function googleSignIn() {
     if (window.google) {
       const google = window.google;
+      console.log("toke", deviceToken);
       google.accounts.id.initialize({
         client_id: env_client_id,
         callback: handleCredentialResponse,
@@ -107,8 +116,9 @@ const Login = () => {
   function loadGoogleScriptOnScreenLoad(){
     loadScript('https://accounts.google.com/gsi/client')
         .then(() => {
-          googleSignIn();
           setDeviceToken();
+
+
         })
         .catch(() => {
 
@@ -136,6 +146,7 @@ const Login = () => {
       console.log('An error occurred while retrieving token. ', err);
       // ...
     });
+    setLoadedToken(true);
 
   }
 
