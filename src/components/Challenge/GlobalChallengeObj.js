@@ -20,12 +20,11 @@ const GlobalChallengeObj = (props) => {
     let myProgressBaseUnits = props.children.progress;
     let totalBaseUnits = props.children.exercise.convertedAmount;
     let totalRealUnits = props.children.exercise.amount;
-    let dueDate = props.children.dueDate.split("T")[0];
-    let percentageDone = myProgressBaseUnits / totalBaseUnits * 100;
+    let percentageDone = (myProgressBaseUnits / totalBaseUnits) * 100;
     let title = getChallengeTitle(props.children.exercise)
     let challengeID = props.children.challengeID;
     let myProgressRealUnits = calculateProgress(myProgressBaseUnits, props.children.exercise.unit);
-
+    console.log("percent", props.children.progress, percentageDone);
     useEffect(
         () => {
             if (!load) {

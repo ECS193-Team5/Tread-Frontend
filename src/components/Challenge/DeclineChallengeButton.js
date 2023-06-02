@@ -1,7 +1,9 @@
-import React, { setDisplayProperty } from "../../helpers/CssEffects";
+import React from "react";
+import { setDisplayProperty } from "../../helpers/CssEffects";
 import { declineChallenge } from "../../routes/challenges";
-import '../../css/Shared/button.css';
 import declineImage from "../../assets/declineButtonX.png";
+import '../../css/Shared/button.css';
+
 const DeclineChallengeButton = (props) => {
     const hideReceivedObj = () => {
         setDisplayProperty("ReceivedChallengedObj"+props.id, "none");
