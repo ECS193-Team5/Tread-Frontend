@@ -20,6 +20,7 @@ const ExerciseLoggedDateForm = (props) => {
     const stopKey = (e) =>{
         e.preventDefault();
     }
+
     return (
         <div data-testid="ExerciseLoggedDateFormComponent">
             <p className="formObjInner">Date</p>

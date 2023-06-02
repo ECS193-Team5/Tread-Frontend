@@ -16,6 +16,8 @@ import Privacy from "./pages/privacy";
 import { onForegroundMessage } from "./firebase";
 import TestDiv from "./pages/test";
 import DeleteAccountInfo from "./pages/deleteAccountInfo";
+import Contact from "./pages/contact";
+
 function App() {
   useEffect(() => {
     onForegroundMessage()
@@ -49,6 +51,7 @@ function App() {
         <Route path = "/test" element = {<TestDiv/>}/>
         <Route path = "/privacy" element = {<Privacy/>}/>
         <Route path = "/deleteAccountInfo" element = {<DeleteAccountInfo/>}/>
+        <Route path = "/contact" element = {<Contact/>}/>
       </Routes>
       </Router>
       </div>

@@ -39,6 +39,7 @@ export function getFriendList(thenFunc) {
     };
     axios(config)
         .then(function (response) {
+            console.log(response.data);
             thenFunc(response.data);
         })
         .catch(function (error) {

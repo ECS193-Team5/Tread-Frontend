@@ -7,8 +7,6 @@ import { useState, useEffect } from "react";
 import  hardCodedInfo  from "../helpers/SharedHardCodeInfo.json";
 import { getUsername } from '../routes/user';
 import frontPageTreadLogo from "../assets/frontPageTreadLogo.png";
-import downloadImageAppStore from "../assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg";
-import downloadImageGoogle from "../assets/google-play-badge.jpg"
 import AppleSigninButton from '../components/Login/AppleSignInButton';
 const backend_url = process.env.REACT_APP_PROD_BACKEND
 const env_client_id = process.env.REACT_APP_CLIENT_ID
@@ -19,10 +17,12 @@ const Login = () => {
   const [deviceToken, setToken] = useState("");
   const [load, setLoad] = useState(false);
   const [loadedToken, setLoadedToken] = useState(false);
+
   useEffect(() => {
     function moveCurrentChallenge(response){
       window.location.href = "./currentChallengePage";
     }
+
     if(!load){
       window.addEventListener('resize', handleResize)
       if(window.innerWidth >= 641){
@@ -31,6 +31,7 @@ const Login = () => {
       getUsername(moveCurrentChallenge);
       setLoad(true);
     }
+
   }, [load]);
 
 
@@ -42,14 +43,7 @@ const Login = () => {
 
   // needs variable for nonce
   function handleCredentialResponse(token) {
-    console.log(deviceToken, " has value");
 
-    // Check that recieved nonce is correct
-    // Send request to backend for nonce reply in result with cnonce:
-    // nonce with timestamp so repeat attacks won't work.
-    // Figure out CSRF attacks (double cookie sending)
-    // Also alot of stuff will have to change for HTTPS.
-    console.log(`${token.credential}`);
     var config = {
       method: 'post',
       url: backend_url + 'auth/login/google',
@@ -64,6 +58,7 @@ const Login = () => {
         deviceToken: deviceToken
       }
     };
+
     let hasUsername = false;
     axios(config)
       .then(function (response) {
@@ -102,14 +97,13 @@ const Login = () => {
       google.accounts.id.initialize({
         client_id: env_client_id,
         callback: handleCredentialResponse,
-        // Need to set a random nonce
         nonce: ""
       });
       google.accounts.id.renderButton(
         document.getElementById("buttonDivGoogle"),
-        { theme: "outline", size: "large" }  // customization attributes
+        { theme: "outline", size: "large" }
       );
-      google.accounts.id.prompt(); // also display the One Tap dialog
+      google.accounts.id.prompt();
     }
   }
 

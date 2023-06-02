@@ -246,3 +246,23 @@ export function sendLeagueInvite(data, thenFunc, errorFunc){
       redirectLogout(error);
     });
 }
+
+
+export function getAdminLeagues(thenFunc) {
+  var config = {
+      method: 'post',
+      url: backend_url + 'league/get_admin_leagues',
+      headers: {
+          Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include'
+  };
+  axios(config)
+      .then(function (response) {
+        thenFunc(response);
+      })
+      .catch(function (error) {
+          redirectLogout(error);
+      });
+}

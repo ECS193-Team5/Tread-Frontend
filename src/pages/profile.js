@@ -17,7 +17,7 @@ const Profile = (props) => {
             </div>
             <div className = "rightSide2Part">
                 <div className = "mainInfo">
-                    <Header>{{"title":"Profile", "type":"profile", "onButton":props.children.type}}</Header>
+                    <Header>{{"title":"Profile", "type":"profile", "onButton":props.children.type , "leagueID":"NA" }}</Header>
                     <ProfileHeader></ProfileHeader>
                     <Line/>
                     <MailBox></MailBox>

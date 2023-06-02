@@ -15,9 +15,8 @@ const Challenge = (props) => {
             </div>
 
             <div className="rightSide2Part">
-
                 <div className="mainInfo">
-                    <Header>{{ "title": "Challenge", "type": "challenge", "onButton": props.children.type }}</Header>
+                    <Header>{{ "title": "Challenge", "type": "challenge", "onButton": props.children.type, "leagueID":"NA" }}</Header>
                     <AddExerciseBox></AddExerciseBox>
                     {(props.children.type === "current") ? <CurrentChallenge></CurrentChallenge> : <GlobalChallenge></GlobalChallenge>}
 

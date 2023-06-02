@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 const ExerciseDateForm = (props) => {
     const [issueDate, setIssueDate] = useState("");
@@ -6,19 +6,19 @@ const ExerciseDateForm = (props) => {
     const [dueDateError, setDueDateError] = useState("");
 
 
-    useEffect (
+    useEffect(
         () => {
-            if(props.defaultIssueDate){
-                document.getElementById("issueDateInput").value = new Date(props.defaultIssueDate).toISOString().substring(0,10);
+            if (props.defaultIssueDate) {
+                document.getElementById("issueDateInput").value = new Date(props.defaultIssueDate).toISOString().substring(0, 10);
                 setDueDateError("");
             }
         }, [props.defaultIssueDate]
     );
 
-    useEffect (
+    useEffect(
         () => {
-            if(props.defaultDueDate){
-                document.getElementById("dueDateInput").value = new Date(props.defaultDueDate).toISOString().substring(0,10);
+            if (props.defaultDueDate) {
+                document.getElementById("dueDateInput").value = new Date(props.defaultDueDate).toISOString().substring(0, 10);
                 setDueDateError("");
             }
         }, [props.defaultDueDate]
@@ -30,39 +30,40 @@ const ExerciseDateForm = (props) => {
     }
 
     const dueDateChange = (event) => {
+        console.log("due date change");
         setDueDate(event.target.value);
         dateCheck(issueDate, event.target.value);
     }
 
     const dateCheck = (targetIssueDate, targetDueDate) => {
-        if(targetIssueDate === "" && targetDueDate === ""){
+        if (targetIssueDate === "" && targetDueDate === "") {
             setDueDateError("");
             props.updateDueDate("");
             props.updateIssueDate("");
         }
-        else if (targetIssueDate === ""){
+        else if (targetIssueDate === "") {
             setDueDateError("The due date needs to be after the start date.");
             props.updateDueDate("");
             props.updateIssueDate("");
         }
-        else if(targetDueDate === ""){
+        else if (targetDueDate === "") {
             setDueDateError("");
             props.updateDueDate("");
             props.updateIssueDate("");
         }
-        else if(new Date(targetIssueDate) >= new Date(targetDueDate)){
+        else if (new Date(targetIssueDate) >= new Date(targetDueDate)) {
             setDueDateError("The due date needs to be after the start date.");
             props.updateDueDate("");
             props.updateIssueDate("");
         }
-        else if(new Date(targetIssueDate) < new Date(targetDueDate)){
+        else {
             props.updateDueDate(new Date(targetDueDate));
             props.updateIssueDate(new Date(targetIssueDate));
             setDueDateError("");
         }
     }
 
-    function getToday(){
+    function getToday() {
         let date_ob = new Date()
 
         let date = ("0" + date_ob.getDate()).slice(-2);
@@ -71,10 +72,10 @@ const ExerciseDateForm = (props) => {
         let hour = ("0" + (date_ob.getHours() + 1)).slice(-2);
         let sec = ("0" + (date_ob.getSeconds() + 1)).slice(-2);
 
-        return (year + "-" + month + "-" + date +"T"+hour+":"+sec);
+        return (year + "-" + month + "-" + date + "T" + hour + ":" + sec);
     }
 
-    function getTomorrow(){
+    function getTomorrow() {
         var date_ob = new Date()
         date_ob.setDate(date_ob.getDate() + 1);
 
@@ -84,10 +85,10 @@ const ExerciseDateForm = (props) => {
         let hour = ("0" + (date_ob.getHours() + 1)).slice(-2);
         let sec = ("0" + (date_ob.getSeconds() + 1)).slice(-2);
 
-        return (year + "-" + month + "-" + date +"T"+hour+":"+sec);
-      }
+        return (year + "-" + month + "-" + date + "T" + hour + ":" + sec);
+    }
 
-      const stopKey = (e) =>{
+    const stopKey = (e) => {
         e.preventDefault();
     }
 
@@ -100,8 +101,8 @@ const ExerciseDateForm = (props) => {
 
             <div className="formObj">
                 <p className="formObjInner">Due Date</p>
-                <input data-testid="ExerciseDateFormDueDateInput" id="dueDateInput"   onKeyDown={stopKey}  className="formDateInput" type="datetime-local" min={getTomorrow()} onChange={dueDateChange}></input>
-                <p data-testid="ExerciseDateFormDueDateError"className="errorBox">{dueDateError}</p>
+                <input data-testid="ExerciseDateFormDueDateInput" id="dueDateInput" onKeyDown={stopKey} className="formDateInput" type="datetime-local" min={getTomorrow()} onChange={dueDateChange}></input>
+                <p data-testid="ExerciseDateFormDueDateError" className="errorBox">{dueDateError}</p>
             </div>
         </div>);
 }
