@@ -5,7 +5,7 @@ import '@testing-library/jest-dom'
 import imageFile from "../../../../src/assets/BronzeTrophy.png";
 
 jest.spyOn(global, 'FileReader').mockImplementation(function () {
-    this.readAsDataURL = jest.fn(()=>{console.log("read")});
+    this.readAsDataURL = jest.fn(()=>{});
 });
 describe("Test /Shared/Form/PhotoUploadForm.js", () => {
     let setPhotoMock = jest.fn();

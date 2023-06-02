@@ -4,8 +4,8 @@ import SideBar from '../../../src/components/Shared/SideBar';
 import '@testing-library/jest-dom';
 
 import * as redirect from '../../../src/helpers/CssEffects';
-jest.spyOn(redirect, "setLocation").mockImplementation(()=>{console.log("called")});
-let m = jest.spyOn(redirect, "getLocation").mockImplementation(() => {console.log("calledDDD"); return "/currentChallengePage"})
+jest.spyOn(redirect, "setLocation").mockImplementation(()=>{});
+let m = jest.spyOn(redirect, "getLocation").mockImplementation(() => { return "/currentChallengePage"})
 describe("Test /Shared/Form/SideBar.js", () => {
 
     it("Test render", () => {
