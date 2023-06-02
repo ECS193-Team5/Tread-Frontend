@@ -13,7 +13,7 @@ const MAY_30 =  new Date(1685484000000);
 const JUN_1 =  new Date(1685620800000);
 const JUN_4_2024 = new Date(1717525800000);
 
-describe("Test /Challenge/BoxLine.js", () => {
+describe("Test /Challenge/ShowDueDate.js", () => {
 
     afterAll(()=>{
         mockDateNow.mockClear();

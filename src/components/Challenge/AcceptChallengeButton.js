@@ -1,8 +1,8 @@
 import React from "react";
 import { setDisplayProperty } from "../../helpers/CssEffects";
 import { acceptChallenge } from "../../routes/challenges";
-import '../../css/Shared/button.css';
 import checkMark from "../../assets/checkMark.png";
+import '../../css/Shared/button.css';
 
 const AcceptChallengeButton = (props) => {
     const hideReceivedChallengeObj = () => {

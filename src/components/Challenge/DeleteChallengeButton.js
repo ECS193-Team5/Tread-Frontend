@@ -1,8 +1,8 @@
 import React from "react";
-import '../../css/Shared/button.css';
 import { setDisplayProperty } from "../../helpers/CssEffects";
 import { deleteChallenge } from '../../routes/challenges';
 import trashCanImage from "../../assets/trashCan.png";
+import '../../css/Shared/button.css';
 
 const DeleteChallengeButton = (props) => {
     const hideSentObj = () => {
