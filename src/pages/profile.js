@@ -5,9 +5,9 @@ import Line from "../components/Shared/Line";
 import StatsExerciseSection from '../components/Profile/StatsExerciseSection';
 import MedalsSection from '../components/Profile/MedalsSection';
 import ProfileHeader from "../components/Profile/ProfileHeader";
-import '../css/Shared/page.css';
 import StatsChallengeSection from '../components/Profile/StatsChallengeSection';
 import MailBox from '../components/Profile/MailBox';
+import '../css/Shared/page.css';
 
 const Profile = (props) => {
     return (

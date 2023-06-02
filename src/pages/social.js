@@ -4,8 +4,7 @@ import Header from "../components/Shared/Header";
 import FriendSection from "../components/Social/FriendSection";
 import LeagueSection from "../components/Social/LeagueSection";
 import RowBox from "../components/Social/RowBox";
-
-import '../css/Shared/page.css'
+import '../css/Shared/page.css';
 const Social = (props) => {
 
     return (

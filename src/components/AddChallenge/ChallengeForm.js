@@ -6,6 +6,7 @@ import ExericseAmountForm from "../Shared/Form/ExerciseAmountForm";
 import ExerciseDateForm from "../Shared/Form/ExerciseDateForm";
 import ExerciseReceiverForm from '../Shared/Form/ExerciseReceiverForm';
 import { addChallenge } from '../../routes/challenges';
+import { getHrefLocation, setLocation } from "../../helpers/CssEffects";
 import '../../css/Shared/form.css';
 import '../../css/Shared/button.css';
 
@@ -30,7 +31,7 @@ const ChallengeForm = () =>{
     useEffect(
       () => {
           if (!load) {
-              let url = window.location.href;
+              let url = getHrefLocation();
               let encodedInfo = url.split("?prefill=");
 
               if(encodedInfo.length > 1){
@@ -94,7 +95,7 @@ const ChallengeForm = () =>{
     }
 
     const moveChallengePage = () => {
-      window.location.href = "./currentChallengePage";
+      setLocation("./currentChallengePage");
     }
 
     const submitChallenge = () => {
@@ -102,7 +103,8 @@ const ChallengeForm = () =>{
           return false;
         }
 
-        let recipient = receiver
+        let recipient = receiver;
+
         if (receiverGroup === "league"){
           recipient = receiver.split('-')[1].trim();
         }
@@ -134,8 +136,8 @@ const ChallengeForm = () =>{
 
 
             <div className = "formObj">
-            <button data-testid="ChallengeFormSubmitButton" className="submitButton" onClick = {submitChallenge}><p className = "submitButtonText">Submit</p></button>
-            <p data-testid="ChallengeFormErrorBox" className = "errorBox">{submitError}</p>
+              <button data-testid="ChallengeFormSubmitButton" className="submitButton" onClick = {submitChallenge}><p className = "submitButtonText">Submit</p></button>
+              <p data-testid="ChallengeFormErrorBox" className = "errorBox">{submitError}</p>
             </div>
 
         </div>

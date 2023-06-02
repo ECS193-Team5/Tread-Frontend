@@ -1,10 +1,11 @@
 import React from 'react';
 import { render } from "@testing-library/react";
-import Login from '../../../src/pages/login';
+import Privacy from "../../../src/pages/privacy";
 import '@testing-library/jest-dom'
 
-describe("Test /pages/login.js", () => {
+
+describe("Test /pages/privacy.js", () => {
     it("Test render", () => {
-        ///render(<Login />)
+        render(<Privacy/>)
     })
 });

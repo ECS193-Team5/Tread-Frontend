@@ -20,8 +20,8 @@ describe("Test /Challenge/BoxLine.js", () => {
     })
 
     beforeEach(()=>{
-        // Sets the date.now to 5/29/2023 at 11 AM
         mockDateNow = jest.spyOn(Date, "now").mockImplementation(() => {return 1685383200000});
+        console.log(Date.now());
     })
 
     it("Test render", () => {
