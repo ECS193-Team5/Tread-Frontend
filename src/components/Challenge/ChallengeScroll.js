@@ -34,7 +34,6 @@ const ChallengeScroll = (props) => {
 
     function reactChallengeList(response){
         setInformation(response)
-
         setShowZero(response.length === 0);
     }
 

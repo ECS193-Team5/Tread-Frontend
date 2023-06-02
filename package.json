@@ -40,9 +40,11 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "e2e_test": "npx playwright test",
-    "e2e_coverage_test": "nyc npx playwright test",
+    "e2e_test_coverage": "nyc npx playwright test",
     "unit_test": "jest --verbose ./tests/unit/* --env=jsdom",
-    "unit_coverage_test": "jest --verbose ./tests/unit/Challenge/* --env=jsdom --coverage "
+    "unit_test_coverage": "jest --verbose ./tests/unit/* --env=jsdom --coverage ",
+    "integration_test": "jest --verbose ./tests/integration/* --env=jsdom",
+    "integration_test_coverage": "jest --verbose ./tests/integration/* --env=jsdom --coverage "
   },
   "eslintConfig": {
     "extends": [

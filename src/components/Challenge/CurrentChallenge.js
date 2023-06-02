@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 import Bar from '../Shared/Bar';
 import ChallengeScroll from './ChallengeScroll';
-
+import { setLocation } from '../../helpers/CssEffects';
 import "../../css/Shared/section.css";
 import "../../css/Shared/bar.css";
 import "../../css/Challenge/challengeObj.css";
@@ -17,7 +17,7 @@ const CurrentChallenge = () => {
     useEffect(
       () => {
         if (challengeState === "Send Challenge") {
-          window.location.href = "/addChallengePage";
+          setLocation("/addChallengePage");
         }
 
       }, [challengeState]
