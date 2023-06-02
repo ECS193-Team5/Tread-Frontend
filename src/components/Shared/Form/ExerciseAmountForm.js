@@ -36,15 +36,16 @@ const ExerciseAmountForm = (props) => {
             if(props.defaultAmount){
                 setAmountError("");
             }
-        }, [props.defaultUnit]
+        }, [props.defaultAmount]
     );
 
 
     function preventEKey(event){
-        if(event.key === "e"){
+        if(event.key === "e" || event.key === "E"){
             event.preventDefault();
         }
     }
+
     return (
         <div data-testid="ExerciseAmountFormComponent" className="formObj">
             <p className="formObjInner">How much?</p>

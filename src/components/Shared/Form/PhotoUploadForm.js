@@ -7,10 +7,7 @@ const PhotoUploadForm = (props) => {
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-          // Set the viewing image
           document.getElementById("uploadProfilePicture").src = reader.result;
-
-          // send the image up the stream
           props.children.func(reader.result);
         };
         reader.onerror = function (error) {
@@ -20,6 +17,7 @@ const PhotoUploadForm = (props) => {
 
     function onImageChange (event) {
         let photo = event.target.files[0];
+
         if(!photo){
             return;
         }

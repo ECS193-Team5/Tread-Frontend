@@ -72,7 +72,7 @@ const ProfileSettings = () => {
       </div>
       <div className="rightSide2Part">
         <div className="mainInfo">
-          <Header>{{ "title": "Profile Settings", "type": "none" }}</Header>
+          <Header>{{ "title": "Profile Settings", "type": "none", "leagueID":"NA" }}</Header>
           <Line></Line>
           <ProfileSettingsForm>{{ "photo": photo, "displayName": displayName }}</ProfileSettingsForm>
           <Line></Line>

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
 import { setDisplayProperty } from "../../../helpers/CssEffects";
-
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
+import { getFriendList } from "../../../routes/friend_list";
+import { getAdminLeagues } from "../../../routes/league";
 
 const ExerciseReceiverForm = (props) => {
     const [receiverGroup, setReceiverGroup] = useState("self");
@@ -11,10 +10,10 @@ const ExerciseReceiverForm = (props) => {
     useEffect(
         () => {
             if (receiverGroup === "friend") {
-                getFriends();
+                getFriendList(setInviteOptions);
             }
             else if (receiverGroup === "league") {
-                getLeagues();
+                getAdminLeagues(processLeagueInfo)
             }
         }, [receiverGroup]
     );
@@ -58,50 +57,13 @@ const ExerciseReceiverForm = (props) => {
             }
         }, [props.defaultReceiverGroup, props.defaultReceiver, inviteOptions]
     );
-    function getFriends() {
-        var config = {
-            method: 'post',
-            url: backend_url + 'friend_list/friend_list',
-            headers: {
-                Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include'
-        };
-        axios(config)
-            .then(function (response) {
-                setInviteOptions(response.data);
-            })
-            .catch(function (error) {
-                if (error.response.status === 401) {
-                    window.location.href = "/";
-                }
-            });
-    }
 
-    function getLeagues() {
+    function processLeagueInfo(response){
         var array_leagues = []
-        var config = {
-            method: 'post',
-            url: backend_url + 'league/get_admin_leagues',
-            headers: {
-                Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include'
-        };
-        axios(config)
-            .then(function (response) {
-                for (let item of response.data) {
-                    array_leagues.push(item.leagueName + " - " + item._id);
-                }
-                setInviteOptions(array_leagues);
-            })
-            .catch(function (error) {
-                if (error.response.status === 401) {
-                    window.location.href = "/";
-                }
-            });
+        for (let item of response.data) {
+            array_leagues.push(item.leagueName + " - " + item._id);
+        }
+        setInviteOptions(array_leagues);
     }
 
     const receiverGroupChange = (event) => {

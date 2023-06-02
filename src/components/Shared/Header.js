@@ -2,6 +2,7 @@ import React from "react";
 import PageSwitch from "./PageSwitch";
 import UserSettingsButton from "./UserSettingsButton";
 import "../../css/Shared/header.css";
+
 const Header = (props) => {
     let title = props.children.title;
     let pageSwitchType = props.children.type;
@@ -10,20 +11,13 @@ const Header = (props) => {
 
     return (
         <div data-testid="HeaderComponent" id = "Header">
-            <h1>{title}</h1>
+            <h1 data-testid="HeaderComponentTitleText">{title}</h1>
             {
-            (pageSwitchType !== "none" && pageSwitchType !== "league")
-            ?
-            <PageSwitch type = {pageSwitchType} onButton = {onButton}></PageSwitch>
-            :
-            <></>
-            }
-            {
-            (pageSwitchType !== "none" && pageSwitchType === "league")
-            ?
-            <PageSwitch type = {pageSwitchType} onButton = {onButton} leagueID = {leagueID}></PageSwitch>
-            :
-            <></>
+                (pageSwitchType !== "none")
+                ?
+                <PageSwitch type = {pageSwitchType} onButton = {onButton} leagueID = {leagueID}></PageSwitch>
+                :
+                <></>
             }
             <UserSettingsButton></UserSettingsButton>
         </div>

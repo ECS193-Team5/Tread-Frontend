@@ -29,7 +29,7 @@ const Bar = (props) => {
     }
 
     const createBarButton = (input, index) => {
-        return (<BarButton index = {index} name = {input.name} func = {buttonChange} classes = {createClassList(input)}></BarButton>);
+        return (<BarButton key= {index} index = {index} name = {input.name} func = {buttonChange} classes = {createClassList(input)}></BarButton>);
     }
 
     return(

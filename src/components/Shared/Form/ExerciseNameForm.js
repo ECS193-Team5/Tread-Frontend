@@ -70,13 +70,13 @@ const ExerciseNameForm = (props) => {
         }
 
         sportList.forEach((item) => {
-            if( checkMatch(item, selfEntry)){
+            if(checkMatch(item, selfEntry)){
                 selfEntry = item;
             }
         });
 
         setSpecifyError("");
-        props.updateExerciseName(event.target.value);
+        props.updateExerciseName(selfEntry);
     }
 
 
@@ -90,9 +90,7 @@ const ExerciseNameForm = (props) => {
                         {sportList.map((name)=>{return <option value = {name} key = {name}>{name}</option>;})}
                     </select>
                 </div>
-
             </div>
-
 
             <div id = "SpecifyElement" className="formObj">
                 <p className = "formObjInner">Specify your own activity: </p>
