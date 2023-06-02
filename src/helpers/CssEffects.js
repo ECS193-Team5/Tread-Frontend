@@ -6,6 +6,18 @@ export const reloadPage = () => {
     window.location.href = window.location.href;
 }
 
+export const setLocation = (location) =>{
+    window.location.href = location;
+}
+
+export const getLocation = () =>{
+    return window.location.pathname;
+}
+
+export const getHrefLocation = () =>{
+    return window.location.href;
+}
+
 export const flipButton = (id, showState) => {
     let deg = 180;
     if (showState){

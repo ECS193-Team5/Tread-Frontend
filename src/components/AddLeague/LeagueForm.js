@@ -5,6 +5,7 @@ import LeagueDescriptionForm from "../Shared/Form/LeagueDescriptionForm";
 import LeagueNameForm from "../Shared/Form/LeagueNameForm";
 import LeagueTypeForm from "../Shared/Form/LeagueTypeForm";
 import { createLeague } from "../../routes/league";
+import { setLocation } from "../../helpers/CssEffects";
 import '../../css/Shared/form.css';
 import '../../css/Shared/button.css';
 
@@ -33,7 +34,7 @@ const LeagueForm = () => {
   }
 
   const moveSocialLeaguePage = () => {
-    window.location.href = "./socialLeaguePage";
+    setLocation("./socialLeaguePage");
   }
 
   const setError = () => {

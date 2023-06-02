@@ -7,7 +7,7 @@ const Leaderboard = (props) => {
     }
     return(
         <div data-testid="LeaderboardComponent" id = "Leaderboard">
-            <h2>{props.children.title}</h2>
+            <h2 data-testid="LeaderboardComponentTitle">{props.children.title}</h2>
 
             <div>
                 {props.children.entries.leaderboardInfo.map(makeLeaderboardEntryObj)}

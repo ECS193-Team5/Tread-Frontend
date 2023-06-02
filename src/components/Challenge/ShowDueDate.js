@@ -36,7 +36,7 @@ const ShowDueDate = (props) => {
 
     const isToday = (date) => {
         let input = new Date(date);
-        let today = new Date();
+        let today = new Date(Date.now());
 
         return (today.getDate() === input.getDate() && today.getMonth() === input.getMonth() && today.getFullYear() === input.getFullYear());
     }

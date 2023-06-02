@@ -5,6 +5,7 @@ import challengeButtonImage from "../../assets/ChallengeButtonImage.png";
 import profileButtonImage from "../../assets/ProfileButton.png";
 import socialButtonImage from "../../assets/socialButtonImage.png";
 import profileSettingsButtonImage from "../../assets/profileSettingsButtonImage.png";
+import { setLocation as setWindowLocation , getLocation} from "../../helpers/CssEffects";
 
 const SideBar = () => {
 
@@ -12,10 +13,10 @@ const SideBar = () => {
     let socialPages = ["/socialFriendPage", "/socialLeaguePage"];
     let profileSettingsPages = ["/profileSettingsPage"];
     let profilePages = ["/profileStatsPage", "/profileMedalPage"];
-    const [challengeButton] = useState(challengePages.includes(window.location.pathname));
-    const [socialButton] = useState(socialPages.includes(window.location.pathname));
-    const [settingsButton] = useState(profileSettingsPages.includes(window.location.pathname));
-    const [profileButton] = useState(profilePages.includes(window.location.pathname));
+    const [challengeButton, setChallengeButton] = useState(challengePages.includes(getLocation()));
+    const [socialButton, setSocialButton] = useState(socialPages.includes(getLocation()));
+    const [settingsButton, setSettingsButton] = useState(profileSettingsPages.includes(getLocation()));
+    const [profileButton, setProfileButton] = useState(profilePages.includes(getLocation()));
     const [location, setLocation] = useState();
 
 
@@ -36,23 +37,22 @@ const SideBar = () => {
     useEffect(
         () => {
           if (challengeButton) {
-            // send you to the challenge page
             setButtonOn("sideBarButtonChallenges", "challengeImage");
-          }else{
+          } else{
             setButtonOff("sideBarButtonChallenges", "challengeImage");
           }
         }, [challengeButton]
       );
 
-      useEffect(
-        () => {
-          if (socialButton) {
-            setButtonOn("sideBarButtonSocial", "socialImage");
-          }else{
-            setButtonOff("sideBarButtonSocial", "socialImage");
-          }
-        }, [socialButton]
-      );
+    useEffect(
+      () => {
+        if (socialButton) {
+          setButtonOn("sideBarButtonSocial", "socialImage");
+        }else{
+          setButtonOff("sideBarButtonSocial", "socialImage");
+        }
+      }, [socialButton]
+    );
 
       useEffect(
         () => {
@@ -77,34 +77,35 @@ const SideBar = () => {
       useEffect(
         () => {
           if (location) {
-            window.location.href = location;
+            setWindowLocation(location);
           }
         }, [location]
       );
 
+
     function clickChallengeButton(){
-      if(challengePages.includes(window.location.pathname)){
+      if(challengePages.includes(getLocation())){
         return;
       }
       setLocation("/currentChallengePage");
     }
 
     function clickSocialButton(){
-      if(socialPages.includes(window.location.pathname)){
+      if(socialPages.includes(getLocation())){
         return;
       }
-        setLocation("/socialFriendPage");
+      setLocation("/socialFriendPage");
     }
 
     function clickSettingsButton(){
-      if(profileSettingsPages.includes(window.location.pathname)){
+      if(profileSettingsPages.includes(getLocation())){
         return;
       }
       setLocation("/profileSettingsPage");
     }
 
     function clickProfileButton(){
-      if(profilePages.includes(window.location.pathname)){
+      if(profilePages.includes(getLocation())){
         return;
       }
       setLocation("/profileStatsPage");
