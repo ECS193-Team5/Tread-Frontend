@@ -51,6 +51,7 @@ const ChallengeForm = () =>{
         return;
       }
 
+
       setAmount(data.amount);
       setDefaultAmount(data.amount);
       setUnit(data.unit);

@@ -17,7 +17,6 @@ export function getUsername(thenFunc) {
       thenFunc(response.data);
     })
     .catch(function (error) {
-      redirectLogout(error);
     });
 }
 

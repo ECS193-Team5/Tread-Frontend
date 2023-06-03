@@ -9,7 +9,7 @@ const ExerciseDateForm = (props) => {
     useEffect(
         () => {
             if (props.defaultIssueDate) {
-                document.getElementById("issueDateInput").value = new Date(props.defaultIssueDate).toISOString().substring(0, 10);
+                document.getElementById("issueDateInput").value = new Date(props.defaultIssueDate).toISOString().substring(0, 16);
                 setDueDateError("");
             }
         }, [props.defaultIssueDate]
@@ -18,7 +18,7 @@ const ExerciseDateForm = (props) => {
     useEffect(
         () => {
             if (props.defaultDueDate) {
-                document.getElementById("dueDateInput").value = new Date(props.defaultDueDate).toISOString().substring(0, 10);
+                document.getElementById("dueDateInput").value = new Date(props.defaultDueDate).toISOString().substring(0, 16);
                 setDueDateError("");
             }
         }, [props.defaultDueDate]

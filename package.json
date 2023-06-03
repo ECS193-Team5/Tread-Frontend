@@ -42,7 +42,7 @@
     "e2e_test": "npx playwright test",
     "e2e_test_coverage": "nyc npx playwright test",
     "unit_test": "jest --verbose ./tests/unit/* --env=jsdom",
-    "unit_test_coverage": "jest --verbose ./tests/unit/League/LeagueMemberScroll --env=jsdom --coverage ",
+    "unit_test_coverage": "jest --verbose ./tests/unit/League/LeagueHeader --env=jsdom --coverage ",
     "integration_test": "jest --verbose ./tests/integration/* --env=jsdom",
     "integration_test_coverage": "jest --verbose ./tests/integration/* --env=jsdom --coverage "
   },

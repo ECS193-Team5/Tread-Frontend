@@ -17,7 +17,7 @@ const ProfileSettingsForm = (props) => {
     }
 
     const submitDisplayName = () =>{
-      if (displayErrorResponse !== "" && displayErrorResponse !== "Successfully submitted display name") {
+      if (displayName === "") {
         setDisplayErrorResponse("Could not submit this display name");
         return;
       }
