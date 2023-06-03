@@ -4,46 +4,8 @@ import { Sha256 } from '@aws-crypto/sha256-browser';
 import { v4 as uuid } from 'uuid';
 import { getToken } from 'firebase/messaging';
 import { exportMessaging, requestPermission } from "../../firebase";
-import axios from 'axios';
+import { loginAppleSignIn } from "../../routes/auth";
 import "../../css/Login/login.css";
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
-
-
-
-/**
- *
- * /*
-{authorization: {…}, user: {…}}
-authorization
-:
-code
-:
-"c34d5c1154f054a66a46900a55a5bdd6a.0.rrqr.1Up3VoQT06_jzS4ZoiBgDg"
-id_token
-:
-"eyJraWQiOiJXNldjT0tCIiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJodHRwczovL2FwcGxlaWQuYXBwbGUuY29tIiwiYXVkIjoicnVuLnRyZWFkLmFwcGxlc2lnbmluIiwiZXhwIjoxNjg1MDY3NDk2LCJpYXQiOjE2ODQ5ODEwOTYsInN1YiI6IjAwMDEwMS5iNmIwYzNlYjgzZWY0YjVhOTFlNTg4OWQ2YmY3NjhkZi4wMjE4Iiwibm9uY2UiOiJub25jZSIsImNfaGFzaCI6Ik9mM1JmWjZRM0xGS28zVmtDbFhrWmciLCJlbWFpbCI6InJlYmVrYWhncmFjZWZ1bHByb2R1Y3Rpb25zQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjoidHJ1ZSIsImF1dGhfdGltZSI6MTY4NDk4MTA5Niwibm9uY2Vfc3VwcG9ydGVkIjp0cnVlfQ.vvVqR5rytbS503CT0vb72CnfwRezzJ5RvcMWiCNTUULYpO7wqL5OFgOywYqNmkxLEWYTZm0hcD55BrfdfNJmIpWW7GHXCS7V-qKUCus8a5wqfj5jFE2DEza9Nymzrcotehuw7APcZPn2fcrXxwaAKpJY69Zvuya1Sf1wQGL9cLNdREc6B4-PvTw-VjdHoDIxe2JvqsUa2Ue5IEWx2AYuX-9jKC-1kU1qn_pg2KAX7NKgoq3siXkF8KOEpSElAmExFzlBMlvViXH4TcXFDpPPWWgO7fiFuiIJ11laiqKZa0FuoE0jKNg-AHl2i_NQf_eFU3AT_1FRt-XqK2PClbe7yw"
-state
-:
-"state"
-[[Prototype]]
-:
-Object
-user
-:
-email
-:
-"rebekahgracefulproductions@gmail.com"
-name
-:
-{firstName: 'Rebekah', lastName: 'Grace'}
-[[Prototype]]
-:
-Object
-[[Prototype]]
-:
-Object
-:
-Object*/
 
 /** Apple Signin button */
 const AppleSigninButton = () => {
@@ -51,6 +13,7 @@ const AppleSigninButton = () => {
   const [load, setLoad] = useState(false);
   const [rawNonce, setRawNonce] = useState("");
   const [hashedNonce, setHashedNonce] = useState("");
+
   useEffect(() => {
     if (!load) {
       setDeviceToken();
@@ -106,46 +69,7 @@ const AppleSigninButton = () => {
   }
 
   const loginApple = (response) => {
-    let fullname = {};
-    if (response.user) {
-      fullname = {
-        givenName: response.user.firstName,
-        familyName: response.user.lastName
-      }
-    }
-
-    console.log("response", response)
-    console.log("idToken", response.authorization.id_token);
-
-    var config = {
-      method: 'post',
-      url: backend_url + 'auth/login/apple',
-      withCredentials: true,
-      credentials: 'include',
-      headers: {
-        Authorization: response.authorization.id_token,
-        Accept: 'application/json',
-      },
-      data:
-      {
-        deviceToken: deviceToken,
-        fullname: fullname,
-        nonce: rawNonce
-      }
-    };
-    let hasUsername = false;
-    axios(config)
-      .then(function (response) {
-        hasUsername = response.data.hasUsername;
-        if (!hasUsername) {
-          window.location.href = "./signUpPage";
-        }
-        else {
-          window.location.href = "./currentChallengePage";
-        }
-      })
-      .catch(function (error) {
-      });
+    loginAppleSignIn(response, deviceToken, rawNonce);
   }
 
   const setErrorResponse = (error) => {

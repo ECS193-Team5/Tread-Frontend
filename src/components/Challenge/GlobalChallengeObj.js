@@ -24,7 +24,7 @@ const GlobalChallengeObj = (props) => {
     let title = getChallengeTitle(props.children.exercise)
     let challengeID = props.children.challengeID;
     let myProgressRealUnits = calculateProgress(myProgressBaseUnits, props.children.exercise.unit);
-    console.log("percent", props.children.progress, percentageDone);
+
     useEffect(
         () => {
             if (!load) {

@@ -1,54 +1,10 @@
 import React, {useState, useEffect} from "react";
-import axios from 'axios';
-import "../../css/Shared/button.css";
 import downloadButtonImage from "../../assets/DownloadButton.png";
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
+import { getPastChallenges, getPastExercises } from "../../routes/statistics";
+import "../../css/Shared/button.css";
 
 const StatsDownloadSection = (props) => {
     const [ownBlob, setOwnBlob] = useState("");
-
-    const requestExercises = () => {
-        var config = {
-            method : 'post',
-            url : backend_url + 'stats/get_exercise_log',
-            headers: {
-              Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include'
-          };
-          axios(config)
-          .then(function(response){
-            calculateBlobExercise(response.data);
-          })
-          .catch(function(error){
-            if(error.response.status===401){
-              window.location.href = "/";
-          }
-          });
-
-    }
-
-    const requestChallenges = () => {
-        var config = {
-          method: 'post',
-          url: backend_url + 'stats/get_past_challenges',
-          headers: {
-            Accept: 'application/json',
-          },
-          withCredentials: true,
-          credentials: 'include'
-        };
-        axios(config)
-          .then(function (response) {
-            calculateBlobChallenge(response.data);
-          })
-          .catch(function (error) {
-            if (error.response.status === 401) {
-              window.location.href = "/";
-            }
-          });
-      }
 
     const calculateBlobExercise = (data) => {
         let rows = "Date Completed, Date Posted, Exercise, Amount, Unit\n";
@@ -95,15 +51,12 @@ const StatsDownloadSection = (props) => {
     }
 
     useEffect(() => {
-
         if (props.type === "Exercise"){
-            requestExercises();
+            getPastExercises(calculateBlobExercise);
         }
         else if (props.type === "Challenge"){
-            requestChallenges();
+            getPastChallenges(calculateBlobChallenge);
         }
-
-
     }, [props.type]);
 
     return (

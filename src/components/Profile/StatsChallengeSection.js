@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
 import { Bar } from 'react-chartjs-2';
-import "../../css/Shared/button.css";
 import StatsDownloadSection from "./StatsDownloadSection";
+import { getPastChallenges } from "../../routes/statistics";
+import "../../css/Shared/button.css";
 
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
 const StatsChallengeSection = () => {
   const [load, setLoad] = useState(false);
 
@@ -55,7 +54,7 @@ const StatsChallengeSection = () => {
 
   useEffect(() => {
     if (!load) {
-      requestChallenges();
+      getPastChallenges(determineLabels);
       setLoad(true);
     }
   }, [load]);
@@ -142,27 +141,6 @@ const StatsChallengeSection = () => {
 
     setLabels(dayLabels);
     determineData(data, dayLabels, firstChallenge);
-  }
-
-  const requestChallenges = () => {
-    var config = {
-      method: 'post',
-      url: backend_url + 'stats/get_past_challenges',
-      headers: {
-        Accept: 'application/json',
-      },
-      withCredentials: true,
-      credentials: 'include'
-    };
-    axios(config)
-      .then(function (response) {
-        determineLabels(response.data);
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          window.location.href = "/";
-        }
-      });
   }
 
   return (

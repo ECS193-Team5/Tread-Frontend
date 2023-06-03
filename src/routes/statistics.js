@@ -22,3 +22,23 @@ export function getPastChallenges(thenFunc){
             redirectLogout(error);
         });
 }
+
+export function getPastExercises (thenFunc) {
+    var config = {
+        method : 'post',
+        url : backend_url + 'stats/get_exercise_log',
+        headers: {
+          Accept: 'application/json',
+        },
+        withCredentials: true,
+        credentials: 'include'
+      };
+      axios(config)
+      .then(function(response){
+        thenFunc(response.data);
+      })
+      .catch(function(error){
+        redirectLogout(error);
+      }
+      );
+}

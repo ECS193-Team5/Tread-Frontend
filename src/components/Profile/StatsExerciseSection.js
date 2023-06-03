@@ -8,12 +8,12 @@ import {
     Tooltip,
     Legend,
   } from 'chart.js';
-import axios from 'axios';
 import "../../css/Profile/profile.css";
 import "../../css/Shared/button.css";
 import { Bar } from 'react-chartjs-2';
 import StatsDownloadSection from './StatsDownloadSection';
 import hardCodedInfo from "../../helpers/SharedHardCodeInfo.json";
+import { getPastExercises } from '../../routes/statistics';
 
 ChartJS.register(
     CategoryScale,
@@ -23,9 +23,6 @@ ChartJS.register(
     Tooltip,
     Legend
   );
-
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
-
 
 const StatsExerciseSection = () => {
     const [load, setLoad] = useState(false);
@@ -131,7 +128,7 @@ const StatsExerciseSection = () => {
     }
     useEffect(() => {
         if(!load){
-            requestExercises();
+            getPastExercises(processPastExercise);
             setLoad(true);
         }
     },[load]);
@@ -143,8 +140,6 @@ const StatsExerciseSection = () => {
             if (log.exercise.exerciseName === selectedExerciseName){
                 unitTypeOptions.add(log.exercise.unitType);
             }
-
-
         })
 
         let unitOptions = [];
@@ -168,8 +163,6 @@ const StatsExerciseSection = () => {
         }
     },[selectedExerciseName]);
 
-
-
     useEffect(() => {
         if(graphChange){
             calculateData();
@@ -180,6 +173,7 @@ const StatsExerciseSection = () => {
     const conversion = (amount, toUnit) => {
         return amount * hardCodedInfo.conversionKey[toUnit];
     }
+
     const calculateData = () => {
         if (exerciseLog.length === 0){
             return;
@@ -245,32 +239,11 @@ const StatsExerciseSection = () => {
         setSelectedExerciseName(exercises[0]);
     }
 
-
-
-    const requestExercises = () => {
-        var config = {
-            method : 'post',
-            url : backend_url + 'stats/get_exercise_log',
-            headers: {
-              Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include'
-          };
-          axios(config)
-          .then(function(response){
-            calculateExerciseOptions(response.data);
-            calculateExerciseDays(response.data);
-            setExerciseLog(response.data);
-          })
-          .catch(function(error){
-            if(error.response.status===401){
-              window.location.href = "/";
-          }
-          });
-
+    const processPastExercise = (data) =>{
+        calculateExerciseOptions(data);
+        calculateExerciseDays(data);
+        setExerciseLog(data);
     }
-
 
     const changeUnit = (event) => {
         setSelectedExerciseUnit(event.target.value);
@@ -279,9 +252,6 @@ const StatsExerciseSection = () => {
     const changeExerciseName = (event) => {
         setSelectedExerciseName(event.target.value);
     }
-
-
-
 
     return (<div data-testid="StatsExerciseSectionComponent">
         <div className = "downloadButtonHeader">
