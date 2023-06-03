@@ -206,3 +206,41 @@ export function getReceived(thenFunc){
       redirectLogout(error);
   });
 }
+export function getSuggestedFriends(thenFunc) {
+  var config = {
+      method : 'post',
+      url : backend_url + 'friend_list/get_recommended',
+      headers: {
+      Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+  };
+  axios(config)
+  .then(function (response) {
+      thenFunc(response.data)
+  })
+  .catch(function (error) {
+      redirectLogout(error)
+  });
+}
+
+
+export function getRecentFriends(thenFunc) {
+  var config = {
+      method: 'post',
+      url: backend_url + 'friend_list/get_recent_activity',
+      headers: {
+          Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+  };
+  axios(config)
+      .then(function (response) {
+          thenFunc(response.data)
+      })
+      .catch(function (error) {
+          redirectLogout(error)
+      });
+}
