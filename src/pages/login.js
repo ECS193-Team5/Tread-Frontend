@@ -43,7 +43,7 @@ const Login = () => {
 
   // needs variable for nonce
   function handleCredentialResponse(token) {
-
+    console.log(`${token.credential}`, "    here");
     var config = {
       method: 'post',
       url: backend_url + 'auth/login/google',
@@ -67,7 +67,7 @@ const Login = () => {
           window.location.href = "./signUpPage";
         }
         else {
-          window.location.href = "./currentChallengePage";
+          //window.location.href = "./currentChallengePage";
         }
       })
       .catch(function (error) {

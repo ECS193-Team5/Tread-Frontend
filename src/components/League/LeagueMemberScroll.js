@@ -46,7 +46,7 @@ const LeagueMemberScroll = (props) => {
 
     useEffect (
         () => {
-            if(blockedList ||  friendList || leagueName){
+            if(blockedList.length>0 ||  friendList.length>0 || leagueName.length>0){
                 setScrollData(
                     {
                         username: props.children.username,

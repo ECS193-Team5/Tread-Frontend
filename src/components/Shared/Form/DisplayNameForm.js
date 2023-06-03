@@ -17,6 +17,7 @@ const DisplayNameForm = (props) => {
         }
 
         setDisplayError("");
+
         props.updateDisplayName(displayNameInput);
         return true;
     }

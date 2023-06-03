@@ -9,7 +9,6 @@ import { getUsername } from "../../routes/user";
 
 const LeagueMemberSection = (props) => {
     const [memberState, setMemberState] = useState("Members");
-    const [load, setLoad] = useState(false);
     const [role, setRole] = useState("");
     const [username, setUsername] = useState("");
     const [scrollInput, setScrollInput] = useState({});
@@ -21,12 +20,9 @@ const LeagueMemberSection = (props) => {
     {"name": "Invite User", "defaultOn":false, "create":true}];
 
     useEffect(() => {
-        if(!load){
-            setLoad(load);
-            getLeagueRole(props.children.id, setRole);
-            getUsername(setUsername);
-        }
-      }, [load]);
+        getLeagueRole(props.children.id, setRole);
+        getUsername(setUsername);
+      }, []);
 
     useEffect(() => {
         if(username.length > 0 && role.length > 0){

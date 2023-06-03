@@ -6,6 +6,7 @@ import thirdMedal from "../../assets/thirdMedal.png";
 import "../../css/Shared/leaderboard.css";
 
 const LeagueLeaderboardEntry = (props) => {
+    console.log(props);
     return (
     <div data-testid={"LeagueLeaderboardEntryComponent"+props.index} id = "LeaderboardEntry">
         <div className = "leaderboardEntryImage">

@@ -17,11 +17,11 @@ const ProfileSettingsForm = (props) => {
     }
 
     const submitDisplayName = () =>{
-      if (displayErrorResponse !== "" && displayErrorResponse !== "Successfully submitted display name") {
+      if (displayName === "") {
         setDisplayErrorResponse("Could not submit this display name");
         return;
       }
-
+      console.log("did I update");
       updateDisplayName(displayName, setDisplayErrorResponse);
     }
 
@@ -30,13 +30,13 @@ const ProfileSettingsForm = (props) => {
         <div className="formObj">
                 <h2>Profile Picture</h2>
                 <PhotoUploadForm>{{"default":props.children.photo, "func":setPhoto}}</PhotoUploadForm>
-                <button className="submitButton" onClick = {submitPhoto}><p className = "submitButtonText">Submit</p></button>
+                <button data-testid="ProfileSettingsFormPhotoSubmit" className="submitButton" onClick = {submitPhoto}><p className = "submitButtonText">Submit</p></button>
                 <p data-testid="ProfileSettingsFormPhotoResponse">{photoResponse}</p>
 
           </div>
             <div className="formObj">
             <DisplayNameForm placeholder = {props.children.displayName} updateDisplayName = {setDisplayName}/>
-            <button data-testid="ProfileSettingsFormSubmitButton" className="submitButton" onClick = {submitDisplayName}><p className = "submitButtonText">Submit</p></button>
+            <button data-testid="ProfileSettingsFormDisplayNameSubmit" className="submitButton" onClick = {submitDisplayName}><p className = "submitButtonText">Submit</p></button>
             <p data-testid="ProfileSettingsFormDisplayErrorResponse">{displayErrorResponse}</p>
             </div>
     </div>

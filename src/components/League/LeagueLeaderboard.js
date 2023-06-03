@@ -23,7 +23,7 @@ const LeagueLeaderboard = (props) => {
       if (leaderboardInfo.length === 0) {
         setDisplayProperty("LeagueLeaderboard", "none")
       }
-      else if (leaderboardInfo) {
+      else {
         setDisplayProperty("LeagueLeaderboard", "block")
       }
     }, [leaderboardInfo]
