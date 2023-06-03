@@ -8,6 +8,7 @@ import "../../css/Shared/bar.css";
 
 const LeagueChallengeList = (props) => {
     const challengesBarButtonList =  [{"name": "Send Challenge", "defaultOn":false, "create":true}];
+
     function sendLeagueChallengeRedirect(){
         sendChallengeRedirect("league", props.children.id);
     }

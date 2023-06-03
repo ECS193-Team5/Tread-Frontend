@@ -7,6 +7,7 @@ import Line from "../Shared/Line";
 import { createLeaguePictureURL } from "../../helpers/CloudinaryURLHelpers";
 import { getLeagueInfo, updateLeagueDescription, updateLeaguePhoto, updateLeagueName, updateLeagueType, deleteLeague } from "../../routes/league";
 import "../../css/Shared/coloredText.css";
+import { setLocation } from "../../helpers/CssEffects";
 
 const LeagueEditForm = (props) => {
     const [load, setLoad] = useState("");
@@ -81,7 +82,7 @@ const LeagueEditForm = (props) => {
     }
 
     function moveLeaguePage(){
-        window.location.href = "./SocialLeaguePage";
+        setLocation("./SocialLeaguePage");
     }
 
     function setLeagueError(){

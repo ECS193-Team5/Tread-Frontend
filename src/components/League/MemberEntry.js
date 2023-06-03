@@ -7,8 +7,8 @@ import adminKey from "../../assets/key.png";
 import ownerCrown from "../../assets/Crown.png";
 import moreInfoButton from "../../assets/moreInfoButton.png";
 import { blockUser, removeFriend, sendFriendRequest, unBlockUser } from '../../routes/friend_list';
-import { removeAdminUser, addAdminUser, banUser, unbanUser, acceptUser, declineUser, revokeUser } from '../../routes/league';
-import { kickOutUser } from '../../routes/league';
+import { removeAdminUser, addAdminUser, banUser, unbanUser, acceptUser, declineUser, revokeUser, kickOutUser } from '../../routes/league';
+
 
 const MemberEntry = (props) => {
   const [load, setLoad] = useState(false);
@@ -66,7 +66,7 @@ const MemberEntry = (props) => {
       dropdownOptions.push({ "name": "Friend", "func": addFriend });
       dropdownOptions.push({ "name": "Unblock", "func": unblock });
     }
-    else if(!isFriend() && !isBlocked()){
+    else{
       dropdownOptions.push({ "name": "Friend", "func": addFriend });
       dropdownOptions.push({ "name": "Block", "func": block });
     }
@@ -169,10 +169,8 @@ const MemberEntry = (props) => {
 
   function decline() {
     let data = {
-
         recipient: props.children.memberData.username,
         leagueID: props.children.scrollData.leagueID
-
     }
 
     declineUser(data, reloadPage)
@@ -206,7 +204,7 @@ const MemberEntry = (props) => {
         <div>
           <img className="memberPicture" src={createProfilePictureURL(props.children.memberData.username)} />
         </div>
-        <div class="memberNames">
+        <div className="memberNames">
           <p data-testid={"MemberEntryMemberDisplayName"+props.index} className="memberDisplayName memberEntryText">{props.children.memberData.displayName}</p>
           <p data-testid={"MemberEntryMemberUsername"+props.index} className="memberUsername memberEntryText">{props.children.memberData.username}</p>
         </div>
