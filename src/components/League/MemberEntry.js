@@ -6,7 +6,8 @@ import DropDown from '../Shared/DropDown';
 import adminKey from "../../assets/key.png";
 import ownerCrown from "../../assets/Crown.png";
 import moreInfoButton from "../../assets/moreInfoButton.png";
-import { blockUser, removeFriend, sendFriendRequest, unBlockUser, addAdminUser, removeAdminUser } from '../../routes/friend_list';
+import { blockUser, removeFriend, sendFriendRequest, unBlockUser } from '../../routes/friend_list';
+import { removeAdminUser, addAdminUser, banUser, unbanUser, acceptUser, declineUser, revokeUser } from '../../routes/league';
 import { kickOutUser } from '../../routes/league';
 
 const MemberEntry = (props) => {
