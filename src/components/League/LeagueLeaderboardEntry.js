@@ -1,9 +1,9 @@
 import React from "react";
-import "../../css/Shared/leaderboard.css";
 import {createProfilePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import firstMedal from "../../assets/firstMedal.png";
 import secondMedal from "../../assets/secondMedal.png";
 import thirdMedal from "../../assets/thirdMedal.png";
+import "../../css/Shared/leaderboard.css";
 
 const LeagueLeaderboardEntry = (props) => {
     return (

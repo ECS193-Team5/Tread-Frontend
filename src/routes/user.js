@@ -17,7 +17,7 @@ export function getUsername(thenFunc) {
       thenFunc(response.data);
     })
     .catch(function (error) {
-
+      redirectLogout(error);
     });
 }
 
@@ -67,4 +67,24 @@ export function updateDisplayName(displayName, setDisplayErrorResponse) {
       setDisplayErrorResponse("Could not submit display name. Please try again later.")
       redirectLogout(error)
     });
+}
+
+export function getDisplayName(thenFunc) {
+  // GET from db
+  var config = {
+      method: 'post',
+      url: backend_url + 'user/get_display_name',
+      headers: {
+          Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+  };
+  axios(config)
+      .then(function (response) {
+          thenFunc(response.data.displayName);
+      })
+      .catch(function (error) {
+        redirectLogout(error);
+      });
 }

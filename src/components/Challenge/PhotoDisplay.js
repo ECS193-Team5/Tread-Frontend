@@ -42,7 +42,7 @@ const PhotoDisplay = (props) => {
         let startingIndex = (180 - (46 + 36*(length-1)))/2;
         let position = startingIndex + (-10)*index;
         let z_index = index;
-        let style = {"position":"relative", "z-index":z_index, "left":position};
+        let style = {"position":"relative", "zIndex":z_index, "left":position};
 
         return style
     }
@@ -58,7 +58,7 @@ const PhotoDisplay = (props) => {
         }
 
         if (additionalNumber > 0){
-            let additional = <div id = "numberObj" className='photoDisplayObj lastPhotoDisplay'><p data-testid={"PhotoDisplayAdditionalNumber"+props.index} className = "lastPhotoText">+{additionalNumber}</p></div>
+            let additional = <div key = {4} id = "numberObj" className='photoDisplayObj lastPhotoDisplay'><p data-testid={"PhotoDisplayAdditionalNumber"+props.index} className = "lastPhotoText">+{additionalNumber}</p></div>
             photoObj.push(additional);
         }
 

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import QRcode from "qrcode";
-import axios from "axios";
 import { createProfilePictureURL } from "../../helpers/CloudinaryURLHelpers";
+import { setLocation } from '../../helpers/CssEffects';
+import editButtonImage from "../../assets/editButton.png";
+import { getUsername, getDisplayName } from '../../routes/user';
 import "../../css/Shared/button.css";
 import "../../css/Shared/pictureHeader.css";
-
-import editButtonImage from "../../assets/editButton.png";
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const ProfileHeader = () => {
     const [load, setLoad] = useState(false);
@@ -15,53 +14,28 @@ const ProfileHeader = () => {
     const [qrcode, setQRCode] = useState("");
     const [profilePhoto, setProfilePhoto] = useState("");
 
-    function getDisplayName() {
-        // GET from db
-        var config = {
-            method: 'post',
-            url: backend_url + 'user/get_display_name',
-            headers: {
-                Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-        };
-        axios(config)
-            .then(function (response) {
-                setDisplayName(response.data.displayName)
-                return response.data.displayName;
-            })
-            .catch(function (error) {
-            });
+
+    const processUsername = (username) => {
+        setUsername(username)
+        setProfilePhoto(createProfilePictureURL(username));
     }
 
-    function getUsername() {
-        var config = {
-            method: 'post',
-            url: backend_url + 'user/get_username',
-            headers: {
-                Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-        };
-        axios(config)
-            .then(function (response) {
-                setUsername(response.data)
-                setProfilePhoto(createProfilePictureURL(response.data));
-                return response.data;
-            })
-            .catch(function (error) {
-            });
-    }
     useEffect(
         () => {
             if (!load) {
-                getUsername();
-                getDisplayName();
+                getUsername(processUsername);
+                getDisplayName(setDisplayName);
                 setLoad(true);
             }
         }, [load]
+    );
+
+    useEffect(
+        () => {
+            if (username !== "") {
+                getQrCode();
+            }
+        }, [username]
     );
 
     const getQrCode = () => {
@@ -72,17 +46,10 @@ const ProfileHeader = () => {
         })
     }
 
-    useEffect(
-        () => {
-            if (username !== "") {
-                getQrCode();
-            }
-        }, [username]
-    );
-
     const moveSettingsPage = () => {
-        window.location.href = "./profileSettingsPage";
+        setLocation("./profileSettingsPage");
     }
+
     return (
         <div data-testid="ProfileHeaderComponent" className="pictureHeader">
             <div className="pictureHeaderLeft">

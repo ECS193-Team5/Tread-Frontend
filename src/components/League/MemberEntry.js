@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import "../../css/League/member.css";
 import { createProfilePictureURL } from "../../helpers/CloudinaryURLHelpers";
 import { setDisplayProperty, reloadPage } from '../../helpers/CssEffects';
@@ -7,7 +6,8 @@ import DropDown from '../Shared/DropDown';
 import adminKey from "../../assets/key.png";
 import ownerCrown from "../../assets/Crown.png";
 import moreInfoButton from "../../assets/moreInfoButton.png";
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
+import { blockUser, removeFriend, sendFriendRequest, unBlockUser, addAdminUser, removeAdminUser } from '../../routes/friend_list';
+import { kickOutUser } from '../../routes/league';
 
 const MemberEntry = (props) => {
   const [load, setLoad] = useState(false);
@@ -99,316 +99,100 @@ const MemberEntry = (props) => {
   }
 
   function addFriend() {
-    var config = {
-      method: 'post',
-      url: backend_url + 'friend_list/send_friend_request',
-      headers: {
-        Accept: 'application/json',
-      },
-      data:
-      {
-        friendName: props.children.memberData.username
-      },
-      withCredentials: true,
-      credentials: 'include'
-    };
-    axios(config)
-      .then(function (response) {
-        reloadPage();
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          window.location.href = "/";
-        }
-      });
+    sendFriendRequest(props.children.memberData.username, reloadPage);
   }
 
   function unfriend() {
-    var config = {
-      method: 'post',
-      url: backend_url + 'friend_list/remove_friend',
-      headers: {
-        Accept: 'application/json',
-      },
-      data:
-      {
-        friendName: props.children.memberData.username
-      },
-      withCredentials: true,
-      credentials: 'include'
-    };
-    axios(config)
-      .then(function (response) {
-        reloadPage();
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          window.location.href = "/";
-        }
-      });
+    removeFriend(props.children.memberData.username, reloadPage);
   }
 
   function unblock() {
-    var config = {
-      method: 'post',
-      url: backend_url + 'friend_list/unblock_user',
-      headers: {
-        Accept: 'application/json',
-      },
-      data:
-      {
-        friendName: props.children.memberData.username
-      },
-      withCredentials: true,
-      credentials: 'include'
-    };
-    axios(config)
-      .then(function (response) {
-        reloadPage();
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          window.location.href = "/";
-        }
-      });
+    unBlockUser(props.children.memberData.username, reloadPage);
   }
 
   function block() {
-    var config = {
-      method: 'post',
-      url: backend_url + 'friend_list/block_user',
-      headers: {
-        Accept: 'application/json',
-      },
-      data:
-      {
+    blockUser(props.children.memberData.username, reloadPage)
+  }
 
-        friendName: props.children.memberData.username
-      },
-      withCredentials: true,
-      credentials: 'include'
-    };
-    axios(config)
-      .then(function (response) {
-        reloadPage();
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          window.location.href = "/";
-        }
-      });
+  const hideMemberItem = () => {
+    setDisplayProperty(props.children.memberData.username + "MemberEntry", "none");
   }
 
   function kickOut() {
-    var config = {
-      method: 'post',
-      url: backend_url + 'league/kick_member',
-      headers: {
-        Accept: 'application/json',
-      },
-      data:
-      {
-        recipient: props.children.memberData.username,
-        leagueID: props.children.scrollData.leagueID,
-        leagueName: props.children.scrollData.leagueName
-      },
-      withCredentials: true,
-      credentials: 'include'
-    };
-    axios(config)
-      .then(function (response) {
-        setDisplayProperty(props.children.memberData.username + "MemberEntry", "none");
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          window.location.href = "/";
-        }
-      });
+    let data = {
+      recipient: props.children.memberData.username,
+      leagueID: props.children.scrollData.leagueID,
+      leagueName: props.children.scrollData.leagueName
+    }
+
+    kickOutUser(data, hideMemberItem);
   }
 
   function ban() {
-    var config = {
-      method: 'post',
-      url: backend_url + 'league/ban_user',
-      headers: {
-        Accept: 'application/json',
-      },
-      data:
-      {
-        recipient: props.children.memberData.username,
-        leagueID: props.children.scrollData.leagueID,
-        leagueName: props.children.scrollData.leagueName
-      },
-      withCredentials: true,
-      credentials: 'include'
-    };
-    axios(config)
-      .then(function (response) {
-        setDisplayProperty(props.children.memberData.username + "MemberEntry", "none");
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          window.location.href = "/";
-        }
-      });
+    let data = {recipient: props.children.memberData.username,
+              leagueID: props.children.scrollData.leagueID,
+              leagueName: props.children.scrollData.leagueName
+    }
+    banUser(data, hideMemberItem);
   }
 
   function removeAdmin() {
-    var config = {
-      method: 'post',
-      url: backend_url + 'league/remove_admin',
-      headers: {
-        Accept: 'application/json',
-      },
-      data:
-      {
-        recipient: props.children.memberData.username,
-        leagueID: props.children.scrollData.leagueID,
-        leagueName: props.children.scrollData.leagueName
-      },
-      withCredentials: true,
-      credentials: 'include'
-    };
-    axios(config)
-      .then(function (response) {
-        reloadPage();
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          window.location.href = "/";
-        }
-      });
+    let data = {
+      recipient: props.children.memberData.username,
+      leagueID: props.children.scrollData.leagueID,
+      leagueName: props.children.scrollData.leagueName
+    }
+
+    removeAdminUser(data, reloadPage);
   }
 
   function addAdmin() {
-    var config = {
-      method: 'post',
-      url: backend_url + 'league/add_admin',
-      headers: {
-        Accept: 'application/json',
-      },
-      data:
-      {
-        recipient: props.children.memberData.username,
-        leagueID: props.children.scrollData.leagueID,
-        leagueName: props.children.scrollData.leagueName
-      },
-      withCredentials: true,
-      credentials: 'include'
-    };
-    axios(config)
-      .then(function (response) {
-        reloadPage();
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          window.location.href = "/";
-        }
-      });
+    let data =
+    {
+      recipient: props.children.memberData.username,
+      leagueID: props.children.scrollData.leagueID,
+      leagueName: props.children.scrollData.leagueName
+    }
+
+    addAdminUser(data, reloadPage);
   }
 
   function accept() {
-    var config = {
-      method: 'post',
-      url: backend_url + 'league/accept_join_request',
-      headers: {
-        Accept: 'application/json',
-      },
-      data:
-      {
-        recipient: props.children.memberData.username,
-        leagueID: props.children.scrollData.leagueID
-      },
-      withCredentials: true,
-      credentials: 'include'
-    };
-    axios(config)
-      .then(function (response) {
-        setDisplayProperty(props.children.memberData.username + "MemberEntry", "none");
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          window.location.href = "/";
-        }
-      });
+    let data = {
+      recipient: props.children.memberData.username,
+      leagueID: props.children.scrollData.leagueID
+    }
+
+    acceptUser(data, reloadPage);
   }
 
   function decline() {
-    var config = {
-      method: 'post',
-      url: backend_url + 'league/decline_request',
-      headers: {
-        Accept: 'application/json',
-      },
-      data:
-      {
+    let data = {
+
         recipient: props.children.memberData.username,
         leagueID: props.children.scrollData.leagueID
-      },
-      withCredentials: true,
-      credentials: 'include'
-    };
-    axios(config)
-      .then(function (response) {
-        setDisplayProperty(props.children.memberData.username + "MemberEntry", "none");
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          window.location.href = "/";
-        }
-      });
+
+    }
+
+    declineUser(data, reloadPage)
   }
 
   function unban() {
-    var config = {
-      method: 'post',
-      url: backend_url + 'league/unban_user',
-      headers: {
-        Accept: 'application/json',
-      },
-      data:
-      {
-        recipient: props.children.memberData.username,
-        leagueID: props.children.scrollData.leagueID
-      },
-      withCredentials: true,
-      credentials: 'include'
+    let data = {
+      recipient: props.children.memberData.username,
+      leagueID: props.children.scrollData.leagueID
     };
-    axios(config)
-      .then(function (response) {
-        setDisplayProperty(props.children.memberData.username + "MemberEntry", "none");
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          window.location.href = "/";
-        }
-      });
+
+    unbanUser(data, hideMemberItem);
   }
 
   function revoke() {
-    var config = {
-      method: 'post',
-      url: backend_url + 'league/undo_invite',
-      headers: {
-        Accept: 'application/json',
-      },
-      data:
-      {
-        recipient: props.children.memberData.username,
-        leagueID: props.children.scrollData.leagueID
-      },
-      withCredentials: true,
-      credentials: 'include'
-    };
-    axios(config)
-      .then(function (response) {
-        setDisplayProperty(props.children.memberData.username + "MemberEntry", "none");
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          window.location.href = "/";
-        }
-      });
+    let data = {
+      recipient: props.children.memberData.username,
+      leagueID: props.children.scrollData.leagueID
+    }
+
+    revokeUser(data, hideMemberItem);
   }
 
   function toggleSelectShow() {

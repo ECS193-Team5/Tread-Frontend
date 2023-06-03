@@ -22,8 +22,11 @@ export function sendFriendRequest(friendName, thenFunc, errorFunc){
           thenFunc(response.data);
       })
       .catch(function(error){
+        if(errorFunc){
             errorFunc(error)
-            redirectLogout(error);
+        }
+
+        redirectLogout(error);
       });
 }
 /* Get Friend Lists */
@@ -64,4 +67,84 @@ export function getBlockedList(thenFunc) {
         .catch(function (error) {
             redirectLogout(error);
         });
+}
+
+export function removeFriend(friendName, thenFunc, errorFunc) {
+    var config = {
+      method: 'post',
+      url: backend_url + 'friend_list/remove_friend',
+      headers: {
+        Accept: 'application/json',
+      },
+      data:
+      {
+        friendName: friendName
+      },
+      withCredentials: true,
+      credentials: 'include'
+    };
+    axios(config)
+    .then(function(response) {
+        thenFunc(response.data);
+    })
+    .catch(function(error){
+      if(errorFunc){
+          errorFunc(error)
+      }
+
+      redirectLogout(error);
+    });
+  }
+
+export  function unBlockUser(friendName, thenFunc, errorFunc) {
+    var config = {
+      method: 'post',
+      url: backend_url + 'friend_list/unblock_user',
+      headers: {
+        Accept: 'application/json',
+      },
+      data:
+      {
+        friendName: friendName
+      },
+      withCredentials: true,
+      credentials: 'include'
+    };
+    axios(config)
+    .then(function(response) {
+        thenFunc(response.data);
+    })
+    .catch(function(error){
+      if(errorFunc){
+          errorFunc(error)
+      }
+      redirectLogout(error);
+    });
+  }
+
+export function blockUser(friendName, thenFunc, errorFunc){
+    var config = {
+        method: 'post',
+        url: backend_url + 'friend_list/block_user',
+        headers: {
+          Accept: 'application/json',
+        },
+        data:
+        {
+          friendName: friendName
+        },
+        withCredentials: true,
+        credentials: 'include'
+      };
+
+      axios(config)
+      .then(function(response) {
+          thenFunc(response.data);
+      })
+      .catch(function(error){
+        if(errorFunc){
+            errorFunc(error)
+        }
+        redirectLogout(error);
+      });
 }

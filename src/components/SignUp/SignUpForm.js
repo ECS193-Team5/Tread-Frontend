@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PhotoUploadForm from '../Shared/Form/PhotoUploadForm';
 import UsernameForm from '../Shared/Form/UsernameForm';
 import DisplayNameForm from '../Shared/Form/DisplayNameForm';
-import axios from 'axios';
+import { signUp } from '../../routes/sign_up';
 
 import '../../css/SignUp/signUpForm.css';
 import '../../css/Shared/button.css';
@@ -11,8 +11,6 @@ import '../../css/Shared/headerText.css';
 
 import { getToken } from 'firebase/messaging';
 import { exportMessaging, requestPermission } from "../../firebase";
-
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
 const SignUpForm = (props) => {
   const [load, setLoad] = useState(false);
@@ -42,6 +40,7 @@ const SignUpForm = (props) => {
       return photo;
     }
   }
+
   const setDeviceToken = () => {
     getToken(exportMessaging, { vapidKey: "BDXZrQCKEnAfnJWh6oIbEYKTuogSmiNl4gKVIDNmOEabzRt2BpAVIV4Znb7OgKzWJAz9eLOKde6YhWLpAdw1EZ0" }).then((currentToken) => {
       if (currentToken) {
@@ -86,25 +85,7 @@ const SignUpForm = (props) => {
     formData.append("picture", submitPhoto);
 
 
-    var config = {
-      method: 'post',
-      url: backend_url + 'sign_up/sign_up',
-      headers: {
-        "Content-Type": "multipart/form-data"
-      },
-      withCredentials: true,
-      credentials: 'include',
-      data: formData
-    };
-    axios(config)
-      .then(function () {
-        window.location.href = "./currentChallengePage";
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          window.location.href = "/";
-        }
-      });
+    signUp(formData);
   }
 
   return (

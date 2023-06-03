@@ -2,11 +2,10 @@ import React, {useState, useEffect} from 'react';
 import QRcode from "qrcode";
 import {createLeaguePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import { getLeagueInfo, getNumberActiveChallengesLeague, getMembersLeague, getLeagueRole } from '../../routes/league';
+import editButtonImage from "../../assets/editButton.png";
 import "../../css/Shared/pictureHeader.css";
 import "../../css/Shared/button.css";
 import "../../css/Shared/coloredText.css";
-import editButtonImage from "../../assets/editButton.png";
-
 
 const LeagueHeader = (props) => {
     const [id] = useState(props.children.id);

@@ -266,3 +266,253 @@ export function getAdminLeagues(thenFunc) {
           redirectLogout(error);
       });
 }
+
+export function getLeaderboardInfo(leagueID, thenFunc){
+  var config ={
+      method: 'post',
+      url : backend_url+'league/get_leaderboard',
+      headers: {
+          Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data:{
+          leagueID: leagueID
+      }
+    };
+    axios(config)
+    .then(function(response){
+      thenFunc(response)
+    })
+    .catch(function(error){
+      redirectLogout(error)
+    });
+}
+
+export function getRequesting(){
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/get_pending_request_list',
+      headers: {
+      Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data:{
+          leagueID: props.leagueID
+      }
+  };
+  axios(config)
+  .then(function(response){
+    thenFunc(response);
+  })
+  .catch(function(error){
+    redirectLogout(error);
+  });
+}
+
+export function getBanned(){
+  // get list from service
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/get_banned_list',
+      headers: {
+      Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data:{
+          leagueID: props.leagueID
+      }
+  };
+  axios(config)
+  .then(function(response){
+    thenFunc(response);
+  })
+  .catch(function(error){
+    redirectLogout(error);
+  });
+}
+
+export function getInvited(thenFunc){
+  // get list from service
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/get_sent_invite_list',
+      headers: {
+      Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data:{
+          leagueID: props.leagueID
+      }
+  };
+  axios(config)
+  .then(function(response){
+    thenFunc(response);
+  })
+  .catch(function(error){
+    redirectLogout(error);
+  });
+}
+
+export function kickOutUser(data, thenFunc) {
+  var config = {
+    method: 'post',
+    url: backend_url + 'league/kick_member',
+    headers: {
+      Accept: 'application/json',
+    },
+    data: data,
+    withCredentials: true,
+    credentials: 'include'
+  };
+  axios(config)
+    .then(function (response) {
+        thenFunc()
+    })
+    .catch(function (error) {
+    redirectLogout(error);
+    });
+}
+
+export function banUser(data, thenFunc) {
+  var config = {
+    method: 'post',
+    url: backend_url + 'league/ban_user',
+    headers: {
+      Accept: 'application/json',
+    },
+    data:data,
+    withCredentials: true,
+    credentials: 'include'
+  };
+  axios(config)
+    .then(function (response) {
+      thenFunc()
+    })
+    .catch(function (error) {
+      redirectLogout(error)
+    });
+}
+
+export function removeAdminUser(data, thenFunc) {
+  var config = {
+    method: 'post',
+    url: backend_url + 'league/remove_admin',
+    headers: {
+      Accept: 'application/json',
+    },
+    data: data,
+    withCredentials: true,
+    credentials: 'include'
+  };
+  axios(config)
+    .then(function (response) {
+      thenFunc()
+    })
+    .catch(function (error) {
+      redirectLogout(error)
+    });
+}
+
+export function addAdminUser(data, thenFunc) {
+  var config = {
+    method: 'post',
+    url: backend_url + 'league/add_admin',
+    headers: {
+      Accept: 'application/json',
+    },
+    data: data,
+    withCredentials: true,
+    credentials: 'include'
+  };
+  axios(config)
+    .then(function (response) {
+      thenFunc()
+    })
+    .catch(function (error) {
+      redirectLogout(error)
+    });
+}
+
+export function acceptUser(data, thenFunc) {
+  var config = {
+    method: 'post',
+    url: backend_url + 'league/accept_join_request',
+    headers: {
+      Accept: 'application/json',
+    },
+    data:data,
+    withCredentials: true,
+    credentials: 'include'
+  };
+  axios(config)
+    .then(function (response) {
+      thenFunc()
+    })
+    .catch(function (error) {
+      redirectLogout(error)
+    });
+}
+
+export function declineUser(data, thenFunc) {
+  var config = {
+    method: 'post',
+    url: backend_url + 'league/decline_request',
+    headers: {
+      Accept: 'application/json',
+    },
+    data: data,
+    withCredentials: true,
+    credentials: 'include'
+  };
+  axios(config)
+    .then(function (response) {
+      thenFunc()
+    })
+    .catch(function (error) {
+      redirectLogout(error)
+    });
+}
+
+export function unbanUser(data, thenFunc) {
+  var config = {
+    method: 'post',
+    url: backend_url + 'league/unban_user',
+    headers: {
+      Accept: 'application/json',
+    },
+    data:data,
+    withCredentials: true,
+    credentials: 'include'
+  };
+  axios(config)
+    .then(function (response) {
+      thenFunc()
+    })
+    .catch(function (error) {
+      redirectLogout(error)
+    });
+}
+
+export function revokeUser(data, thenFunc) {
+  var config = {
+    method: 'post',
+    url: backend_url + 'league/undo_invite',
+    headers: {
+      Accept: 'application/json',
+    },
+    data: data,
+    withCredentials: true,
+    credentials: 'include'
+  };
+  axios(config)
+    .then(function (response) {
+      thenFunc()
+    })
+    .catch(function (error) {
+      redirectLogout(error)
+    });
+}
