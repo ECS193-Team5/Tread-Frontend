@@ -33,7 +33,6 @@ const ChallengeForm = () =>{
           if (!load) {
               let url = getHrefLocation();
               let encodedInfo = url.split("?prefill=");
-
               if(encodedInfo.length > 1){
                 let information = encodedInfo[1].split(".");
                 if(information.length == 2){

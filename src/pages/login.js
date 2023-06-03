@@ -67,7 +67,7 @@ const Login = () => {
           window.location.href = "./signUpPage";
         }
         else {
-          //window.location.href = "./currentChallengePage";
+          window.location.href = "./currentChallengePage";
         }
       })
       .catch(function (error) {
