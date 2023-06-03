@@ -65,16 +65,16 @@ const LeagueMemberScroll = (props) => {
     useEffect (
         () => {
             if(scrollType === "Members"){
-                getMembersLeague(processMemberInfo);
+                getMembersLeague(props.leagueID,processMemberInfo);
             }
             else if(scrollType === "Received" && (props.children.role === "admin" || props.children.role === "owner")){
-                getRequesting(processMemberInfo);
+                getRequesting(props.leagueID,processMemberInfo);
             }
             else if(scrollType === "Banned" && (props.children.role === "admin" || props.children.role === "owner")){
-                getBanned(processMemberInfo);
+                getBanned(props.leagueID,processMemberInfo);
             }
             else if(scrollType === "Invited" && (props.children.role === "admin" || props.children.role === "owner")){
-                getInvited(processMemberInfo);
+                getInvited(props.leagueID, processMemberInfo);
             }
 
         }, [scrollType]

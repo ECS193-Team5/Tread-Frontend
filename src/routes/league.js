@@ -289,7 +289,7 @@ export function getLeaderboardInfo(leagueID, thenFunc){
     });
 }
 
-export function getRequesting(){
+export function getRequesting(leagueID, thenFunc){
   var config = {
       method : 'post',
       url : backend_url + 'league/get_pending_request_list',
@@ -299,7 +299,7 @@ export function getRequesting(){
       withCredentials: true,
       credentials: 'include',
       data:{
-          leagueID: props.leagueID
+          leagueID: leagueID
       }
   };
   axios(config)
@@ -311,7 +311,7 @@ export function getRequesting(){
   });
 }
 
-export function getBanned(){
+export function getBanned(leagueID, thenFunc){
   // get list from service
   var config = {
       method : 'post',
@@ -322,7 +322,7 @@ export function getBanned(){
       withCredentials: true,
       credentials: 'include',
       data:{
-          leagueID: props.leagueID
+          leagueID: leagueID
       }
   };
   axios(config)
@@ -334,7 +334,7 @@ export function getBanned(){
   });
 }
 
-export function getInvited(thenFunc){
+export function getInvited(leagueID, thenFunc){
   // get list from service
   var config = {
       method : 'post',
@@ -345,7 +345,7 @@ export function getInvited(thenFunc){
       withCredentials: true,
       credentials: 'include',
       data:{
-          leagueID: props.leagueID
+          leagueID: leagueID
       }
   };
   axios(config)
