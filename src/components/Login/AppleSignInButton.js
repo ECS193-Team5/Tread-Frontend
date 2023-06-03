@@ -51,6 +51,7 @@ const AppleSigninButton = () => {
   }
 
   const setDeviceToken = () => {
+    try{
     getToken(exportMessaging, { vapidKey: "BDXZrQCKEnAfnJWh6oIbEYKTuogSmiNl4gKVIDNmOEabzRt2BpAVIV4Znb7OgKzWJAz9eLOKde6YhWLpAdw1EZ0" }).then((currentToken) => {
       if (currentToken) {
         console.log("Setting token here", currentToken);
@@ -65,7 +66,10 @@ const AppleSigninButton = () => {
       console.log('An error occurred while retrieving token. ', err);
       // ...
     });
-
+    }
+    catch(err){
+      console.log("Get token caused problems");
+    }
   }
 
   const loginApple = (response) => {

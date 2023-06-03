@@ -2,6 +2,7 @@
 importScripts('https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js');
 importScripts('https://www.gstatic.com/firebasejs/9.10.0/firebase-messaging-compat.js');
 
+try{
 const firebaseConfig = {
 
     apiKey: "AIzaSyCIcGRa8RF_55qms1EZnfONr_9RyHqvxzQ",
@@ -32,3 +33,5 @@ messaging.onBackgroundMessage((payload) => {
 
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
+}
+catch(err){}

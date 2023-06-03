@@ -126,6 +126,7 @@ const Login = () => {
     }
   }
   const setDeviceToken = () => {
+    try{
     getToken(exportMessaging, { vapidKey: "BDXZrQCKEnAfnJWh6oIbEYKTuogSmiNl4gKVIDNmOEabzRt2BpAVIV4Znb7OgKzWJAz9eLOKde6YhWLpAdw1EZ0" }).then((currentToken) => {
       if (currentToken) {
         console.log("Setting token here", currentToken);
@@ -141,6 +142,7 @@ const Login = () => {
       // ...
     });
     setLoadedToken(true);
+  }catch{}
 
   }
 
@@ -166,7 +168,7 @@ const Login = () => {
           <img id="treadLogo" src={frontPageTreadLogo} alt="logo" />
           <p id = "frontPageTitleMobile">Tread</p>
         </div>
-
+        <p>Rebekah syas buttons goes here!</p>
       </div>
   </div>)
 }

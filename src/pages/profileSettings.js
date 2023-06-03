@@ -5,11 +5,10 @@ import Line from "../components/Shared/Line";
 import ProfileSettingsForm from "../components/ProfileSettings/ProfileSettingsForm";
 import DeleteSection from "../components/ProfileSettings/DeleteSection";
 import { useState, useEffect } from "react";
-import axios from 'axios';
+import {getUsername, getDisplayName} from "../routes/user";
 import "../css/Shared/page.css";
 import {createProfilePictureURL} from "../helpers/CloudinaryURLHelpers";
 
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
 const ProfileSettings = () => {
   const [load, setLoad] = useState(false);
   const [photo, setPhoto] = useState();
@@ -18,52 +17,16 @@ const ProfileSettings = () => {
   useEffect(
     () => {
       if (!load) {
-        getPhoto();
-        getDisplayName();
+        getUsername(processUsername);
+        getDisplayName(setDisplayName);
         setLoad(true);
       }
     }, [load]
   );
 
-  function getDisplayName() {
-    // GET from db
-    var config = {
-      method: 'post',
-      url: backend_url + 'user/get_display_name',
-      headers: {
-        Accept: 'application/json',
-      },
-      withCredentials: true,
-      credentials: 'include',
-    };
-    axios(config)
-      .then(function (response) {
-        setDisplayName(response.data.displayName);
-      })
-      .catch(function (error) {
-      });
+  const processUsername = (data) => {
+    setPhoto(createProfilePictureURL(data));
   }
-
-  function getPhoto() {
-    var config = {
-      method: 'post',
-      url: backend_url + 'user/get_username',
-      headers: {
-        Accept: 'application/json',
-      },
-      withCredentials: true,
-      credentials: 'include',
-    };
-    axios(config)
-      .then(function (response) {
-        setPhoto(createProfilePictureURL(response.data));
-        return response.data;
-      })
-      .catch(function (error) {
-      });
-  }
-
-
 
   return (
     <div data-testid="ProfileSettingsComponent" id="ProfileSettings" className="Body2Part">

@@ -28,7 +28,7 @@ const UserAddForm = (props) => {
         if (props.type === "friend") {
             sendFriendRequest(usernameText, setRequestSucceedsResponse, setRequestFailsResponse);
         }
-        else if (props.type === "league") {
+        else {
             let data = {
                 recipient: usernameText,
                 leagueID: props.leagueID
@@ -44,6 +44,7 @@ const UserAddForm = (props) => {
     }
 
     const handleEnter = (event) => {
+        console.log("enter clicked")
         if (event.key === "Enter") {
             sendRequest();
         }
