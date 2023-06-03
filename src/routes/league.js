@@ -516,3 +516,27 @@ export function revokeUser(data, thenFunc) {
       redirectLogout(error)
     });
 }
+
+export function  sendLeagueRequest (leagueID, thenFunc, errorFunc)  {
+
+  var config  = {
+      method : 'post',
+      url: backend_url+'league/user_request_to_join',
+      headers: {
+          Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data:{
+          leagueID: leagueID
+      }
+  };
+  axios(config)
+  .then(function(response) {
+      thenFunc()
+  })
+  .catch(function(error){
+      redirectLogout(error);
+      errorFunc();
+  });
+}

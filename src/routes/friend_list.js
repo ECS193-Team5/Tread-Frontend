@@ -42,7 +42,6 @@ export function getFriendList(thenFunc) {
     };
     axios(config)
         .then(function (response) {
-            console.log(response.data);
             thenFunc(response.data);
         })
         .catch(function (error) {
@@ -147,4 +146,63 @@ export function blockUser(friendName, thenFunc, errorFunc){
         }
         redirectLogout(error);
       });
+}
+
+export function getFriends(thenFunc){
+  // get Friends
+  var config = {
+    method : 'post',
+    url : backend_url + 'friend_list/get_all_friends_info',
+    headers: {
+      Accept: 'application/json',
+    },
+    withCredentials: true,
+    credentials: 'include'
+  };
+  axios(config)
+  .then(function(response) {
+      thenFunc(response.data);
+  })
+  .catch(function(error){
+      redirectLogout(error)
+  });
+}
+
+export function getSent(thenFunc){
+  // get Sents
+  var config = {
+    method : 'post',
+    url : backend_url + 'friend_list/sent_request_list',
+    headers: {
+      Accept: 'application/json',
+    },
+    withCredentials: true,
+    credentials: 'include'
+  };
+  axios(config)
+  .then(function(response) {
+      thenFunc(response.data);
+  })
+  .catch(function(error){
+      redirectLogout(error);
+  });    }
+
+export function getReceived(thenFunc){
+  // get Received
+  var config = {
+    method : 'post',
+    url : backend_url + 'friend_list/received_request_list',
+    headers: {
+      Accept: 'application/json',
+    },
+    withCredentials: true,
+    credentials: 'include'
+  };
+  axios(config)
+  .then(function(response) {
+      thenFunc(response.data)
+  })
+  .catch(function(error){
+      redirectLogout(error);
+  });
 }

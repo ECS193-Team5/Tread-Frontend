@@ -54,7 +54,7 @@ const StatsDownloadSection = (props) => {
         if (props.type === "Exercise"){
             getPastExercises(calculateBlobExercise);
         }
-        else if (props.type === "Challenge"){
+        else {
             getPastChallenges(calculateBlobChallenge);
         }
     }, [props.type]);

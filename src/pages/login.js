@@ -166,7 +166,7 @@ const Login = () => {
           <img id="treadLogo" src={frontPageTreadLogo} alt="logo" />
           <p id = "frontPageTitleMobile">Tread</p>
         </div>
-
+        <p>Rebekah syas buttons goes here!</p>
       </div>
   </div>)
 }
