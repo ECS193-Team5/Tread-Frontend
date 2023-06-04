@@ -10,9 +10,6 @@ describe("Test /Shared/Form/LeagueDescriptionForm.js", () => {
         updateDescriptionMock.mockClear()
     })
 
-    beforeEach(()=>{
-    })
-
     it("Test render", () => {
         render(<LeagueDescriptionForm updateDescription= {updateDescriptionMock}/>)
     })

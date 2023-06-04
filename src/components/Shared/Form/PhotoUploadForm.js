@@ -10,8 +10,6 @@ const PhotoUploadForm = (props) => {
           document.getElementById("uploadProfilePicture").src = reader.result;
           props.children.func(reader.result);
         };
-        reader.onerror = function (error) {
-        };
      }
 
 

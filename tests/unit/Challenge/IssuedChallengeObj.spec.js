@@ -3,7 +3,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import IssuedChallengeObj from '../../../src/components/Challenge/IssuedChallengeObj';
 import '@testing-library/jest-dom'
 import * as challengeFunc from "../../../src/routes/challenges";
-import * as displayFunc from "../../../src/helpers/CssEffects";
 let getLeaderboardMock = jest.spyOn(challengeFunc, "getChallengeLeaderboard").mockImplementation((arg1, arg2)=>{arg2({data:[]})})
 
 

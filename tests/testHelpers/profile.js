@@ -10,3 +10,11 @@ export function setExerciseUnit(unit){
 export function setExerciseName(name){
     s.enterValue("StatsExerciseSectionExerciseNameSelect", name)
 }
+
+export function setEarnedMedals(name){
+    s.clickBarButton(0);
+}
+
+export function setInProgressMedals(name){
+    s.clickBarButton(1);
+}

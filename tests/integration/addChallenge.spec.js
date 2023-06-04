@@ -66,9 +66,11 @@ const fakeFuncMultipleChallenges = (setExerciseList) => {
       }
     ])
 }
+
 const fakeFuncEmptyList = (setExerciseList) => {
     setExerciseList([]);
 }
+
 const successfulFunc = (data, then, err) => {then();}
 const failFunc = (data, then,err) =>{err();}
 
@@ -409,7 +411,6 @@ describe("Test /pages/addChallenge.js", () => {
     })
 
     describe("Test move from side bar", () => {
-
       it("Test click the profile settings button", () => {
           render(<AddChallenge/>)
           sharedHelpers.clickSideBarProfileSettings();

@@ -27,15 +27,15 @@ const AddExerciseBox = () => {
         let errorMessage = "";
 
         if (exerciseName === "") {
-            errorMessage += "Please give an exercise name.\n";
+            errorMessage += "Please give an exercise name. ";
         }
 
         if (amount <= 0) {
-            errorMessage += "Please give an amount over zero.\n";
+            errorMessage += "Please give an amount over zero. ";
         }
 
         if (loggedDate === "") {
-            errorMessage += "Please give a date for the exercise.\n";
+            errorMessage += "Please give a date for the exercise. ";
         }
 
         setSubmitError(errorMessage);

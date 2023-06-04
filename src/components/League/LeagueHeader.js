@@ -18,23 +18,26 @@ const LeagueHeader = (props) => {
     const [leagueType, setLeagueType] = useState();
     const [leaguePhoto, setLeaguePhoto] = useState();
     const [qrCode, setQRCode] = useState("");
+    const [load, setLoad] = useState(false);
 
     useEffect (
         () => {
+            if(!load){
                 generateQRCode();
                 getLeagueInfo(props.children.id, setLeagueInfo);
                 getNumberActiveChallengesLeague(props.children.id, setNumberChallenges);
                 setLeaguePhoto(createLeaguePictureURL(props.children.id));
                 getMembersLeague(props.children.id, getNumberMembers)
                 getLeagueRole(props.children.id, setRole);
-        }, []
+                setLoad(true);
+            }
+        }, [load]
     );
 
     const generateQRCode = () => {
-        console.log("generating qr code");
         let url = "https://tread.run/requestLeague?" + id;
-        QRcode.toDataURL(url, {"color":{"light":"#D9D9D9"}}, (url) => {
-            console.log(url);
+        QRcode.toDataURL(url, { "color": { "light": "#D9D9D9" } }, (err, url) => {
+            if (err) return console.error(err)
             setQRCode(url);
         })
     }
@@ -87,7 +90,7 @@ const LeagueHeader = (props) => {
                 </div>
             </div>
             <div className = "pictureHeaderRight">
-                <img className = "qrcodeImage" src = {qrCode} alt = "qr code for friend request"></img>
+                <img className = "qrcodeImage" src = {qrCode} alt = "qr code for league request"></img>
             </div>
         </div>
     )

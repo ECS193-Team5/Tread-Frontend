@@ -31,3 +31,7 @@ export function clickSideBarExerciseHistory(){
 export function clickSideBarProfileSettings(){
     clickButton("SideBarProfileSettingsButton")
 }
+
+export function clickBarButton(num){
+    clickButton("BarButtonComponent"+num)
+}
