@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import AppleSignin from 'react-apple-signin-auth';
 import { Sha256 } from '@aws-crypto/sha256-browser';
 import { v4 as uuid } from 'uuid';
-import { getToken } from 'firebase/messaging';
-import { exportMessaging, requestPermission } from "../../firebase";
 import { loginAppleSignIn } from "../../routes/auth";
 import "../../css/Login/login.css";
+import {setDeviceToken} from "../../helpers/firebaseHelpers";
 
 /** Apple Signin button */
 const AppleSigninButton = () => {
@@ -16,9 +15,9 @@ const AppleSigninButton = () => {
 
   useEffect(() => {
     if (!load) {
-      setDeviceToken();
-      setLoad(true);
+      setDeviceToken(setToken);
       createHashedNonce();
+      setLoad(true);
     }
   }, [load]);
 
@@ -48,28 +47,6 @@ const AppleSigninButton = () => {
     let result = await hash.digest()
     let hashedNonce = convertHexNonce(result);
     setHashedNonce(hashedNonce);
-  }
-
-  const setDeviceToken = () => {
-    try{
-    getToken(exportMessaging, { vapidKey: "BDXZrQCKEnAfnJWh6oIbEYKTuogSmiNl4gKVIDNmOEabzRt2BpAVIV4Znb7OgKzWJAz9eLOKde6YhWLpAdw1EZ0" }).then((currentToken) => {
-      if (currentToken) {
-        console.log("Setting token here", currentToken);
-        setToken(currentToken);
-      } else {
-        // Show permission request UI
-        console.log('No registration token available. Request permission to generate one.');
-        requestPermission();
-        // ...
-      }
-    }).catch((err) => {
-      console.log('An error occurred while retrieving token. ', err);
-      // ...
-    });
-    }
-    catch(err){
-      console.log("Get token caused problems");
-    }
   }
 
   const loginApple = (response) => {

@@ -68,6 +68,29 @@ export function getBlockedList(thenFunc) {
         });
 }
 
+export function revokeFriendRequest(username, thenFunc) {
+  var config = {
+    method: 'post',
+    url: backend_url + 'friend_list/remove_sent_request',
+    headers: {
+      Accept: 'application/json',
+    },
+    data:
+    {
+      friendName: username
+    },
+    withCredentials: true,
+    credentials: 'include'
+  };
+  axios(config)
+    .then(function (response) {
+      thenFunc();
+    })
+    .catch(function (error) {
+      redirectLogout(error);
+    });
+}
+
 export function removeFriend(friendName, thenFunc, errorFunc) {
     var config = {
       method: 'post',
@@ -91,6 +114,52 @@ export function removeFriend(friendName, thenFunc, errorFunc) {
           errorFunc(error)
       }
 
+      redirectLogout(error);
+    });
+  }
+
+  export function acceptFriendRequest(username, thenFunc){
+    var config = {
+      method: 'post',
+      url: backend_url + 'friend_list/accept_received_request',
+      headers: {
+        Accept: 'application/json',
+      },
+      data:
+      {
+        friendName: username
+      },
+      withCredentials: true,
+      credentials: 'include'
+    };
+    axios(config)
+    .then(function (response) {
+      thenFunc();
+    })
+    .catch(function (error) {
+      redirectLogout(error);
+    });
+  }
+
+  export function declineFriendRequest(username, thenFunc){
+    var config = {
+      method: 'post',
+      url: backend_url + 'friend_list/removed_received_request',
+      headers: {
+        Accept: 'application/json',
+      },
+      data:
+      {
+        friendName: username
+      },
+      withCredentials: true,
+      credentials: 'include'
+    };
+    axios(config)
+    .then(function (response) {
+      thenFunc();
+    })
+    .catch(function (error) {
       redirectLogout(error);
     });
   }

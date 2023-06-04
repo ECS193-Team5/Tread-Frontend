@@ -7,7 +7,6 @@ const PhotoUploadForm = (props) => {
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-            console.log("result", reader, reader.result);
           document.getElementById("uploadProfilePicture").src = reader.result;
           props.children.func(reader.result);
         };

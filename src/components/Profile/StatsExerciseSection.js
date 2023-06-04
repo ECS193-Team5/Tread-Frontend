@@ -75,16 +75,16 @@ const StatsExerciseSection = () => {
 
 
     useEffect(() => {
-        if((hardCodedInfo.distanceUnits).includes(selectedExerciseUnit)){
-            setSelectedExerciseUnitType("distance");
-
-        }
-        else if((hardCodedInfo.timeUnits).includes(selectedExerciseUnit)){
-            setSelectedExerciseUnitType("time");
-
-        }
-        else{
-            setSelectedExerciseUnitType("count");
+        if(selectedExerciseUnit){
+            if((hardCodedInfo.distanceUnits).includes(selectedExerciseUnit)){
+                setSelectedExerciseUnitType("distance");
+            }
+            else if((hardCodedInfo.timeUnits).includes(selectedExerciseUnit)){
+                setSelectedExerciseUnitType("time");
+            }
+            else{
+                setSelectedExerciseUnitType("count");
+            }
         }
     },[selectedExerciseUnit]);
 
@@ -134,6 +134,7 @@ const StatsExerciseSection = () => {
         })
 
         let unitOptions = [];
+
         if (unitTypeOptions.has("distance")){
             hardCodedInfo.distanceUnits.forEach(unit => {unitOptions.push(unit)});
         }
@@ -178,7 +179,6 @@ const StatsExerciseSection = () => {
         });
 
         exerciseLog.forEach((exercise) =>
-
         {
             // Return early if the exercise does not match
             if (exercise.exercise.exerciseName !== selectedExerciseName ||
@@ -187,13 +187,10 @@ const StatsExerciseSection = () => {
             }
 
             let convertedAmount = exercise.exercise.convertedAmount;
-
             let exerciseDate = Date.parse(exercise.loggedDate);
             let index = Math.floor((exerciseDate - firstDate)/(24*60*60*1000));
-
             dataList[index] += conversion(convertedAmount, selectedExerciseUnit);
         });
-
         setData(dataList);
     }
     const calculateFirstDay = (exerciseLog) => {
@@ -207,6 +204,10 @@ const StatsExerciseSection = () => {
     }
 
     const  calculateExerciseDays = (exerciseLog) => {
+        if (exerciseLog.length === 0){
+            return;
+        }
+
         let firstDay = calculateFirstDay(exerciseLog[0]);
         let today = Date.now();
 
@@ -251,10 +252,10 @@ const StatsExerciseSection = () => {
         </div>
         <div >
             <select data-testid="StatsExerciseSectionExerciseNameSelect" className = "formSelect exercisePicker" onChange = {changeExerciseName} defaultValue={"none"}>
-                {availableExercises.map((item) => {return <option value = {item}>{item}</option>})}
+                {availableExercises.map((item, index) => {return <option key = {index} value = {item}>{item}</option>})}
             </select>
             <select data-testid="StatsExerciseSectionExerciseUnitSelect" id = "challengeExerciseUnitPicker" className = "formSelect exercisePicker" onChange = {changeUnit} defaultValue={"none"}>
-                {availableUnits.map((item) =>{ return <option value = {item}> {hardCodedInfo.fullUnitName[item]}</option> })}
+                {availableUnits.map((item, index) =>{ return <option key = {index} value = {item}> {hardCodedInfo.fullUnitName[item]}</option> })}
             </select>
         </div>
 

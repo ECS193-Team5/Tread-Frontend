@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from "@testing-library/react";
+import { render, screen, fireEvent} from "@testing-library/react";
 import RowBox from '../../../src/components/Social/RowBox';
 import '@testing-library/jest-dom'
 import * as leagueFunc from "../../../src/routes/league";
@@ -21,10 +21,13 @@ let suggestedFriendData = ["username#4444", 3]
 let suggestedLeagueData = {"_id":4, "leagueName":"name"}
 
 let successfunction = (then) => {then([])};
+let successfunctionRequest = (data, then , err) => {then()};
 let getRecentFriendsMock = jest.spyOn(friendFunc, "getRecentFriends").mockImplementation(successfunction);
 let getSuggestedFriendsMock = jest.spyOn(friendFunc, "getSuggestedFriends").mockImplementation(successfunction);
 let getRecentLeaguesMock = jest.spyOn(leagueFunc, "getRecentLeagues").mockImplementation(successfunction);
 let getSuggestedLeaguesMock = jest.spyOn(leagueFunc, "getSuggestedLeagues").mockImplementation(successfunction);
+let sendFriendRequestMock = jest.spyOn(friendFunc, "sendFriendRequest").mockImplementation(successfunctionRequest);
+let sendLeagueRequestMock = jest.spyOn(leagueFunc, "sendLeagueRequest").mockImplementation(successfunctionRequest);
 
 describe("Test /Social/RowBoxObj", () => {
     beforeEach(()=>{
@@ -71,5 +74,21 @@ describe("Test /Social/RowBoxObj", () => {
         expect(getSuggestedFriendsMock).toBeCalledTimes(0)
         expect(getRecentLeaguesMock).toBeCalledTimes(0)
         expect(getSuggestedLeaguesMock).toBeCalledTimes(1)
+    })
+
+    it("Test send league request", () =>{
+        successfunction = (then) => {then([suggestedLeagueData, suggestedLeagueData])};
+        getSuggestedLeaguesMock.mockImplementation(successfunction);
+        render(<RowBox>{{"informationType":"Suggest", "socialType":"league"}}</RowBox>)
+        let element = screen.getByTestId("SuggestedLeagueObjRequestJoinLeagueButton1");
+        fireEvent.click(element);
+    })
+
+    it("Test send friend request", () =>{
+        successfunction = (then) => {then([suggestedLeagueData, suggestedLeagueData])};
+        getSuggestedLeaguesMock.mockImplementation(successfunction);
+        render(<RowBox>{{"informationType":"Suggest", "socialType":"friend"}}</RowBox>)
+        let element = screen.getByTestId("SuggestedFriendObjSendFriendRequestButton1");
+        fireEvent.click(element);
     })
 });

@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import DropDown from '../Shared/DropDown';
 import {createLeaguePictureURL} from "../../helpers/CloudinaryURLHelpers";
 import {setDisplayProperty} from "../../helpers/CssEffects";
@@ -7,7 +6,7 @@ import { sendChallengeRedirect } from '../../helpers/FormHelpers';
 import "../../css/Social/obj.css";
 import "../../css/Shared/dropDown.css";
 import moreInfoButton from "../../assets/moreInfoButton.png";
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
+import {getLeagueRole, leaveLeague, removeSelfFromAdmin, revokeLeagueRequest, declineLeagueInvite, acceptLeagueInvite} from "../../routes/league";
 
 const LeagueObj = (props) => {
     const [load, setLoad] = useState(false);
@@ -21,7 +20,7 @@ const LeagueObj = (props) => {
     useEffect (
         () => {
             if(!load){
-                getRole();
+                getLeagueRole(id, setRole);
                 setLoad(true);
             }
         }, [load]
@@ -46,160 +45,38 @@ const LeagueObj = (props) => {
         }, [dropdownOptions]
     );
 
-    function getRole(){
-        var config  = {
-          method : 'post',
-          url: backend_url+'league/get_role',
-          headers: {
-              Accept: 'application/json',
-            },
-          withCredentials: true,
-          credentials: 'include',
-          data : {
-            leagueID: props.children._id
-          }
-        };
-        axios(config)
-        .then(function(response) {
-            setRole(response.data);
-        })
-        .catch(function(error){
-            setRole(
-                "none"
-            );
-            if(error.response.status===401){
-                window.location.href = "/";
-            }
-        });
+
+    function hideLeagueObj(){
+        setDisplayProperty("LeagueObj"+props.children._id, "none");
+    }
+
+    function leave(){
+        leaveLeague(id, hideLeagueObj);
+    }
+
+    function removeAdmin(){
+        removeSelfFromAdmin(id, hideLeagueObj);
+    }
+
+    function revoke(){
+        revokeLeagueRequest(id, hideLeagueObj);
+    }
+
+    function decline(){
+        declineLeagueInvite(id, hideLeagueObj);
+    }
+
+    function accept(){
+        acceptLeagueInvite(id, hideLeagueObj);
     }
 
     function toggleSelectShow(){
         setSelectShow(!selectShow);
     }
 
-    function leave(){
-        var config = {
-            method : 'post',
-            url : backend_url + 'league/leave_league',
-            headers: {
-              Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-            data:{
-                leagueID: id
-            }
-          };
-          axios(config)
-          .then(function(response) {
-              setDisplayProperty("LeagueObj"+props.children._id, "none");
-          })
-          .catch(function(error){
-              if(error.response.status===401){
-                window.location.href = "/";
-            }
-          });
-    }
-
-    function removeAdmin(){
-        var config = {
-            method : 'post',
-            url : backend_url + 'league/user_remove_admin',
-            headers: {
-              Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-            data:{
-                leagueID: id
-            }
-          };
-          axios(config)
-          .then(function(response) {
-              setDisplayProperty("LeagueObj"+props.children._id, "none");
-          })
-          .catch(function(error){
-              if(error.response.status===401){
-                window.location.href = "/";
-            }
-          });
-    }
-
-    function revoke(){
-        var config = {
-            method : 'post',
-            url : backend_url + 'league/user_undo_request',
-            headers: {
-              Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-            data:{
-                leagueID: id
-            }
-          };
-          axios(config)
-          .then(function(response) {
-              setDisplayProperty("LeagueObj"+props.children._id, "none");
-          })
-          .catch(function(error){
-              if(error.response.status===401){
-                window.location.href = "/";
-            }
-          });
-    }
-
-    function decline(){
-        var config = {
-            method : 'post',
-            url : backend_url + 'league/user_decline_invite',
-            headers: {
-              Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-            data:{
-                leagueID: id
-            }
-          };
-          axios(config)
-          .then(function(response) {
-              setDisplayProperty("LeagueObj"+props.children._id, "none");
-          })
-          .catch(function(error){
-              if(error.response.status===401){
-                window.location.href = "/";
-            }
-          });
-    }
-
-    function accept(){
-        var config = {
-            method : 'post',
-            url : backend_url + 'league/user_accept_invite',
-            headers: {
-              Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-            data:{
-                leagueID: id
-            }
-          };
-          axios(config)
-          .then(function(response) {
-              setDisplayProperty("LeagueObj"+props.children._id, "none");
-          })
-          .catch(function(error){
-              if(error.response.status===401){
-                window.location.href = "/";
-            }
-          });
-    }
-
     function sendLeagueChallengeRedirect(){
         sendChallengeRedirect("league", props.children._id);
-      }
+    }
 
     function calculateDropdownOptions(){
         let options = [];

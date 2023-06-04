@@ -40,3 +40,56 @@ export function loginAppleSignIn (response, deviceToken, rawNonce) {
       .catch(function (error) {
       });
   }
+
+  export function loginGoogle(deviceToken, token){
+  var config = {
+    method: 'post',
+    url: backend_url + 'auth/login/google',
+    withCredentials: true,
+    credentials: 'include',
+    headers: {
+      Authorization: `${token.credential}`,
+      Accept: 'application/json',
+    },
+    data:
+    {
+      deviceToken: deviceToken
+    }
+  };
+
+  let hasUsername = false;
+  axios(config)
+    .then(function (response) {
+      hasUsername = response.data.hasUsername;
+      if (!hasUsername) {
+        window.location.href = "./signUpPage";
+      }
+      else {
+        window.location.href = "./currentChallengePage";
+      }
+    })
+    .catch(function (error) {
+    });
+
+  }
+  export function logout(deviceToken) {
+    var config = {
+      method: 'post',
+      url: backend_url + 'auth/logout',
+      headers: {
+        Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data: {
+        deviceToken: deviceToken
+      }
+    };
+    axios(config)
+      .then(function (response) {
+        window.location.href = "./";
+
+      })
+      .catch(function (error) {
+      });
+  }

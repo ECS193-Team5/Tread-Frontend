@@ -21,7 +21,6 @@ const ProfileSettingsForm = (props) => {
         setDisplayErrorResponse("Could not submit this display name");
         return;
       }
-      console.log("did I update");
       updateDisplayName(displayName, setDisplayErrorResponse);
     }
 

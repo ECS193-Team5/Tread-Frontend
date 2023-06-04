@@ -113,8 +113,6 @@ const StatsChallengeSection = () => {
         failedList[index] += 1;
       }
     });
-    console.log(completeList);
-    console.log(failedList);
     setCompletedData(completeList);
     setFailedData(failedList);
   }

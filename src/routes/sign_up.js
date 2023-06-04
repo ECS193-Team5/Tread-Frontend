@@ -21,3 +21,22 @@ export function signUp(formData) {
             redirectLogout(error)
         });
 }
+
+export function getProfilePhoto(setPhoto){
+    var config  = {
+        method : 'post',
+        url: backend_url+'sign_up/get_profile_photo',
+        headers: {
+            Accept: 'application/json',
+          },
+        withCredentials: true,
+        credentials: 'include'
+    };
+    axios(config)
+    .then(function(response) {
+        setPhoto(response.data);
+    })
+    .catch(function(error){
+        redirectLogout(error)
+    });
+}

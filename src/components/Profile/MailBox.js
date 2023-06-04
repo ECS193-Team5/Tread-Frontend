@@ -7,16 +7,12 @@ import deleteCircleButton from "../../assets/declineButtonX.png";
 import "../../css/Profile/mailBox.css";
 import "../../css/Shared/button.css";
 const MailBox = () =>{
-    const [load, setLoad] = useState(false);
     const [info, setInfo] = useState([]);
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        if(!load){
-            setLoad(load);
-            requestNotifications(setInfo);
-        }
-      }, [load]);
+        requestNotifications(setInfo);
+      }, []);
 
     useEffect(() => {
         if(count <= 0){

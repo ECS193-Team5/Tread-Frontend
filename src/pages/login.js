@@ -1,17 +1,13 @@
 import React from 'react';
-import axios from 'axios';
 import '../css/Login/login.css';
-import { getToken } from 'firebase/messaging';
-import { exportMessaging, requestPermission } from "../firebase";
 import { useState, useEffect } from "react";
 import  hardCodedInfo  from "../helpers/SharedHardCodeInfo.json";
 import { getUsername } from '../routes/user';
 import frontPageTreadLogo from "../assets/frontPageTreadLogo.png";
 import AppleSigninButton from '../components/Login/AppleSignInButton';
-const backend_url = process.env.REACT_APP_PROD_BACKEND
+import { setDeviceToken } from '../helpers/firebaseHelpers';
+import { loginGoogle } from '../routes/auth';
 const env_client_id = process.env.REACT_APP_CLIENT_ID
-//const APPLE_REDIRECT_URL =
-//const env_redirect_url = process.env.REACT_APP_APPLE_REDIRECT_URL
 
 const Login = () => {
   const [deviceToken, setToken] = useState("");
@@ -43,36 +39,7 @@ const Login = () => {
 
   // needs variable for nonce
   function handleCredentialResponse(token) {
-    console.log("send token", deviceToken);
-    var config = {
-      method: 'post',
-      url: backend_url + 'auth/login/google',
-      withCredentials: true,
-      credentials: 'include',
-      headers: {
-        Authorization: `${token.credential}`,
-        Accept: 'application/json',
-      },
-      data:
-      {
-        deviceToken: deviceToken
-      }
-    };
-
-    let hasUsername = false;
-    axios(config)
-      .then(function (response) {
-        hasUsername = response.data.hasUsername;
-        if (!hasUsername) {
-          window.location.href = "./signUpPage";
-        }
-        else {
-          window.location.href = "./currentChallengePage";
-        }
-      })
-      .catch(function (error) {
-      });
-
+    loginGoogle(deviceToken, token);
   }
 
   function loadScript(scriptUrl) {
@@ -93,7 +60,6 @@ const Login = () => {
   function googleSignIn() {
     if (window.google) {
       const google = window.google;
-      console.log("toke", deviceToken);
       google.accounts.id.initialize({
         client_id: env_client_id,
         callback: handleCredentialResponse,
@@ -110,40 +76,17 @@ const Login = () => {
   function loadGoogleScriptOnScreenLoad(){
     loadScript('https://accounts.google.com/gsi/client')
         .then(() => {
-          setDeviceToken();
+          setDeviceToken(setToken, setLoadedToken);
         })
         .catch(() => {
-
           console.error('Script loading failed! Handle this error');
         });
   }
-  // log out function to log the user out of google and set the profile array to null
+
   function handleResize(event){
     if(window.innerWidth >= 641){
       loadGoogleScriptOnScreenLoad()
     }
-  }
-  const setDeviceToken = () => {
-    try{
-    getToken(exportMessaging, { vapidKey: "BDXZrQCKEnAfnJWh6oIbEYKTuogSmiNl4gKVIDNmOEabzRt2BpAVIV4Znb7OgKzWJAz9eLOKde6YhWLpAdw1EZ0" }).then((currentToken) => {
-      if (currentToken) {
-        console.log("Setting token here", currentToken);
-        setToken(currentToken);
-      } else {
-        // Show permission request UI
-        console.log('No registration token available. Request permission to generate one.');
-        setLoadedToken(true);
-        requestPermission();
-        // ...
-      }
-    }).catch((err) => {
-      console.log('An error occurred while retrieving token. ', err);
-      setLoadedToken(true);
-      // ...
-    });
-
-  }catch{}
-
   }
 
   return (

@@ -665,3 +665,113 @@ export function getRecentLeagues(thenFunc) {
           redirectLogout(error)
       });
 }
+
+export function leaveLeague(id, thenFunc){
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/leave_league',
+      headers: {
+        Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data:{
+          leagueID: id
+      }
+    };
+    axios(config)
+    .then(function(response) {
+        thenFunc()
+    })
+    .catch(function(error){
+        redirectLogout(error)
+    });
+}
+
+export function removeSelfFromAdmin(id, thenFunc){
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/user_remove_admin',
+      headers: {
+        Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data:{
+          leagueID: id
+      }
+    };
+    axios(config)
+    .then(function(response) {
+        thenFunc()
+    })
+    .catch(function(error){
+        redirectLogout(error)
+    });
+}
+
+export function revokeLeagueRequest(id, thenFunc){
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/user_undo_request',
+      headers: {
+        Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data:{
+          leagueID: id
+      }
+    };
+    axios(config)
+    .then(function(response) {
+        thenFunc()
+    })
+    .catch(function(error){
+        redirectLogout(error)
+    });
+}
+
+export function declineLeagueInvite(id, thenFunc){
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/user_decline_invite',
+      headers: {
+        Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data:{
+          leagueID: id
+      }
+    };
+    axios(config)
+    .then(function(response) {
+        thenFunc()
+    })
+    .catch(function(error){
+        redirectLogout(error)
+    });
+}
+
+export function acceptLeagueInvite(id, thenFunc){
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/user_accept_invite',
+      headers: {
+        Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data:{
+          leagueID: id
+      }
+    };
+    axios(config)
+    .then(function(response) {
+        thenFunc()
+    })
+    .catch(function(error){
+        redirectLogout(error)
+    });
+}
