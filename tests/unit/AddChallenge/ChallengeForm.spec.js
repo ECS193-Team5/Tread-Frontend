@@ -83,7 +83,7 @@ describe("Test components/AddChallenge/ChallengeForm.js", () => {
         let submitButton = screen.getByTestId("ChallengeFormSubmitButton");
         let errorBox = screen.getByTestId("ChallengeFormErrorBox")
         fireEvent.click(submitButton)
-        expect(errorBox).toHaveTextContent("Please give an exercise name. Please give an amount over zero. Please give a valid issue date. Please give a valid due date.");
+        expect(errorBox).toHaveTextContent("Please give an exercise name. Please give a valid amount. Please give a valid issue date. Please give a valid due date.");
         expect(submitChallengeMock).not.toHaveBeenCalled;
     })
 
@@ -94,7 +94,7 @@ describe("Test components/AddChallenge/ChallengeForm.js", () => {
         let submitButton = screen.getByTestId("ChallengeFormSubmitButton");
         let errorBox = screen.getByTestId("ChallengeFormErrorBox")
         fireEvent.click(submitButton)
-        expect(errorBox).toHaveTextContent("Please give an exercise name. Please give an amount over zero. Please give a valid issue date. Please give a valid due date. Please select a recipient for your challenge.");
+        expect(errorBox).toHaveTextContent("Please give an exercise name. Please give a valid amount. Please give a valid issue date. Please give a valid due date. Please select a recipient for your challenge.");
         expect(submitChallengeMock).not.toHaveBeenCalled;
     })
 
@@ -115,7 +115,7 @@ describe("Test components/AddChallenge/ChallengeForm.js", () => {
         let submitButton = screen.getByTestId("ChallengeFormSubmitButton");
         let errorBox = screen.getByTestId("ChallengeFormErrorBox")
         fireEvent.click(submitButton)
-        expect(errorBox).toHaveTextContent("Please give an exercise name. Please give an amount over zero. Please give a valid issue date. Please give a valid due date.");
+        expect(errorBox).toHaveTextContent("Please give an exercise name. Please give a valid amount. Please give a valid issue date. Please give a valid due date.");
         expect(submitChallengeMock).not.toHaveBeenCalled;
     });
 

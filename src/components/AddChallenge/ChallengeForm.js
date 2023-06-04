@@ -67,23 +67,23 @@ const ChallengeForm = () =>{
       setSubmitError("");
       let errorMessage = "";
       if (exerciseName === ""){
-        errorMessage += "Please give an exercise name.\n";
+        errorMessage += "Please give an exercise name. ";
       }
 
       if(amount <= 0){
-        errorMessage += "Please give an amount over zero.\n";
+        errorMessage += "Please give a valid amount. ";
       }
 
       if(issueDate === ""){
-        errorMessage += "Please give a valid issue date.\n";
+        errorMessage += "Please give a valid issue date. ";
       }
 
       if(dueDate === ""){
-        errorMessage += "Please give a valid due date.\n";
+        errorMessage += "Please give a valid due date. ";
       }
 
       if(receiverGroup !== "self" && receiver === ""){
-        errorMessage += "Please select a recipient for your challenge.\n";
+        errorMessage += "Please select a recipient for your challenge. ";
       }
 
       setSubmitError(errorMessage);
