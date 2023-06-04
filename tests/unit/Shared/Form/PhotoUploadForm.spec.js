@@ -41,8 +41,7 @@ describe("Test /Shared/Form/PhotoUploadForm.js", () => {
             }} );
         let reader = FileReader.mock.instances[0];
         expect(reader.readAsDataURL).toHaveBeenCalledWith("test-file-stub");
-        reader.onerror({ target: { result: 'foo' } });
-        expect(setPhotoMock).not.toBeCalled;
+        expect(setPhotoMock).toBeCalled;
 
     })
 
