@@ -51,7 +51,7 @@ const ChallengeScroll = (props) => {
             else if(scrollType === "received"){
                 getReceivedChallenges(reactChallengeList);
             }
-            else if(scrollType === "global"){
+            else {
                 getGlobalChallenges(reactChallengeList);
             }
         }, [scrollType]

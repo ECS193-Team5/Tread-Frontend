@@ -44,6 +44,7 @@ const IssuedChallengeObj = (props) => {
     }
 
     const parseChallengeLeaderboard = (response) => {
+        console.log("leaderboard", response);
         setLeaderboardInfo(response.data.map(makeLeaderboardObj));
     }
 

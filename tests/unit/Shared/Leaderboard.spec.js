@@ -14,7 +14,7 @@ jest.mock('../../../src/components/Shared/PageSwitch', () => () => {
 let leaderboardInfo = [{level:1, complete:80, name:"batman#6380"}];
 
 describe("Test /Shared/Form/Leaderboard.js", () => {
-    it("Test leaderboard with no entries", () => {
+    it("Test leaderboard with entries", () => {
         render(<Leaderboard uniqueIdentifier = {"meow"}>{{ "title": "ExampleTitle", "entries":{"leaderboardInfo":[]}  }}</Leaderboard>)
         const element = screen.getByTestId("LeaderboardComponentTitle");
         expect(element).toHaveTextContent("ExampleTitle")

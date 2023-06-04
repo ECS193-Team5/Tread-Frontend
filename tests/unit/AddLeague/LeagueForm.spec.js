@@ -10,7 +10,7 @@ let createLeagueMock = jest.spyOn(addLeague, "createLeague").mockImplementation(
 let setLocationMock = jest.spyOn(cssEffects, "setLocation").mockImplementation(() => {});
 
 jest.spyOn(global, 'FileReader').mockImplementation(function () {
-    this.readAsDataURL = jest.fn(()=>{});
+    this.readAsDataURL = jest.fn(()=>{this.val = foo});
 });
 
 const setLeagueDescription = () => {

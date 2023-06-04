@@ -2,9 +2,7 @@ import React from 'react';
 import { fireEvent, render , screen} from "@testing-library/react";
 import DeleteSection from '../../../src/components/ProfileSettings/DeleteSection';
 import '@testing-library/jest-dom'
-import * as deleteUser from "../../../src/routes/delete_user";
-
-let deleteMock = jest.spyOn(deleteUser, "deleteUser");
+import * as deleteUser from "../../../src/routes/delete_user";let deleteMock = jest.spyOn(deleteUser, "deleteUser").mockImplementation(()=>{});
 
 
 const clickDelete = () =>{

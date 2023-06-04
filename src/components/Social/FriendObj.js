@@ -45,7 +45,7 @@ const FriendObj = (props) => {
   }
 
   function unblock() {
-    unBlockUser(props.children.friendName, hideFriendObj);
+    unBlockUser(props.children.username, hideFriendObj);
   }
 
   function accept() {

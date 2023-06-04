@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import DropDown from '../Shared/DropDown';
 import {createLeaguePictureURL} from "../../helpers/CloudinaryURLHelpers";
-import {setDisplayProperty} from "../../helpers/CssEffects";
+import {setDisplayProperty, setLocation} from "../../helpers/CssEffects";
 import { sendChallengeRedirect } from '../../helpers/FormHelpers';
 import "../../css/Social/obj.css";
 import "../../css/Shared/dropDown.css";
@@ -28,9 +28,7 @@ const LeagueObj = (props) => {
 
     useEffect (
         () => {
-            if(role){
-                calculateDropdownOptions();
-            }
+            calculateDropdownOptions();
         }, [role]
     );
 
@@ -83,9 +81,11 @@ const LeagueObj = (props) => {
         if((role === "admin" || role === "owner")){
             options.push({"name": "Send Challenge", "func": sendLeagueChallengeRedirect})
         }
+
         if((role === "admin" || role === "participant")&&(type==="league"||type === "admin")){
             options.push({ "name": "Leave League", "func": leave });
         }
+
         if(role === "admin" && (type==="league"||type === "admin")){
             options.push({ "name": "Remove Self as Admin", "func": removeAdmin });
         }
@@ -99,11 +99,11 @@ const LeagueObj = (props) => {
         setDropdownOptions(options);
     }
     function moveLeaguePage(){
-        window.location.href = "leagueDescriptionPage?=" + props.children._id;
+        setLocation("leagueDescriptionPage?=" + props.children._id);
     }
     return(
         <div data-testid={"LeagueObjComponent"+props.index} id = {"LeagueObj"+props.children._id} className = "displayObj">
-            <div className = "objSection"  onClick = {moveLeaguePage}>
+            <div data-testid={"LeagueObjComponentMoveLeaguePageButton"+props.index} className = "objSection"  onClick = {moveLeaguePage}>
                 <img className = "objProfilePhoto" src = {createLeaguePictureURL(id)} alt = "league"/>
             </div>
             <div className = "objSection objWritingSection objWritingLeagueSection"  onClick = {moveLeaguePage}>

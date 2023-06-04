@@ -13,6 +13,7 @@ const ProfileSettingsForm = (props) => {
     const [photoResponse, setPhotoResponse] = useState("");
 
     const submitPhoto = () =>{
+      console.log("abot to call");
       updateUserPicture(photo, setPhotoResponse);
     }
 
