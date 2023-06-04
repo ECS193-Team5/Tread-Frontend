@@ -1,87 +1,68 @@
 import React from 'react';
 import { render, screen, fireEvent } from "@testing-library/react";
-import ChallengeScroll from '../../../src/components/Challenge/ChallengeScroll';
+import FriendScroll from '../../../src/components/Social/FriendScroll';
 import '@testing-library/jest-dom'
-import * as challengeFunc from "../../../src/routes/challenges";
-import * as globalChallengeFunc from "../../../src/routes/global_challenges";
+import * as friendFunc from "../../../src/routes/friend_list";
 
-let challengeObj = {_id:"id", challengeId:"5", exercise:{exerciseName:"exampleName", convertedAmount:10, amount:10, unit:"m"}, progress:{progress:0, exercise:{exerciseName:"exampleName", convertedAmount:10, amount:10, unit:"m"}}}
-let getIssuedFriendChallengesMock = jest.spyOn(challengeFunc, "getIssuedFriendChallenges").mockImplementation((func) => {func([challengeObj])})
-let getIssuedLeagueChallengesMock = jest.spyOn(challengeFunc, "getIssuedLeagueChallenges").mockImplementation((arg, func) => {func([challengeObj])})
+let socialObj = {}
+let getFriendsMock = jest.spyOn(friendFunc, "getFriends").mockImplementation((func) => {func([socialObj])})
+let getSentMock = jest.spyOn(friendFunc, "getSent").mockImplementation((func) => {func([socialObj])})
+let getReceivedMock = jest.spyOn(friendFunc, "getReceived").mockImplementation((func) => {func([socialObj])})
+let getBlockedListMock = jest.spyOn(friendFunc, "getBlockedList").mockImplementation((func) => {func([socialObj])})
+jest.mock('../../../src/components/Social/FriendObj', () => ()=> {return (<div></div>)});
 
-let getSentChallengesMock = jest.spyOn(challengeFunc, "getSentChallenges").mockImplementation((func) => {func([challengeObj])})
-
-let getReceivedChallengesMock = jest.spyOn(challengeFunc, "getReceivedChallenges").mockImplementation((func) => {func([challengeObj])})
-let getGlobalChallengesMock = jest.spyOn(globalChallengeFunc, "getGlobalChallenges").mockImplementation((func) => {func([challengeObj])})
-
-
-describe("Test /Challenge/ChallengeScroll.js", () => {
+describe("Test /Social/FriendScroll.js", () => {
 
     beforeEach(()=>{
-        getIssuedFriendChallengesMock.mockClear();
-        getIssuedLeagueChallengesMock.mockClear();
-        getSentChallengesMock.mockClear();
-        getReceivedChallengesMock.mockClear();
-        getGlobalChallengesMock.mockClear();
+        getFriendsMock.mockClear();
+        getSentMock.mockClear();
+        getReceivedMock.mockClear();
+        getBlockedListMock.mockClear();
     })
 
     it("Test render", () => {
-        render(<ChallengeScroll/>)
+        render(<FriendScroll/>)
     })
 
-    it("Test render issued scroll", () => {
-        render(<ChallengeScroll type = "issued" ifLeague ={false}/>)
-        expect(getIssuedFriendChallengesMock).toBeCalledTimes(1);
-        expect(getIssuedLeagueChallengesMock).toBeCalledTimes(0);
-        expect(getSentChallengesMock).toBeCalledTimes(0);
-        expect(getGlobalChallengesMock).toBeCalledTimes(0);
-        expect(getReceivedChallengesMock).toBeCalledTimes(0);
-    })
-
-    it("Test render issued leauge scroll", () => {
-        render(<ChallengeScroll type = "issued" ifLeague ={true}/>)
-        expect(getIssuedFriendChallengesMock).toBeCalledTimes(0);
-        expect(getIssuedLeagueChallengesMock).toBeCalledTimes(1);
-        expect(getSentChallengesMock).toBeCalledTimes(0);
-        expect(getGlobalChallengesMock).toBeCalledTimes(0);
-        expect(getReceivedChallengesMock).toBeCalledTimes(0);
+    it("Test render friend scroll", () => {
+        render(<FriendScroll type = "friend"/>)
+        expect(getFriendsMock).toBeCalledTimes(1);
+        expect(getSentMock).toBeCalledTimes(0);
+        expect(getReceivedMock).toBeCalledTimes(0);
+        expect(getBlockedListMock).toBeCalledTimes(0);
     })
 
     it("Test render sent scroll", () => {
-        render(<ChallengeScroll type = "sent"/>)
-        expect(getIssuedFriendChallengesMock).toBeCalledTimes(0);
-        expect(getIssuedLeagueChallengesMock).toBeCalledTimes(0);
-        expect(getSentChallengesMock).toBeCalledTimes(1);
-        expect(getGlobalChallengesMock).toBeCalledTimes(0);
-        expect(getReceivedChallengesMock).toBeCalledTimes(0);
+        render(<FriendScroll type = "sent"/>)
+        expect(getFriendsMock).toBeCalledTimes(0);
+        expect(getSentMock).toBeCalledTimes(1);
+        expect(getReceivedMock).toBeCalledTimes(0);
+        expect(getBlockedListMock).toBeCalledTimes(0);
     })
 
     it("Test render received scroll", () => {
-        render(<ChallengeScroll type = "received"/>)
-        expect(getIssuedFriendChallengesMock).toBeCalledTimes(0);
-        expect(getIssuedLeagueChallengesMock).toBeCalledTimes(0);
-        expect(getSentChallengesMock).toBeCalledTimes(0);
-        expect(getGlobalChallengesMock).toBeCalledTimes(0);
-        expect(getReceivedChallengesMock).toBeCalledTimes(1);
+        render(<FriendScroll type = "received"/>)
+        expect(getFriendsMock).toBeCalledTimes(0);
+        expect(getSentMock).toBeCalledTimes(0);
+        expect(getReceivedMock).toBeCalledTimes(1);
+        expect(getBlockedListMock).toBeCalledTimes(0);
     })
 
-    it("Test render global scroll", () => {
-        render(<ChallengeScroll type = "global"/>)
-        expect(getIssuedFriendChallengesMock).toBeCalledTimes(0);
-        expect(getIssuedLeagueChallengesMock).toBeCalledTimes(0);
-        expect(getSentChallengesMock).toBeCalledTimes(0);
-        expect(getGlobalChallengesMock).toBeCalledTimes(1);
-        expect(getReceivedChallengesMock).toBeCalledTimes(0);
+    it("Test render blocked scroll", () => {
+        render(<FriendScroll type = "blocked"/>)
+        expect(getFriendsMock).toBeCalledTimes(0);
+        expect(getSentMock).toBeCalledTimes(0);
+        expect(getReceivedMock).toBeCalledTimes(0);
+        expect(getBlockedListMock).toBeCalledTimes(1);
     })
 
     it("Test render with no items", () => {
-        getGlobalChallengesMock = jest.spyOn(globalChallengeFunc, "getGlobalChallenges").mockImplementation((func) => {func([])})
+        getBlockedListMock = jest.spyOn(friendFunc, "getBlockedList").mockImplementation((func) => {func([])})
 
-        render(<ChallengeScroll type = "global"/>)
-        expect(getIssuedFriendChallengesMock).toBeCalledTimes(0);
-        expect(getIssuedLeagueChallengesMock).toBeCalledTimes(0);
-        expect(getSentChallengesMock).toBeCalledTimes(0);
-        expect(getGlobalChallengesMock).toBeCalledTimes(1);
-        expect(getReceivedChallengesMock).toBeCalledTimes(0);
+        render(<FriendScroll type = "global"/>)
+        expect(getFriendsMock).toBeCalledTimes(0);
+        expect(getSentMock).toBeCalledTimes(0);
+        expect(getReceivedMock).toBeCalledTimes(0);
+        expect(getBlockedListMock).toBeCalledTimes(1);
     })
 });

@@ -15,7 +15,7 @@ const MedalsSection = () => {
             <Bar>{{"buttonList":buttonList, "updateFunc":setIfEarned}}</Bar>
         </div>
 
-        { ifEarned=== "Earned" ? <MedalsScroll>{{"type" : "earned"}}</MedalsScroll> : <></> }
+        { ifEarned === "Earned" ? <MedalsScroll>{{"type" : "earned"}}</MedalsScroll> : <></> }
         { ifEarned ==="In Progress" ? <MedalsScroll>{{"type" : "progress"}}</MedalsScroll>:<></>}
 
     </div>

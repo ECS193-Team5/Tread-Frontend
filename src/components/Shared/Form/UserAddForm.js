@@ -44,7 +44,6 @@ const UserAddForm = (props) => {
     }
 
     const handleEnter = (event) => {
-        console.log("enter clicked")
         if (event.key === "Enter") {
             sendRequest();
         }

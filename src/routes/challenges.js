@@ -21,7 +21,9 @@ export function addChallenge(inputData, thenFunc, errorFunc) {
         })
         .catch(function (error) {
             redirectLogout(error);
-            errorFunc();
+            if(errorFunc){
+                errorFunc();
+            }
         })
 }
 

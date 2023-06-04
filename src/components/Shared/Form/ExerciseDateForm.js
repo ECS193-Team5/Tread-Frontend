@@ -30,7 +30,6 @@ const ExerciseDateForm = (props) => {
     }
 
     const dueDateChange = (event) => {
-        console.log("due date change");
         setDueDate(event.target.value);
         dateCheck(issueDate, event.target.value);
     }

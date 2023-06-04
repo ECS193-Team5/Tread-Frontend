@@ -120,31 +120,18 @@ const fakeFuncMultipleChallenges = (setExerciseList) => {
     ])
 }
 
-const getToday = () => {
-    const MILLISECONDS_IN_DAY = 24*60*60*1000
-    let date =  Date.now();
-    date = Math.floor(date/MILLISECONDS_IN_DAY) * MILLISECONDS_IN_DAY;
-    date =  new Date(date);
-    return date.toISOString();
-}
-
-const getDistanceFromToday = () => {
-    // Three days in the future
-    let today = Date.parse(getToday());
-    today  = today + 3 * 24 * 60 * 60 * 1000;
-    return new Date(today).toISOString();
-}
-
 const checkCalledSuggestionObj = (mockedFunc, callNumber) => {
     expect(mockedFunc.mock.calls[callNumber][0]).toHaveProperty("exerciseName", "Baseball");
     expect(mockedFunc.mock.calls[callNumber][0]).toHaveProperty("amount", expectedAmountValuesOnCall[callNumber-2]);
     expect(mockedFunc.mock.calls[callNumber][0]).toHaveProperty("unit", "m");
-    expect(mockedFunc.mock.calls[callNumber][0]["issueDate"].toISOString()).toEqual(getToday());
-    expect(mockedFunc.mock.calls[callNumber][0]["dueDate"].toISOString()).toEqual(getDistanceFromToday());
+    expect(mockedFunc.mock.calls[callNumber][0]["issueDate"].toISOString()).toEqual('2023-05-29T00:00:00.000Z');
+    expect(mockedFunc.mock.calls[callNumber][0]["dueDate"].toISOString()).toEqual("2023-06-01T00:00:00.000Z");
 }
 
 describe("Test /AddChallenge/ChallengeStats.js", () => {
-
+    beforeAll(()=>{
+      jest.useFakeTimers().setSystemTime(new Date('2023-05-30'));
+    })
     afterEach(()=>{
         m.mockClear();
     })

@@ -25,9 +25,7 @@ const ExerciseAmountForm = (props) => {
 
     useEffect (
         () => {
-            if(props.defaultUnit){
-                document.getElementById("addChallengeFormSelect").value = props.defaultUnit;
-            }
+            document.getElementById("addChallengeFormSelect").value = props.defaultUnit;
         }, [props.defaultUnit]
     );
 

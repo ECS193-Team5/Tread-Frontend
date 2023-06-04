@@ -35,7 +35,7 @@ const FriendScroll = (props) => {
             else if(scrollType === "received"){
                 getReceived(processFriendList);
             }
-            else if(scrollType === "blocked"){
+            else{
                 getBlockedList(processFriendList);
             }
         }, [scrollType]

@@ -60,21 +60,15 @@ const StatsChallengeSection = () => {
   }, [load]);
 
   useEffect(() => {
-    if (completedData) {
       setGraphChange(true);
-    }
   }, [completedData]);
 
   useEffect(() => {
-    if (failedData) {
       setGraphChange(true);
-    }
   }, [failedData]);
 
   useEffect(() => {
-    if (labels) {
       setGraphChange(true);
-    }
   }, [labels]);
 
   useEffect(() => {
@@ -119,7 +113,6 @@ const StatsChallengeSection = () => {
         failedList[index] += 1;
       }
     });
-
     setCompletedData(completeList);
     setFailedData(failedList);
   }

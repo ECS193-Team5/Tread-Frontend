@@ -40,10 +40,10 @@ const ProfileHeader = () => {
 
     const getQrCode = () => {
         let url = "https://tread.run/requestFriend?" + username;
-        //QRcode.toDataURL(url, { "color": { "light": "#D9D9D9" } }, (err, url) => {
-        //    if (err) return console.error(err)
-        //    setQRCode(url);
-        //})
+        QRcode.toDataURL(url, { "color": { "light": "#D9D9D9" } }, (err, url) => {
+            if (err) return console.error(err)
+            setQRCode(url);
+        })
     }
 
     const moveSettingsPage = () => {

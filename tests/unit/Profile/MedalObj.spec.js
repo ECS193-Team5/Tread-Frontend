@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import MedalObj from '../../../src/components/Profile/MedalObj';
 import '@testing-library/jest-dom'
 
@@ -16,11 +16,15 @@ let medalData = {
 describe("Test /Profile/MedalObj", () => {
     it("Test render", () => {
         render(<MedalObj>{medalData}</MedalObj>)
+        expect(screen.getByTestId("MedalObjMedalsText")).toHaveTextContent("Baseball 5 m")
+        expect(screen.getByTestId("MedalObjMedalProgress")).toHaveTextContent("5/5 m")
     })
 
     it("Test undercomplete progress", () => {
         medalData.progress= 4
         render(<MedalObj>{medalData}</MedalObj>)
+        expect(screen.getByTestId("MedalObjMedalsText")).toHaveTextContent("Baseball 5 m")
+        expect(screen.getByTestId("MedalObjMedalProgress")).toHaveTextContent("4/5 m")
     })
 
     it("Test level 2", () => {

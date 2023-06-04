@@ -1,9 +1,8 @@
 import LeagueObj from './LeagueObj';
 import React, {useState,useEffect} from 'react';
-import "../../css/Social/scroll.css";
-import axios from 'axios';
 import ZeroItem from '../Shared/ZeroItem';
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
+import {getAll, getInvite, getSent, getAdmin} from "../../routes/league";
+import "../../css/Social/scroll.css";
 
 const LeagueScroll = (props) => {
     let [scrollType] = useState(props.type);
@@ -19,104 +18,10 @@ const LeagueScroll = (props) => {
         }
     }
 
-    function getAll(){
-        // get Friends
-        // get Friends
-        var config = {
-          method : 'post',
-          url : backend_url + 'league/get_leagues',
-          headers: {
-            Accept: 'application/json',
-          },
-          withCredentials: true,
-          credentials: 'include'
-        };
-        axios(config)
-        .then(function(response) {
-            setInformation(response.data)
-            if (response.data.length === 0){
-                setShowZero(true);
-            }
-        })
-        .catch(function(error){
-            if(error.response.status===401){
-                window.location.href = "/";
-            }
-        });
+    const processLeagueList = (data) =>{
+        setInformation(data)
+        setShowZero(data.length === 0);
     }
-
-    function getSent(){
-        // get Sents
-        var config = {
-          method : 'post',
-          url : backend_url + 'league/get_requested_leagues',
-          headers: {
-            Accept: 'application/json',
-          },
-          withCredentials: true,
-          credentials: 'include'
-        };
-        axios(config)
-        .then(function(response) {
-            setInformation(response.data)
-            if (response.data.length === 0){
-                setShowZero(true);
-            }
-        })
-        .catch(function(error){
-            if(error.response.status===401){
-                window.location.href = "/";
-            }
-        });     }
-
-    function getAdmin(){
-        // get Received
-        var config = {
-          method : 'post',
-          url : backend_url + 'league/get_admin_leagues_with_challenge_count',
-          headers: {
-            Accept: 'application/json',
-          },
-          withCredentials: true,
-          credentials: 'include'
-        };
-        axios(config)
-        .then(function(response) {
-            setInformation(response.data)
-            if (response.data.length === 0){
-                setShowZero(true);
-            }
-        })
-        .catch(function(error){
-            if(error.response.status===401){
-                window.location.href = "/";
-            }
-        });
-      }
-
-      function getInvite(){
-        var config = {
-            method : 'post',
-            url : backend_url + 'league/get_invited_leagues',
-            headers: {
-              Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include'
-          };
-          axios(config)
-          .then(function(response) {
-              setInformation(response.data)
-              if (response.data.length === 0){
-                setShowZero(true);
-            }
-          })
-          .catch(function(error){
-              if(error.response.status===401){
-                window.location.href = "/";
-            }
-          });
-      }
 
     function makeLeagueObj(input){
         return (<LeagueObj index = {input.leagueName} type = {scrollType}>{input}</LeagueObj>);
@@ -125,19 +30,16 @@ const LeagueScroll = (props) => {
     useEffect (
         () => {
             if(scrollType === "league"){
-                getAll();
+                getAll(processLeagueList);
             }
             else if(scrollType === "sent"){
-                getSent();
+                getSent(processLeagueList);
             }
             else if(scrollType === "admin"){
-                getAdmin();
+                getAdmin(processLeagueList);
             }
-            else if(scrollType === "invite"){
-                getInvite();
-            }
-            else if(scrollType === "create"){
-                window.location.href = "./addLeaguePage"
+            else {
+                getInvite(processLeagueList);
             }
         }, [scrollType]
     );

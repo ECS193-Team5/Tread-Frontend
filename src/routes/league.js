@@ -2,7 +2,6 @@ import { redirectLogout } from "../helpers/CssEffects";
 import axios from 'axios';
 const backend_url = process.env.REACT_APP_PROD_BACKEND;
 
-
 export function createLeague(inputData, thenFunc, errorFunc) {
   var config = {
     method: 'post',
@@ -20,7 +19,9 @@ export function createLeague(inputData, thenFunc, errorFunc) {
     })
     .catch(function (error) {
       redirectLogout(error);
-      errorFunc();
+      if(errorFunc){
+        errorFunc();
+      }
     });
 }
 
@@ -150,7 +151,9 @@ export function deleteLeague(leagueID, thenFunc, errorFunc) {
       thenFunc();
     })
     .catch(function (error) {
-      errorFunc();
+      if(errorFunc){
+        errorFunc();
+      }
       redirectLogout(error);
     });
 
@@ -241,8 +244,9 @@ export function sendLeagueInvite(data, thenFunc, errorFunc){
         thenFunc(response.data);
     })
     .catch(function(error){
-      console.log(error);
-      errorFunc();
+      if(errorFunc){
+        errorFunc();
+      }
       redirectLogout(error);
     });
 }
@@ -537,6 +541,237 @@ export function  sendLeagueRequest (leagueID, thenFunc, errorFunc)  {
   })
   .catch(function(error){
       redirectLogout(error);
-      errorFunc();
+      if(errorFunc){
+        errorFunc();
+      }
   });
+}
+
+export function getAll(thenFunc){
+  var config = {
+    method : 'post',
+    url : backend_url + 'league/get_leagues',
+    headers: {
+      Accept: 'application/json',
+    },
+    withCredentials: true,
+    credentials: 'include'
+  };
+  axios(config)
+  .then(function(response) {
+      thenFunc(response.data)
+  })
+  .catch(function(error){
+      redirectLogout(error)
+  });
+}
+
+export function getSent(thenFunc){
+  // get Sents
+  var config = {
+    method : 'post',
+    url : backend_url + 'league/get_requested_leagues',
+    headers: {
+      Accept: 'application/json',
+    },
+    withCredentials: true,
+    credentials: 'include'
+  };
+  axios(config)
+  .then(function(response) {
+      thenFunc(response.data)
+  })
+  .catch(function(error){
+      redirectLogout(error)
+  });
+}
+
+export function getAdmin(thenFunc){
+  // get Received
+  var config = {
+    method : 'post',
+    url : backend_url + 'league/get_admin_leagues_with_challenge_count',
+    headers: {
+      Accept: 'application/json',
+    },
+    withCredentials: true,
+    credentials: 'include'
+  };
+  axios(config)
+  .then(function(response) {
+      thenFunc(response.data)
+  })
+  .catch(function(error){
+      redirectLogout(error)
+  });
+}
+
+export function getInvite(thenFunc){
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/get_invited_leagues',
+      headers: {
+        Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include'
+    };
+    axios(config)
+    .then(function(response) {
+        thenFunc(response.data)
+    })
+    .catch(function(error){
+        redirectLogout(error)
+    });
+}
+
+
+
+export function getSuggestedLeagues(thenFunc) {
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/get_recommended',
+      headers: {
+      Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+  };
+  axios(config)
+      .then(function (response) {
+          thenFunc(response.data)
+      })
+      .catch(function (error) {
+          redirectLogout(error)
+      });
+}
+
+
+export function getRecentLeagues(thenFunc) {
+  var config = {
+      method: 'post',
+      url: backend_url + 'league/get_recent_activity',
+      headers: {
+          Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+  };
+  axios(config)
+      .then(function (response) {
+          thenFunc(response.data)
+      })
+      .catch(function (error) {
+          redirectLogout(error)
+      });
+}
+
+export function leaveLeague(id, thenFunc){
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/leave_league',
+      headers: {
+        Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data:{
+          leagueID: id
+      }
+    };
+    axios(config)
+    .then(function(response) {
+        thenFunc()
+    })
+    .catch(function(error){
+        redirectLogout(error)
+    });
+}
+
+export function removeSelfFromAdmin(id, thenFunc){
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/user_remove_admin',
+      headers: {
+        Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data:{
+          leagueID: id
+      }
+    };
+    axios(config)
+    .then(function(response) {
+        thenFunc()
+    })
+    .catch(function(error){
+        redirectLogout(error)
+    });
+}
+
+export function revokeLeagueRequest(id, thenFunc){
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/user_undo_request',
+      headers: {
+        Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data:{
+          leagueID: id
+      }
+    };
+    axios(config)
+    .then(function(response) {
+        thenFunc()
+    })
+    .catch(function(error){
+        redirectLogout(error)
+    });
+}
+
+export function declineLeagueInvite(id, thenFunc){
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/user_decline_invite',
+      headers: {
+        Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data:{
+          leagueID: id
+      }
+    };
+    axios(config)
+    .then(function(response) {
+        thenFunc()
+    })
+    .catch(function(error){
+        redirectLogout(error)
+    });
+}
+
+export function acceptLeagueInvite(id, thenFunc){
+  var config = {
+      method : 'post',
+      url : backend_url + 'league/user_accept_invite',
+      headers: {
+        Accept: 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'include',
+      data:{
+          leagueID: id
+      }
+    };
+    axios(config)
+    .then(function(response) {
+        thenFunc()
+    })
+    .catch(function(error){
+        redirectLogout(error)
+    });
 }

@@ -7,7 +7,6 @@ import secondMedal from "../../assets/secondMedal.png";
 import thirdMedal from "../../assets/thirdMedal.png";
 import flameImage from "../../assets/flame.png";
 const LeaderboardEntry = (props) => {
-    console.log("mew", props);
     return (
     <div data-testid={"LeaderboardEntryComponent"+props.index} id = "LeaderboardEntry">
         <div className = "leaderboardEntryImage">

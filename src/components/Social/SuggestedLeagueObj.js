@@ -1,35 +1,17 @@
 import React from "react";
 import {createLeaguePictureURL} from "../../helpers/CloudinaryURLHelpers";
-import axios from 'axios';
-
 import plusButtonImage from "../../assets/plusButtonImage.png";
-const backend_url = process.env.REACT_APP_PROD_BACKEND
+import { sendLeagueRequest } from "../../routes/league";
+
 const SuggestedLeagueObj = (props) => {
     let leagueID = props.children._id;
 
-    const requestJoinLeague = () => {
-    var config  = {
-        method : 'post',
-        url: backend_url+'league/user_request_to_join',
-        headers: {
-            Accept: 'application/json',
-        },
-        withCredentials: true,
-        credentials: 'include',
-        data:{
-            leagueID: leagueID
-        }
-    };
-    axios(config)
-    .then(function(response) {
+    const updateParent = () => {
         props.updateObjList(leagueID);
+    }
 
-    })
-    .catch(function(error){
-        if(error.response.status===401){
-            window.location.href = "/";
-        }
-    });
+    const requestJoinLeague = () => {
+        sendLeagueRequest(leagueID, updateParent);
     }
 
     return(

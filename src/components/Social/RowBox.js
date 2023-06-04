@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ActivityObj from './ActivityObj';
-import axios from "axios";
 import { setDisplayProperty } from "../../helpers/CssEffects";
 import SuggestedFriendObj from './SuggestedFriendObj';
 import SuggestedLeagueObj from './SuggestedLeagueObj';
 import "../../css/Social/rowBox.css";
-
-const backend_url = process.env.REACT_APP_PROD_BACKEND;
+import { getSuggestedFriends, getRecentFriends } from '../../routes/friend_list';
+import { getSuggestedLeagues, getRecentLeagues } from '../../routes/league';
 
 const RowBox = (props) => {
 
@@ -51,7 +50,7 @@ const RowBox = (props) => {
     useEffect(
         () => {
             if (!load) {
-                callFunc[props.children.socialType][props.children.informationType]["get"]();
+                callFunc[props.children.socialType][props.children.informationType]["get"](setInfo);
                 setLoad(true);
             }
         }, [load]
@@ -71,110 +70,26 @@ const RowBox = (props) => {
     }
 
     function createSuggestFriendObj (input, index) {
-        return <SuggestedFriendObj updateObjList = {updateObjList} index = {index}>{input}</SuggestedFriendObj>
+        return <SuggestedFriendObj key={index} updateObjList = {updateObjList} index = {index}>{input}</SuggestedFriendObj>
     }
     function createSuggestLeagueObj (input, index) {
-        return <SuggestedLeagueObj  updateObjList = {updateObjList} index = {index}>{input}</SuggestedLeagueObj>
+        return <SuggestedLeagueObj  key={index} updateObjList = {updateObjList} index = {index}>{input}</SuggestedLeagueObj>
     }
     function createRecentObj (input, index) {
-        return <ActivityObj index = {index}>{input}</ActivityObj>
-    }
-
-    function getSuggestedFriends() {
-        var config = {
-            method : 'post',
-            url : backend_url + 'friend_list/get_recommended',
-            headers: {
-            Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-        };
-        axios(config)
-        .then(function(response){
-            setInfo(response.data)
-        })
-        .catch(function(error){
-            if(error.response.status===401){
-                window.location.href = "/";
-            }
-        });
-    }
-
-    function getSuggestedLeagues() {
-        var config = {
-            method : 'post',
-            url : backend_url + 'league/get_recommended',
-            headers: {
-            Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-        };
-        axios(config)
-        .then(function(response){
-            setInfo(response.data)
-        })
-        .catch(function(error){
-            if(error.response.status===401){
-                window.location.href = "/";
-            }
-        });
-    }
-
-    function getRecentFriends() {
-        var config = {
-            method: 'post',
-            url: backend_url + 'friend_list/get_recent_activity',
-            headers: {
-                Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-        };
-        axios(config)
-            .then(function (response) {
-                setInfo(response.data)
-            })
-            .catch(function (error) {
-                if (error.response.status === 401) {
-                    window.location.href = "/";
-                }
-            });
-    }
-
-    function getRecentLeagues() {
-        var config = {
-            method: 'post',
-            url: backend_url + 'league/get_recent_activity',
-            headers: {
-                Accept: 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'include',
-        };
-        axios(config)
-            .then(function (response) {
-                setInfo(response.data)
-            })
-            .catch(function (error) {
-                if (error.response.status === 401) {
-                    window.location.href = "/";
-                }
-            });
+        return <ActivityObj key={index} index = {index}>{input}</ActivityObj>
     }
 
     function createBoxSection(input, index) {
         if (index === 0) {
             return (
-                <div className="fullRow">
+                <div key={index} className="fullRow">
                     {callFunc[props.children.socialType][props.children.informationType]["create"](input, index)}
                 </div>
             );
         }
         else {
             return (
-                <div className="fullRow">
+                <div key={index} className="fullRow">
                     <div className="topLine"></div>
                     {callFunc[props.children.socialType][props.children.informationType]["create"](input, index)}
                 </div>
