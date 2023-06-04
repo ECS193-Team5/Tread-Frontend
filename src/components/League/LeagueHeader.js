@@ -31,8 +31,10 @@ const LeagueHeader = (props) => {
     );
 
     const generateQRCode = () => {
+        console.log("generating qr code");
         let url = "https://tread.run/requestLeague?" + id;
         QRcode.toDataURL(url, {"color":{"light":"#D9D9D9"}}, (url) => {
+            console.log(url);
             setQRCode(url);
         })
     }

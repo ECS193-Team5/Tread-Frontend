@@ -23,7 +23,7 @@ const UserSettingsButton = () => {
         setDeviceToken(setToken);
         getUsername(processUsername);
         getDisplayName(setDisplayName);
-      }
+    }, []
   );
 
   function toggleLogoutDisplay() {
@@ -56,8 +56,8 @@ const UserSettingsButton = () => {
         {
           logoutDisplay ?
           <div className = "userSettingsDropDown"><DropDown uniqueDeterminer = {"userSettingsDropDown"}>{dropdownFunctions}</DropDown></div>
-
-            : <></>
+          :
+          <></>
         }
 
       </div>
