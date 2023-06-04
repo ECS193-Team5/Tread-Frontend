@@ -10,7 +10,7 @@ let createLeagueMock = jest.spyOn(addLeague, "createLeague").mockImplementation(
 let setLocationMock = jest.spyOn(cssEffects, "setLocation").mockImplementation(() => {});
 
 jest.spyOn(global, 'FileReader').mockImplementation(function () {
-    this.readAsDataURL = jest.fn(()=>{this.val = foo});
+    this.readAsDataURL = jest.fn(()=>{this.result = "foo"});
 });
 
 const setLeagueDescription = () => {
@@ -84,6 +84,31 @@ describe("Test components/AddLeague/LeagueForm.js", () => {
         expect(setLocationMock).toHaveBeenCalled;
     })
 
+    it("Test update with image", () => {
+        render(<LeagueForm/>)
+        const element = screen.getByTestId("PhotoUploadFormUploadPhotoInput");
+        fireEvent.change(element, {
+            target:{
+                files:[imageFile]
+            }} );
+        let reader = FileReader.mock.instances[0];
+        reader.onload({ target: { result: 'foo' } });
+        setLeagueDescription();
+        setLeagueName();
+        submitLeague();
+    })
+
+    it("Test update with empty image", () => {
+        render(<LeagueForm/>)
+        const element = screen.getByTestId("PhotoUploadFormUploadPhotoInput");
+        fireEvent.change(element, {
+            target:{
+                files:[]
+            }} );
+        let reader = FileReader.mock.instances[0];
+        expect(reader.readAsDataURL).toHaveBeenCalledWith("test-file-stub");
+    })
+
     it("Test create league failure response", () => {
         createLeagueMock.mockImplementation((arg1, then, err)=> {err()})
         render(<LeagueForm/>)
@@ -94,5 +119,6 @@ describe("Test components/AddLeague/LeagueForm.js", () => {
         expect(element).toHaveTextContent("The league could not be created. Please try again later.");
         expect(createLeagueMock).toHaveBeenCalled;
     })
+
 
 });

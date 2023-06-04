@@ -3,14 +3,13 @@ import PhotoUploadForm from '../Shared/Form/PhotoUploadForm';
 import UsernameForm from '../Shared/Form/UsernameForm';
 import DisplayNameForm from '../Shared/Form/DisplayNameForm';
 import { signUp } from '../../routes/sign_up';
+import { setDeviceToken } from "../../helpers/firebaseHelpers";
 
 import '../../css/SignUp/signUpForm.css';
 import '../../css/Shared/button.css';
 import '../../css/Shared/form.css';
 import '../../css/Shared/headerText.css';
 
-import { getToken } from 'firebase/messaging';
-import { exportMessaging, requestPermission } from "../../firebase";
 
 const SignUpForm = (props) => {
   const [load, setLoad] = useState(false);
@@ -26,7 +25,7 @@ const SignUpForm = (props) => {
   useEffect(
     () => {
       if (!load) {
-        setDeviceToken();
+        setDeviceToken(setToken);
         setLoad(true);
       }
     }, [load]
@@ -41,34 +40,14 @@ const SignUpForm = (props) => {
     }
   }
 
-  const setDeviceToken = () => {
-    try{
-    getToken(exportMessaging, { vapidKey: "BDXZrQCKEnAfnJWh6oIbEYKTuogSmiNl4gKVIDNmOEabzRt2BpAVIV4Znb7OgKzWJAz9eLOKde6YhWLpAdw1EZ0" }).then((currentToken) => {
-      if (currentToken) {
-        console.log("Setting token here", currentToken);
-        setToken(currentToken);
-      } else {
-        // Show permission request UI
-        console.log('No registration token available. Request permission to generate one.');
-        requestPermission();
-        // ...
-      }
-    }).catch((err) => {
-      console.log('An error occurred while retrieving token. ', err);
-      // ...
-    });
-  }catch(err){
-    console.log("An error occured in get token");
-  }
-  }
-
   const validateInputs = () => {
+    setSubmitError("");
     let errorMessage = "";
     if (username === ""){
-      errorMessage += "Please select a username.\n";
+      errorMessage += "Please select a username. ";
     }
     if (displayName === ""){
-      errorMessage += "Please select a display name.\n";
+      errorMessage += "Please select a display name. ";
     }
     setSubmitError(errorMessage);
     return (errorMessage === "");

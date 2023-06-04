@@ -41,7 +41,7 @@ const RowBox = (props) => {
         if (info.length === 0) {
           setDisplayProperty(props.children.socialType + props.children.informationType + "Box", "none")
         }
-        else if(info){
+        else {
           setDisplayProperty(props.children.socialType + props.children.informationType + "Box", "block")
         }
       }, [info]
