@@ -36,7 +36,7 @@ const StatsExerciseSection = () => {
     const [selectedExerciseName, setSelectedExerciseName] = useState("");
     const [selectedExerciseUnit, setSelectedExerciseUnit] = useState("");
     const [selectedExerciseUnitType, setSelectedExerciseUnitType] = useState("");
-
+    const [exerciseLog, setExerciseLog] = useState([]);
     const [data, setData] = useState([]);
     const [config, setConfig] = useState(
         {
@@ -72,7 +72,6 @@ const StatsExerciseSection = () => {
       };
 
 
-    const [exerciseLog, setExerciseLog] = useState([]);
 
 
     useEffect(() => {
@@ -84,29 +83,21 @@ const StatsExerciseSection = () => {
             setSelectedExerciseUnitType("time");
 
         }
-        else if((hardCodedInfo.countUnits).includes(selectedExerciseUnit)){
-            setSelectedExerciseUnitType("count");
-
-        }
         else{
-            setSelectedExerciseUnitType("");
+            setSelectedExerciseUnitType("count");
         }
     },[selectedExerciseUnit]);
 
     useEffect(() => {
-        if(selectedExerciseUnit){
-            setGraphChange(true);
-        }
+        setGraphChange(true);
     },[selectedExerciseUnit]);
 
     useEffect(() => {
-        if(availableUnits){
-            setGraphChange(true);
-        }
+        setGraphChange(true);
     },[availableUnits]);
 
     useEffect(() => {
-        if(data){
+        if(data.length>0){
             recalculateConfig();
         }
     },[data]);

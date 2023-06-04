@@ -11,7 +11,7 @@ const MedalsScroll = (props) => {
         if(type === "earned"){
             return(<MedalObj key = {index} index = {index}>{input}</MedalObj>);
         }
-        else if(type === "progress"){
+        else {
             return(<MedalObj key = {index} index = {index}>{input}</MedalObj>);
         }
     }
@@ -21,7 +21,7 @@ const MedalsScroll = (props) => {
           if (type === "earned") {
             getEarnedMedals(setInformationMap);
           }
-          else if(type === "progress"){
+          else {
             getInProgressMedals(setInformationMap);
           }
         }, [type]

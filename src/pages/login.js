@@ -36,14 +36,14 @@ const Login = () => {
 
 
   useEffect(() => {
-    if(loadedToken){
+    if(loadedToken || deviceToken.length>0){
       googleSignIn();
     }
-  }, [loadedToken]);
+  }, [loadedToken, deviceToken]);
 
   // needs variable for nonce
   function handleCredentialResponse(token) {
-    console.log(`${token.credential}`, "    here");
+    console.log("send token", deviceToken);
     var config = {
       method: 'post',
       url: backend_url + 'auth/login/google',
@@ -111,8 +111,6 @@ const Login = () => {
     loadScript('https://accounts.google.com/gsi/client')
         .then(() => {
           setDeviceToken();
-
-
         })
         .catch(() => {
 
@@ -134,14 +132,16 @@ const Login = () => {
       } else {
         // Show permission request UI
         console.log('No registration token available. Request permission to generate one.');
+        setLoadedToken(true);
         requestPermission();
         // ...
       }
     }).catch((err) => {
       console.log('An error occurred while retrieving token. ', err);
+      setLoadedToken(true);
       // ...
     });
-    setLoadedToken(true);
+
   }catch{}
 
   }
