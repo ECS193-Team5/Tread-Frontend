@@ -31,18 +31,11 @@ const SignUpForm = (props) => {
     }, [load]
   );
 
-  const determinePhoto = () => {
-    if (photo === "") {
-      return props.children.profilePhoto;
-    }
-    else {
-      return photo;
-    }
-  }
 
   const validateInputs = () => {
     setSubmitError("");
     let errorMessage = "";
+
     if (username === ""){
       errorMessage += "Please select a username. ";
     }
@@ -59,14 +52,13 @@ const SignUpForm = (props) => {
       return;
     }
 
-    let submitPhoto = determinePhoto();
+
 
     var formData = new FormData();
     formData.append("username", username);
     formData.append("displayName", displayName);
     formData.append("deviceToken", deviceToken);
-    formData.append("picture", submitPhoto);
-
+    formData.append("picture", photo);
 
     signUp(formData);
   }
@@ -80,7 +72,7 @@ const SignUpForm = (props) => {
 
       <div className="formObj">
         <h1>Profile Picture</h1>
-        <PhotoUploadForm>{{ "default": props.children.profilePhoto, "func": setPhoto }}</PhotoUploadForm>
+        <PhotoUploadForm type = "signUp" setPhoto={setPhoto}></PhotoUploadForm>
       </div>
 
       <UsernameForm updateUsername = {setUsername}/>

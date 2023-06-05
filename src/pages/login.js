@@ -7,6 +7,8 @@ import frontPageTreadLogo from "../assets/frontPageTreadLogo.png";
 import AppleSigninButton from '../components/Login/AppleSignInButton';
 import { setDeviceToken } from '../helpers/firebaseHelpers';
 import { loginGoogle } from '../routes/auth';
+import googlePlayStoreBadge from "../assets/googlePlayBadge.png";
+import appleAppStoreBadge from "../assets/appleAppStoreBadge.svg";
 const env_client_id = process.env.REACT_APP_CLIENT_ID
 
 const Login = () => {
@@ -111,7 +113,8 @@ const Login = () => {
           <img id="treadLogo" src={frontPageTreadLogo} alt="logo" />
           <p id = "frontPageTitleMobile">Tread</p>
         </div>
-        <p>Rebekah syas buttons goes here!</p>
+        <a href='https://play.google.com/store/apps/details?id=com.treadmobile&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src={googlePlayStoreBadge}/></a>
+        <a href='https://apps.apple.com/us/app/tread-mobile/id6448766159'><img alt='Download on the App Store' src={appleAppStoreBadge}/></a>
       </div>
   </div>)
 }

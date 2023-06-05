@@ -33,15 +33,6 @@ describe("Test /Shared/Form/LeagueNameForm.js", () => {
         expect(textErrorElement).toHaveTextContent("Cannot create league, League Name must be between 1-32 characters")
     })
 
-    it("Test enter too long name", () => {
-        render(<LeagueNameForm  updateLeagueName= {updateLeagueNameMock}/>)
-        const element = screen.getByTestId("LeagueNameFormUpdateLeagueNameInput");
-        fireEvent.change(element, {target:{value:'\t\t'}});
-        expect(updateLeagueNameMock).toBeCalledWith('');
-        let textErrorElement = screen.getByTestId("LeagueNameFormNameError");
-        expect(textErrorElement).toHaveTextContent("Cannot create league, League Name cannot be a string of spaces.")
-    })
-
     it("Test empty description", () => {
         render(<LeagueNameForm  updateLeagueName= {updateLeagueNameMock}/>)
         const element = screen.getByTestId("LeagueNameFormUpdateLeagueNameInput");

@@ -28,7 +28,7 @@ const ProfileSettingsForm = (props) => {
     <div data-testid="ProfileSettingsFormComponent" className = "Form">
         <div className="formObj">
                 <h2>Profile Picture</h2>
-                <PhotoUploadForm>{{"default":props.children.photo, "func":setPhoto}}</PhotoUploadForm>
+                <PhotoUploadForm type = "other" setPhoto = {setPhoto}></PhotoUploadForm>
                 <button data-testid="ProfileSettingsFormPhotoSubmit" className="submitButton" onClick = {submitPhoto}><p className = "submitButtonText">Submit</p></button>
                 <p data-testid="ProfileSettingsFormPhotoResponse">{photoResponse}</p>
 

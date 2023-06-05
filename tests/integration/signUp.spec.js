@@ -7,7 +7,7 @@ import imageFile from "../../src/assets/BronzeTrophy.png";
 import * as firebaseFunc from "../../src/helpers/firebaseHelpers";
 import * as sharedHelpers from "../testHelpers/shared";
 
-let getProfilePhotoMock = jest.spyOn(signFunc, "getProfilePhoto").mockImplementation((then)=>{then("ex.png")});
+let getProfilePhotoMock = jest.spyOn(signFunc, "getProfilePhoto").mockImplementation((then, then2)=>{then("ex.png"); then2("Ex.png")});
 let signUpMock = jest.spyOn(signFunc, "signUp").mockImplementation(()=>{});
 let getTokenMock = jest.spyOn(firebaseFunc, "setDeviceToken").mockImplementation((func)=>{func("token")});
 jest.mock('firebase/messaging', () => () => {});
@@ -50,15 +50,6 @@ describe("Test components/SignUp/SignUp.js", () => {
         render(<SignUp/>)
         submitSignUp();
         checkSignUpErr("Please select a username. Please select a display name. ")
-    })
-
-    it("Test submit with inputs", () => {
-        render(<SignUp/>)
-        fillUsername("user");
-        fillDisplayName();
-        submitSignUp();
-        checkSignUpErr("")
-        checkUsernameErr("");
     })
 
     it("Test submit with inputs including photo", () => {

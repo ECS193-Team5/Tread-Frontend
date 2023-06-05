@@ -78,48 +78,48 @@ describe("Test /League/MemberEntry.js", () => {
     })
 
     it("Test render", () => {
-        render(<MemberEntry index = {""}>{{memberData:memberDataParticipant, scrollData:allMemberScroll}}</MemberEntry>)
+        render(<MemberEntry index = {""} scrollData = {allMemberScroll}>{{memberData:memberDataParticipant}}</MemberEntry>)
     })
 
     it("Test render when user is participant", () => {
         let copyMemberScroll = allMemberScroll;
         copyMemberScroll.role = "participant";
-        render(<MemberEntry index = {""}>{{memberData:memberDataParticipant, scrollData:copyMemberScroll}}</MemberEntry>)
+        render(<MemberEntry index = {""} scrollData = {allMemberScroll}>{{memberData:memberDataParticipant}}</MemberEntry>)
         toggleButton();
     })
 
     it("Test render when user is admin", () => {
         let copyMemberScroll = allMemberScroll;
         copyMemberScroll.role = "admin";
-        render(<MemberEntry index = {""}>{{memberData:memberDataParticipant, scrollData:copyMemberScroll}}</MemberEntry>)
+        render(<MemberEntry index = {""} scrollData = {allMemberScroll}>{{memberData:memberDataParticipant}}</MemberEntry>)
         toggleButton();
     })
 
     it("Test render when member is owner", () => {
         let copyMemberScroll = allMemberScroll;
         copyMemberScroll.role = "admin";
-        render(<MemberEntry index = {""}>{{memberData:memberDataOwner, scrollData:copyMemberScroll}}</MemberEntry>)
+        render(<MemberEntry index = {""} scrollData = {allMemberScroll}>{{memberData:memberDataOwner}}</MemberEntry>)
         toggleButton();
     })
 
     it("Test render when member is admin", () => {
         let copyMemberScroll = allMemberScroll;
         copyMemberScroll.role = "admin";
-        render(<MemberEntry index = {""}>{{memberData:memberDataAdmin, scrollData:copyMemberScroll}}</MemberEntry>)
+        render(<MemberEntry index = {""} scrollData = {allMemberScroll}>{{memberData:memberDataAdmin}}</MemberEntry>)
         toggleButton();
     })
 
     it("Test render when member is no one", () => {
         let copyMemberScroll = allMemberScroll;
         copyMemberScroll.role = "admin";
-        render(<MemberEntry index = {""}>{{memberData:memberDataNone, scrollData:copyMemberScroll}}</MemberEntry>)
+        render(<MemberEntry index = {""} scrollData = {allMemberScroll}>{{memberData:memberDataNone}}</MemberEntry>)
         toggleButton();
     })
 
     it("Test render when member is user", () => {
         let copyMemberScroll = allMemberScroll;
         copyMemberScroll.username = "user#2224"
-        render(<MemberEntry index = {""}>{{memberData:memberDataNone, scrollData:copyMemberScroll}}</MemberEntry>)
+        render(<MemberEntry index = {""} scrollData = {allMemberScroll}>{{memberData:memberDataNone}}</MemberEntry>)
         toggleButton();
     })
 
@@ -127,7 +127,7 @@ describe("Test /League/MemberEntry.js", () => {
         let copyMemberScroll = allMemberScroll;
         copyMemberScroll.username = "me#2224"
         copyMemberScroll.friends = ["user#2224"]
-        render(<MemberEntry index = {""}>{{memberData:memberDataNone, scrollData:copyMemberScroll}}</MemberEntry>)
+        render(<MemberEntry index = {""} scrollData = {allMemberScroll}>{{memberData:memberDataNone}}</MemberEntry>)
         toggleButton();
     })
 
@@ -135,7 +135,7 @@ describe("Test /League/MemberEntry.js", () => {
         let copyMemberScroll = allMemberScroll;
         copyMemberScroll.friends = []
         copyMemberScroll.blocked = ["user#2224"]
-        render(<MemberEntry index = {""}>{{memberData:memberDataNone, scrollData:copyMemberScroll}}</MemberEntry>)
+        render(<MemberEntry index = {""} scrollData = {allMemberScroll}>{{memberData:memberDataNone}}</MemberEntry>)
         toggleButton();
     })
 
@@ -145,7 +145,7 @@ describe("Test /League/MemberEntry.js", () => {
         copyMemberScroll.blocked = []
         copyMemberScroll.scrollType = "Received"
         copyMemberScroll.role = "owner"
-        render(<MemberEntry index = {""}>{{memberData:memberDataNone, scrollData:copyMemberScroll}}</MemberEntry>)
+        render(<MemberEntry index = {""} scrollData = {allMemberScroll}>{{memberData:memberDataNone}}</MemberEntry>)
         toggleButton();
     })
 
@@ -155,7 +155,7 @@ describe("Test /League/MemberEntry.js", () => {
         copyMemberScroll.blocked = []
         copyMemberScroll.scrollType = "Banned"
         copyMemberScroll.role = "owner"
-        render(<MemberEntry index = {""}>{{memberData:memberDataNone, scrollData:copyMemberScroll}}</MemberEntry>)
+        render(<MemberEntry index = {""} scrollData = {allMemberScroll}>{{memberData:memberDataNone}}</MemberEntry>)
         toggleButton();
     })
 
@@ -197,7 +197,7 @@ describe("Test /League/MemberEntry.js", () => {
 
         it("Test unfriend", () => {
             scrollData.friends = ["user#2224"]
-            render(<MemberEntry index = {""}>{{memberData:memberData, scrollData:scrollData}}</MemberEntry>)
+            render(<MemberEntry index = {""} scrollData = {scrollData}>{{memberData:memberData}}</MemberEntry>)
             toggleButton();
             hitDropdown(0);
             expect(blockUserMock).toBeCalledTimes(0)
@@ -218,7 +218,7 @@ describe("Test /League/MemberEntry.js", () => {
 
         it("Test block", () => {
             scrollData.friends = ["user#2224"]
-            render(<MemberEntry index = {""}>{{memberData:memberData, scrollData:scrollData}}</MemberEntry>)
+            render(<MemberEntry index = {""} scrollData = {scrollData}>{{memberData:memberData}}</MemberEntry>)
             toggleButton();
             hitDropdown(1);
             expect(blockUserMock).toBeCalledTimes(1)
@@ -239,7 +239,7 @@ describe("Test /League/MemberEntry.js", () => {
 
         it("Test blocked person, try to friend", () => {
             scrollData.blocked = ["user#2224"]
-            render(<MemberEntry index = {""}>{{memberData:memberData, scrollData:scrollData}}</MemberEntry>)
+            render(<MemberEntry index = {""} scrollData = {scrollData}>{{memberData:memberData}}</MemberEntry>)
             toggleButton();
             hitDropdown(0);
             expect(blockUserMock).toBeCalledTimes(0)
@@ -260,7 +260,7 @@ describe("Test /League/MemberEntry.js", () => {
 
         it("Test blocked person, try to unblock", () => {
             scrollData.blocked = ["user#2224"]
-            render(<MemberEntry index = {""}>{{memberData:memberData, scrollData:scrollData}}</MemberEntry>)
+            render(<MemberEntry index = {""} scrollData = {scrollData}>{{memberData:memberData}}</MemberEntry>)
             toggleButton();
             hitDropdown(1);
             expect(blockUserMock).toBeCalledTimes(0)
@@ -280,7 +280,7 @@ describe("Test /League/MemberEntry.js", () => {
         })
 
         it("Test unknown person, try to friend", () => {
-            render(<MemberEntry index = {""}>{{memberData:memberData, scrollData:scrollData}}</MemberEntry>)
+            render(<MemberEntry index = {""} scrollData = {scrollData}>{{memberData:memberData}}</MemberEntry>)
             toggleButton();
             hitDropdown(0);
             expect(blockUserMock).toBeCalledTimes(0)
@@ -300,7 +300,7 @@ describe("Test /League/MemberEntry.js", () => {
         })
 
         it("Test unknown person, try to block", () => {
-            render(<MemberEntry index = {""}>{{memberData:memberData, scrollData:scrollData}}</MemberEntry>)
+            render(<MemberEntry index = {""} scrollData = {scrollData}>{{memberData:memberData}}</MemberEntry>)
             toggleButton();
             hitDropdown(1);
             expect(blockUserMock).toBeCalledTimes(1)
@@ -320,7 +320,7 @@ describe("Test /League/MemberEntry.js", () => {
         })
 
         it("Test kick out user", () => {
-            render(<MemberEntry index = {""}>{{memberData:memberData, scrollData:scrollData}}</MemberEntry>)
+            render(<MemberEntry index = {""} scrollData = {scrollData}>{{memberData:memberData}}</MemberEntry>)
             toggleButton();
             hitDropdown(2);
             expect(blockUserMock).toBeCalledTimes(0)
@@ -339,7 +339,7 @@ describe("Test /League/MemberEntry.js", () => {
             expect(kickOutUserMock).toBeCalledWith({"leagueID": "id", "leagueName": "name", "recipient": "user#2224"}, expect.any(Function))
         })
         it("Test ban user", () => {
-            render(<MemberEntry index = {""}>{{memberData:memberData, scrollData:scrollData}}</MemberEntry>)
+            render(<MemberEntry index = {""} scrollData = {scrollData}>{{memberData:memberData}}</MemberEntry>)
             toggleButton();
             hitDropdown(3);
             expect(blockUserMock).toBeCalledTimes(0)
@@ -360,7 +360,7 @@ describe("Test /League/MemberEntry.js", () => {
 
         it("Test remove admin", () => {
             memberData.role = "admin"
-            render(<MemberEntry index = {""}>{{memberData:memberData, scrollData:scrollData}}</MemberEntry>)
+            render(<MemberEntry index = {""} scrollData = {scrollData}>{{memberData:memberData}}</MemberEntry>)
             toggleButton();
             hitDropdown(4);
             expect(blockUserMock).toBeCalledTimes(0)
@@ -380,7 +380,7 @@ describe("Test /League/MemberEntry.js", () => {
         })
 
         it("Test add admin", () => {
-            render(<MemberEntry index = {""}>{{memberData:memberData, scrollData:scrollData}}</MemberEntry>)
+            render(<MemberEntry index = {""} scrollData = {scrollData}>{{memberData:memberData}}</MemberEntry>)
             toggleButton();
             hitDropdown(4);
             expect(blockUserMock).toBeCalledTimes(0)
@@ -402,7 +402,7 @@ describe("Test /League/MemberEntry.js", () => {
 
         it("Test accept invite", () => {
             scrollData.scrollType="Received";
-            render(<MemberEntry index = {""}>{{memberData:memberData, scrollData:scrollData}}</MemberEntry>)
+            render(<MemberEntry index = {""} scrollData = {scrollData}>{{memberData:memberData}}</MemberEntry>)
             toggleButton();
             hitDropdown(2);
             expect(blockUserMock).toBeCalledTimes(0)
@@ -423,7 +423,7 @@ describe("Test /League/MemberEntry.js", () => {
 
         it("Test decline invite", () => {
             scrollData.scrollType="Received";
-            render(<MemberEntry index = {""}>{{memberData:memberData, scrollData:scrollData}}</MemberEntry>)
+            render(<MemberEntry index = {""} scrollData = {scrollData}>{{memberData:memberData}}</MemberEntry>)
             toggleButton();
             hitDropdown(3);
             expect(blockUserMock).toBeCalledTimes(0)
@@ -444,7 +444,7 @@ describe("Test /League/MemberEntry.js", () => {
 
         it("Test unban", () => {
             scrollData.scrollType="Banned";
-            render(<MemberEntry index = {""}>{{memberData:memberData, scrollData:scrollData}}</MemberEntry>)
+            render(<MemberEntry index = {""} scrollData = {scrollData}>{{memberData:memberData}}</MemberEntry>)
             toggleButton();
             hitDropdown(2);
             expect(blockUserMock).toBeCalledTimes(0)
@@ -465,7 +465,7 @@ describe("Test /League/MemberEntry.js", () => {
 
         it("Test revoke invite", () => {
             scrollData.scrollType="Invited";
-            render(<MemberEntry index = {""}>{{memberData:memberData, scrollData:scrollData}}</MemberEntry>)
+            render(<MemberEntry index = {""} scrollData = {scrollData}>{{memberData:memberData}}</MemberEntry>)
             toggleButton();
             hitDropdown(2);
             expect(blockUserMock).toBeCalledTimes(0)

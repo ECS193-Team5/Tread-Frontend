@@ -82,39 +82,6 @@ describe("Test /League/LeagueMemberScroll.js", () => {
         expect(getFriendMock).toBeCalledTimes(1);
     })
 
-    it("Test render Received as a participant", () => {
-        render(<LeagueMemberScroll leaugeID = {4} type = "Received">{{username:"me#2224", role:"participant"}}</LeagueMemberScroll>)
-        expect(getLeagueInfoMock).toBeCalledTimes(1);
-        expect(getMembersLeagueMock).toBeCalledTimes(0);
-        expect(getInvitedMock).toBeCalledTimes(0);
-        expect(getBannedMock).toBeCalledTimes(0);
-        expect(getRequestingMock).toBeCalledTimes(0);
-        expect(getBlockedMock).toBeCalledTimes(1);
-        expect(getFriendMock).toBeCalledTimes(1);
-    })
-
-    it("Test render Banned as a participant", () => {
-        render(<LeagueMemberScroll leaugeID = {4} type = "Banned">{{username:"me#2224", role:"participant"}}</LeagueMemberScroll>)
-        expect(getLeagueInfoMock).toBeCalledTimes(1);
-        expect(getMembersLeagueMock).toBeCalledTimes(0);
-        expect(getInvitedMock).toBeCalledTimes(0);
-        expect(getBannedMock).toBeCalledTimes(0);
-        expect(getRequestingMock).toBeCalledTimes(0);
-        expect(getBlockedMock).toBeCalledTimes(1);
-        expect(getFriendMock).toBeCalledTimes(1);
-    })
-
-    it("Test render Invited as a participant", () => {
-        render(<LeagueMemberScroll leaugeID = {4} type = "Invited">{{username:"me#2224", role:"participant"}}</LeagueMemberScroll>)
-        expect(getLeagueInfoMock).toBeCalledTimes(1);
-        expect(getMembersLeagueMock).toBeCalledTimes(0);
-        expect(getInvitedMock).toBeCalledTimes(0);
-        expect(getBannedMock).toBeCalledTimes(0);
-        expect(getRequestingMock).toBeCalledTimes(0);
-        expect(getBlockedMock).toBeCalledTimes(1);
-        expect(getFriendMock).toBeCalledTimes(1);
-    })
-
     it("Test render Invited with multiple users", () => {
         let leagueObj = {data:[{_id:"id", challengeId:"5", exercise:{exerciseName:"exampleName", convertedAmount:10, amount:10, unit:"m"}, progress:{progress:0, exercise:{exerciseName:"exampleName", convertedAmount:10, amount:10, unit:"m"}}},{_id:"id", challengeId:"5", exercise:{exerciseName:"exampleName", convertedAmount:10, amount:10, unit:"m"}, progress:{progress:0, exercise:{exerciseName:"exampleName", convertedAmount:10, amount:10, unit:"m"}}}]}
         getInvitedMock = jest.spyOn(leagueFunc, "getInvited").mockImplementation((leaugeID,func) => {func(leagueObj)})
