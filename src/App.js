@@ -11,26 +11,12 @@ import Social from "./pages/social";
 import Profile from "./pages/profile";
 import League from "./pages/league";
 import RedirectPage from "./pages/redirectPage";
-import { useEffect } from "react";
 import Privacy from "./pages/privacy";
-import { onForegroundMessage } from "./firebase";
 import TestDiv from "./pages/test";
 import DeleteAccountInfo from "./pages/deleteAccountInfo";
 import Contact from "./pages/contact";
 
 function App() {
-  useEffect(() => {
-    try{
-    onForegroundMessage()
-      .then((payload) => {
-        console.log('Received foreground message: ', payload);
-        const { notification: { title, body } } = payload;
-      })
-      .catch(err => console.log('An error occured while retrieving foreground message. ', err));
-    }
-    catch(err){}
-  }, []);
-
   return (
     <div id = "page">
       <Router>

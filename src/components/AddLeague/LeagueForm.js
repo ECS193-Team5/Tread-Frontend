@@ -46,16 +46,11 @@ const LeagueForm = () => {
       return;
     }
 
-    let submitPhoto = photo;
-    if (photo === "") {
-      submitPhoto = "https://i.imgur.com/sXwXq45.png";
-    }
-
     var formData = new FormData();
     formData.append("leagueName", leagueName);
     formData.append("leagueType", leagueType);
     formData.append("leagueDescription", leagueDescription);
-    formData.append("leaguePicture", submitPhoto);
+    formData.append("leaguePicture", photo);
 
     createLeague(formData, moveSocialLeaguePage, setError);
   }
@@ -68,12 +63,12 @@ const LeagueForm = () => {
 
       <div className="formObj">
         <h2>League Picture</h2>
-        <PhotoUploadForm>{{ "default": "https://i.imgur.com/sXwXq45.png", "func": setPhoto }}</PhotoUploadForm>
+        <PhotoUploadForm setPhoto = {setPhoto} type = "createLeague"></PhotoUploadForm>
       </div>
 
 
-      <LeagueNameForm updateLeagueName={setLeagueName} />
-      <LeagueDescriptionForm updateDescription={setLeagueDescription} />
+      <LeagueNameForm defaultValue={""} updateLeagueName={setLeagueName} />
+      <LeagueDescriptionForm defaultValue={""} updateDescription={setLeagueDescription} />
       <LeagueTypeForm defaultValue = "private" updateLeagueType={setLeagueType} />
 
 

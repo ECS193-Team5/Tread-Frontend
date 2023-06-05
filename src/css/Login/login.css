@@ -120,7 +120,15 @@ body{
 }
 
 
-
+#googlePlayStoreImage{
+    width: 250px;
+}
+#appleStoreImage{
+    width: 220px;
+}
+#appleSignInButton{
+    margin-top: 20px;
+}
 .frontPageDescription{
     position: relative;
     top: 5%;

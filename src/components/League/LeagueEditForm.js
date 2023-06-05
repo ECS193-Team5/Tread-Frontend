@@ -38,9 +38,10 @@ const LeagueEditForm = (props) => {
 
     const submitUpdatedPhoto = () => {
         if (photo === "") {
+            console.log("does nto update photo")
             return;
         }
-
+        console.log("does update photo")
         var formData = new FormData();
         formData.append("leaguePicture", photo);
         formData.append("leagueID", props.leagueID);
@@ -97,7 +98,7 @@ const LeagueEditForm = (props) => {
         <div data-testid="LeagueEditFormComponent">
             <div className="formObj">
                 <h2>League Picture</h2>
-                <PhotoUploadForm>{{ "default": createLeaguePictureURL(props.leagueID), "func": setPhoto }}</PhotoUploadForm>
+                <PhotoUploadForm setPhoto = {setPhoto} type ="editLeague" leagueID={props.leagueID}></PhotoUploadForm>
             </div>
 
             <LeagueNameForm defaultValue = {defaultLeagueName} updateLeagueName={setLeagueName} />
