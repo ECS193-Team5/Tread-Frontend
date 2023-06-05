@@ -104,17 +104,22 @@ const Login = () => {
         </div>
       </div>
       <p data-testid="LoginFrontPageDescription" className='frontPageDescriptionText'>{hardCodedInfo.frontPageDescription}</p>
-      <div id="buttonDivGoogle"></div>
-      <AppleSigninButton/>
-      </div>
+
+        <div id="buttonDivGoogle"></div>
+        <div id="appleSignInButton"><AppleSigninButton/></div>
+
+
+        </div>
+
+
 
       <div id = "loginPageMobile">
         <div id = "frontPageLogoSectionMobile">
           <img id="treadLogo" src={frontPageTreadLogo} alt="logo" />
           <p id = "frontPageTitleMobile">Tread</p>
         </div>
-        <a href='https://play.google.com/store/apps/details?id=com.treadmobile&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src={googlePlayStoreBadge}/></a>
-        <a href='https://apps.apple.com/us/app/tread-mobile/id6448766159'><img alt='Download on the App Store' src={appleAppStoreBadge}/></a>
+        <a href='https://play.google.com/store/apps/details?id=com.treadmobile&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img id="googlePlayStoreImage" alt='Get it on Google Play' src={googlePlayStoreBadge}/></a>
+        <a href='https://apps.apple.com/us/app/tread-mobile/id6448766159'><img id="appleStoreImage" alt='Download on the App Store' src={appleAppStoreBadge}/></a>
       </div>
   </div>)
 }
