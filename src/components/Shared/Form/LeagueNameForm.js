@@ -5,10 +5,8 @@ const LeagueNameForm = (props) => {
 
     useEffect (
       () => {
-          if(props.defaultValue){
-              document.getElementById("leagueNameInput").value = props.defaultValue;
-              setNameError("");
-          }
+            document.getElementById("leagueNameInput").value = props.defaultValue;
+            setNameError("");
       }, [props.defaultValue]
   );
 
@@ -16,12 +14,6 @@ const LeagueNameForm = (props) => {
         let leagueName = event.target.value;
         if (leagueName.length === 0 || leagueName.length > 32){
           setNameError("Cannot create league, League Name must be between 1-32 characters");
-          props.updateLeagueName("");
-          return false
-        }
-
-        if ((/^\s+$/i.test(leagueName))) {
-          setNameError("Cannot create league, League Name cannot be a string of spaces.");
           props.updateLeagueName("");
           return false
         }

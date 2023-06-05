@@ -14,6 +14,13 @@ let updateLeagueTypeMock =  jest.spyOn(leagueFunc, "updateLeagueType").mockImple
 let deleteLeagueMock =  jest.spyOn(leagueFunc, "deleteLeague").mockImplementation((id, then, err)=>{then()})
 let setLocationMock = jest.spyOn(cssFunc, "setLocation").mockImplementation((id, roleSet)=>{});
 
+jest.spyOn(global, 'FileReader').mockImplementation(function () {
+    this.readAsDataURL = jest.fn(()=>{this.result = "foo"});
+});
+
+
+import imageFile from "../../../../src/assets/BronzeTrophy.png";
+
 const deleteLeague = (num) => {
     const element = screen.getByTestId("LeagueEditFormDeleteButton");
     fireEvent.click(element);
@@ -66,6 +73,29 @@ describe("Test /League/LeagueEditForm.js", () => {
         fireEvent.change(elementD, {target:{value:'exampleValidName'}});
         const elementN = screen.getByTestId("LeagueNameFormUpdateLeagueNameInput");
         fireEvent.change(elementN, {target:{value:'exampleValidName'}});
+        submitButton()
+        expect(updateLeagueDescriptionMock).toBeCalled();
+        expect(updateLeagueNameMock).toBeCalled();
+        expect(updateLeagueTypeMock).toBeCalled();
+    })
+
+    it("Test update with info and picture", () => {
+        render(<LeagueEditForm>{{"id":"4"}}</LeagueEditForm>)
+        const element = screen.getByTestId("PhotoUploadFormUploadPhotoInput");
+        fireEvent.change(element, {
+            target:{
+                files:[imageFile]
+            }} );
+        let reader = FileReader.mock.instances[0];
+        reader.onload({ target: { result: 'foo' } });
+        const elementT = screen.getByTestId("LeagueTypeFormUpdateLeagueTypeSelect");
+        fireEvent.change(elementT, {target:{value:'private'}});
+        const elementD = screen.getByTestId("LeagueDescriptionFormUpdateDescriptionInput");
+        fireEvent.change(elementD, {target:{value:'exampleValidName'}});
+        const elementN = screen.getByTestId("LeagueNameFormUpdateLeagueNameInput");
+        fireEvent.change(elementN, {target:{value:'exampleValidName'}});
+
+
         submitButton()
         expect(updateLeagueDescriptionMock).toBeCalled();
         expect(updateLeagueNameMock).toBeCalled();

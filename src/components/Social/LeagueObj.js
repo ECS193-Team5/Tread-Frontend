@@ -98,9 +98,11 @@ const LeagueObj = (props) => {
         }
         setDropdownOptions(options);
     }
+
     function moveLeaguePage(){
         setLocation("leagueDescriptionPage?=" + props.children._id);
     }
+
     return(
         <div data-testid={"LeagueObjComponent"+props.index} id = {"LeagueObj"+props.children._id} className = "displayObj">
             <div data-testid={"LeagueObjComponentMoveLeaguePageButton"+props.index} className = "objSection"  onClick = {moveLeaguePage}>

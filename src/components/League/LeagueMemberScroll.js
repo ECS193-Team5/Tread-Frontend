@@ -11,20 +11,11 @@ const LeagueMemberScroll = (props) => {
     let [information, setInformation] = useState([]);
     let [showZero, setShowZero] = useState(false);
     const [load, setLoad] = useState(false);
-    const [blockedList, setBlockedList] = useState([]);
-    const [friendList, setFriendList] = useState([]);
-    const [leagueName, setLeagueName] = useState("");
-    let [scrollData, setScrollData] = useState(
-        {
-            username: props.children.username,
-            blocked: [],
-            friends: [],
-            leagueID: props.leagueID,
-            leagueName: "",
-            scrollType: props.type,
-            role: props.children.role
-        }
-    );
+    const [fullyLoaded, setFullyLoaded] = useState(false);
+    const [blockedList, setBlockedList] = useState(-1);
+    const [friendList, setFriendList] = useState(-1);
+    const [leagueName, setLeagueName] = useState(-1);
+    let [scrollData, setScrollData] = useState(null);
 
     let showMessage = {
         "Members":"This league seems to be empty.",
@@ -46,7 +37,15 @@ const LeagueMemberScroll = (props) => {
 
     useEffect (
         () => {
-            if(blockedList.length>0 ||  friendList.length>0 || leagueName.length>0){
+            if(scrollData){
+                setFullyLoaded(true);
+            }
+        }, [scrollData]
+    );
+
+    useEffect (
+        () => {
+            if(blockedList !== -1 &&  friendList !== -1 && leagueName !== -1 && props.children.username !== undefined){
                 setScrollData(
                     {
                         username: props.children.username,
@@ -59,7 +58,7 @@ const LeagueMemberScroll = (props) => {
                     }
                 )
             }
-        }, [blockedList, friendList, leagueName]
+        }, [blockedList, friendList, leagueName, props.children.username]
     );
 
     useEffect (
@@ -73,7 +72,7 @@ const LeagueMemberScroll = (props) => {
             else if(scrollType === "Banned" && (props.children.role === "admin" || props.children.role === "owner")){
                 getBanned(props.leagueID,processMemberInfo);
             }
-            else if(scrollType === "Invited" && (props.children.role === "admin" || props.children.role === "owner")){
+            else {
                 getInvited(props.leagueID, processMemberInfo);
             }
 
@@ -93,10 +92,10 @@ const LeagueMemberScroll = (props) => {
 
     function makeMemberEntryObj(input, index){
         if (index === 0){
-            return(<div><MemberEntry index = {index}>{{"memberData":input, "scrollData":scrollData}}</MemberEntry></div>);
+            return(<div><MemberEntry index = {index} scrollData={scrollData}>{{"memberData":input}}</MemberEntry></div>);
         }
         else {
-            return(<div><div className = "memberLine"></div><MemberEntry index = {index}>{{"memberData":input, "scrollData":scrollData}}</MemberEntry></div>);
+            return(<div><div className = "memberLine"></div><MemberEntry index = {index} scrollData = {scrollData}>{{"memberData":input}}</MemberEntry></div>);
         }
     }
 
@@ -112,7 +111,7 @@ const LeagueMemberScroll = (props) => {
     return(
             <div data-testid="LeagueMemberScrollComponent">
                 <div id = "LeagueMemberList">
-                    {information.map(makeMemberEntryObj)}
+                    {(fullyLoaded)? information.map(makeMemberEntryObj) :<></>}
                 </div>
                 {(showZero) ? <ZeroItem message = {showMessage[scrollType]}></ZeroItem> : <></>}
             </div>

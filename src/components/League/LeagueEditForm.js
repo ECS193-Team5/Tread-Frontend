@@ -78,7 +78,7 @@ const LeagueEditForm = (props) => {
         submitUpdatedDescription();
         submitUpdatedName();
         submitUpdatedType();
-        setSubmitError("Succesfully updated league information.")
+        setSubmitError("Succesfully updated league information. Please allow a few minutes for photo to update.")
     }
 
     function moveLeaguePage(){

@@ -76,7 +76,7 @@ const FriendObj = (props) => {
       friendOptions.push({ "name": "Decline", "func": decline });
       friendOptions.push({ "name": "Block", "func": block });
     }
-    else if (type === "blocked") {
+    else  {
       friendOptions.push({ "name": "Unblock", "func": unblock });
     }
     setDropdownOptions(friendOptions);

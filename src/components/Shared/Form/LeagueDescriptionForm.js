@@ -4,10 +4,8 @@ const LeagueDescriptionForm = (props) => {
 
     useEffect (
         () => {
-            if(props.defaultValue){
                 document.getElementById("leagueDescriptionInput").value = props.defaultValue;
                 setDescriptionError("");
-            }
         }, [props.defaultValue]
     );
 
