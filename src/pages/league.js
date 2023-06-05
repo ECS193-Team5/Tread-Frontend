@@ -9,11 +9,12 @@ import LeagueMemberSection from "../components/League/LeagueMemberSection";
 import LeagueLeaderboard from '../components/League/LeagueLeaderboard';
 
 import "../css/Shared/page.css";
+import { getHrefLocation } from '../helpers/CssEffects';
 
 const League = (props) => {
 
     function getLeagueName() {
-        let href = window.location.href;
+        let href = getHrefLocation();
         let locationQuery = href.indexOf("=");
         let substring = href.substring(locationQuery + 1);
         return substring;

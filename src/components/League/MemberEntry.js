@@ -35,21 +35,21 @@ const MemberEntry = (props) => {
   );
 
   function isFriend(){
-    return props.children.scrollData.friends.includes(props.children.memberData.username);
+    return props.scrollData.friends.includes(props.children.memberData.username);
   }
 
   function isBlocked(){
-    return props.children.scrollData.blocked.includes(props.children.memberData.username);
+    return props.scrollData.blocked.includes(props.children.memberData.username);
   }
 
   function isSelf(){
-    return props.children.memberData.username === props.children.scrollData.username;
+    return props.children.memberData.username === props.scrollData.username;
   }
 
   function calculateMemberEntries() {
-    let scrollType = props.children.scrollData.scrollType;
+    let scrollType = props.scrollData.scrollType;
     let otherUserType = props.children.memberData.role;
-    let selfType = props.children.scrollData.role;
+    let selfType = props.scrollData.role;
     let ifSelfAdmin = selfType === "admin" || selfType === "owner";
 
     let dropdownOptions = [];
@@ -122,8 +122,8 @@ const MemberEntry = (props) => {
   function kickOut() {
     let data = {
       recipient: props.children.memberData.username,
-      leagueID: props.children.scrollData.leagueID,
-      leagueName: props.children.scrollData.leagueName
+      leagueID: props.scrollData.leagueID,
+      leagueName: props.scrollData.leagueName
     }
 
     kickOutUser(data, hideMemberItem);
@@ -131,8 +131,8 @@ const MemberEntry = (props) => {
 
   function ban() {
     let data = {recipient: props.children.memberData.username,
-              leagueID: props.children.scrollData.leagueID,
-              leagueName: props.children.scrollData.leagueName
+              leagueID: props.scrollData.leagueID,
+              leagueName: props.scrollData.leagueName
     }
     banUser(data, hideMemberItem);
   }
@@ -140,8 +140,8 @@ const MemberEntry = (props) => {
   function removeAdmin() {
     let data = {
       recipient: props.children.memberData.username,
-      leagueID: props.children.scrollData.leagueID,
-      leagueName: props.children.scrollData.leagueName
+      leagueID: props.scrollData.leagueID,
+      leagueName: props.scrollData.leagueName
     }
 
     removeAdminUser(data, reloadPage);
@@ -151,8 +151,8 @@ const MemberEntry = (props) => {
     let data =
     {
       recipient: props.children.memberData.username,
-      leagueID: props.children.scrollData.leagueID,
-      leagueName: props.children.scrollData.leagueName
+      leagueID: props.scrollData.leagueID,
+      leagueName: props.scrollData.leagueName
     }
 
     addAdminUser(data, reloadPage);
@@ -161,7 +161,7 @@ const MemberEntry = (props) => {
   function accept() {
     let data = {
       recipient: props.children.memberData.username,
-      leagueID: props.children.scrollData.leagueID
+      leagueID: props.scrollData.leagueID
     }
 
     acceptUser(data, reloadPage);
@@ -170,7 +170,7 @@ const MemberEntry = (props) => {
   function decline() {
     let data = {
         recipient: props.children.memberData.username,
-        leagueID: props.children.scrollData.leagueID
+        leagueID: props.scrollData.leagueID
     }
 
     declineUser(data, reloadPage)
@@ -179,7 +179,7 @@ const MemberEntry = (props) => {
   function unban() {
     let data = {
       recipient: props.children.memberData.username,
-      leagueID: props.children.scrollData.leagueID
+      leagueID: props.scrollData.leagueID
     };
 
     unbanUser(data, hideMemberItem);
@@ -188,7 +188,7 @@ const MemberEntry = (props) => {
   function revoke() {
     let data = {
       recipient: props.children.memberData.username,
-      leagueID: props.children.scrollData.leagueID
+      leagueID: props.scrollData.leagueID
     }
 
     revokeUser(data, hideMemberItem);

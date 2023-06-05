@@ -7,7 +7,6 @@ import { calculateProgress } from "../../helpers/calculationHelpers";
 
 const min = (a, b) => {
     if (a < b){
-        console.log(a,b)
         return a;
     }
     return b;

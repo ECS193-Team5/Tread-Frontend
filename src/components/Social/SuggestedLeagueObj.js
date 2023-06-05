@@ -11,6 +11,7 @@ const SuggestedLeagueObj = (props) => {
     }
 
     const requestJoinLeague = () => {
+        console.log(leagueID, updateParent)
         sendLeagueRequest(leagueID, updateParent);
     }
 

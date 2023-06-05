@@ -219,6 +219,7 @@ export function getMembersLeague(leagueID, thenFunc){
   };
   axios(config)
   .then(function(response){
+    console.log("league members", response.data);
       thenFunc(response);
   })
   .catch(function(error){
@@ -286,6 +287,7 @@ export function getLeaderboardInfo(leagueID, thenFunc){
     };
     axios(config)
     .then(function(response){
+      console.log(response.data);
       thenFunc(response)
     })
     .catch(function(error){

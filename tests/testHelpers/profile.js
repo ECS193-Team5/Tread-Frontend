@@ -18,3 +18,11 @@ export function setEarnedMedals(name){
 export function setInProgressMedals(name){
     s.clickBarButton(1);
 }
+
+export function clickMedalsPage(){
+    s.clickButton("PageSwitchMedalButton");
+}
+
+export function clickStatsPage(){
+    s.clickButton("PageSwitchStatsButton");
+}

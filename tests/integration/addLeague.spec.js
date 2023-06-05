@@ -92,5 +92,61 @@ describe("Test pages/addLeague", () => {
             checkNameErr("")
             checkSubmitErr("The league could not be created. Please try again later.")
         });
+
+
+        it("Test fail name too long", () => {
+            createLeagueMock.mockImplementation((item, then, err)=>{err()})
+            render(<AddLeague/>)
+            setPhoto();
+            setLeagueName("nameisway toolong his is not thust a buch for the thing it is way too long ");
+            setLeagueDescription("description");
+            setLeagueType("private");
+            submitLeague();
+            checkDescriptionErr("")
+            checkNameErr("Cannot create league, League Name must be between 1-32 characters")
+            checkSubmitErr("Please create a league name.")
+        });
+
+
+        it("Test description is empty", () => {
+            createLeagueMock.mockImplementation((item, then, err)=>{err()})
+            render(<AddLeague/>)
+            setPhoto();
+            setLeagueName("name");
+            setLeagueDescription("description");
+            setLeagueDescription("");
+            setLeagueType("private");
+            submitLeague();
+            checkDescriptionErr("Need to fill in a description.")
+            checkNameErr("")
+            checkSubmitErr("Please check the league description.")
+        });
+
+        it("Test name is just spaces", () => {
+            createLeagueMock.mockImplementation((item, then, err)=>{err()})
+            render(<AddLeague/>)
+            setPhoto();
+            setLeagueName("name");
+            setLeagueName("")
+            setLeagueDescription("description");
+            setLeagueType("private");
+            submitLeague();
+            checkDescriptionErr("")
+            checkNameErr("Cannot create league, League Name must be between 1-32 characters")
+            checkSubmitErr("Please create a league name.")
+        });
+
+        it("Test description is too long", () => {
+            createLeagueMock.mockImplementation((item, then, err)=>{err()})
+            render(<AddLeague/>)
+            setPhoto();
+            setLeagueName("name");
+            setLeagueDescription("descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription");
+            setLeagueType("private");
+            submitLeague();
+            checkDescriptionErr("League description is too long. Please limit to 255 characters.")
+            checkNameErr("")
+            checkSubmitErr("Please check the league description.")
+        });
     })
 });

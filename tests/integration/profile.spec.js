@@ -11,6 +11,8 @@ import * as firebaseFunc from "../../src/helpers/firebaseHelpers";
 import * as authFunc from "../../src/routes/auth";
 import * as sharedHelpers from "../testHelpers/shared";
 import { setExerciseName, setExerciseUnit, setEarnedMedals, setInProgressMedals } from '../testHelpers/profile';
+import * as h from "../testHelpers/profile";
+
 jest.mock('firebase/messaging', () => () => {});
 jest.mock('../../src/firebase', () => () => {});
 
@@ -52,7 +54,7 @@ let medalData = [
         }
     }]
 let notifications = [{"_id":1, message:"This is the first message"}, {"_id":2, message:"This is the second message"}]
-
+let setLocationMock = jest.spyOn(cssFunc, "setLocation");
 
 let getEarnedMock = jest.spyOn(medalsFunc, "getEarnedMedals").mockImplementation((func) => {func(medalData)})
 let getInProgressMock = jest.spyOn(medalsFunc, "getInProgressMedals").mockImplementation((func) => {func(medalData)})
@@ -215,6 +217,21 @@ describe("Test /Profile", () => {
         expect(cssFuncMock).toBeCalledWith("./profileSettingsPage");
 
     })
+
+    describe("Test the page switch up in the header", () =>{
+        it("Test change to stats page", () => {
+            render(<Profile>{{type:"medals"}}</Profile>)
+            h.clickStatsPage()
+            expect(setLocationMock).toBeCalled
+        })
+
+        it("Test change to medals page", () => {
+            render(<Profile>{{type:"stats"}}</Profile>)
+            h.clickMedalsPage()
+            expect(setLocationMock).toBeCalled
+        })
+    })
+
 
     describe("Test move from side bar", () => {
 

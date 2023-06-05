@@ -21,7 +21,7 @@ let suggestedFriendData = [["username#4444", 3],["username#4434", 4]]
 let suggestedLeagueData = [{"_id":4, "leagueName":"name"},{"_id":5, "leagueName":"name"}]
 
 let successfunction = (then) => {then([])};
-let successfunctionRequest = (data, then , err) => {console.log(then); then(data)};
+let successfunctionRequest = (data, then , err) => { then(data)};
 let getRecentFriendsMock = jest.spyOn(friendFunc, "getRecentFriends").mockImplementation(successfunction);
 let getSuggestedFriendsMock = jest.spyOn(friendFunc, "getSuggestedFriends").mockImplementation((then) => {then(suggestedFriendData)});
 let getRecentLeaguesMock = jest.spyOn(leagueFunc, "getRecentLeagues").mockImplementation(successfunction);
