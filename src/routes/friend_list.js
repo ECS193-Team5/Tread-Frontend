@@ -144,7 +144,7 @@ export function removeFriend(friendName, thenFunc, errorFunc) {
   export function declineFriendRequest(username, thenFunc){
     var config = {
       method: 'post',
-      url: backend_url + 'friend_list/removed_received_request',
+      url: backend_url + 'friend_list/remove_received_request',
       headers: {
         Accept: 'application/json',
       },
