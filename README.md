@@ -1,6 +1,20 @@
-# Getting Started with Create React App
+# Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Installation
+
+
+```
+git clone https://github.com/ECS193-Team5/Tread-Frontend.git
+```
+
+
+Navigate to the project folder and install the required dependencies;
+
+
+```
+npm install
+```
 
 ## Available Scripts
 
@@ -14,57 +28,74 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Technologies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The frontend is written in React, HTML, JS, and CSS. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+It has many dependencies, but the most notable imported modules are:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. qrcode - This builds the qrcodes for the profile and league settings pages.
+2. Firbase -  This handles the push notifications - both for reading the device tokens and for handling when the web receives a push notification.
+3. axios - This handles sending the backend requests.
+4. chart.js - This chart making program is used in the statistics page to make nice visuals.
+5. react-apple-signin-auth - This is a necessary dependency to allow Sign in with Apple.
+6. react-router-dom -  This module is used to set up the page routing. In src/App.js, each url is set up to go to a specific React component defined in src/pages.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Organization
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The three relevant top-level directories are /public, /src and /tests. 
 
-## Learn More
+**/public:** This folder includes the .well-known file. This is used for Deep Linking - the feature where mobile will redirect you to the Tread App if you have it. It also includes the favicon - which determines the logo when the Tread App is deployed.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**src/assets** : This stores all the commonly reused images, like the trophies and Tread logo.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**src/components**: The components folder is further subdivided into folders - each folder representing one of the pages. There is a Shared Folder for components used across pages. One component is one file - no exceptions. 
 
-### Code Splitting
+**src/css : **The folder holds all the CSS. It is also subdivided into folders that reflect the original page structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**src/helpers :** This folder stores a set of helper functions, for doing things like manipulating DateTime objects, changes in CSS, or pulling from Cloudinary.** **
 
-### Analyzing the Bundle Size
+**src/pages : **The base components that make up the app. Each &lt;Route> Link goes to one of the React components listed here. The pages organization is reflected in the /compenents and /css directories as well.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**src/routes : **All of the requests to the backend are stored here. By separating the axios requests into their own folder, it was easier to import the same request into multiple pages. This folder is organized to mirror the Backend organization.
 
-### Making a Progressive Web App
+**tests**: This includes the complete testing suite. It is subdivided into integration tests, unit tests, and e2e tests. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## **Testing**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The frontend has three types of testing: end-to-end, integration, and unit. Each one has its own code coverage report. Generating the coverage report makes the tests take longer to run, but when finishing a feature, the coverage report should be generated to make sure that no lines have been missed.
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### **End-to-End**
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+npm run e2e_test
+npm run e2e_test_coverage
+```
+
+
+
+### Integration
+
+
+```
+npm run integration_test
+npm run integration_test_coverage
+```
+
+
+
+### Unit
+
+
+```
+npm run unit_test
+npm run unit_test_coverage
+```
