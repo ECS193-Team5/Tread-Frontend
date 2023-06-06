@@ -32,14 +32,14 @@ You may also see any lint errors in the console.
 
 ## Technologies
 
-The frontend is written in React, HTML, JS, and CSS. 
+The frontend is written in React, HTML, JS, and CSS.
 
 It has many dependencies, but the most notable imported modules are:
 
 
 
 1. qrcode - This builds the qrcodes for the profile and league settings pages.
-2. Firbase -  This handles the push notifications - both for reading the device tokens and for handling when the web receives a push notification.
+2. Firebase -  This handles the push notifications - both for reading the device tokens and for handling when the web receives a push notification.
 3. axios - This handles sending the backend requests.
 4. chart.js - This chart making program is used in the statistics page to make nice visuals.
 5. react-apple-signin-auth - This is a necessary dependency to allow Sign in with Apple.
@@ -48,23 +48,23 @@ It has many dependencies, but the most notable imported modules are:
 
 ## Organization
 
-The three relevant top-level directories are /public, /src and /tests. 
+The three relevant top-level directories are /public, /src and /tests.
 
 **/public:** This folder includes the .well-known file. This is used for Deep Linking - the feature where mobile will redirect you to the Tread App if you have it. It also includes the favicon - which determines the logo when the Tread App is deployed.
 
-**src/assets** : This stores all the commonly reused images, like the trophies and Tread logo.
+**src/assets:** This stores all the commonly reused images, like the trophies and Tread logo.
 
-**src/components**: The components folder is further subdivided into folders - each folder representing one of the pages. There is a Shared Folder for components used across pages. One component is one file - no exceptions. 
+**src/components:**: The components folder is further subdivided into folders - each folder representing one of the pages. There is a Shared Folder for components used across pages. One component is one file - no exceptions.
 
-**src/css : **The folder holds all the CSS. It is also subdivided into folders that reflect the original page structure
+**src/css:** The folder holds all the CSS. It is also subdivided into folders that reflect the original page structure
 
-**src/helpers :** This folder stores a set of helper functions, for doing things like manipulating DateTime objects, changes in CSS, or pulling from Cloudinary.** **
+**src/helpers:** This folder stores a set of helper functions, for doing things like manipulating DateTime objects, changes in CSS, or pulling from Cloudinary.** **
 
-**src/pages : **The base components that make up the app. Each &lt;Route> Link goes to one of the React components listed here. The pages organization is reflected in the /compenents and /css directories as well.
+**src/pages:** The base components that make up the app. Each &lt;Route> Link goes to one of the React components listed here. The pages organization is reflected in the /compenents and /css directories as well.
 
-**src/routes : **All of the requests to the backend are stored here. By separating the axios requests into their own folder, it was easier to import the same request into multiple pages. This folder is organized to mirror the Backend organization.
+**src/routes:** All of the requests to the backend are stored here. By separating the axios requests into their own folder, it was easier to import the same request into multiple pages. This folder is organized to mirror the Backend organization.
 
-**tests**: This includes the complete testing suite. It is subdivided into integration tests, unit tests, and e2e tests. 
+**tests:**: This includes the complete testing suite. It is subdivided into integration tests, unit tests, and e2e tests.
 
 
 ## **Testing**

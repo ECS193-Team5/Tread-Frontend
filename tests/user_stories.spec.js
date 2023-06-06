@@ -66,46 +66,107 @@ function setShortChallengeTime(duration) {
     return [issueDateString, endDateString]
 }
 
+async function addChallengeFromChallengePage(page, exerciseName, amount, unit, duration, type, receiver){
+    await page.getByTestId('SideBarChallengesButton').click();
+    await page.getByTestId('BarButtonComponent3').click();
+    await addChallenge(page, exerciseName, amount, unit, duration, type, receiver);
+}
+
+async function addChallengeFromFriendPage(page, username, exerciseName, amount, unit, duration, type, receiver) {
+    await page.getByTestId('SideBarSocialPageButton').click();
+    await page.getByTestId('FriendObjMoreInfoButton' + username).click();
+    await page.getByTestId('DropDownEntryDropDownTextn' + username + 'FriendObj-2').click();
+    await addChallenge(page, exerciseName, amount, unit, duration, type, receiver);
+}
+
+async function addChallenge(page, exerciseName, amount, unit, duration, type, receiver) {
+    await page.waitForURL('https://tread.run/addChallengePage')
+    await page.getByTestId('ExerciseNameFormAddChallengeExerciseNameSelect').selectOption(exerciseName);
+    await page.getByTestId('ExerciseAmountFormExerciseAmountInput').click();
+    await page.getByTestId('ExerciseAmountFormExerciseAmountInput').fill(amount);
+    await page.getByTestId('ExerciseAmountFormUnitSelect').selectOption(unit);
+    const [issueDate, dueDate] = setShortChallengeTime(duration);
+    await page.getByTestId('ExerciseDateFormIssueDateInput').fill(issueDate);
+    await page.getByTestId('ExerciseDateFormDueDateInput').fill(dueDate);
+    if (type) {
+        await page.getByTestId('ExerciseReceiverFormChallengeTypeSelect').selectOption(type);
+    }
+    if (receiver) {
+        await page.getByTestId('ExerciseReceiverFormReceiverSelect').selectOption(receiver);
+    }
+    await page.getByTestId('ChallengeFormSubmitButton').click();
+}
+
 test('Send self challenge', async ({ browser }) => {
     const user1Context = await browser.newContext({ storageState: './playwright/.auth/treadUser1.json' });
     const page = await user1Context.newPage();
     await page.goto('https://tread.run/currentChallengePage');
-    await page.getByTestId('BarButtonComponent3').click();
-    await page.getByTestId('ExerciseNameFormAddChallengeExerciseNameSelect').selectOption('Aikido');
-    await page.getByTestId('ExerciseAmountFormExerciseAmountInput').click();
-    await page.getByTestId('ExerciseAmountFormExerciseAmountInput').fill('5');
-    const [issueDate, dueDate] = setShortChallengeTime(1);
-    await page.getByTestId('ExerciseDateFormIssueDateInput').fill(issueDate);
-    await page.getByTestId('ExerciseDateFormDueDateInput').fill(dueDate);
-    await page.getByTestId('ChallengeFormSubmitButton').click();
+    await addChallengeFromChallengePage(page, "Badminton", '5', "min", 1, "self")
     await expect(page).toHaveURL('https://tread.run/currentChallengePage');
     await user1Context.close();
 });
-/*
+
+
+async function addFriend(page, username) {
+    await page.getByTestId('SideBarSocialPageButton').click();
+    await page.getByTestId('BarButtonComponent4').click();
+    await page.getByTestId('UserAddFormDescriptionUsernameInput').click();
+    await page.getByTestId('UserAddFormDescriptionUsernameInput').fill(username);
+    await page.getByTestId('UserAddFormSendButton').click();
+}
+
+async function acceptFriendRequest(page, username) {
+    await pageage.getByTestId('SideBarSocialPageButton').click();
+    await page.getByTestId('BarButtonComponent2').click();
+    await page.getByTestId('FriendObjMoreInfoButton' + username).click();
+    await page.getByTestId('DropDownEntryDropDownText' + username + 'FriendObj-1').click();
+}
+
+async function unFriend(page, username) {
+    await page.getByTestId('SideBarSocialPageButton').click();
+    await page.getByTestId('BarButtonComponent0').click();
+    await page.getByTestId('FriendObjMoreInfoButton' + username).click();
+    await page.getByTestId('DropDownEntryDropDownText'+ username +'FriendObj-0').click();
+}
+
 test('Friend Functionality', async ({ browser }) => {
+    const user2Username = 'TreadTest#8802';
+    const user1Username = 'TreadTest2#6945';
     const user1Context = await browser.newContext({ storageState: './playwright/.auth/treadUser1.json'});
     const user1Page = await user1Context.newPage();
     await user1Page.goto('https://tread.run/currentChallengePage');
-    await user1Page.getByTestId('SideBarSocialPageButton').click();
-    await user1Page.getByTestId('BarButtonComponent4').click();
-    await user1Page.getByTestId('UserAddFormDescriptionUsernameInput').click();
-    await user1Page.getByTestId('UserAddFormDescriptionUsernameInput').fill('TreadTest2#6945');
-    await user1Page.getByTestId('UserAddFormSendButton').click();
+    await addFriend(user1Page, user2Username);
     const user2Context = await browser.newContext({ storageState: './playwright/.auth/treadUser2.json'});
     const user2Page = await user2Context.newPage();
     await user2Page.goto('https://tread.run/currentChallengePage');
-    await user2Page.getByTestId('SideBarExerciseHistoryButton').click();
     // add expect: Check the notification exists
+    await user2Page.getByTestId('SideBarExerciseHistoryButton').click();
     await user2Page.getByTestId('MailBoxEntryDeclineButton0').click();
+    // reject friend request
     await user2Page.getByTestId('SideBarSocialPageButton').click();
     await user2Page.getByTestId('BarButtonComponent2').click();
-    await user2Page.getByTestId('FriendObjMoreInfoButtonTestUser1#0455').click();
-    await user2Page.getByTestId('DropDownEntryDropDownTextTestUser1#0455FriendObj-1').click();
-    await user2Page.getByRole('button', { name: 'Friends' }).click();
-    await user2Page.getByRole('button', { name: 'Dropdown' }).click();
-    await user2Page.locator('div').filter({ hasText: /^UnfriendBlock$/ }).first().click();
-    await user2Page.getByText('Unfriend').click();
+    await user2Page.getByTestId('FriendObjMoreInfoButton' + user1Username).click();
+    await user2Page.getByTestId('DropDownEntryDropDownText'+ user1Username +'FriendObj-1').click();
+
+    await page.goto('https://tread.run/currentChallengePage');
+    await addFriend(user1Page, user2Username);
+    await user2Page.getByTestId('SideBarExerciseHistoryButton').click();
+    await user2Page.getByTestId('MailBoxEntryDeclineButton0').click();
+    await acceptFriendRequest(user2Page, user1Username);
+
+    await addChallengeFromChallengePage(user1Page, 'Barre', '24', 'min', '1', 'friend', user2Username)
+    // change later
+    await addChallengeFromFriendPage(user1Page, user2Username, 'Baseball', '24', 'mi', '1', 'friend', user2Username);
+    await page.getByTestId('SideBarChallengesButton').click();
+    await page.getByTestId('BarButtonComponent2').click();
+    await page.getByTestId('DeclineChallengeButtonComponentBarre').click();
+    await page.getByTestId('DeclineChallengeButtonComponentBaseball').click();
+
+
+
+    //unfriend
+    await unFriend(user2Page, user1Username)
 
     await user1Context.close();
     await user2Context.close();
-});*/
+});

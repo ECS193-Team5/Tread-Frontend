@@ -37,7 +37,7 @@ const ChallengeForm = () =>{
                 let information = encodedInfo[1].split(".");
                 if(information.length == 2){
                   setDefaultReceiverGroup(information[0].toLowerCase());
-                  setDefaultReceiver(information[1].toLowerCase());
+                  setDefaultReceiver(information[1]);
                 }
               }
               setLoad(true);
