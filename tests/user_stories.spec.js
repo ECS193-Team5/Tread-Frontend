@@ -75,6 +75,7 @@ async function addChallengeFromChallengePage(page, exerciseName, amount, unit, d
 
 async function addChallengeFromFriendPage(page, username, exerciseName, amount, unit, duration) {
     await page.getByTestId('SideBarSocialPageButton').click();
+    await page.getByTestId('BarButtonComponent0').click();
     await page.getByTestId('FriendObjMoreInfoButton' + username).click();
     await page.getByTestId('DropDownEntryDropDownText' + username + 'FriendObj-2').click();
     await page.waitForURL('https://tread.run/addChallengePage?prefill=friend.' + username);
@@ -148,6 +149,29 @@ async function deleteAllNotifications(page){
     await page.waitForResponse('https://api.tread.run/notifications/delete_all_notifications');
 }
 
+async function rejectFriendChallengeRequest(page, exerciseName) {
+    await page.getByTestId('SideBarChallengesButton').click();
+    await page.getByTestId('BarButtonComponent2').click();
+    await page.getByTestId('DeclineChallengeButtonComponent' + exerciseName).click();
+    await page.waitForResponse("https://api.tread.run/challenges/decline_friend_challenge")
+}
+
+async function declineFriendRequest(page, username){
+    await page.getByTestId('SideBarSocialPageButton').click();
+    await page.getByTestId('BarButtonComponent2').click();
+    await page.getByTestId('FriendObjMoreInfoButton' + username).click();
+    await page.getByTestId('DropDownEntryDropDownText' + username +'FriendObj-1').click();
+    await page.waitForResponse("https://api.tread.run/friend_list/remove_received_request");
+}
+
+async function rescindFriendRequest(page, username) {
+    await page.getByTestId('SideBarSocialPageButton').click();
+    await page.getByTestId('BarButtonComponent1').click();
+    await page.getByTestId('FriendObjMoreInfoButton' + username).click();
+    await page.getByTestId('DropDownEntryDropDownText'+ username +'FriendObj-0').click()
+    await page.waitForResponse("https://api.tread.run/friend_list/remove_sent_request");
+}
+
 const user2Username = 'TreadTest#8802';
 const user1Username = 'TreadTest2#6945';
 
@@ -163,13 +187,18 @@ test('Friend Functionality', async ({ browser }) => {
     // add expect: Check the notification exists
     await user2Page.getByTestId('SideBarExerciseHistoryButton').click();
     await user2Page.getByTestId('MailBoxEntryDeclineButton0').click();
-    await sleep(2000);
+    await user2Page.waitForResponse('https://api.tread.run/notifications/delete_notification');
+    await user2Page.getByTestId('SideBarChallengesButton').click();
+    // undo friend request
+    await rescindFriendRequest(user1Page, user2Username);
+
+    await addFriend(user1Page, user2Username);
+    // add expect: Check the notification exists
+    await user2Page.getByTestId('SideBarExerciseHistoryButton').click();
+    await user2Page.getByTestId('MailBoxEntryDeclineButton0').click();
+    await user2Page.waitForResponse('https://api.tread.run/notifications/delete_notification');
     // reject friend request
-    await user2Page.getByTestId('SideBarSocialPageButton').click();
-    await user2Page.getByTestId('BarButtonComponent2').click();
-    await user2Page.getByTestId('FriendObjMoreInfoButton' + user1Username).click();
-    await user2Page.getByTestId('DropDownEntryDropDownText'+ user1Username +'FriendObj-1').click();
-    await user2Page.waitForResponse('https://api.tread.run/friend_list/remove_received_request');
+    await declineFriendRequest(user2Page, user1Username);
 
     // user1 sends user2 invite and user2 deletes notification and accepts
     await addFriend(user1Page, user2Username);
@@ -185,21 +214,15 @@ test('Friend Functionality', async ({ browser }) => {
     await user1Page.waitForResponse('https://api.tread.run/notifications/delete_all_notifications');
 
     // user1 adds challenges and user2 declines them
-    await addChallengeFromChallengePage(user1Page, 'Barre', '24', 'min', '1', 'friend', user2Username)
-    await addChallengeFromFriendPage(user1Page, user2Username, 'Baseball', '24', 'mi', '1');
-    await user2Page.getByTestId('SideBarChallengesButton').click();
-    await user2Page.getByTestId('BarButtonComponent2').click();
-    await user2Page.getByTestId('DeclineChallengeButtonComponentBarre').click();
-    await user2Page.waitForResponse("https://api.tread.run/challenges/decline_friend_challenge")
-    await user2Page.getByTestId('DeclineChallengeButtonComponentBaseball').click();
-    await user2Page.waitForResponse("https://api.tread.run/challenges/decline_friend_challenge")
+    await addChallengeFromChallengePage(user1Page, 'Barre', '24', 'min', 1, 'friend', user2Username)
+    await addChallengeFromFriendPage(user1Page, user2Username, 'Baseball', '24', 'mi', 1);
+    await rejectFriendChallengeRequest(user2Page, 'Barre');
+    await rejectFriendChallengeRequest(user2Page, 'Baseball');
     // get rid of notification
     await user2Page.getByTestId('SideBarExerciseHistoryButton').click();
     await user2Page.getByTestId('MailBoxEntryDeclineButton0').click();
     await user2Page.getByTestId('MailBoxEntryDeclineButton1').click();
     await user2Page.waitForResponse('https://api.tread.run/notifications/delete_notification');
-
-
 
     //unfriend
     await unFriend(user2Page, user1Username)
@@ -214,6 +237,13 @@ async function unblockUser(page, username) {
     await page.getByTestId('FriendObjMoreInfoButton' + username).click();
     await page.getByTestId('DropDownEntryDropDownText' + username + 'FriendObj-0').click();
     await page.waitForResponse('https://api.tread.run/friend_list/unblock_user');
+}
+
+async function rescindFriendChallengeRequest(page, exerciseName) {
+    await page.getByTestId('SideBarChallengesButton').click();
+    await page.getByTestId('BarButtonComponent1').click();
+    await page.getByTestId('DeleteChallengeButtonComponent' + exerciseName).click();
+    await page.waitForResponse("https://api.tread.run/challenges/delete_friend_challenge")
 }
 
 test('Block Functionality', async ({ browser }) => {
@@ -271,9 +301,45 @@ test('Block Functionality', async ({ browser }) => {
     await deleteAllNotifications(user1Page);
     await deleteAllNotifications(user2Page);
 
+    await user1Context.close();
+    await user2Context.close();
+});
 
+async function acceptFriendChallenge(page, exerciseName) {
+    await page.getByTestId('SideBarChallengesButton').click();
+    await page.getByTestId('BarButtonComponent2').click();
+    await page.getByTestId('AcceptChallengeButtonComponent' + exerciseName).click();
+    await page.waitForResponse('https://api.tread.run/challenges/accept_friend_challenge');
+}
 
+test('Friend Challenge Interaction', async ({ browser }) => {
+    const user1Context = await browser.newContext({ storageState: './playwright/.auth/treadUser1.json'});
+    const user1Page = await user1Context.newPage();
+    await user1Page.goto('https://tread.run/currentChallengePage');
+    const user2Context = await browser.newContext({ storageState: './playwright/.auth/treadUser2.json'});
+    const user2Page = await user2Context.newPage();
+    await user2Page.goto('https://tread.run/currentChallengePage');
 
+    await addFriend(user1Page, user2Username);
+    await acceptFriendRequest(user2Page, user1Username);
+    await addChallengeFromFriendPage(user2Page, user1Username, 'Beach Volleyball', '125', 'ct', 1);
+    await rescindFriendChallengeRequest(user2Page, 'Beach Volleyball');
+    await addChallengeFromChallengePage(user2Page, 'Billards', '80', 'hr', 1, 'friend', user1Username);
+    await rejectFriendChallengeRequest(user1Page, 'Billards');
+    await addChallengeFromFriendPage(user2Page, user1Username, 'Bocce', '85', 'ft', 2);
+    // Switch component to refresh invite list
+    await user1Page.getByTestId('BarButtonComponent0').click();
+    await acceptFriendChallenge(user1Page, 'Bocce');
+
+    //navigate to see challenge
+    await user1Page.getByTestId('BarButtonComponent0').click();
+
+    //unfriend
+    await unFriend(user2Page, user1Username);
+
+    // delete notification for request accepted
+    await deleteAllNotifications(user1Page);
+    await deleteAllNotifications(user2Page);
 
     await user1Context.close();
     await user2Context.close();
