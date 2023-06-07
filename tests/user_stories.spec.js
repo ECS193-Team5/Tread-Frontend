@@ -69,18 +69,19 @@ function setShortChallengeTime(duration) {
 async function addChallengeFromChallengePage(page, exerciseName, amount, unit, duration, type, receiver){
     await page.getByTestId('SideBarChallengesButton').click();
     await page.getByTestId('BarButtonComponent3').click();
+    await page.waitForURL('https://tread.run/addChallengePage')
     await addChallenge(page, exerciseName, amount, unit, duration, type, receiver);
 }
 
 async function addChallengeFromFriendPage(page, username, exerciseName, amount, unit, duration, type, receiver) {
     await page.getByTestId('SideBarSocialPageButton').click();
     await page.getByTestId('FriendObjMoreInfoButton' + username).click();
-    await page.getByTestId('DropDownEntryDropDownTextn' + username + 'FriendObj-2').click();
+    await page.getByTestId('DropDownEntryDropDownText' + username + 'FriendObj-2').click();
+    await page.waitForURL('https://tread.run/addChallengePage?prefill=' + type + '.' + username);
     await addChallenge(page, exerciseName, amount, unit, duration, type, receiver);
 }
 
 async function addChallenge(page, exerciseName, amount, unit, duration, type, receiver) {
-    await page.waitForURL('https://tread.run/addChallengePage')
     await page.getByTestId('ExerciseNameFormAddChallengeExerciseNameSelect').selectOption(exerciseName);
     await page.getByTestId('ExerciseAmountFormExerciseAmountInput').click();
     await page.getByTestId('ExerciseAmountFormExerciseAmountInput').fill(amount);
@@ -95,6 +96,7 @@ async function addChallenge(page, exerciseName, amount, unit, duration, type, re
         await page.getByTestId('ExerciseReceiverFormReceiverSelect').selectOption(receiver);
     }
     await page.getByTestId('ChallengeFormSubmitButton').click();
+    await sleep(1000);
 }
 
 test('Send self challenge', async ({ browser }) => {
@@ -113,13 +115,15 @@ async function addFriend(page, username) {
     await page.getByTestId('UserAddFormDescriptionUsernameInput').click();
     await page.getByTestId('UserAddFormDescriptionUsernameInput').fill(username);
     await page.getByTestId('UserAddFormSendButton').click();
+    await sleep(1000);
 }
 
 async function acceptFriendRequest(page, username) {
-    await pageage.getByTestId('SideBarSocialPageButton').click();
+    await page.getByTestId('SideBarSocialPageButton').click();
     await page.getByTestId('BarButtonComponent2').click();
     await page.getByTestId('FriendObjMoreInfoButton' + username).click();
-    await page.getByTestId('DropDownEntryDropDownText' + username + 'FriendObj-1').click();
+    await page.getByTestId('DropDownEntryDropDownText' + username + 'FriendObj-0').click();
+    await sleep(1000);
 }
 
 async function unFriend(page, username) {
@@ -127,6 +131,11 @@ async function unFriend(page, username) {
     await page.getByTestId('BarButtonComponent0').click();
     await page.getByTestId('FriendObjMoreInfoButton' + username).click();
     await page.getByTestId('DropDownEntryDropDownText'+ username +'FriendObj-0').click();
+    await sleep(1000);
+}
+
+async function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, 1000));
 }
 
 test('Friend Functionality', async ({ browser }) => {
@@ -148,19 +157,25 @@ test('Friend Functionality', async ({ browser }) => {
     await user2Page.getByTestId('FriendObjMoreInfoButton' + user1Username).click();
     await user2Page.getByTestId('DropDownEntryDropDownText'+ user1Username +'FriendObj-1').click();
 
-    await page.goto('https://tread.run/currentChallengePage');
     await addFriend(user1Page, user2Username);
     await user2Page.getByTestId('SideBarExerciseHistoryButton').click();
     await user2Page.getByTestId('MailBoxEntryDeclineButton0').click();
     await acceptFriendRequest(user2Page, user1Username);
 
+    // delete notification for request accepted
+    await user1Page.getByTestId('SideBarExerciseHistoryButton').click();
+    await user1Page.getByTestId('MailBoxDeleteAllButton').click();
+
     await addChallengeFromChallengePage(user1Page, 'Barre', '24', 'min', '1', 'friend', user2Username)
     // change later
     await addChallengeFromFriendPage(user1Page, user2Username, 'Baseball', '24', 'mi', '1', 'friend', user2Username);
-    await page.getByTestId('SideBarChallengesButton').click();
-    await page.getByTestId('BarButtonComponent2').click();
-    await page.getByTestId('DeclineChallengeButtonComponentBarre').click();
-    await page.getByTestId('DeclineChallengeButtonComponentBaseball').click();
+    await user2Page.getByTestId('SideBarChallengesButton').click();
+    await user2Page.getByTestId('BarButtonComponent2').click();
+    await user2Page.getByTestId('DeclineChallengeButtonComponentBarre').click();
+    await user2Page.getByTestId('DeclineChallengeButtonComponentBaseball').click();
+    // get rid of notification
+    await user2Page.getByTestId('SideBarExerciseHistoryButton').click();
+    //await user2Page.getByTestId('MailBoxDeleteAllButton').click();
 
 
 
