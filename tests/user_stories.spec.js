@@ -344,3 +344,124 @@ test('Friend Challenge Interaction', async ({ browser }) => {
     await user1Context.close();
     await user2Context.close();
 });
+
+async function inviteUserToLeague(page, username, leagueName) {
+    await page.getByTestId('SideBarSocialPageButton').click();
+    await page.getByTestId('PageSwitchLeagueButton').click();
+    await page.getByTestId('LeagueObjLeagueName'+ leagueName).click();
+    await page.getByTestId('PageSwitchMemberButton').click();
+    await page.getByTestId('BarButtonComponent4').click();
+    await page.getByTestId('UserAddFormDescriptionUsernameInput').click();
+    await page.getByTestId('UserAddFormDescriptionUsernameInput').fill(username);
+    await page.getByTestId('UserAddFormSendButton').click();
+    await page.waitForResponse('https://api.tread.run/league/invite_to_join');
+
+}
+
+async function declineInviteToLeague(page, leagueName) {
+    await page.getByTestId('SideBarSocialPageButton').click();
+    await page.getByTestId('PageSwitchLeagueButton').click();
+    await page.getByTestId('BarButtonComponent3').click();
+    await page.getByTestId('LeagueObjMoreInfoButton'+ leagueName).click();
+    await page.getByTestId('DropDownEntryDropDownText' + leagueName + 'LeagueObj-1').click();
+    await page.waitForResponse('https://api.tread.run/league/user_decline_invite');
+}
+
+async function acceptLeagueInvitation(page, leagueName) {
+    await page.getByTestId('SideBarSocialPageButton').click();
+    await page.getByTestId('PageSwitchLeagueButton').click();
+    await page.getByTestId('BarButtonComponent3').click();
+    await page.getByTestId('LeagueObjMoreInfoButton' + leagueName).click();
+    await page.getByTestId('DropDownEntryDropDownText' + leagueName + 'LeagueObj-0').click();
+    await page.waitForResponse('https://api.tread.run/league/user_accept_invite');
+}
+
+test('League Invite System', async ({ browser }) => {
+    //triple the timeout
+    test.slow();
+    const leagueName = 'TestLeague';
+    const user1Context = await browser.newContext({ storageState: './playwright/.auth/treadUser1.json'});
+    const user1Page = await user1Context.newPage();
+    await user1Page.goto('https://tread.run/currentChallengePage');
+    const user2Context = await browser.newContext({ storageState: './playwright/.auth/treadUser2.json'});
+    const user2Page = await user2Context.newPage();
+    await user2Page.goto('https://tread.run/currentChallengePage');
+
+    // user1 creating a private league
+    await user1Page.getByTestId('SideBarSocialPageButton').click();
+    await user1Page.getByTestId('PageSwitchLeagueButton').click();
+    await user1Page.getByTestId('BarButtonComponent4').click();
+    await user1Page.getByTestId('LeagueNameFormUpdateLeagueNameInput').click();
+    await user1Page.getByTestId('LeagueNameFormUpdateLeagueNameInput').fill(leagueName);
+    await user1Page.getByTestId('LeagueDescriptionFormUpdateDescriptionInput').click();
+    await user1Page.getByTestId('LeagueDescriptionFormUpdateDescriptionInput').fill('TestDescription');
+    await user1Page.getByTestId('LeagueFormButton').click();
+    await user1Page.waitForResponse('https://api.tread.run/league/create_league');
+    // invite user2 to league
+    await inviteUserToLeague(user1Page, user2Username, leagueName);
+    const leaguePageURL = new URL(user1Page.url());
+    const leagueID = leaguePageURL["search"].substring(2);
+    console.log(leagueID);
+    // Unsend the invite
+    await user1Page.getByTestId('BarButtonComponent2').click();
+    await user1Page.getByTestId('MemberEntryMoreInfoButton0').click();
+    await user1Page.getByTestId('DropDownEntryDropDownText'+ user2Username + 'MemberEntry-2').click();
+    await user1Page.waitForResponse('https://api.tread.run/league/undo_invite');
+
+    // user1 resends invite to user2 and user2 declines
+    await inviteUserToLeague(user1Page, user2Username, leagueName);
+    await declineInviteToLeague(user2Page, leagueName);
+
+    // user1 resends invite to user2
+    await inviteUserToLeague(user1Page, user2Username, leagueName);
+    await acceptLeagueInvitation(user2Page, leagueName);
+    // user1 bans user2 from league
+    await user1Page.getByTestId('BarButtonComponent0').click();
+    await user1Page.getByTestId('MemberEntryMoreInfoButton1').click();
+    await user1Page.getByTestId('DropDownEntryDropDownText' + user2Username +'MemberEntry-3').click();
+    await user1Page.waitForResponse('https://api.tread.run/league/ban_user');
+    //  user1 resends invite to user2
+    await inviteUserToLeague(user1Page, user2Username, leagueName);
+    await acceptLeagueInvitation(user2Page, leagueName);
+    await user1Page.getByTestId('BarButtonComponent0').click();
+
+    // user2 leaves league
+    await user2Page.getByTestId('SideBarSocialPageButton').click();
+    await user2Page.getByTestId('PageSwitchLeagueButton').click();
+    await user2Page.getByTestId('BarButtonComponent0').click();
+    await user2Page.getByTestId('LeagueObjMoreInfoButton' + leagueName).click();
+    await user2Page.getByTestId('DropDownEntryDropDownText' + leagueName +'LeagueObj-0').click();
+    await user2Page.waitForResponse('https://api.tread.run/league/leave_league');
+
+    // user2 request to join league then user1 invites to league
+    await user2Page.goto('https://tread.run/requestLeague?' + leagueID);
+    await user2Page.waitForResponse('https://api.tread.run/league/user_request_to_join');
+    await inviteUserToLeague(user1Page, user2Username, leagueName);
+    //  check user2 in league and kick them
+    await user1Page.getByTestId('BarButtonComponent0').click();
+    // Playwright thinks that going to bar component can't find button in time
+    await user1Page.getByTestId('MemberEntryMoreInfoButton1').click();
+    await user1Page.getByTestId('DropDownEntryDropDownText' + user2Username + 'MemberEntry-2').click();
+    await user1Page.waitForResponse('https://api.tread.run/league/kick_member');
+
+    // invite user to league then user2 requests to join
+    await inviteUserToLeague(user1Page, user2Username, leagueName);
+    await user2Page.goto('https://tread.run/requestLeague?' + leagueID);
+    await user2Page.waitForResponse('https://api.tread.run/league/user_request_to_join');
+    await user2Page.waitForURL('https://tread.run/socialLeaguePage');
+    await user2Page.getByTestId('LeagueObjLeagueNameTestLeague').click();
+    await user2Page.getByTestId('PageSwitchMemberButton').click();
+    // delete league
+    await user1Page.getByTestId('PageSwitchMemberButton').click();
+    await user1Page.getByTestId('PageSwitchDescriptionButton').click();
+    await user1Page.getByTestId('LeagueHeaderMoveEditPageButton').click();
+    await user1Page.getByTestId('LeagueEditFormDeleteButton').click();
+    await user1Page.waitForResponse('https://api.tread.run/league/delete_league');
+
+    // delete notification for request accepted
+    //await deleteAllNotifications(user1Page);
+    await deleteAllNotifications(user2Page);
+
+    await user1Context.close();
+    await user2Context.close();
+});
