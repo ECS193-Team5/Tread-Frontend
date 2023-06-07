@@ -21,7 +21,7 @@ const UsernameForm = (props) => {
 
     return (
         <div data-testid="UsernameFormComponent" className="formObj">
-                <h1>Username</h1>
+                <h2>Username</h2>
                 <p className="formObjInner">This is a unique identifier for your account. It is public.</p>
                 <input data-testid="UsernameFormUsernameInput" className="formTextInput" type = "text"  onChange = {validateUsername}/>
                 <p data-testid="UsernameFormUsernameError" className = "errorBox">{usernameError}</p>
