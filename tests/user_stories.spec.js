@@ -151,15 +151,19 @@ test('Friend Functionality', async ({ browser }) => {
     // add expect: Check the notification exists
     await user2Page.getByTestId('SideBarExerciseHistoryButton').click();
     await user2Page.getByTestId('MailBoxEntryDeclineButton0').click();
+    await sleep(2000);
     // reject friend request
     await user2Page.getByTestId('SideBarSocialPageButton').click();
     await user2Page.getByTestId('BarButtonComponent2').click();
     await user2Page.getByTestId('FriendObjMoreInfoButton' + user1Username).click();
     await user2Page.getByTestId('DropDownEntryDropDownText'+ user1Username +'FriendObj-1').click();
+    await sleep(1000);
 
     await addFriend(user1Page, user2Username);
     await user2Page.getByTestId('SideBarExerciseHistoryButton').click();
+    await user2Page.waitForURL('https://tread.run/profileStatsPage')
     await user2Page.getByTestId('MailBoxEntryDeclineButton0').click();
+    await sleep(2000);
     await acceptFriendRequest(user2Page, user1Username);
 
     // delete notification for request accepted
@@ -175,7 +179,9 @@ test('Friend Functionality', async ({ browser }) => {
     await user2Page.getByTestId('DeclineChallengeButtonComponentBaseball').click();
     // get rid of notification
     await user2Page.getByTestId('SideBarExerciseHistoryButton').click();
-    //await user2Page.getByTestId('MailBoxDeleteAllButton').click();
+    await user2Page.getByTestId('MailBoxEntryDeclineButton0').click();
+    await user2Page.getByTestId('MailBoxEntryDeclineButton1').click();
+    await sleep(2000);
 
 
 
