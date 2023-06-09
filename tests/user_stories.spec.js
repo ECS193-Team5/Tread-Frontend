@@ -770,8 +770,17 @@ test('League Challenge System', async ({ browser }) => {
     await expect(user1Page).toHaveURL('https://tread.run/currentChallengePage');
     await user1Page.getByTestId('BarButtonComponent3').click();
     await expect(user1Page).toHaveURL('https://tread.run/addChallengePage');
-    await addChallenge(user1Page, "Wrestling", "10", "hr", 1, "league", leagueName + " - " + leagueID);
+    await addChallenge(user1Page, "Weightlifting", "10", "hr", 1, "league", leagueName + " - " + leagueID);
+    await expect(user1Page).toHaveURL('https://tread.run/currentChallengePage');
 
+    // Send a league challenge from the league edit page
+    await user1Page.getByTestId('SideBarSocialPageButton').click();
+    await user1Page.getByTestId('PageSwitchLeagueButton').click();
+    await user1Page.getByTestId('LeagueObjLeagueName'+leagueName).click();
+    await user1Page.waitForURL('https://tread.run/leagueDescriptionPage?=' + leagueID);
+    await user1Page.getByTestId('BarButtonComponent0').click();
+    await user1Page.waitForURL('https://tread.run/addChallengePage?prefill=league.' + leagueID);
+    await addChallenge(user1Page, "Water Polo", "10", "hr", 1);
     await expect(user1Page).toHaveURL('https://tread.run/currentChallengePage');
 
     // delete league
@@ -781,6 +790,48 @@ test('League Challenge System', async ({ browser }) => {
     await user1Page.getByTestId('LeagueHeaderMoveEditPageButton').click();
     await user1Page.getByTestId('LeagueEditFormDeleteButton').click();
     await user1Page.waitForResponse('https://api.tread.run/league/delete_league');
+
+    await user1Context.close();
+});
+
+test('League Role System', async ({ browser }) => {
+    //triple the timeout
+    test.slow();
+    const leagueName = 'RoleLeague';
+    const user1Context = await browser.newContext({ storageState: './playwright/.auth/treadUser1.json'});
+    const user1Page = await user1Context.newPage();
+    await user1Page.goto('https://tread.run/currentChallengePage');
+    const user2Context = await browser.newContext({ storageState: './playwright/.auth/treadUser2.json'});
+    const user2Page = await user2Context.newPage();
+    await user2Page.goto('https://tread.run/currentChallengePage');
+
+    // user1 creating a private league and user 2 joins
+    await createLeague(user1Page, leagueName, "public");
+    await inviteUserToLeague(user1Page, user2Username, leagueName);
+    await acceptLeagueInvitation(user2Page, leagueName);
+
+    // User 1 adds and removes user as admin
+    await user1Page.getByTestId('SideBarSocialPageButton').click();
+    await user1Page.getByTestId('PageSwitchLeagueButton').click();
+    await user1Page.getByTestId('LeagueObjLeagueName'+leagueName).click();
+    await user1Page.waitForURL('https://tread.run/leagueDescriptionPage?=' + leagueID);
+    await user1Page.getByTestId('PageSwitchMemberButton').click();
+    await user1Page.waitForURL('https://tread.run/leagueMemberPage?=' + leagueID);
+
+    // User 1 adds user as admin, user2 removes themselves
+
+    // User 1 kicks out user and user requests to rejoin
+
+    // User 1 bans user 2
+
+    // delete league
+    /*await user1Page.getByTestId('SideBarSocialPageButton').click();
+    await user1Page.getByTestId('PageSwitchLeagueButton').click();
+    await user1Page.getByTestId('LeagueObjLeagueName'+leagueName).click();
+    await user1Page.getByTestId('LeagueHeaderMoveEditPageButton').click();
+    await user1Page.getByTestId('LeagueEditFormDeleteButton').click();
+    await user1Page.waitForResponse('https://api.tread.run/league/delete_league');*/
+
 
     await user1Context.close();
 });
