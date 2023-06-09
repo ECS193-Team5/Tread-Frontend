@@ -228,7 +228,7 @@ const MemberEntry = (props) => {
         </div>
 
         <div className="moreInfoDiv" id = {"moreInfoButtonMember"+ props.children.memberData.username}>
-          <button data-testid={"MemberEntryMoreInfoButton"+props.index} className="moreInfoButton" onClick={toggleSelectShow}>
+          <button data-testid={"MemberEntryMoreInfoButton"+props.children.memberData.username} className="moreInfoButton" onClick={toggleSelectShow}>
             <img src={moreInfoButton} />
           </button>
           {(selectShow) ? <div className="memberSelectOptions"><DropDown uniqueDeterminer = {props.children.memberData.username+"MemberEntry"}>{memberDropDownEntries}</DropDown></div> : <></>}
