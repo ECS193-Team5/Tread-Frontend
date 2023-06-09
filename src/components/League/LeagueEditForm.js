@@ -38,10 +38,9 @@ const LeagueEditForm = (props) => {
 
     const submitUpdatedPhoto = () => {
         if (photo === "") {
-            console.log("does nto update photo")
             return;
         }
-        console.log("does update photo")
+
         var formData = new FormData();
         formData.append("leaguePicture", photo);
         formData.append("leagueID", props.leagueID);

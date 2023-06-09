@@ -17,11 +17,9 @@ const PhotoUploadForm = (props) => {
                 props.setPhoto("https://i.imgur.com/sXwXq45.png");
             }
             else if(props.type === "editLeague"){
-                console.log("edit league", props.leagueID)
                 setSource(createLeaguePictureURL(props.leagueID));
             }
             else if(props.type === "signUp"){
-                console.log("sign up called", setSource);
                 getProfilePhoto(setSource, props.setPhoto)
             }
             else{
@@ -39,7 +37,6 @@ const PhotoUploadForm = (props) => {
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-            console.log("reader onload called");
             setSource(reader.result);
             props.setPhoto(reader.result);
         };

@@ -418,7 +418,7 @@ test('League Invite System', async ({ browser }) => {
     console.log(leagueID);
     // Unsend the invite
     await user1Page.getByTestId('BarButtonComponent2').click();
-    await user1Page.getByTestId('MemberEntryMoreInfoButton0').click();
+    await user1Page.getByTestId('MemberEntryMoreInfoButton' + user2Username).click();
     await user1Page.getByTestId('DropDownEntryDropDownText'+ user2Username + 'MemberEntry-2').click();
     await user1Page.waitForResponse('https://api.tread.run/league/undo_invite');
 
@@ -432,7 +432,7 @@ test('League Invite System', async ({ browser }) => {
 
     // user1 bans user2 from league
     await user1Page.getByTestId('BarButtonComponent0').click();
-    await user1Page.getByTestId('MemberEntryMoreInfoButton1').click();
+    await user1Page.getByTestId('MemberEntryMoreInfoButton' + user2Username).click();
     await user1Page.getByTestId('DropDownEntryDropDownText' + user2Username +'MemberEntry-3').click();
     await user1Page.waitForResponse('https://api.tread.run/league/ban_user');
     //  user1 resends invite to user2
@@ -455,7 +455,7 @@ test('League Invite System', async ({ browser }) => {
     //  check user2 in league and kick them
     await user1Page.getByTestId('BarButtonComponent0').click();
     // Playwright thinks that going to bar component can't find button in time
-    await user1Page.getByTestId('MemberEntryMoreInfoButton1').click();
+    await user1Page.getByTestId('MemberEntryMoreInfoButton' + user2Username).click();
     await user1Page.getByTestId('DropDownEntryDropDownText' + user2Username + 'MemberEntry-2').click();
     await user1Page.waitForResponse('https://api.tread.run/league/kick_member');
 
@@ -566,7 +566,7 @@ test('League Request Private System', async ({ browser }) => {
     await user1Page.getByTestId('PageSwitchDescriptionButton').click();
     await user1Page.getByTestId('PageSwitchMemberButton').click();
     await user1Page.getByTestId('BarButtonComponent1').click();
-    await user1Page.getByTestId('MemberEntryMoreInfoButton0').click();
+    await user1Page.getByTestId('MemberEntryMoreInfoButton' + user2Username).click();
     await user1Page.getByTestId('DropDownEntryDropDownTextTreadTest#8802MemberEntry-3').click();
 
     // User 2 requests entry
@@ -576,7 +576,7 @@ test('League Request Private System', async ({ browser }) => {
     await user1Page.getByTestId('PageSwitchDescriptionButton').click();
     await user1Page.getByTestId('PageSwitchMemberButton').click();
     await user1Page.getByTestId('BarButtonComponent1').click();
-    await user1Page.getByTestId('MemberEntryMoreInfoButton0').click();
+    await user1Page.getByTestId('MemberEntryMoreInfoButton' + user2Username).click();
     await user1Page.getByTestId('DropDownEntryDropDownTextTreadTest#8802MemberEntry-2').click();
 
     // User 2 leaves league
@@ -810,27 +810,68 @@ test('League Role System', async ({ browser }) => {
     await inviteUserToLeague(user1Page, user2Username, leagueName);
     await acceptLeagueInvitation(user2Page, leagueName);
 
-    // User 1 adds and removes user as admin
+    // User 1 adds user as admin
+    await user1Page.getByTestId('SideBarChallengesButton').click();
+    await user1Page.waitForURL('https://tread.run/currentChallengePage');
     await user1Page.getByTestId('SideBarSocialPageButton').click();
     await user1Page.getByTestId('PageSwitchLeagueButton').click();
+
+    await user1Page.waitForURL('https://tread.run/socialLeaguePage');
     await user1Page.getByTestId('LeagueObjLeagueName'+leagueName).click();
+    const leaguePageURL = new URL(user1Page.url());
+    const leagueID = leaguePageURL["search"].substring(2);
     await user1Page.waitForURL('https://tread.run/leagueDescriptionPage?=' + leagueID);
     await user1Page.getByTestId('PageSwitchMemberButton').click();
     await user1Page.waitForURL('https://tread.run/leagueMemberPage?=' + leagueID);
+    await user1Page.getByTestId('MemberEntryMoreInfoButton'+user2Username).click();
+    await user1Page.getByTestId('DropDownEntryDropDownText'+user2Username+'MemberEntry-4').click();
 
-    // User 1 adds user as admin, user2 removes themselves
+    // user removes self from admin
+    await user2Page.getByTestId('SideBarSocialPageButton').click();
+    await user2Page.getByTestId('PageSwitchLeagueButton').click();
+    await user2Page.getByTestId('LeagueObjMoreInfoButton' + leagueName).click();
+    await user2Page.getByTestId('DropDownEntryDropDownText'+ leagueName + 'LeagueObj-2').click();
 
-    // User 1 kicks out user and user requests to rejoin
+    //User 1 adds user 2 to admin, and then removes user 2 from admin
+    await user1Page.getByTestId('SideBarSocialPageButton').click();
+    await user1Page.getByTestId('PageSwitchLeagueButton').click();
+    await user1Page.getByTestId('LeagueObjLeagueName'+ leagueName).click();
+    await user1Page.getByTestId('PageSwitchMemberButton').click();
+    await user1Page.waitForResponse('https://api.tread.run/friend_list/blocked_list');
+    await user1Page.getByTestId('MemberEntryMoreInfoButton' + user2Username).click();
+    await user1Page.getByTestId('DropDownEntryDropDownText'+ user2Username + 'MemberEntry-4').click();
+    await user1Page.waitForResponse('https://api.tread.run/friend_list/blocked_list');
+    await user1Page.getByTestId('MemberEntryMoreInfoButton' + user2Username).click();
+    await user1Page.getByTestId('DropDownEntryDropDownText'+ user2Username +'MemberEntry-4').click();
+
+
+    // User 1 kicks out user 2, and user 2 requests to rejoin
+    await user1Page.waitForResponse('https://api.tread.run/friend_list/blocked_list');
+    await user1Page.getByTestId('MemberEntryMoreInfoButton' + user2Username).click();
+    await user1Page.getByTestId('DropDownEntryDropDownText' + user2Username + 'MemberEntry-2').click();
+    await userRequestEntryToLeague(user2Page, leagueID);
 
     // User 1 bans user 2
+    await user1Page.getByTestId('SideBarSocialPageButton').click();
+    await user1Page.getByTestId('PageSwitchLeagueButton').click();
+    await user1Page.getByTestId('LeagueObjLeagueNameRoleLeague').click();
+    await user1Page.getByTestId('PageSwitchMemberButton').click();
+    await user1Page.waitForResponse('https://api.tread.run/friend_list/blocked_list');
+    await user1Page.getByTestId('MemberEntryMoreInfoButton' + user2Username).click();
+    await user1Page.getByTestId('DropDownEntryDropDownText'+ user2Username +'MemberEntry-3').click();
+    // navigate to banned
+    await user1Page.getByTestId('BarButtonComponent3').click();
+    await user1Page.waitForResponse('https://api.tread.run/league/get_banned_list');
+    // user2 requests to rejoin
+    await userRequestEntryToLeague(user2Page, leagueID);
 
     // delete league
-    /*await user1Page.getByTestId('SideBarSocialPageButton').click();
+    await user1Page.getByTestId('SideBarSocialPageButton').click();
     await user1Page.getByTestId('PageSwitchLeagueButton').click();
     await user1Page.getByTestId('LeagueObjLeagueName'+leagueName).click();
     await user1Page.getByTestId('LeagueHeaderMoveEditPageButton').click();
     await user1Page.getByTestId('LeagueEditFormDeleteButton').click();
-    await user1Page.waitForResponse('https://api.tread.run/league/delete_league');*/
+    await user1Page.waitForResponse('https://api.tread.run/league/delete_league');
 
 
     await user1Context.close();

@@ -363,7 +363,7 @@ describe("Test pages/league", () => {
             sharedHelpers.clickBarButton(0);
             sharedHelpers.clickBarButton(1);
             sharedHelpers.clickBarButton(0);
-            h.toggleButton(2);
+            h.toggleButton("NewUser#2224");
             h.hitDropdown("NewUser#2224",0);
         })
 
@@ -372,7 +372,7 @@ describe("Test pages/league", () => {
             sharedHelpers.clickBarButton(0);
             sharedHelpers.clickBarButton(1);
             sharedHelpers.clickBarButton(0);
-            h.toggleButton(2);
+            h.toggleButton("NewUser#2224");
             h.hitDropdown("NewUser#2224",1);
         })
 
@@ -381,7 +381,7 @@ describe("Test pages/league", () => {
             sharedHelpers.clickBarButton(0);
             sharedHelpers.clickBarButton(1);
             sharedHelpers.clickBarButton(0);
-            h.toggleButton(0);
+            h.toggleButton("batman#6380");
             h.hitDropdown("batman#6380",0);
         })
 
@@ -390,7 +390,7 @@ describe("Test pages/league", () => {
             sharedHelpers.clickBarButton(0);
             sharedHelpers.clickBarButton(1);
             sharedHelpers.clickBarButton(0);
-            h.toggleButton(0);
+            h.toggleButton("batman#6380");
             h.hitDropdown("batman#6380",1);
         })
 
@@ -399,7 +399,7 @@ describe("Test pages/league", () => {
             sharedHelpers.clickBarButton(0);
             sharedHelpers.clickBarButton(1);
             sharedHelpers.clickBarButton(0);
-            h.toggleButton(3);
+            h.toggleButton("Kauboy#9630");
             h.hitDropdown("Kauboy#9630",0);
         })
 
@@ -408,7 +408,7 @@ describe("Test pages/league", () => {
             sharedHelpers.clickBarButton(0);
             sharedHelpers.clickBarButton(1);
             sharedHelpers.clickBarButton(0);
-            h.toggleButton(3);
+            h.toggleButton("Kauboy#9630");
             h.hitDropdown("Kauboy#9630",1);
         })
 
@@ -417,7 +417,7 @@ describe("Test pages/league", () => {
             sharedHelpers.clickBarButton(0);
             sharedHelpers.clickBarButton(1);
             sharedHelpers.clickBarButton(0);
-            h.toggleButton(2);
+            h.toggleButton("NewUser#2224");
             h.hitDropdown("NewUser#2224",2);
         })
 
@@ -426,7 +426,7 @@ describe("Test pages/league", () => {
             sharedHelpers.clickBarButton(0);
             sharedHelpers.clickBarButton(1);
             sharedHelpers.clickBarButton(0);
-            h.toggleButton(2);
+            h.toggleButton("NewUser#2224");
             h.hitDropdown("NewUser#2224",3);
         })
 
@@ -435,7 +435,7 @@ describe("Test pages/league", () => {
             sharedHelpers.clickBarButton(0);
             sharedHelpers.clickBarButton(1);
             sharedHelpers.clickBarButton(0);
-            h.toggleButton(3);
+            h.toggleButton("Kauboy#9630");
             h.hitDropdown("Kauboy#9630",4);
         })
 
@@ -444,7 +444,7 @@ describe("Test pages/league", () => {
             sharedHelpers.clickBarButton(0);
             sharedHelpers.clickBarButton(1);
             sharedHelpers.clickBarButton(0);
-            h.toggleButton(2);
+            h.toggleButton("NewUser#2224");
             h.hitDropdown("NewUser#2224",4);
 
         })
@@ -452,28 +452,28 @@ describe("Test pages/league", () => {
         it("Test accept invite", () => {
             render(<League>{{type:"member"}}</League>)
             sharedHelpers.clickBarButton(1);
-            h.toggleButton(2);
+            h.toggleButton("NewUser#2224");
             h.hitDropdown("NewUser#2224",2);
         })
 
         it("Test decline invite", () => {
             render(<League>{{type:"member"}}</League>)
             sharedHelpers.clickBarButton(1);
-            h.toggleButton(2);
+            h.toggleButton("NewUser#2224");
             h.hitDropdown("NewUser#2224",3);
         })
 
         it("Test unban", () => {
             render(<League>{{type:"member"}}</League>)
             sharedHelpers.clickBarButton(3);
-            h.toggleButton(2);
+            h.toggleButton("NewUser#2224");
             h.hitDropdown("NewUser#2224",2);
         })
 
         it("Test revoke invite", () => {
             render(<League>{{type:"member"}}</League>)
             sharedHelpers.clickBarButton(2);
-            h.toggleButton(2);
+            h.toggleButton("NewUser#2224");
             h.hitDropdown("NewUser#2224",2);
         })
 

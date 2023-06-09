@@ -66,10 +66,10 @@ const LeagueMemberScroll = (props) => {
             if(scrollType === "Members"){
                 getMembersLeague(props.leagueID,processMemberInfo);
             }
-            else if(scrollType === "Received" && (props.children.role === "admin" || props.children.role === "owner")){
+            else if(scrollType === "Received"){
                 getRequesting(props.leagueID,processMemberInfo);
             }
-            else if(scrollType === "Banned" && (props.children.role === "admin" || props.children.role === "owner")){
+            else if(scrollType === "Banned"){
                 getBanned(props.leagueID,processMemberInfo);
             }
             else {

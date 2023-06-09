@@ -52,7 +52,7 @@ let allMemberScroll = {
 }
 
 const toggleButton = () =>{
-    let button = screen.getByTestId("MemberEntryMoreInfoButton");
+    let button = screen.getByTestId("MemberEntryMoreInfoButtonuser#2224");
     fireEvent.click(button)
 }
 
