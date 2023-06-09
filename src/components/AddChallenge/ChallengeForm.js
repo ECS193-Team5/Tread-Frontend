@@ -104,8 +104,7 @@ const ChallengeForm = () =>{
         }
 
         let recipient = receiver;
-
-        if (receiverGroup === "league"){
+        if (receiverGroup === "league" && recipient.indexOf("-") !== -1){
           recipient = receiver.split('-')[1].trim();
         }
 

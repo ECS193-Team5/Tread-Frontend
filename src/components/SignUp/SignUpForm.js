@@ -71,7 +71,7 @@ const SignUpForm = (props) => {
       </div>
 
       <div className="formObj">
-        <h1>Profile Picture</h1>
+        <h2>Profile Picture</h2>
         <PhotoUploadForm type = "signUp" setPhoto={setPhoto}></PhotoUploadForm>
       </div>
 
