@@ -66,23 +66,23 @@ export function clickGlobalPage(){
 }
 
 export function showChallengeLeaderboard(){
-    s.clickButton("IssuedChallengeObjToggleStateButton0")
+    s.clickButton("IssuedChallengeObjToggleStateButtonexampleName")
 }
 
 export function showGlobalChallengeLeaderboard(){
-    s.clickButton("GlobalChallengeObjToggleStateButton0")
+    s.clickButton("GlobalChallengeObjToggleStateButtonexampleName")
 }
 
 export function clickDeclineChallenge(){
-    s.clickButton("DeclineChallengeButtonComponent0")
+    s.clickButton("DeclineChallengeButtonComponentexampleName")
 }
 
 export function clickDeleteChallenge(){
-    s.clickButton("DeleteChallengeButtonComponent0")
+    s.clickButton("DeleteChallengeButtonComponentexampleName")
 }
 
 export function clickAcceptChallenge(){
-    s.clickButton("AcceptChallengeButtonComponent0")
+    s.clickButton("AcceptChallengeButtonComponentexampleName")
 }
 
 export function enterKeyLoggedDate(key){
