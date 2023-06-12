@@ -9,7 +9,6 @@ const GlobalChallenge = () => {
       <div>
         <h1 className="barHeader">Global</h1>
       </div>
-
       <ChallengeScroll type="global" ifLeague={false} leagueID={""}></ChallengeScroll>
     </div>
   );
