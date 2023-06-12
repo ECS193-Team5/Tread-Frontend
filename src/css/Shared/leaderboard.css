@@ -1,3 +1,4 @@
+
 .leaderboardPhoto{
     width: 30px;
     height: 30px;
@@ -38,10 +39,14 @@
     font-size: 20px;
     line-height: 20px;
     text-align: center;
-
+    width: 70px;
     color: #000000;
 }
 
+.leaderboardEntryLevel{
+    width:50px;
+    text-align: center;
+}
 .firstDiv{
     width: 30px;
     padding-left: 20px;
@@ -72,7 +77,47 @@
 
 .fifthDiv{
     width: 60px;
-
+    margin:0;
     padding-left: 10px;
     padding-right: 20px;
+}
+
+
+@media(max-width: 905px){
+    .fourthDiv{
+        display: none;
+    }
+
+    .secondDiv{
+        display: none;
+    }
+
+    .thirdDiv{
+        width: 100%;
+    }
+    .leaderboardRightSide{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+
+        height: 50px;
+        width: 100%;
+        background: #F1EEEA;
+        border: 3px solid #014421;
+        border-radius: 20px;
+    }
+
+    .fifthDiv{
+        width: 80px !important;
+        padding: 0px 10px 0px 0px;
+        margin: 0;
+    }
+    .leaderboardSection{
+        width: 90%
+    }
+    #Leaderboard{
+        width: 100%
+    }
 }

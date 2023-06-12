@@ -2,5 +2,27 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 90px;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.headerObj{
+    padding: 10px;
+}
+
+@media(max-width: 860px){
+    .headerObj{
+        display: none;
+    }
+}
+
+@media(max-width: 600px){
+    #Header{
+        flex-direction: column-reverse;
+    }
+
+    .headerObj{
+        display: none;
+    }
 }

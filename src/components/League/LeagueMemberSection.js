@@ -38,7 +38,7 @@ const LeagueMemberSection = (props) => {
     return (
     <div data-testid="LeagueMemberSectionComponent" id = "LeagueMemberSection">
         <div className ="selectButtonHeader">
-                <h1>Members</h1>
+                <h1 className="barHeader">Members</h1>
                 {role === "owner" || role === "admin" ? <Bar>{{"buttonList":buttonList, "updateFunc":setMemberState}}</Bar> : <></>}
         </div>
         { (memberState === "Members") ? <LeagueMemberScroll type = "Members" leagueID = {props.children.id}>{scrollInput}</LeagueMemberScroll> : <></>}

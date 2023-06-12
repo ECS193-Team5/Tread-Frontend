@@ -11,11 +11,11 @@ const Header = (props) => {
 
     return (
         <div data-testid="HeaderComponent" id = "Header">
-            <h1 data-testid="HeaderComponentTitleText">{title}</h1>
+            <h1 data-testid="HeaderComponentTitleText" className = "headerObj" >{title}</h1>
             {
                 (pageSwitchType !== "none")
                 ?
-                <PageSwitch type = {pageSwitchType} onButton = {onButton} leagueID = {leagueID}></PageSwitch>
+                <PageSwitch className = "headerObj" type = {pageSwitchType} onButton = {onButton} leagueID = {leagueID}></PageSwitch>
                 :
                 <></>
             }

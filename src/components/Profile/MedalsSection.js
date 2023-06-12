@@ -11,7 +11,7 @@ const MedalsSection = () => {
     return (
     <div data-testid="MedalsSectionComponent" id = "MedalsSection" className='section'>
         <div id = "MedalsHeader" className ="selectButtonHeader">
-            <h1>Medals</h1>
+            <h1 className = "barHeader">Medals</h1>
             <Bar>{{"buttonList":buttonList, "updateFunc":setIfEarned}}</Bar>
         </div>
 

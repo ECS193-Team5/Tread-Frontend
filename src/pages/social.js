@@ -5,6 +5,17 @@ import FriendSection from "../components/Social/FriendSection";
 import LeagueSection from "../components/Social/LeagueSection";
 import RowBox from "../components/Social/RowBox";
 import '../css/Shared/page.css';
+/*
+
+
+                    {
+                        (props.children.type === "friend") ?
+                        <FriendSection/>
+                        :
+                        <LeagueSection/>
+                    }
+
+*/
 const Social = (props) => {
 
     return (
@@ -20,12 +31,6 @@ const Social = (props) => {
                         <RowBox>{{"informationType": "Recent", "socialType": props.children.type}}</RowBox>
                         <RowBox>{{"informationType": "Suggest", "socialType": props.children.type}}</RowBox>
                     </div>
-                    {
-                        (props.children.type === "friend") ?
-                        <FriendSection></FriendSection>
-                        :
-                        <LeagueSection/>
-                    }
                 </div>
             </div>
 

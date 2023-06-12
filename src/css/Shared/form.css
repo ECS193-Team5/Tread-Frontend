@@ -1,6 +1,7 @@
 .Form {
     padding-top : 15px;
     padding-bottom : 15px;
+    width: 100%;
 }
 
 .formObj{
@@ -48,4 +49,8 @@
 
 .errorBox{
     color: red;
+}
+
+.formObjShort{
+    width: 200px;
 }

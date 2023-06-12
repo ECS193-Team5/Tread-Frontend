@@ -21,7 +21,7 @@ const ChallengeStats = (props) => {
     const calculateDueDate = (exercise) => {
         let issueDate = new Date(exercise.issueDate).valueOf();
         let originalDueDate = new Date(exercise.dueDate).valueOf();
-        let dueDate = new Date(getToday().getTime() + (originalDueDate - issueDate));
+        let dueDate = new Date(Date.now() + (originalDueDate - issueDate));
         return dueDate;
     }
 
@@ -30,8 +30,9 @@ const ChallengeStats = (props) => {
         data.exerciseName = exercise.exercise.exerciseName;
         data.amount = amount;
         data.unit = exercise.exercise.unit;
-        data.issueDate = getToday();
-        data.dueDate = calculateDueDate(exercise);
+        let issueDateMilliseconds = Date.now();
+        data.issueDate = new Date(issueDateMilliseconds);
+        data.dueDate = calculateDueDate(exercise, issueDateMilliseconds);
         return data;
     }
 

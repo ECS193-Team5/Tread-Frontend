@@ -59,8 +59,8 @@ const IssuedChallengeObj = (props) => {
                     <PhotoDisplay index = {props.index} photos={props.children.participants}></PhotoDisplay><BoxLine></BoxLine>
                 </div>
                 <div className="challengeMiddle">
-                    <div className="challengeInnerMiddle">
-                        <p data-testid={"IssuedChallengeObjTitle"+props.index} className="challengeText">{title}</p>
+                    <div className="challengeInnerMiddleDualText">
+                        <p data-testid={"IssuedChallengeObjTitle"+props.index} className="challengeText leftTextWrap">{title}</p>
                         <ShowDueDate index = {props.index} dueDate = {props.children.dueDate} issueDate={props.children.issueDate}/>
                     </div>
                     <div className="challengeInnerMiddle">

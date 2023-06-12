@@ -48,7 +48,7 @@ const ExerciseAmountForm = (props) => {
         <div data-testid="ExerciseAmountFormComponent" className="formObj">
             <p className="formObjInner">How much?</p>
             <div className="formObjInner">
-                <input data-testid="ExerciseAmountFormExerciseAmountInput" className="formTextInput" min = "0" placeholder={props.defaultAmount} type="number" onChange={amountChange} onKeyDown={ preventEKey }/>
+                <input data-testid="ExerciseAmountFormExerciseAmountInput" className="formTextInput  formObjShort" min = "0" placeholder={props.defaultAmount} type="number" onChange={amountChange} onKeyDown={ preventEKey }/>
                 <select data-testid="ExerciseAmountFormUnitSelect" id = "addChallengeFormSelect" className="formSelect" onChange={unitChange}>
                     <option value = "min">minute (min)</option>
                     <option value = "hr">hour (hr)</option>

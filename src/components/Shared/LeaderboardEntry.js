@@ -13,7 +13,7 @@ const LeaderboardEntry = (props) => {
             {(props.children.level === 1) ? <img src = {firstMedal}/>: <></>}
             {(props.children.level === 2) ? <img src = {secondMedal}/>: <></>}
             {(props.children.level === 3) ? <img src = {thirdMedal}/>: <></>}
-            {(props.children.level !== 1 && props.children.level !== 2 && props.children.level !== 3) ? <p data-testid={"LeaderboardEntryLevel"}>{props.children.level}</p>: <></>}
+            {(props.children.level !== 1 && props.children.level !== 2 && props.children.level !== 3) ? <p data-testid={"LeaderboardEntryLevel"} className = "leaderboardEntryLevel">{props.children.level}</p>: <></>}
         </div>
         <div className = "leaderboardRightSide">
             <img className = "leaderboardPhoto firstDiv" src={createProfilePictureURL(props.children.name)} alt = "profile"/>
@@ -22,7 +22,9 @@ const LeaderboardEntry = (props) => {
                 <ProgressBar>{{"completed":props.children.complete}}</ProgressBar>
             </div>
             <img className = "leaderboardPhoto fourthDiv" src= {flameImage} alt = "flame"/>
-            <p data-testid={"LeaderboardEntryProgress"+props.index} className="leaderboardText fifthDiv">{props.children.score}</p>
+            <div className = "fifthDiv">
+                <p data-testid={"LeaderboardEntryProgress"+props.index} className="leaderboardText">{props.children.score}</p>
+            </div>
         </div>
     </div>
     );

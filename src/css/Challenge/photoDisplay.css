@@ -1,12 +1,11 @@
 #PhotoDisplay{
-
     width: 180px;
     height: 96px;
 
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    flex-direction:"row";
+    flex-direction:row;
 
 }
 
@@ -44,4 +43,17 @@
     text-align: center;
     margin:0;
     padding:0;
+}
+
+@media(max-width: 450px){
+    .photoDiv{
+        display: none !important;
+    }
+    #PhotoDisplay{
+        display: none;
+    }
+    #BoxLine{
+        display: none;
+    }
+
 }
