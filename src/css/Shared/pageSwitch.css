@@ -1,8 +1,10 @@
 #PageSwitch{
     display: flex;
     flex-direction: row;
-
-
+    width: 260px;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
 }
 
@@ -21,7 +23,6 @@
     border-style:none;
 
     box-sizing: border-box;
-
     height: 50px;
     width: 120px;
 
@@ -31,7 +32,6 @@
     justify-content: center;
 
     border-radius: 20px;
-    margin-left: 20px;
 }
 
 .switchButtonText{

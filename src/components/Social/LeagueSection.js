@@ -27,7 +27,7 @@ const LeagueSection = () => {
         <div data-testid="LeagueSectionComponent">
             <div id="LeagueSection" className="section">
                 <div className="selectButtonHeader">
-                    <h1>Leagues</h1>
+                    <h1 className = "barHeader">Leagues</h1>
                     <Bar>{{ "buttonList": buttonList, "updateFunc": setLeagueState }}</Bar>
                 </div>
 

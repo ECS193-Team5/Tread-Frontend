@@ -66,7 +66,7 @@ const AddExerciseBox = () => {
                 ?
                 <div id="AddExerciseFormBox">
                     <ExerciseNameForm updateExerciseName={setExerciseName} />
-                    <ExerciseAmountForm updateAmount={setAmount} updateUnit={setUnit} />
+                    <ExerciseAmountForm defaultAmount = {0} defaultUnit = {"min"} updateAmount={setAmount} updateUnit={setUnit} />
                     <ExerciseLoggedDateForm updateLoggedDate={setLoggedDate} />
 
                     <div className="formButton">

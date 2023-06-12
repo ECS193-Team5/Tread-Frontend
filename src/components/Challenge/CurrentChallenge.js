@@ -23,11 +23,10 @@ const CurrentChallenge = () => {
       }, [challengeState]
     );
 
-
     return (
         <div data-testid="CurrentChallengeComponent" className = "challengeSection">
           <div className="selectButtonHeader">
-            <h2>Personal</h2>
+            <h1 className = "barHeader">Current</h1>
             <Bar>{{"buttonList":challengeBarButtonList, "updateFunc":setChallengeState}}</Bar>
           </div>
           <div>

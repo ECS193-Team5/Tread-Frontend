@@ -9,7 +9,7 @@ const ExerciseDateForm = (props) => {
     useEffect(
         () => {
             if (props.defaultIssueDate) {
-                document.getElementById("issueDateInput").value = new Date(props.defaultIssueDate).toISOString().substring(0, 16);
+                document.getElementById("issueDateInput").value = new Date(props.defaultIssueDate - 60*1000*new Date().getTimezoneOffset()).toISOString().substring(0, 16);
                 setDueDateError("");
             }
         }, [props.defaultIssueDate]
@@ -18,7 +18,7 @@ const ExerciseDateForm = (props) => {
     useEffect(
         () => {
             if (props.defaultDueDate) {
-                document.getElementById("dueDateInput").value = new Date(props.defaultDueDate).toISOString().substring(0, 16);
+                document.getElementById("dueDateInput").value = new Date(props.defaultDueDate - 60*1000*new Date().getTimezoneOffset()).toISOString().substring(0, 16);
                 setDueDateError("");
             }
         }, [props.defaultDueDate]
@@ -95,12 +95,12 @@ const ExerciseDateForm = (props) => {
         <div data-testid="ExerciseDateFormComponent">
             <div className="formObj">
                 <p className="formObjInner">Issue Date</p>
-                <input data-testid="ExerciseDateFormIssueDateInput" id="issueDateInput" onKeyDown={stopKey} className="formDateInput" type="datetime-local" min={getToday()} onChange={issueDateChange}></input>
+                <input data-testid="ExerciseDateFormIssueDateInput" id="issueDateInput" onKeyDown={stopKey} className="formDateInput  formObjShort" type="datetime-local" min={getToday()} onChange={issueDateChange}></input>
             </div>
 
             <div className="formObj">
                 <p className="formObjInner">Due Date</p>
-                <input data-testid="ExerciseDateFormDueDateInput" id="dueDateInput" onKeyDown={stopKey} className="formDateInput" type="datetime-local" min={getTomorrow()} onChange={dueDateChange}></input>
+                <input data-testid="ExerciseDateFormDueDateInput" id="dueDateInput" onKeyDown={stopKey} className="formDateInput  formObjShort" type="datetime-local" min={getTomorrow()} onChange={dueDateChange}></input>
                 <p data-testid="ExerciseDateFormDueDateError" className="errorBox">{dueDateError}</p>
             </div>
         </div>);

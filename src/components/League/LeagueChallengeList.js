@@ -23,7 +23,7 @@ const LeagueChallengeList = (props) => {
     return(
     <div data-testid="LeagueChallengeListComponent">
         <div className = "selectButtonHeader">
-            <h2 className='activeChallengesHeader'>Active Challenges</h2>
+            <h2 className='activeChallengesHeader barHeader'>Active Challenges</h2>
             {(role === "owner"||role ===
             "admin") ?<Bar>{{"buttonList":challengesBarButtonList, "updateFunc":sendLeagueChallengeRedirect}}</Bar> : <></>}
         </div>

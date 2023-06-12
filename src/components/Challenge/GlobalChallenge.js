@@ -7,7 +7,7 @@ const GlobalChallenge = () => {
   return (
     <div data-testid="GlobalChallengeComponent" id="GlobalChallenge" className="challengeSection">
       <div>
-        <h2>Global Challenges</h2>
+        <h1 className="barHeader">Global</h1>
       </div>
 
       <ChallengeScroll type="global" ifLeague={false} leagueID={""}></ChallengeScroll>

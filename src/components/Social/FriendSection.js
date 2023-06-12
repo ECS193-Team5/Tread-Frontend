@@ -19,7 +19,7 @@ const FriendSection = (props) => {
     return (
     <div data-testid="FriendSectionComponent" id = "FriendSection" className='section'>
         <div className ="selectButtonHeader">
-            <h1>Friends</h1>
+            <h1 className = "barHeader">Friends</h1>
             <Bar>{{"buttonList":buttonList, "updateFunc":setFriendState}}</Bar>
         </div>
         { (friendState === "Friends") ? <FriendScroll type = "friend"></FriendScroll> : <></>}

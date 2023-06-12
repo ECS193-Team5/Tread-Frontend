@@ -24,7 +24,7 @@ const ExerciseLoggedDateForm = (props) => {
     return (
         <div data-testid="ExerciseLoggedDateFormComponent">
             <p className="formObjInner">Date</p>
-            <input data-testid="ExerciseLoggedDateFormDateInput" className="formDateInput" onKeyDown = {stopKey} id="addExerciseDate" type="datetime-local" onChange={loggedDateChange} max = {getToday()}></input>
+            <input data-testid="ExerciseLoggedDateFormDateInput" className="formDateInput formObjShort" onKeyDown = {stopKey} id="addExerciseDate" type="datetime-local" onChange={loggedDateChange} max = {getToday()}></input>
         </div>
     )
 }

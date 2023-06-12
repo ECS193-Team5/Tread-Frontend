@@ -42,6 +42,7 @@ const messaging = await getMessagingIfSupported();
 if (messaging) {
   onMessage(messaging, (payload) => {
     console.log('Message received. ', payload);
+    window.alert(payload.notification.body)
     const userLocation = new URL(window.location.href);
     console.log("onmessage", userLocation.pathname, ('/' + payload.data.page));
     if (userLocation.pathname === '/' + payload.data.page){

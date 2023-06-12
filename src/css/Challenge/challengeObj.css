@@ -1,10 +1,11 @@
 .challengeSection{
-    min-width: 900px;
+    max-width: 1000px;
+    width: 100%;
 }
 
 .completeChallengeBox{
-    width: 870px;
-
+    max-width: 1000px;
+    width: 100%;
     box-sizing: border-box;
     background: #F1EEEA;
     border: 3px solid #014421;
@@ -14,13 +15,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
     margin-bottom: 20px;
 }
 
 
 .challengeBox{
+    max-width: 1000px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -58,16 +61,29 @@
 .challengeMiddle{
     display: flex;
     flex-direction: column;
-    width: 620px;
-
+    align-items: flex-start;
+    width: 100%;
     padding: 5px;
+
+    padding-right: 10px;
     height: 100%;
 }
 .challengeInnerMiddle{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding: 5px;
     height: 40px;
+    width: 100%;
+}
+
+.challengeInnerMiddleDualText{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 5px;
+    height: 40px;
+    width: 100%;
 }
 
 .challengeEnd{
@@ -77,6 +93,7 @@
     align-items: center;
     height: 100%;
     padding-right: 10px;
+    width: 40px;
 }
 .challengeDropButton{
     border-style: none;
@@ -100,4 +117,8 @@
 
 .innerGlobalPhotoDiv{
     padding: 10px;
+}
+
+.leftTextWrap{
+    padding-right: 5px;
 }
