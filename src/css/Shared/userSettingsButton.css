@@ -87,3 +87,9 @@
     left: -20px;
     overflow: visible;
 }
+
+@media(max-width: 400px) {
+    .userSettingsDropDown{
+        left:-65px;
+    }
+}

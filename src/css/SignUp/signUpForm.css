@@ -1,7 +1,7 @@
 #SignUpForm{
-    width: 74%;
     margin-left: 35px;
     margin-top: 20px;
+    margin-right: 35px;
     background-color: #F1EEEA;
     overflow-y: auto;
 }
@@ -20,8 +20,8 @@
 
 #subtitle{
     /* Looks like you’re new here */
-    width: 408px;
-    height: 56px;
+    max-width: 408px;
+    width: 100%;
 
     font-weight: 400;
     font-size: 24px;

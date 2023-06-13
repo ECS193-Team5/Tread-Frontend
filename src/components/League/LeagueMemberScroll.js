@@ -5,7 +5,7 @@ import MemberEntry from './MemberEntry';
 import { getBlockedList, getFriendList } from '../../routes/friend_list';
 import { getLeagueInfo, getMembersLeague, getInvited, getBanned, getRequesting } from '../../routes/league';
 import { setDisplayProperty } from '../../helpers/CssEffects';
-
+import "../../css/Social/scroll.css";
 const LeagueMemberScroll = (props) => {
     let [scrollType] = useState(props.type);
     let [information, setInformation] = useState([]);
@@ -91,12 +91,7 @@ const LeagueMemberScroll = (props) => {
     );
 
     function makeMemberEntryObj(input, index){
-        if (index === 0){
-            return(<div><MemberEntry index = {index} scrollData={scrollData}>{{"memberData":input}}</MemberEntry></div>);
-        }
-        else {
-            return(<div><div className = "memberLine"></div><MemberEntry index = {index} scrollData = {scrollData}>{{"memberData":input}}</MemberEntry></div>);
-        }
+        return(<MemberEntry index = {index} scrollData={scrollData}>{{"memberData":input}}</MemberEntry>);
     }
 
     const processMemberInfo = (response) => {
@@ -109,8 +104,8 @@ const LeagueMemberScroll = (props) => {
     }
 
     return(
-            <div data-testid="LeagueMemberScrollComponent">
-                <div id = "LeagueMemberList">
+            <div data-testid="LeagueMemberScrollComponent" id = "LeagueMemberScrollComponent">
+                <div id = "LeagueMemberList" className='scroll'>
                     {(fullyLoaded)? information.map(makeMemberEntryObj) :<></>}
                 </div>
                 {(showZero) ? <ZeroItem message = {showMessage[scrollType]}></ZeroItem> : <></>}

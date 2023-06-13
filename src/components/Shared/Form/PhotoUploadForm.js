@@ -8,6 +8,7 @@ import { getUsername } from "../../../routes/user";
 const PhotoUploadForm = (props) => {
     const [load, setLoad] = useState(false);
     const [src, setSource] = useState("");
+    const [photoError, setPhotoErr] = useState("");
 
     useEffect(
         () => {
@@ -44,9 +45,15 @@ const PhotoUploadForm = (props) => {
 
 
     function onImageChange (event) {
+        setPhotoErr("");
         let photo = event.target.files[0];
 
         if(!photo){
+            return;
+        }
+
+        if(photo.size > 272*1024){
+            setPhotoErr("Sorry, this photo is too large. Please select a smaller photo");
             return;
         }
         getBase64(photo);
@@ -58,6 +65,7 @@ const PhotoUploadForm = (props) => {
                 <img id = "uploadProfilePicture" className = "loadedProfileImage" src = {src} alt = "profile"></img>
             </div>
             <input data-testid="PhotoUploadFormUploadPhotoInput" className = "uploadPhoto" type = "file" accept = "image/*" onChange = {onImageChange}></input>
+            <p className="errorBox">{photoError}</p>
         </div>
     );
 

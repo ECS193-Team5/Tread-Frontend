@@ -30,7 +30,7 @@ const LeagueDescriptionForm = (props) => {
     return (
         <div data-testid="LeagueDescriptionFormComponent" className="formObj">
             <h2>League Description</h2>
-            <input data-testid="LeagueDescriptionFormUpdateDescriptionInput" id = "leagueDescriptionInput"  className="formTextInput" onChange={updateDescription} type="text" />
+            <input data-testid="LeagueDescriptionFormUpdateDescriptionInput" id = "leagueDescriptionInput"  className="formTextInput wordFormTextInput" onChange={updateDescription} type="text" />
             <p data-testid="LeagueDescriptionFormDescriptionError" className="errorBox">{descriptionError}</p>
         </div>
     );

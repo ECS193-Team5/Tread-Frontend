@@ -36,6 +36,7 @@
     border-radius: 15px;
 }
 
+
 .formTextInput{
     box-sizing: border-box;
 
@@ -45,6 +46,11 @@
     background-color: transparent;
     border: 1px solid #F9A800;
     border-radius: 15px;
+}
+
+.wordFormTextInput{
+    width: 100%;
+    max-width: 300px;
 }
 
 .errorBox{

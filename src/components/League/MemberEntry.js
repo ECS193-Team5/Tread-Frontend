@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import "../../css/League/member.css";
+import "../../css/Social/obj.css";
+import "../../css/League/leagueDescriptionPage.css";
 import { createProfilePictureURL } from "../../helpers/CloudinaryURLHelpers";
 import { setDisplayProperty, reloadPage } from '../../helpers/CssEffects';
 import DropDown from '../Shared/DropDown';
@@ -199,21 +200,18 @@ const MemberEntry = (props) => {
   }
 
   return (
-    <div data-testid={"MemberEntryComponent"+props.index} id = {props.children.memberData.username + "MemberEntry"} className="memberEntry">
-      <div className="memberEntryLeft">
-        <div>
-          <img className="memberPicture" src={createProfilePictureURL(props.children.memberData.username)} />
-        </div>
-        <div className="memberNames">
-          <p data-testid={"MemberEntryMemberDisplayName"+props.index} className="memberDisplayName memberEntryText">{props.children.memberData.displayName}</p>
-          <p data-testid={"MemberEntryMemberUsername"+props.index} className="memberUsername memberEntryText">{props.children.memberData.username}</p>
-        </div>
+    <div data-testid={"MemberEntryComponent"+props.index} id = {props.children.memberData.username + "MemberEntry"} className="memberEntry displayObj">
+      <div className="objSection objSectionLeague">
+        <img className="objProfilePhoto objSectionLeague" src={createProfilePictureURL(props.children.memberData.username)} alt="profile" />
       </div>
-      <div className="memberEntryRight">
+      <div className="objSection objWritingSection">
+        <p data-testid={"FriendObjDisplayName" + props.index} className="objDisplayName">{props.children.memberData.displayName}</p>
+        <p data-testid={"FriendObjUsername" + props.index} className="objUsername">{props.children.memberData.username}</p>
+      </div>
 
-
+      <div className="objSection objButtonMemberSection">
         <div>
-          {(props.children.memberData.role === "admin" || props.children.memberData.role === "owner") ?
+          {(props.children.memberData.role === "admin" && props.children.memberData.role !== "owner") ?
             <img src={adminKey} alt="key" />
             :
             <></>
@@ -227,12 +225,12 @@ const MemberEntry = (props) => {
           }
         </div>
 
-        <div className="moreInfoDiv" id = {"moreInfoButtonMember"+ props.children.memberData.username}>
-          <button data-testid={"MemberEntryMoreInfoButton"+props.children.memberData.username} className="moreInfoButton" onClick={toggleSelectShow}>
+        <div id = {"moreInfoButtonMember"+ props.children.memberData.username}>
+          <button data-testid={"MemberEntryMoreInfoButton"+props.children.memberData.username} className="moreInfoButton objButtonMemberMore" onClick={toggleSelectShow}>
             <img src={moreInfoButton} />
           </button>
-          {(selectShow) ? <div className="memberSelectOptions"><DropDown uniqueDeterminer = {props.children.memberData.username+"MemberEntry"}>{memberDropDownEntries}</DropDown></div> : <></>}
         </div>
+        {(selectShow) ? <div className="objMemberDropDown"><DropDown uniqueDeterminer = {props.children.memberData.username+"MemberEntry"}>{memberDropDownEntries}</DropDown></div> : <></>}
       </div>
 
     </div>

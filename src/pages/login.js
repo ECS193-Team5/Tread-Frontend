@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/Login/login.css';
 import { useState, useEffect } from "react";
-import  hardCodedInfo  from "../helpers/SharedHardCodeInfo.json";
+import hardCodedInfo from "../helpers/SharedHardCodeInfo.json";
 import { getUsername } from '../routes/user';
 import frontPageTreadLogo from "../assets/frontPageTreadLogo.png";
 import AppleSigninButton from '../components/Login/AppleSignInButton';
@@ -17,15 +17,13 @@ const Login = () => {
   const [loadedToken, setLoadedToken] = useState(false);
 
   useEffect(() => {
-    function moveCurrentChallenge(response){
+    function moveCurrentChallenge(response) {
       window.location.href = "./currentChallengePage";
     }
 
-    if(!load){
-      window.addEventListener('resize', handleResize)
-      if(window.innerWidth >= 641){
-        loadGoogleScriptOnScreenLoad();
-      }
+    if (!load) {
+
+      loadGoogleScriptOnScreenLoad();
       getUsername(moveCurrentChallenge);
       setLoad(true);
     }
@@ -34,7 +32,7 @@ const Login = () => {
 
 
   useEffect(() => {
-    if(loadedToken || deviceToken.length>0){
+    if (loadedToken || deviceToken.length > 0) {
       googleSignIn();
     }
   }, [loadedToken, deviceToken]);
@@ -75,52 +73,40 @@ const Login = () => {
     }
   }
 
-  function loadGoogleScriptOnScreenLoad(){
+  function loadGoogleScriptOnScreenLoad() {
     loadScript('https://accounts.google.com/gsi/client')
-        .then(() => {
-          setDeviceToken(setToken, setLoadedToken);
-        })
-        .catch(() => {
-          console.error('Script loading failed! Handle this error');
-        });
-  }
-
-  function handleResize(event){
-    if(window.innerWidth >= 641){
-      loadGoogleScriptOnScreenLoad()
-    }
+      .then(() => {
+        setDeviceToken(setToken, setLoadedToken);
+      })
+      .catch(() => {
+        console.error('Script loading failed! Handle this error');
+      });
   }
 
   return (
-  <div data-testid="LoginComponent" id = "loginPage">
-    <div id = "loginPageWeb">
-      <div id = "logoBox">
-        <div>
-          <img id="treadLogo" src={frontPageTreadLogo} alt="logo" />
+    <div data-testid="LoginComponent" id="loginPage">
+      <div id="loginPageWeb">
+
+        <div id="logoBox">
+          <div>
+            <img id="treadLogo" src={frontPageTreadLogo} alt="logo" />
+          </div>
+          <div className='titleBox'>
+            <p id="frontPageTitle">Tread</p>
+            <p id="frontPageSubtitle">Stay Fit with Friends</p>
+          </div>
         </div>
-        <div className='titleBox'>
-            <p id = "frontPageTitle">Tread</p>
-            <p id = "frontPageSubtitle">Stay Fit with Friends</p>
-        </div>
-      </div>
-      <p data-testid="LoginFrontPageDescription" className='frontPageDescriptionText'>{hardCodedInfo.frontPageDescription}</p>
+        <p data-testid="LoginFrontPageDescription" className='frontPageDescriptionText'>{hardCodedInfo.frontPageDescription}</p>
 
         <div id="buttonDivGoogle"></div>
-        <div id="appleSignInButton"><AppleSigninButton/></div>
+        <div id="appleSignInButton"><AppleSigninButton /></div>
 
-
+        <div id = "buttonGet">
+          <p className='frontPageDescriptionText availableText'>Available on Android and iOS</p>
+          <a href='https://play.google.com/store/apps/details?id=com.treadmobile&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img id="googlePlayStoreImage" alt='Get it on Google Play' src={googlePlayStoreBadge} /></a>
+          <a href='https://apps.apple.com/us/app/tread-mobile/id6448766159'><img id="appleStoreImage" alt='Download on the App Store' src={appleAppStoreBadge} /></a>
         </div>
-
-
-
-      <div id = "loginPageMobile">
-        <div id = "frontPageLogoSectionMobile">
-          <img id="treadLogo" src={frontPageTreadLogo} alt="logo" />
-          <p id = "frontPageTitleMobile">Tread</p>
-        </div>
-        <a href='https://play.google.com/store/apps/details?id=com.treadmobile&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img id="googlePlayStoreImage" alt='Get it on Google Play' src={googlePlayStoreBadge}/></a>
-        <a href='https://apps.apple.com/us/app/tread-mobile/id6448766159'><img id="appleStoreImage" alt='Download on the App Store' src={appleAppStoreBadge}/></a>
       </div>
-  </div>)
+    </div>)
 }
 export default Login;

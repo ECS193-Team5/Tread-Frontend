@@ -1,4 +1,9 @@
-
+#LeaderboardEntryListComponent{
+    display: flex;
+    flex-direction: column;
+    flex-wrap:nowrap;
+    justify-content: center;
+}
 .leaderboardPhoto{
     width: 30px;
     height: 30px;
@@ -7,8 +12,10 @@
 #LeaderboardEntry{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     margin-top: 15px;
     margin-bottom: 15px;
+    width: 100%;
 }
 .leaderboardEntryImage{
     width: 50px;

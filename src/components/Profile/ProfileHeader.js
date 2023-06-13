@@ -52,28 +52,21 @@ const ProfileHeader = () => {
 
     return (
         <div data-testid="ProfileHeaderComponent" className="pictureHeader">
-            <div className="pictureHeaderLeft">
-                <div className="pictureHeaderFarLeft">
-                    <div className = "pictureHolderDiv">
-                        <img className="picture" src={profilePhoto} alt="profile"></img>
-                    </div>
+                <div className="pictureHolderDiv pictureHeaderLeft">
+                    <img className="picture" src={profilePhoto} alt="profile"></img>
                 </div>
-                <div className="pictureHeaderMiddle">
+                <div className = "pictureHeaderMiddle">
                     <div id="pictureHeaderContent">
                         <h2>{username}</h2>
                         <h3>{displayName}</h3>
                     </div>
-                    <div id = "pictureHeaderButton">
+                    <div id="pictureHeaderButton">
                         <button data-testid="ProfileHeaderMoveSettingPageButton" className="editButton" onClick={moveSettingsPage}><img className="editButtonImage" src={editButtonImage} alt="edit button"></img></button>
-
                     </div>
                 </div>
-            </div>
-            <div className = "picturHeaderRight">
-                <div className = "pictureHolderDiv">
+                <div className="pictureHolderDiv pictureHeaderRight">
                     <img className="qrcodeImage" src={qrcode} alt="qr code for friend request"></img>
                 </div>
-            </div>
         </div>
     )
 

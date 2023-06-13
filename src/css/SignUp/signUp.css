@@ -6,3 +6,6 @@
     flex-direction: row;
     flex-wrap: nowrap;
 }
+
+@media(min-width: 1175px) {
+}

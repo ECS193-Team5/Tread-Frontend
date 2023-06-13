@@ -1,5 +1,9 @@
+#MailBox{
+    width: 100%;
+}
 #MailBoxHeader{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
 }

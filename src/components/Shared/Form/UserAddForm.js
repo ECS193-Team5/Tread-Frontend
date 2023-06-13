@@ -49,7 +49,7 @@ const UserAddForm = (props) => {
         }
     }
 
-    return (<div data-testid="UserAddFormComponent">
+    return (<div data-testid="UserAddFormComponent" id="UserAddFormComponent">
         <div id="addUserForm">
             <h3>{descriptionText[props.type]["header"]}</h3>
             <p data-testid="UserAddFormDescriptionText" className="greenBaseText">{descriptionText[props.type]["subHeader"]}</p>

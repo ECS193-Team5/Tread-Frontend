@@ -67,29 +67,25 @@ const LeagueHeader = (props) => {
 
     return(
         <div data-testid="LeagueHeaderComponent" className = "pictureHeader">
-            <div className = "pictureHeaderLeft">
-                <div className = "pictureHeaderFarLeft">
-                    <div className = "pictureHolderDiv">
-                        <img className = "picture" src = {leaguePhoto} alt = "league"/>
-                    </div>
+            <div className = "pictureHolderDiv pictureHeaderLeft">
+                <img className = "picture" src = {leaguePhoto} alt = "league"/>
+            </div>
+            <div className = "pictureHeaderMiddle">
+                <div className = "pictureHeaderContent">
+                    <h2 data-testid="LeagueHeaderLeagueName">{leagueName}</h2>
+                    <p data-testid="LeagueHeaderLeagueDescription" className = "pictureHeaderText">Description: {leagueDescription}</p>
+                    <p data-testid="LeagueHeaderLeagueType" className = "pictureHeaderText">{leagueType}<br></br>{numberChallenges} Active Challenges  <br></br>{numberMembers} Members</p>
                 </div>
-                <div className = "pictureHeaderMiddle">
-                    <div className = "pictureHeaderContent">
-                        <h2 data-testid="LeagueHeaderLeagueName">{leagueName}</h2>
-                        <p data-testid="LeagueHeaderLeagueDescription" className = "pictureHeaderText">Description: {leagueDescription}</p>
-                        <p data-testid="LeagueHeaderLeagueType" className = "pictureHeaderText">{leagueType}<br></br>{numberChallenges} Active Challenges  <br></br>{numberMembers} Members</p>
-                    </div>
-                    <div className = "pictureHeaderButton">
-                        {
-                            (role === "owner")?
-                            <button data-testid="LeagueHeaderMoveEditPageButton" className = "editButton" onClick = {moveEditPage}><img className = "editButtonImage" src = {editButtonImage} alt = "edit button"></img></button>
-                            :
-                            <></>
-                        }
-                    </div>
+                <div className = "pictureHeaderButton">
+                    {
+                        (role === "owner")?
+                        <button data-testid="LeagueHeaderMoveEditPageButton" className = "editButton" onClick = {moveEditPage}><img className = "editButtonImage" src = {editButtonImage} alt = "edit button"></img></button>
+                        :
+                        <></>
+                    }
                 </div>
             </div>
-            <div className = "pictureHeaderRight">
+            <div className = "pictureHolderDiv pictureHeaderRight">
                 <img className = "qrcodeImage" src = {qrCode} alt = "qr code for league request"></img>
             </div>
         </div>

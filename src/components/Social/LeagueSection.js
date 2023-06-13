@@ -24,7 +24,7 @@ const LeagueSection = () => {
     );
 
     return (
-        <div data-testid="LeagueSectionComponent">
+        <div data-testid="LeagueSectionComponent" className = "leagueSectionComponent">
             <div id="LeagueSection" className="section">
                 <div className="selectButtonHeader">
                     <h1 className = "barHeader">Leagues</h1>

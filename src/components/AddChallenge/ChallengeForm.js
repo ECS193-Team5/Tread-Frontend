@@ -49,7 +49,6 @@ const ChallengeForm = () =>{
       if (data === "NA"){
         return;
       }
-      console.log(data);
 
       setAmount(data.amount);
       setDefaultAmount(data.amount);
@@ -118,7 +117,6 @@ const ChallengeForm = () =>{
             amount : amount,
             exerciseName : exerciseName}
         }
-        console.log(inputData);
         addChallenge(inputData, moveChallengePage, setError);
     }
 
