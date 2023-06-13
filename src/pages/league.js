@@ -32,26 +32,25 @@ const League = (props) => {
                     <Header>{{ "title": "Social Hub", "type": "league", "leagueID": leagueName, "onButton": props.children.type }}</Header>
                     {
                         props.children.type === "edit" ?
-                        <LeagueEditForm leagueID = {leagueName}></LeagueEditForm>
-                        :
-                        <div>
-                        <LeagueHeader>{{ "id": leagueName }}</LeagueHeader>
-                        {
-                            (props.children.type === "description") ?
-                                <LeagueChallengeList>{{ "id": leagueName }}</LeagueChallengeList>
-
-                                :
-                                <LeagueMemberSection>{{ "id": leagueName }}</LeagueMemberSection>
-                        }
-                        {
-                            (props.children.type === "description") ?
-                                <LeagueLeaderboard>{{ "id": leagueName }}</LeagueLeaderboard>
-
-                                :
-                                <></>
-                        }
-                        </div>
+                            <LeagueEditForm leagueID={leagueName}></LeagueEditForm>
+                            :
+                            <div id = "LeagueSection">
+                                <LeagueHeader>{{ "id": leagueName }}</LeagueHeader>
+                                {
+                                    (props.children.type === "description") ?
+                                        <LeagueChallengeList>{{ "id": leagueName }}</LeagueChallengeList>
+                                        :
+                                        <LeagueMemberSection>{{ "id": leagueName }}</LeagueMemberSection>
+                                }
+                                {
+                                    (props.children.type === "description") ?
+                                        <LeagueLeaderboard>{{ "id": leagueName }}</LeagueLeaderboard>
+                                        :
+                                        <></>
+                                }
+                            </div>
                     }
+
                 </div>
             </div>
 

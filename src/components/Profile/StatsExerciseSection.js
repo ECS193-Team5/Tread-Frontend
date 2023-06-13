@@ -245,10 +245,10 @@ const StatsExerciseSection = () => {
         setSelectedExerciseName(event.target.value);
     }
 
-    return (<div data-testid="StatsExerciseSectionComponent">
+    return (<div data-testid="StatsExerciseSectionComponent" className='exerciseStatsSection'>
         <div className = "downloadButtonHeader">
-        <h1 >Exercise History</h1>
-        <StatsDownloadSection type = "Exercise"/>
+            <h2 >Exercise History</h2>
+            <StatsDownloadSection type = "Exercise"/>
         </div>
         <div >
             <select data-testid="StatsExerciseSectionExerciseNameSelect" className = "formSelect exercisePicker" onChange = {changeExerciseName} defaultValue={"none"}>
@@ -258,8 +258,9 @@ const StatsExerciseSection = () => {
                 {availableUnits.map((item, index) =>{ return <option key = {index} value = {item}> {hardCodedInfo.fullUnitName[item]}</option> })}
             </select>
         </div>
-
+        <div class="chart-container statsChallengeHistory" style={{position: 'relative', width:"100%", height:"60vw", maxHeight:"400px"}}>
         <Bar options = {options} data = {config}></Bar>
+        </div>
         </div>
         );
 }

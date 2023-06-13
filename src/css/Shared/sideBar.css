@@ -124,3 +124,48 @@
         align-items: center;
     }
 }
+
+
+
+@media(max-width: 430px) {
+    .sideBarButtonClass {
+        background-color: #F9A800;
+        border-radius: 15px;
+        border: 0px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .sideBarButtonClassInner {
+        width: 48px;
+        height: 49px;
+    }
+
+    #treadLogoSideBar {
+        padding: 15px;
+        width: 75px;
+        height: 75px;
+    }
+}
+
+
+@media(max-width: 400px) {
+    .sideBarButtonClass {
+        background-color: #F9A800;
+        border-radius: 15px;
+        border: 0px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .sideBarButtonClassInner {
+        width: 38px;
+        height: 39px;
+    }
+
+    #treadLogoSideBar {
+        padding: 10px;
+        width: 60px;
+        height: 60px;
+    }
+}

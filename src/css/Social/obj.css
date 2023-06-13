@@ -2,7 +2,7 @@
     box-sizing: border-box;
 
     width: 450px;
-    height: 95px;
+    min-height: 95px;
 
     background: #F1EEEA;
     border: 1px solid #F9A800;
@@ -67,6 +67,20 @@
     height: 100%;
 }
 
+.objButtonMemberSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 100%;
+}
+
+.objMemberDropDown{
+    position: relative;
+    left: -45px;
+}
+
 .objButtonMore{
     position: relative;
     left:0px;
@@ -86,4 +100,48 @@
 
 .objSectionLeague:hover{
     cursor: pointer;
+}
+
+@media(max-width: 1050px){
+    .objDropdown{
+        position: relative;
+        top: 20px;
+        left: -90px;
+    }
+}
+
+@media(max-width: 480px){
+    .displayObj{
+        width: 95%;
+        height: unset;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .objWritingSection{
+        width: 100%;
+        word-break: break-all;
+    }
+
+    .objButtonSection{
+        width: 35px;
+    }
+
+    .objButtonMore{
+        position: relative;
+        left:0px;
+        top: 0px;
+    }
+
+    .objDropdown{
+        position: relative;
+        top: 0px;
+        left: -45px;
+    }
+
+    .objMemberDropDown{
+        position: relative;
+        left: 0px;
+    }
 }

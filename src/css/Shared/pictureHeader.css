@@ -1,23 +1,19 @@
 
+#LeagueSection{
+    width: 100%;
+}
 
 .pictureHeader{
     width: 100%;
     display: flex;
     flex-direction: row;
-    padding-top: 20px;
     padding-bottom: 10px;
-}
-
-.pictureHeaderLeft{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
 }
 
 .pictureHolderDiv{
     box-sizing: border-box;
 
-    width: 160px;
+    width: 160px !important;
     height: 160px;
 
     background: #D9D9D9;
@@ -27,22 +23,26 @@
     display:flex;
     justify-content: center;
     align-items: center;
+    margin: 20px;
 }
 
 .picture{
     width: 120px;
     height: 120px;
+    padding: 20px;
 }
 
 .pictureHeaderMiddle{
     display: flex;
     flex-direction: row;
     width: 100%;
+    margin: 20px;
     justify-content: space-between;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
+.pictureHeaderRight{
+    margin: 20px;
+}
 .pictureHeaderText{
     color: #014421;
     padding: 2px;
@@ -57,4 +57,30 @@
     background: #D9D9D9;
     border: 1px solid #F9A800;
     border-radius: 20px;
+}
+
+@media(max-width: 775px) {
+    .pictureHeader{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+
+    .pictureHeaderLeft{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .pictureHeaderMiddle{
+        order:1;
+        display:flex;
+        flex-wrap:wrap;
+    }
 }

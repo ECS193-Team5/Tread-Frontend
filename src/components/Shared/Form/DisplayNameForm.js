@@ -26,7 +26,7 @@ const DisplayNameForm = (props) => {
         <div data-testid="DisplayNameFormComponent">
             <h2>Display Name</h2>
             <p className="formObjInner">This is public name that others will see.</p>
-            <input data-testid="DisplayNameFormDisplayNameInput" className="formTextInput" type="text" placeholder = {props.placeholder} onChange={validateDisplayName} />
+            <input data-testid="DisplayNameFormDisplayNameInput" className="formTextInput wordFormTextInput" type="text" placeholder = {props.placeholder} onChange={validateDisplayName} />
             <p data-testid="DisplayNameFormDisplayError" className="errorBox">{displayError}</p>
         </div>
     );

@@ -3,6 +3,7 @@ import { Bar } from 'react-chartjs-2';
 import StatsDownloadSection from "./StatsDownloadSection";
 import { getPastChallenges } from "../../routes/statistics";
 import "../../css/Shared/button.css";
+import { reloadPage } from "../../helpers/CssEffects";
 
 const StatsChallengeSection = () => {
   const [load, setLoad] = useState(false);
@@ -17,6 +18,7 @@ const StatsChallengeSection = () => {
     plugins: {
     },
     responsive: true,
+    maintainAspectRatio:false,
     scales: {
       x: {
         stacked: true,
@@ -135,14 +137,16 @@ const StatsChallengeSection = () => {
     setLabels(dayLabels);
     determineData(data, dayLabels, firstChallenge);
   }
-
+//
   return (
     <div data-testid="StatsChallengeSectionComponent" className="challengeStatsSection">
       <div className="downloadButtonHeader">
-      <h1>Challenge History</h1>
-      <StatsDownloadSection type = "Challenge"/>
+        <h2>Challenge History</h2>
+        <StatsDownloadSection type = "Challenge"/>
       </div>
+      <div class="chart-container statsChallengeHistory" style={{position: 'relative', width:"100%", height:"60vw", maxHeight:"400px"}}>
       <Bar options = {options} data = {config}></Bar>
+      </div>
     </div>
   )
 }

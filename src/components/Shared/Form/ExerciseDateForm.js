@@ -10,6 +10,7 @@ const ExerciseDateForm = (props) => {
         () => {
             if (props.defaultIssueDate) {
                 document.getElementById("issueDateInput").value = new Date(props.defaultIssueDate - 60*1000*new Date().getTimezoneOffset()).toISOString().substring(0, 16);
+                setIssueDate(new Date(props.defaultIssueDate - 60*1000*new Date().getTimezoneOffset()).toISOString().substring(0, 16));
                 setDueDateError("");
             }
         }, [props.defaultIssueDate]
@@ -19,6 +20,7 @@ const ExerciseDateForm = (props) => {
         () => {
             if (props.defaultDueDate) {
                 document.getElementById("dueDateInput").value = new Date(props.defaultDueDate - 60*1000*new Date().getTimezoneOffset()).toISOString().substring(0, 16);
+                setDueDate(new Date(props.defaultDueDate - 60*1000*new Date().getTimezoneOffset()).toISOString().substring(0, 16));
                 setDueDateError("");
             }
         }, [props.defaultDueDate]

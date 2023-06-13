@@ -23,7 +23,7 @@ const Profile = (props) => {
                     <MailBox></MailBox>
                     {
                         (props.children.type === "stats") ?
-                        <div>
+                        <div style={{width:"100%"}}>
                         <StatsExerciseSection/>
                         <Line></Line>
                         <StatsChallengeSection/>
