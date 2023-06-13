@@ -11,7 +11,7 @@
 
     background: #014421;
     border-radius: 20px;
-
+    margin: 10px 0px 10px 0px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

@@ -90,7 +90,11 @@ const LeagueEditForm = (props) => {
     }
 
     function onDeleteLeague(){
-        deleteLeague(props.leagueID, moveLeaguePage, setLeagueError);
+        const deleteConfirmed = window.prompt('Deleted leagues cannot be recovered. Type "delete league" into the box to confirm you want to delete your league.');
+
+        if(deleteConfirmed === "delete league"){
+            deleteLeague(props.leagueID, moveLeaguePage, setLeagueError);
+        };
     }
 
     return (

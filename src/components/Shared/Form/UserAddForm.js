@@ -10,8 +10,8 @@ const UserAddForm = (props) => {
     const [usernameText, setUsernameText] = useState("");
 
     const descriptionText = {
-        "friend": { "header": "Add Friend", "subHeader": "You can add a friend with their username.", "failureText": "Sorry, a friend request could not be sent to " },
-        "league": { "header": "Invite User", "subHeader": "Invite someone to your league with their username.", "failureText": "Sorry, a league invite could not be sent to " }
+        "friend": { "subHeader": "You can add a friend with their username.", "failureText": "Sorry, a friend request could not be sent to " },
+        "league": { "subHeader": "Invite someone to your league with their username.", "failureText": "Sorry, a league invite could not be sent to " }
     }
 
     const setRequestSucceedsResponse = (response) => {
@@ -51,7 +51,6 @@ const UserAddForm = (props) => {
 
     return (<div data-testid="UserAddFormComponent" id="UserAddFormComponent">
         <div id="addUserForm">
-            <h3>{descriptionText[props.type]["header"]}</h3>
             <p data-testid="UserAddFormDescriptionText" className="greenBaseText">{descriptionText[props.type]["subHeader"]}</p>
             <div id="addUserInput">
                 <input data-testid="UserAddFormDescriptionUsernameInput" id="textInput" placeholder="username#0000" type="text" onChange={handleTextChange} onKeyDown={handleEnter}></input>

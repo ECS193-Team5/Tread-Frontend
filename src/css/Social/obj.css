@@ -120,6 +120,7 @@
 
 
     .objWritingSection{
+        text-align: center;
         width: 100%;
         word-break: break-all;
     }
