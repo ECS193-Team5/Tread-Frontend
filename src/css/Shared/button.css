@@ -4,7 +4,7 @@ button{
 .submitButton{
     box-sizing: border-box;
     min-width: 160px;
-    height: 34px;
+    min-height: 30px;
 
     background: #014421;
     border: 1px solid #F9A800;
@@ -17,16 +17,13 @@ button{
 }
 
 .submitButtonText{
-    height: 27px;
-
-
     font-family: '?????';
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
-    line-height: 24px;
     padding: 2px;
     color: #F9A800;
+    margin: 0px;
 }
 
 .deleteButton{
