@@ -1,3 +1,13 @@
+.sideBarButtonClassInner {
+    padding: 0;
+}
+
+.sideBarButtonClass {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media(min-width: 1175px) {
     .sideBarClass {
         background-color: #014421;
@@ -22,6 +32,7 @@
     }
 
     .sideBarButtonClassInner {
+        padding: 0;
         max-width: 53px;
         max-height: 54px;
     }
