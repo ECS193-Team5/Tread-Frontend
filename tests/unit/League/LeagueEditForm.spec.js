@@ -23,6 +23,7 @@ import imageFile from "../../../../src/assets/BronzeTrophy.png";
 
 const deleteLeague = (num) => {
     const element = screen.getByTestId("LeagueEditFormDeleteButton");
+    window.prompt = jest.fn().mockImplementation(()=>{return "delete league"})
     fireEvent.click(element);
 }
 
@@ -59,6 +60,17 @@ describe("Test /League/LeagueEditForm.js", () => {
         expect(setLocationMock).not.toBeCalled();
         expect(screen.getByTestId("LeagueEditFormDeleteError")).toHaveTextContent("Could not delete league. Please refresh the page or try again later.");
     })
+
+    it("Test delete league but change mind", () => {
+        deleteLeagueMock =  jest.spyOn(leagueFunc, "deleteLeague").mockImplementation((id, then, err)=>{err()})
+        render(<LeagueEditForm>{{"id":"4"}}</LeagueEditForm>)
+        const element = screen.getByTestId("LeagueEditFormDeleteButton");
+        window.prompt = jest.fn().mockImplementation(()=>{return "no delete league"})
+        fireEvent.click(element);
+        expect(setLocationMock).not.toBeCalled();
+        expect(screen.getByTestId("LeagueEditFormDeleteError")).toHaveTextContent("");
+    })
+
 
     it("Test update with no info", () => {
         render(<LeagueEditForm>{{"id":"4"}}</LeagueEditForm>)

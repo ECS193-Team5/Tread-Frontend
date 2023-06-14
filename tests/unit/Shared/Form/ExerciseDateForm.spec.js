@@ -7,7 +7,7 @@ const TODAY = '2023-05-30T00:00';
 const TOMORROW = '2023-05-31T00:00';
 const TODAY_ISO ='2023-05-30T07:00:00.000Z';
 const TOMORROW_ISO = '2023-05-31T07:00:00.000Z'
-describe("Test /Shared/Form/DisplayNameForm.js", () => {
+describe("Test /Shared/Form/ExerciseDateForm.js", () => {
     let setIssueDateMock = jest.fn();
     let setDueDateMock = jest.fn();
     beforeAll(()=>{
@@ -23,7 +23,7 @@ describe("Test /Shared/Form/DisplayNameForm.js", () => {
     })
 
     it("Test give default issue and start date", () => {
-        render(<ExerciseDateForm defaultIssueDate = {TODAY} defaultDueDate =  {TOMORROW} updateIssueDate = {setIssueDateMock} updateDueDate = {setDueDateMock} />)
+        render(<ExerciseDateForm defaultIssueDate = {Date.now()} defaultDueDate =  {Date.now() + 24*60*60*1000} updateIssueDate = {setIssueDateMock} updateDueDate = {setDueDateMock} />)
         const errorElement = screen.getByTestId("ExerciseDateFormDueDateError");
         expect(errorElement).toHaveTextContent("");
     })

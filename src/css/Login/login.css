@@ -39,7 +39,7 @@ body{
 }
 
 #frontPageSubtitle{
-    height: 57px;
+    min-height: 57px;
 
     font-family: '?????';
     font-style: normal;
