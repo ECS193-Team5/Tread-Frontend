@@ -27,6 +27,7 @@ let locationMock = jest.spyOn(cssFunc,"getHrefLocation").mockImplementation(()=>
 
 const deleteLeague = (num) => {
     const element = screen.getByTestId("LeagueEditFormDeleteButton");
+    window.prompt = jest.fn().mockImplementation(()=>{return "delete league"})
     fireEvent.click(element);
 }
 
@@ -190,6 +191,11 @@ describe("Test pages/league", () => {
             fireEvent.click(screen.getByTestId("LeagueHeaderMoveEditPageButton"));
             expect(setLocationMock).toBeCalledTimes(1);
         })
+
+        it("Test leaderboard with no info", () =>{
+            getLeaderboardInfo.mockImplementation((id, set)=>{set({data:[]})})
+            render(<League>{{type:"description"}}</League>)
+        })
     });
 
     describe("Test changing the member page bar options", () =>{
@@ -324,6 +330,15 @@ describe("Test pages/league", () => {
             expect(screen.getByTestId("LeagueEditFormDeleteError")).toHaveTextContent("");
         })
 
+        it("Test delete league without giving it the call", () => {
+            render(<League>{{type:"edit"}}</League>)
+            const element = screen.getByTestId("LeagueEditFormDeleteButton");
+            window.prompt = jest.fn().mockImplementation(()=>{return "do not delete league"})
+            fireEvent.click(element);
+            expect(setLocationMock).toBeCalledWith("./SocialLeaguePage")
+            expect(screen.getByTestId("LeagueEditFormDeleteError")).toHaveTextContent("");
+        })
+
         it("Test delete league err", () => {
             deleteLeagueMock =  jest.spyOn(leagueFunc, "deleteLeague").mockImplementation((id, then, err)=>{err()})
             render(<League>{{type:"edit"}}</League>)
@@ -335,6 +350,8 @@ describe("Test pages/league", () => {
             render(<League>{{type:"edit"}}</League>)
             submitButton()
         })
+
+
     });
 
     describe("Test user interactions", () =>{
