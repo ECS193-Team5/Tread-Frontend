@@ -470,6 +470,10 @@ test('League Invite System', async ({ browser }) => {
     await user1Page.getByTestId('PageSwitchMemberButton').click();
     await user1Page.getByTestId('PageSwitchDescriptionButton').click();
     await user1Page.getByTestId('LeagueHeaderMoveEditPageButton').click();
+    user1Page.once('dialog', async dialog => {
+        console.log(`Dialog message: ${dialog.message()}`);
+        await dialog.accept("delete league").catch(() => { });
+    });
     await user1Page.getByTestId('LeagueEditFormDeleteButton').click();
     await user1Page.waitForResponse('https://api.tread.run/league/delete_league');
 
@@ -511,6 +515,10 @@ test('League Request Public System', async ({ browser }) => {
     await user2Page.waitForURL('https://tread.run/socialLeaguePage')
 
     await user1Page.getByTestId('LeagueHeaderMoveEditPageButton').click();
+    user1Page.once('dialog', async dialog => {
+        console.log(`Dialog message: ${dialog.message()}`);
+        await dialog.accept("delete league").catch(() => { });
+    });
     await user1Page.getByTestId('LeagueEditFormDeleteButton').click();
     await user1Page.waitForResponse('https://api.tread.run/league/delete_league');
 
@@ -593,6 +601,10 @@ test('League Request Private System', async ({ browser }) => {
 
     // User 1 deletes delete
     await user1Page.getByTestId('LeagueHeaderMoveEditPageButton').click();
+    user1Page.once('dialog', async dialog => {
+        console.log(`Dialog message: ${dialog.message()}`);
+        await dialog.accept("delete league").catch(() => { });
+    });
     await user1Page.getByTestId('LeagueEditFormDeleteButton').click();
     await user1Page.waitForResponse('https://api.tread.run/league/delete_league');
 
@@ -662,6 +674,10 @@ test('Test Edit League', async ({ browser }) => {
     await user1Page.getByTestId('PageSwitchLeagueButton').click();
     await user1Page.getByTestId('LeagueObjLeagueNamenewLeagueName').click();
     await user1Page.getByTestId('LeagueHeaderMoveEditPageButton').click();
+    user1Page.once('dialog', async dialog => {
+        console.log(`Dialog message: ${dialog.message()}`);
+        await dialog.accept("delete league").catch(() => { });
+    });
     await user1Page.getByTestId('LeagueEditFormDeleteButton').click();
     await user1Page.waitForResponse('https://api.tread.run/league/delete_league');
 
@@ -788,6 +804,10 @@ test('League Challenge System', async ({ browser }) => {
     await user1Page.getByTestId('PageSwitchLeagueButton').click();
     await user1Page.getByTestId('LeagueObjLeagueName'+leagueName).click();
     await user1Page.getByTestId('LeagueHeaderMoveEditPageButton').click();
+    user1Page.once('dialog', async dialog => {
+        console.log(`Dialog message: ${dialog.message()}`);
+        await dialog.accept("delete league").catch(() => { });
+    });
     await user1Page.getByTestId('LeagueEditFormDeleteButton').click();
     await user1Page.waitForResponse('https://api.tread.run/league/delete_league');
 
@@ -870,6 +890,10 @@ test('League Role System', async ({ browser }) => {
     await user1Page.getByTestId('PageSwitchLeagueButton').click();
     await user1Page.getByTestId('LeagueObjLeagueName'+leagueName).click();
     await user1Page.getByTestId('LeagueHeaderMoveEditPageButton').click();
+    user1Page.once('dialog', async dialog => {
+        console.log(`Dialog message: ${dialog.message()}`);
+        await dialog.accept("delete league").catch(() => { });
+    });
     await user1Page.getByTestId('LeagueEditFormDeleteButton').click();
     await user1Page.waitForResponse('https://api.tread.run/league/delete_league');
 
