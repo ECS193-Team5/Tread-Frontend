@@ -143,6 +143,14 @@ describe("Test /pages/challenge.js", () => {
     })
 
     describe("Test adding Exercise", () => {
+        it("Test give a invalid logged date", () => {
+            render(<Challenge>{{ "type": "current" }}</Challenge>)
+            h.showExerciseBox();
+            h.setLoggedDate(new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().substring(0, 16));
+            let element = screen.getByTestId("ExerciseLoggedDateFormDateInputErrorBox")
+            expect(element).toHaveTextContent("You cannot log an exercise in the future")
+        })
+
         it("Test add sucessful exercise", () => {
             render(<Challenge>{{ "type": "current" }}</Challenge>)
             h.showExerciseBox();

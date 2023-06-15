@@ -1,8 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 
 const ExerciseLoggedDateForm = (props) => {
+    const [err, setErr] = useState("");
     const loggedDateChange = (event) => {
-        props.updateLoggedDate(new Date(event.target.value));
+        console.log("event", event.target.value)
+        if(new Date(event.target.value) > Date.now()){
+            setErr("You cannot log an exercise in the future");
+            props.updateLoggedDate("");
+        }
+        else{
+            setErr("");
+            props.updateLoggedDate(new Date(event.target.value));
+        }
+
     }
 
     function getToday(){
@@ -25,6 +35,7 @@ const ExerciseLoggedDateForm = (props) => {
         <div data-testid="ExerciseLoggedDateFormComponent">
             <p className="formObjInner">Date</p>
             <input data-testid="ExerciseLoggedDateFormDateInput" className="formDateInput formObjShort" onKeyDown = {stopKey} id="addExerciseDate" type="datetime-local" onChange={loggedDateChange} max = {getToday()}></input>
+            <p data-testid="ExerciseLoggedDateFormDateInputErrorBox" className="errorBox">{err}</p>
         </div>
     )
 }
