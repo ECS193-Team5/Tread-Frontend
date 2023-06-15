@@ -39,6 +39,8 @@
     color: #F9A800;
     padding-top: 10;
     margin:0;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 #userSettingUsername{
